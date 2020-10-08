@@ -261,7 +261,7 @@ function game_init(){
     missile01_cnt = 1;
     max_missile01_cnt = ini_max_missile01_cnt;
     ran_cnt = 1;
-    warp_distance = ini_warp_distance;
+    warp_distance = ;
 
     back_distance = 0;
     back_distance2 = 0;
@@ -494,7 +494,7 @@ var ran_cnt = 2;
 
 
 //플레이어 공간이동(warp) 거리
-var ini_warp_distance = 20;
+var ini_warp_distance = 10;
 var warp_distance = ini_warp_distance;
 
 //플레이어 총알 충돌 여부

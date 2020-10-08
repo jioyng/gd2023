@@ -261,7 +261,7 @@ function game_init(){
     missile01_cnt = 1;
     max_missile01_cnt = ini_max_missile01_cnt;
     ran_cnt = 1;
-    warp_distance = ;
+    warp_distance = ini_warp_distance;
 
     back_distance = 0;
     back_distance2 = 0;

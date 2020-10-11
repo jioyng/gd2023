@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, user-scalable=no"  />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<title> 건닷지 </title>
+<style type="text/css"> 
+body {
+
+background-size: 100%;
+background-repeat:no-repeat;
+/* -background-position: 40% -30%;
+background-position: 50% -5%; */
+}
+
+#title {
+  font-size: 85px;
+  font-style: oblique;
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(#eee, #156);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position:relative;
+}
+
+#start {
+	text-decoration:none;
+	font-family:Arial;
+	box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 3px 2px;
+	o-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 3px 2px;
+	-moz-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 3px 2px;
+	-webkit-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 3px 2px;
+	background:#a2b8b8;
+	background:-o-linear-gradient(90deg, #a2b8b8, #5f7a8a);
+	background:-moz-linear-gradient( center top, #a2b8b8 5%, #5f7a8a 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a2b8b8), color-stop(1, #5f7a8a) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a2b8b8', endColorstr='#5f7a8a');
+	background:-webkit-linear-gradient(#a2b8b8, #5f7a8a);
+	background:-ms-linear-gradient(#a2b8b8, #5f7a8a);
+	background:linear-gradient(#a2b8b8, #5f7a8a);
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:25px;
+	-webkit-border-radius:25px;
+	border-radius:25px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color:#fff7ff;
+	width:100px;
+	height:30px;
+	padding:13px;
+	text-shadow:#4d6b75 2px 2px 0px;
+	border-color:#8e9e14;
+	border-width:2px;
+	border-style:solid;
+}
+
+#start:active {
+	box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
+	o-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
+	-moz-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
+	-webkit-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
+	position:relative;
+	top:3px
+}
+
+#start:hover {
+	background:#5f7a8a;
+	background:-o-linear-gradient(90deg, #5f7a8a, #a2b8b8);
+	background:-moz-linear-gradient( center top, #5f7a8a 5%, #a2b8b8 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5f7a8a), color-stop(1, #a2b8b8) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f7a8a', endColorstr='#a2b8b8');
+	background:-webkit-linear-gradient(#5f7a8a, #a2b8b8);
+	background:-ms-linear-gradient(#5f7a8a, #a2b8b8);
+	background:linear-gradient(#5f7a8a, #a2b8b8);
+}
+</style>
+<!-- <script type="text/javascript" charset="utf-8" src="cphonegap.js"></script>   -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js" ></script> -->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script> 
+<script type="text/javascript" src="js/Common.js"></script> 
+<script type="text/javascript" charset="utf-8">  
+
+$(function(){
+ 
+//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
+f_search_landmode();        //화면 로딩시 자동 호출
+  
+  // //우클릭, 드래그, 선택 방지
+  // $(document).on("contextmenu dragstart selectstart",function(e){
+  //     return false;
+  // }); 
+
+	// //화면 드래그 방지
+	// //$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+	// $('#totdiv').on('scroll touchmove mousewheel', function(event) {
+	// 		event.preventDefault();
+	// 		event.stopPropagation();
+	// 		return false;
+	// });	
+
+	$(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
+		
+    var a = e.keyCode;	    //a에 해당키의 keycode를 넣고, alert(a);
+
+    if(a == 13 || a == 32){//키가 sparce or enter 이면 실행 (엔터는 13)
+        $("#start").click();
+    }
+  });
+
+  $("#start").mouseover(function(){
+			bgsound.pause(); 
+  });
+
+  $("#start").mouseout(function(){
+	 		bgsound.play(); 
+  });
+
+  //시작버튼 효과음
+  function StSound(){
+
+	  //시작음효과
+	  // var stsound = document.getElementById('stsound'); 
+	  if (stsound != null){
+			stsound.currentTime = 1.8; //재생위치
+	
+			stsound.play();
+	  }
+	  return 1;
+
+  };
+
+	//$("#start").bind('touchstart', function(e) {
+  //jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
+  $("#start").click(function(){
+ 
+ 
+			if (StSound() != 1)  {
+			return;
+			}
+
+			$('#mark').animate({
+			top:30,
+			left:300
+			});
+
+			$('#mark').animate({
+			top:-100,
+				left:-200
+			});
+
+			$(".main").fadeOut( "slow", function() {
+				// Animation complete.
+					//tempDelay();
+				window.location = 'Dodge.html';
+				
+			});
+	 });
+	  
+	 $("#finish").click(function(){
+
+						//윈도우일경우.
+						// if (getOSInfo().indexOf("Windows") >= 0){
+						// 	if (confirm('프로그램을 종료하시겠습니까?') == true){
+						// 		// window.close();
+						// 		// self.close();
+						// 		// self.opner = window.location.href;
+						// 		// self.close();
+						// 		// //window.open('about:blank','_sell').close();
+
+						// 		// self.opener = self;
+						// 		// window.close();
+
+						// 		window.open('http://google.com', '_self', '');
+						// 		window.close(); 
+						// 		return;
+						// 	 } 		 	 
+						// }else {
+							//navigator.app.exitApp();
+							onBackKeyDown();
+							return;
+						//}   
+		});
+}); 
+
+</script>
+</head>
+<body bgcolor = '#262626' background="./img/main_intro.jpg">
+		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;">
+				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
+		</div>	
+		<audio id='bgsound' src='./sound/hero.wav'></audio> 
+		<audio id='stsound' src='./sound/lazer.wav'></audio> 
+		<div style="position: absolute; top: 0px; right: 10px; z-index:20;">
+			<br>
+			<button id="finish" style="opacity:0.2" ><b>&nbsp;Finish&nbsp;</b></button> 
+		</div>		
+		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10;">
+		┕ Gun Dodge ┑
+		</div>
+		<div id="mark" style="position: absolute; top:0%; left:calc(50% - 200px); width:500px;">
+		<svg  width="100%" height="335">
+		<!--
+			<circle cx="180" cy="160" r="150" stroke="gold" stroke-width="14" fill="transparent" />
+			<polygon points="100,200 80,396 380,156 20,156 320,396"
+			style="fill:skyblue;stroke:silver;stroke-width:5;fill-rule:evenodd;" />
+		-->
+			<polygon points="100,200 80,296 380,156 20,156 320,396"
+			style="fill:#C91D1D;stroke:#####;stroke-width:5;fill-rule:evenodd;" />
+			<circle cx="180" cy="160" r="150" stroke="gold" stroke-width="5" fill="transparent" />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+		</div>
+		<div id="start" class="main"  style="position: absolute; top:60%; left:calc(50% - 100px); width:150px;">
+		Start
+		</div>
+		<div  style="position: absolute; text-align:center; top:90%; color:white;z-index:5; width:96%;">
+			GunDodge v0.03, All right reserved by JohnRed since 2019.
+		</div>
+</body>
+</html>

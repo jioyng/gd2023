@@ -7,7 +7,7 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<title> 건닷지 </title>
+<title> 건닷지2020</title>
 <style type="text/css"> 
 body {
 
@@ -138,9 +138,11 @@ f_search_landmode();        //화면 로딩시 자동 호출
 
 	//$("#start").bind('touchstart', function(e) {
   //jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
-  $("#start").click(function(){
+	
+  start.addEventListener('click', function() {  
+  //$("#start").click(function(){
  
- alert("tesT")
+ 	alert("tesT")
 			if (StSound() != 1)  {
 			return;
 			}
@@ -161,7 +163,8 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				window.location = 'Dodge.html';
 				
 			});
-	 });
+	// });
+    }
 	  
 	 $("#finish").click(function(){
 
@@ -221,7 +224,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 		Start
 		</div>
 		<div  style="position: absolute; text-align:center; top:90%; color:white;z-index:5; width:96%;">
-			GunDodge v0.03, All right reserved by JohnRed since 2019.
+			GunDodge v0.03, All right reserved by JohnRed since 2020.
 		</div>
 </body>
 </html>

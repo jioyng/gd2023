@@ -1075,13 +1075,16 @@ function clickCanvas(event, as_gb) {
 			gameStart(13);
 		}
 
+        warp_sound.play();
+
+
 		//isKeyCode = 17;
 		//회피 이미지로 변경
 		for (var i=0;i<=warp_distance;i++){
 
 			Context.drawImage(player_warp,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3))
 
-			warp_sound.play();
+			//warp_sound.play();
 
 			if (isKeyCode == 38 || wayBefore == "U"){
 				playerY = playerY - i;
@@ -1336,13 +1339,16 @@ function player_move(){
 	if (isKeyDown[17] || isKeyCode == 17  || isKeyCode == 12) {
 
         isKeyCode = 17;
+
+        warp_sound.play();
+
         //회피 이미지로 변경
         for (var i=0;i<=warp_distance;i++){
 
             //공간이동 이미지
             Context.drawImage(player_warp,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3))
 
-            warp_sound.play();   //공간이동시 사운드
+            //warp_sound.play();   //공간이동시 사운드
 
             if (wayBefore == "U"){
                 playerY = playerY - i;

@@ -494,7 +494,7 @@ var ran_cnt = 2;
 
 
 //플레이어 공간이동(warp) 거리
-var ini_warp_distance = 3;
+var ini_warp_distance = 10;
 var warp_distance = ini_warp_distance;
 
 //플레이어 총알 충돌 여부

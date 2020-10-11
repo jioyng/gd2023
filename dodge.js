@@ -1075,6 +1075,7 @@ function clickCanvas(event, as_gb) {
 			gameStart(13);
 		}
 
+        warp_sound.currentTime  = 0;
         warp_sound.play();
 
 
@@ -1340,6 +1341,7 @@ function player_move(){
 
         isKeyCode = 17;
 
+        warp_sound.currentTime  = 0;
         warp_sound.play();
 
         //회피 이미지로 변경

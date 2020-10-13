@@ -124,19 +124,19 @@ f_search_landmode();        //화면 로딩시 자동 호출
 //   });
 
   //시작버튼 효과음
-//   function StSound(){
+  function StSound(){
 
-// 	  //시작음효과
-// 	  var stsound = document.getElementById('stsound'); 
+	  //시작음효과
+	  var stsound = document.getElementById('stsound'); 
 	  
-// 	  if (stsound != null){
-// 			stsound.currentTime = 1.8; //재생위치
+	  if (stsound != null){
+			stsound.currentTime = 1.8; //재생위치
 	
-// 			stsound.play();
-// 	  }
-// 	  return 1;
+			stsound.play();
+	  }
+	  return 1;
 
-//   };
+  };
 
 	//$("#start").bind('touchstart', function(e) {
   //jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
@@ -144,21 +144,20 @@ f_search_landmode();        //화면 로딩시 자동 호출
 	  start.addEventListener('click', function() {  
 	  //$("#start").click(function(){
   
-		  	window.location = 'Dodge.html';
+		  	//window.location = 'Dodge.html';
 		  
 			// if (StSound() != 1)  {
 			// return;
 			// }
 		  
 			//시작음효과
-			// var stsound = document.getElementById('stsound'); 
+			var stsound = document.getElementById('stsound'); 
+			 
+			if (stsound != null){
+					stsound.currentTime = 1.8; //재생위치
 			
-			// alert(stsound)
-			// if (stsound != null){
-			// 		stsound.currentTime = 1.8; //재생위치
-			
-			// 		stsound.play();
-			// }
+					stsound.play();
+			}
 
 						
 			$('#mark').animate({
@@ -171,14 +170,13 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				left:-200
 			});
 
-			//window.location = 'Dodge.html';
-			
-			// $(".main").fadeOut( "slow", function() {
-			// 	// Animation complete.
-			// 		//tempDelay();
-			// 	window.location = 'Dodge.html';
+			 
+			$(".main").fadeOut( "slow", function() {
+				// Animation complete.
+					//tempDelay();
+				window.location = 'Dodge.html';
 				
-			// });
+			});
 			
 	 });
     

@@ -82,49 +82,49 @@ var stsound;
 //f_bgsound();
 
 //메인화면 사운드객체(멈춘상태에서 이어서 재생하기위해 전역으로 선언)
-bgsound = document.getElementById('bgsound'); //시작화면배경음악.
-stsound = document.getElementById('stsound'); //스타트버튼효과음.
+// bgsound = document.getElementById('bgsound'); //시작화면배경음악.
+// stsound = document.getElementById('stsound'); //스타트버튼효과음.
  
  
-function f_bgsound(){
+// function f_bgsound(){
 
-    //메인화면 사운드객체
-     //bgsound = document.getElementById('bgsound'); //시작화면배경음악.
-     //stsound = document.getElementById('stsound'); //스타트버튼효과음.
+//     //메인화면 사운드객체
+//      //bgsound = document.getElementById('bgsound'); //시작화면배경음악.
+//      //stsound = document.getElementById('stsound'); //스타트버튼효과음.
 
-  //bgsound.oncanplaythrough = function(){      //냅다 스타트(play 눌러버리리때의 인터런트 에러가 방지.
-      //bgsound.play(); 
-  //}
+//   //bgsound.oncanplaythrough = function(){      //냅다 스타트(play 눌러버리리때의 인터런트 에러가 방지.
+//       //bgsound.play(); 
+//   //}
 
-    if (bgsound == null){
-       bgsound = document.getElementById('bgsound'); //시작화면배경음악.
-     } 
+//     if (bgsound == null){
+//        bgsound = document.getElementById('bgsound'); //시작화면배경음악.
+//      } 
 
-    if (stsound == null){
-      stsound = document.getElementById('stsound'); //시작화면배경음악.
-    }
+//     if (stsound == null){
+//       stsound = document.getElementById('stsound'); //시작화면배경음악.
+//     }
 
-    // Show loading animation.
-    var playPromise = bgsound.play(); 
+//     // Show loading animation.
+//     var playPromise = bgsound.play(); 
 
-    if (playPromise !== undefined) {
-      playPromise.then(_ => {
+//     if (playPromise !== undefined) {
+//       playPromise.then(_ => {
     
-        // Automatic playback started!
-        // Show playing UI.
+//         // Automatic playback started!
+//         // Show playing UI.
   
-        //bgsound.currentTime = 0; //재생위치
+//         //bgsound.currentTime = 0; //재생위치
         
-        bgsound.play(); 
-        bgsound.loop = true; // 반복여부	
-      })
-      .catch(error => {
-        // Auto-play was prevented
-        // Show paused UI.
-      });
-    };
+//         bgsound.play(); 
+//         bgsound.loop = true; // 반복여부	
+//       })
+//       .catch(error => {
+//         // Auto-play was prevented
+//         // Show paused UI.
+//       });
+//     };
     
-};
+// };
 
 //가로~세로 변경시 이벤트 자동 감지 
 var supportsOrientationChange = "onorientationchange" in window,
@@ -154,7 +154,7 @@ function f_search_landmode(){
 
       lstotdiv.style.visibility = "hidden";     
                         
-      f_bgsound();   
+      //f_bgsound();   
       //lsGameCanvas.SetActive(true);
       //bgsound.play();
     } else {

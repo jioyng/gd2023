@@ -2,7 +2,7 @@
   "name": "my-gd-package",
   "version": "1.0.0",
   "description": "my first pwa test",
-  "main": "dodge.js",
+  "main": "index.html",
   "author": "jiyoung",
   "license": "mou",
   "dependencies": {

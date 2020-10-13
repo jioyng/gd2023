@@ -170,7 +170,26 @@ f_search_landmode();        //화면 로딩시 자동 호출
     
 	  
 	 $("#finish").click(function(){
-	  alert("finish")
+
+		if(deferredPrompt !== undefined) { 
+			// The user has had a postive interaction with our app and Chrome 
+			// has tried to prompt previously, so let's show the prompt. 
+			deferredPrompt.prompt();
+			
+			// Follow what the user has done with the prompt. 
+			deferredPrompt.userChoice.then(function(choiceResult) { 
+				console.log(choiceResult.outcome); 
+				
+				if(choiceResult.outcome == 'dismissed') { 
+					console.log('User cancelled home screen install'); 
+				} else { 
+					console.log('User added to home screen'); 
+				}
+				// We no longer need the prompt. Clear it up. 
+				
+				deferredPrompt = null; 
+		    });
+		} 
 
 						//윈도우일경우.
 						// if (getOSInfo().indexOf("Windows") >= 0){
@@ -190,8 +209,8 @@ f_search_landmode();        //화면 로딩시 자동 호출
 						// 	 } 		 	 
 						// }else {
 							//navigator.app.exitApp();
-							onBackKeyDown();
-							return;
+							//onBackKeyDown();
+							//return;
 						//}   
 		});
 
@@ -252,7 +271,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 		<audio id='stsound' src='./sound/lazer.wav'></audio> 
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
-			<!-- <button id="finish" style="opacity:0.2" ><b>&nbsp;Finish&nbsp;</b></button>  -->
+		    <button id="finish" style="opacity:0.2" ><b>&nbsp;Install&nbsp;</b></button>
 		</div>		
 		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
 		Gun Dodge 2020

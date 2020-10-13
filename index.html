@@ -115,19 +115,19 @@ f_search_landmode();        //화면 로딩시 자동 호출
     }
   });
 
-  $("#start").mouseover(function(){
-			bgsound.pause(); 
-  });
+//   $("#start").mouseover(function(){
+// 			bgsound.pause(); 
+//   });
 
-  $("#start").mouseout(function(){
-	 		bgsound.play(); 
-  });
+//   $("#start").mouseout(function(){
+// 	 		bgsound.play(); 
+//   });
 
   //시작버튼 효과음
   function StSound(){
 
 	  //시작음효과
-	  // var stsound = document.getElementById('stsound'); 
+	  var stsound = document.getElementById('stsound'); 
 	  if (stsound != null){
 			stsound.currentTime = 1.8; //재생위치
 	
@@ -269,8 +269,8 @@ f_search_landmode();        //화면 로딩시 자동 호출
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>	
-		<audio id='bgsound' src='./sound/hero.wav'></audio> 
-		<audio id='stsound' src='./sound/lazer.wav'></audio> 
+		<!-- <audio id='bgsound' src='./sound/hero.wav'></audio>  -->
+		 <audio id='stsound' src='./sound/lazer.wav'></audio>   
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
 		    <button id="finish" style="opacity:0.2" ><b>&nbsp;설치&nbsp;</b></button>

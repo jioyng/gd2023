@@ -6,6 +6,6 @@
   "author": "jiyoung",
   "license": "mou",
   "dependencies": {
-    "serve": "^11.3.2"
+    "serve": "^11.3.3"
   }
 }

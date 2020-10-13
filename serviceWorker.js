@@ -1,13 +1,14 @@
 const staticAssets=[
     './',
     './css/style.css',
-    './index.js',
+    './dodge.js',
+    './index.html',
+    './dodge.html',
     './sound/explosion01.ogg',
     './sound/laser01.ogg',
     './sound/sound01.ogg',
     './sound/warp01.ogg', 
-    './sound/lazer.wav', 
-    './sound/hero.wav' 
+    './sound/lazer.wav' 
 ];
  
 self.addEventListener('install', async event=>{

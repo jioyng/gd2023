@@ -76,8 +76,8 @@ $('#totdiv').on('scroll touchmove mousewheel', function(event) {
 
 
 /////////////////음악및 효과음 관련.////////////////////////////////// 
-var bgsound;
-var stsound;
+// var bgsound;
+// var stsound;
 
 //f_bgsound();
 
@@ -145,9 +145,9 @@ function f_search_landmode(){
   var lstotdiv = document.getElementById("totdiv");           //화면 가리개
     //var lsGameCanvas = document.getElementById("GameCanvas");
     
-    if (bgsound == null){
-      bgsound = document.getElementById('bgsound'); //시작화면배경음악.
-    }
+    // if (bgsound == null){
+    //   bgsound = document.getElementById('bgsound'); //시작화면배경음악.
+    // }
 
     //가로모드일때
     if(Math.abs(parseInt(window.orientation)) == 90){
@@ -166,7 +166,7 @@ function f_search_landmode(){
         lstotdiv.style.visibility = "visible"; 
       }
       
-      bgsound.pause();
+      // bgsound.pause();
       //lsGameCanvas.SetActive(false);
     }
 

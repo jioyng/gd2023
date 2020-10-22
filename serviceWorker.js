@@ -4,11 +4,12 @@ const staticAssets=[
     './dodge.js',
     './index.html',
     './dodge.html',
+    './sound/intro.ogg',     
+    './sound/laser.ogg',     
+    './sound/laser01.ogg',    
     './sound/explosion01.ogg',
-    './sound/laser01.ogg',
     './sound/sound01.ogg',
-    './sound/warp01.ogg', 
-    './sound/lazer.wav' 
+    './sound/warp01.ogg'
 ];
  
 self.addEventListener('install', async event=>{

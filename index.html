@@ -129,6 +129,32 @@ f_search_landmode();        //화면 로딩시 자동 호출
 //   $("#start").mouseout(function(){
 // 	 		bgsound.play(); 
 //   });
+ 
+  //인트로(배경)음악
+  var bgsound = document.getElementById('bgsound'); 
+  bgsound.addEventListener("load",BgSound, false);
+
+  function BgSound(){
+ 
+	//var bgsound = document.getElementById('bgsound'); 
+	  
+	  if (bgsound != null){
+  
+		  bgsound.currentTime = 10; //재생위치
+		  
+		  bgsound.play(); 
+  
+	  } 
+
+    };
+ 
+	//로드시간 
+	//setTimeout(BgSound,1000);
+	// $(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
+	// 	BgSound();
+	// }
+
+	
 
   //시작버튼 효과음
   function StSound(){
@@ -137,16 +163,16 @@ f_search_landmode();        //화면 로딩시 자동 호출
 	  var stsound = document.getElementById('stsound'); 
 	  
 	  if (stsound != null){
-			stsound.currentTime = 1.8; //재생위치
+			//stsound.currentTime = 2; //재생위치
 	
 			stsound.play();
 	  }
 	  return 1;
 
-  };
+    };
 
 	//$("#start").bind('touchstart', function(e) {
-  //jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
+    //jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
 	
 	  start.addEventListener('click', function() {  
 	  //$("#start").click(function(){
@@ -288,8 +314,8 @@ f_search_landmode();        //화면 로딩시 자동 호출
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>	
-		<!-- <audio id='bgsound' src='./sound/hero.wav'></audio>  -->
-		 <audio id='stsound' src='./sound/lazer.wav'></audio>   
+		 <audio id='bgsound' src='./sound/intro.ogg'></audio>
+		 <audio id='stsound' src='./sound/laser.ogg'></audio>   
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
 		    <!-- <button id="finish" style="opacity:0.2" ><b>&nbsp;설치&nbsp;</b></button> -->

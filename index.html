@@ -97,8 +97,10 @@ background-position: 50% -5%; */
 		</div>
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
 		
-		<audio id="misound" autoplay  onplay="handleFirstPlay(event)">
-			<source src='./sound/intro.ogg'>
+
+		<iframe  src='./sound/intro.ogg' allow="autoplay" id="audio"  ></iframe> 
+		<audio id="misound" autoplay loop>
+			<source src='./sound/intro.ogg' type="audio/ogg">
 		</audio>
 
 		 <!-- 음원 자동재생 참고 : https://d0gf00t.tistory.com/36 -->
@@ -138,10 +140,6 @@ background-position: 50% -5%; */
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8">
 
-//   //인트로(배경)음악
-//   var misound = document.getElementById('misound');
-//   misound.addEventListener("load",misound, false);
-
 
 function handleFirstPlay(event) {
 	alert("handleFirstPlay")
@@ -154,8 +152,13 @@ function handleFirstPlay(event) {
 
 
 $(function(){
+ 
 
-	
+//   //인트로(배경)음악
+//   var misound = document.getElementById('misound');
+//   misound.addEventListener("load",misound, false);
+
+//	misound.play();	
 	//인트로(배경)음악
 	// var misound2 = new Audio();
 	// misound2.src = "./sound/intro.ogg";

@@ -94,7 +94,13 @@ background-position: 50% -5%; */
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>	
-		 <audio id='misound' src='./sound/intro.ogg'></audio>
+		 <!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
+		 <!-- 음원 자동재생 참고 : https://d0gf00t.tistory.com/36 -->
+		<iframe src="./sound/intro.ogg" allow="autoplay" id="misound" style="display: none"></iframe> 
+		 <!-- <audio id="misound" autoplay loop>
+			<source src="./sound/intro.ogg" type="audio/ogg">
+		</audio> -->
+		 
 		 <audio id='stsound' src='./sound/laser.ogg'></audio>   
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
@@ -152,34 +158,41 @@ background-position: 50% -5%; */
 			if(a == 13 || a == 32){//키가 sparce or enter 이면 실행 (엔터는 13)
 				$("#start").click();
 			}
-		  });
+		  }); 
+
+		//   //인트로(배경)음악
+		//   var misound = document.getElementById('misound'); 
+		//   misound.addEventListener("load",misound, false);
+
+		//인트로(배경)음악
+		// var misound = new Audio();
+		// misound.src = "./sound/intro.ogg";
+		// window.addEventListener("load",misound, true);		
+ 
+		//console.log(misound)
+		//로드시간 
+		//setTimeout(play_misound,5000);
+		// $(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
+		// 	play_misound();
+		// });
 		
-		
+
+		// function play_misound(){
 		 
-		  //인트로(배경)음악
-		  var misound = document.getElementById('misound'); 
-		  misound.addEventListener("load",misound, false);
-		
-		  function misound(){
-		 
-			//var misound = document.getElementById('misound'); 
-			  
-			  if (misound != null){
-		  
-				  misound.currentTime = 10; //재생위치
-				  
-				  misound.play(); 
-		  
-			  } 
-		
-			};
-		 
-			//로드시간 
-			//setTimeout(misound,1000);
-			// $(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
-			// 	misound();
-			// }
-		
+		//  //var misound = document.getElementById('misound'); 
+	
+		//    if (misound != null){
+	   
+		// 	   misound.currentTime = 10; //재생위치
+			   
+		// 	   misound.play(); 
+	   
+		//    } 
+	 
+		//  };
+
+
+
 		//    $("#start").mouseover(function(){
 		//  			misound.pause(); 
 		//    });

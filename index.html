@@ -99,7 +99,8 @@ background-position: 50% -5%; */
 		
 
 		<iframe  src='./sound/intro.ogg' allow="autoplay" id="audio"  style="display:none"></iframe> 
-		<audio id="misound" autoplay loop>
+		<!-- <audio id="misound" autoplay loop> -->
+		<audio id="misound"></audio>
 			<source src='./sound/intro.ogg' type="audio/ogg">
 		</audio>
 
@@ -157,7 +158,7 @@ $(function(){
 //   //인트로(배경)음악
 //   var misound = document.getElementById('misound');
 //   misound.addEventListener("load",misound, false);
-    misound.currentTime = 10; //재생위치 
+    misound.currentTime = 9; //재생위치 
  	misound.play();	
 	//인트로(배경)음악
 	// var misound2 = new Audio();
@@ -243,6 +244,8 @@ f_search_landmode();        //화면 로딩시 자동 호출
 		if (stsound != null){
 			//stsound.currentTime = 2; //재생위치
 
+			misound.pause();
+			
 			stsound.play();
 		}
 		return 1;

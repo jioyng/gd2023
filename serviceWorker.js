@@ -1,9 +1,9 @@
 const staticAssets=[
     './',
     './css/style.css',
-    './dodge.js',
     './index.html',
-    './dodge.html',
+    './play.html',
+    './stage01.js',    
     './sound/intro.ogg',     
     './sound/laser.ogg',     
     './sound/laser01.ogg',    

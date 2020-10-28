@@ -1,17 +1,17 @@
-﻿//로드시 PWA구현을 위해 서비스 워커 등록
-window.addEventListener('load', ()=>{
+﻿// //로드시 PWA구현을 위해 서비스 워커 등록
+// window.addEventListener('load', ()=>{
 
-    if('serviceWorker' in navigator){
-      try {
-        navigator.serviceWorker.register('serviceWorker.js');
-        console.log("Service Worker Registered");
-        //alert("a")
-      } catch (error) {
-        console.log("Service Worker Registration Failed");
-        //alert("f")
-      }
-    }
-});
+//     if('serviceWorker' in navigator){
+//       try {
+//         navigator.serviceWorker.register('serviceWorker.js');
+//         console.log("Service Worker Registered");
+//         //alert("a")
+//       } catch (error) {
+//         console.log("Service Worker Registration Failed");
+//         //alert("f")
+//       }
+//     }
+// });
 
 //윈도우 os의 경우 터치버튼 보이기/숨기기
 //if (navigator.platform.substr(0,3) == "Win" ){

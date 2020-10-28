@@ -76,7 +76,9 @@ function gameStart(as_keycode) {
         //플레이어 변수 초기화
         player_init();
 
-        enemy01_init();
+
+        enemy01.enemy01_init();
+        enemy02.enemy01_init();
 
         //cityEnd_move();
 
@@ -202,7 +204,7 @@ var Context3 = theCanvas.getContext("2d");
 // Context3.rotate(0,0);	//기준점을 기준으로 회전
 // Context3.translate(theCanvas.width,theCanvas.height);
 // Context3.rotate(180*Math.PI/180);
- 
+
 
 //게임 화면 경계
 var minX = theCanvas.offsetLeft;
@@ -325,7 +327,7 @@ enemy01GunImage.addEventListener("load",drawScreen, false);
 //적01 엔진 이미지
 var enginImage01 = new Image();
 enginImage01.src = "./img/engin01.png";
-enginImage01.addEventListener("load",drawScreen, false); 
+enginImage01.addEventListener("load",drawScreen, false);
 
 //적01 위치
 var enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x); //시작  x
@@ -337,13 +339,13 @@ var enemy01y = parseInt(theCanvas.clientHeight / 4); //시작 y
 var ini_enemy01w = 40;
 var ini_enemy01h = 55;
 var enemy01w = ini_enemy01w;
-var enemy01h = ini_enemy01h; 
+var enemy01h = ini_enemy01h;
 
 //적01 생명
 var ini_enemy01_life = 5;
 var enemy01_life = ini_enemy01_life;
 var ini_energe_bar = ''  // '■□';   //에너지 바
-var energe_bar = ''  // '■□';   //에너지 바  
+var energe_bar = ''  // '■□';   //에너지 바
 
 //적01 미시일 이미지 및 로드
 var missile01Image = new Image();
@@ -372,7 +374,8 @@ var ran_cnt = 2;
 
 //적01 생성
 function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy01y,enemy01w,enemy01h,enemy01_life,energe_bar,enemy01_collision_chk,missile01_cnt,missile01X,missile01Y){
- 
+
+
          this.enemy01Image= enemy01Image;
          this.enemy01GunImage= enemy01GunImage;
          this.enginImage01= enginImage01;
@@ -386,10 +389,10 @@ function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy
 
          this.enemy01_init = enemy01_init;
 
-         this.missile01_cnt = missile01_cnt; 
- 
+         this.missile01_cnt = missile01_cnt;
+
          this.missile01X = missile01X;
-         this.missile01Y = missile01Y; 
+         this.missile01Y = missile01Y;
 
         //적01 미사일 객체(배열) 생성
         this.missile01_create = missile01_create;
@@ -399,12 +402,18 @@ function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy
 
         //적01 이동
         this.enemy01_move = enemy01_move;
-}       
+}
+
+
+
+var enemy01 = new enemy01_create();
+var enemy02 = new enemy01_create();
+
 
 //적01 초기화
 function enemy01_init(){
+  
 
-    console.log("enemy02",this);
     this.enemy01Image = new Image();
     this.enemy01Image.src = "./img/enemy02.png";
     this.enemy01Image.addEventListener("load",drawScreen, false);
@@ -418,20 +427,20 @@ function enemy01_init(){
     this.enginImage01.addEventListener("load",drawScreen, false);
 
     //적01 레이져 폭파중 여부
-    this.enemy01_collision_chk = 'N'; 
+    this.enemy01_collision_chk = 'N';
 
     //이미지는 뒷쪽에 있는거먼저 그려준다.
     //적01 엔진
-    Context.drawImage(this.enginImage01,this.enemy01x - this.enemy01w/4 + Math.floor(Math.random() * 6),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 3) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3); 
-    Context.drawImage(this.enginImage01,this.enemy01x - 10 - this.enemy01w/4 - Math.floor(Math.random() * 8),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 4) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3); 
-    //적01 
+    Context.drawImage(this.enginImage01,this.enemy01x - this.enemy01w/4 + Math.floor(Math.random() * 6),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 3) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3);
+    Context.drawImage(this.enginImage01,this.enemy01x - 10 - this.enemy01w/4 - Math.floor(Math.random() * 8),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 4) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3);
+    //적01
     Context.drawImage(this.enemy01Image,this.enemy01x - 40, this.enemy01y,this.enemy01w,this.enemy01h);
     //적01 총
     Context.drawImage(this.enemy01GunImage,this.enemy01x + this.enemy01w/30, this.enemy01y + this.enemy01h/10 ,Math.floor(Math.random() * 6) + this.enemy01w/40,Math.floor(Math.random() * 5 + this.enemy01w/40));
-    Context.drawImage(this.enemy01GunImage,this.enemy01x + this.enemy01w/27, this.enemy01y + this.enemy01h/10 ,Math.floor(Math.random() * 6) + this.enemy01w/30,Math.floor(Math.random() * 5 + this.enemy01w/30));    
+    Context.drawImage(this.enemy01GunImage,this.enemy01x + this.enemy01w/27, this.enemy01y + this.enemy01h/10 ,Math.floor(Math.random() * 6) + this.enemy01w/30,Math.floor(Math.random() * 5 + this.enemy01w/30));
     //적01 초기 위치
-    this.enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x); //시작  x
-    this.enemy01y = parseInt(theCanvas.clientHeight / 4); //시작 y
+    this.enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 100)); //시작  x
+    this.enemy01y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 100)); //시작 y
     //적01 초기 크기
     this.enemy01w = ini_enemy01w + Math.floor(Math.random() * 100);
     this.enemy01h = ini_enemy01h + Math.floor(Math.random() * 100);
@@ -453,6 +462,8 @@ function enemy01_init(){
 
     //적01 미사일 객체(배열) 초기화
     this.missile01_init(1);
+
+    //return this;
 }
 
 
@@ -462,36 +473,36 @@ function enemy01_move(){
     // enemy01xx ++;
     // enemy01yy ++;
 
-    //적(enemy01) 이동 
+    //적(enemy01) 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy01x = this.enemy01x + 0.5;
         this.enemy01y = this.enemy01y + 0.1;
 
-        this.enemy01w = this.enemy01w + 0.1; 
+        this.enemy01w = this.enemy01w + 0.1;
         this.enemy01h = this.enemy01h + 0.2;
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy01x = this.enemy01x - 0.5;
         this.enemy01y = this.enemy01y - 0.2;
 
-        this.enemy01w = this.enemy01w - 0.1; 
+        this.enemy01w = this.enemy01w - 0.1;
         this.enemy01h = this.enemy01h - 0.2;
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy01x = this.enemy01x + 0.6;
         this.enemy01y = this.enemy01y + 0.2;
 
-        this.enemy01w = this.enemy01w + 0.1; 
-        this.enemy01h = this.enemy01h + 0.2;        
+        this.enemy01w = this.enemy01w + 0.1;
+        this.enemy01h = this.enemy01h + 0.2;
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy01x = this.enemy01x - 0.7;
         this.enemy01y = this.enemy01y - 0.4;
 
-        this.enemy01w = this.enemy01w - 0.1; 
+        this.enemy01w = this.enemy01w - 0.1;
         this.enemy01h = this.enemy01h - 0.2;
     }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
         this.enemy01x = this.enemy01x + 0.2;
         this.enemy01y = this.enemy01y + 0.3;
 
-        this.enemy01w = this.enemy01w + 0.1; 
+        this.enemy01w = this.enemy01w + 0.1;
         this.enemy01h = this.enemy01h + 0.2;
     }else {
         // enemy01xx = 0;
@@ -509,7 +520,7 @@ function enemy01_move(){
     //적 움직이게한다.
     this.missile01X = enemy01x;
     this.missile01Y = enemy01y;
- 
+
     //적의 크기는 플레이어의 크기보다 커질수는 없다.
     if (this.enemy01w >= playerWidth){
         this.enemy01w = playerWidth
@@ -520,23 +531,19 @@ function enemy01_move(){
     };
 
 
-    Context.drawImage(this.enginImage01,this.enemy01x - this.enemy01w/4 + Math.floor(Math.random() * 6),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 3) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3); 
-    Context.drawImage(this.enginImage01,this.enemy01x - 10 - this.enemy01w/4 - Math.floor(Math.random() * 8),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 4) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3); 
-    
+    Context.drawImage(this.enginImage01,this.enemy01x - this.enemy01w/4 + Math.floor(Math.random() * 6),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 3) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3);
+    Context.drawImage(this.enginImage01,this.enemy01x - 10 - this.enemy01w/4 - Math.floor(Math.random() * 8),this.enemy01y + this.enemy01h/8,Math.floor(Math.random() * 4) +  this.enemy01w/3,Math.floor(Math.random() * 4) +  this.enemy01h/3);
+
     Context.drawImage(this.enemy01Image,this.enemy01x - 40, this.enemy01y ,this.enemy01w,this.enemy01h);
     Context.drawImage(this.enemy01GunImage,this.enemy01x + this.enemy01w/30, this.enemy01y + this.enemy01h/10 ,Math.floor(Math.random() * 6) + this.enemy01w/40,Math.floor(Math.random() * 5 + this.enemy01w/40));
     Context.drawImage(this.enemy01GunImage,this.enemy01x + this.enemy01w/37, this.enemy01y + this.enemy01h/10 ,Math.floor(Math.random() * 6) + this.enemy01w/30,Math.floor(Math.random() * 5 + this.enemy01w/30));
-  
+
 
     //타겟 에너지 표시
     energe_express(this.enemy01_life);
     Context.fillText(this.energe_bar,this.enemy01x  - 40 + Math.floor(Math.random() * 3), this.enemy01y - 10);
-} 
+}
 
-
-var enemy01 = new enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy01y,enemy01w,enemy01h,enemy01_life,energe_bar,enemy01_collision_chk,missile01_cnt,missile01X,missile01Y);
-  
-var enemy02 = new enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy01y,enemy01w,enemy01h,enemy01_life,energe_bar,enemy01_collision_chk,missile01_cnt,missile01X,missile01Y);
 
 
 
@@ -545,10 +552,10 @@ var ini_warp_distance = 15;
 var warp_distance = ini_warp_distance;
 
 //플레이어 총알 충돌 여부
-var ls_player_collision_chk = 'N'; 
+var ls_player_collision_chk = 'N';
 
 //적01 레이져 폭파중 여부
-var enemy01_collision_chk = 'N';  
+var enemy01_collision_chk = 'N';
 
 //에너지 표시 함수
 function energe_express(cityEnd_life){
@@ -575,8 +582,8 @@ function game_background(){
 
     if (back_distance >= 800){
         back_distance = 0;
-    } 
-    
+    }
+
     if (parseInt(gameTime/800 % 9) == 0){
         cityEnd_x = cityEnd_x + 0.2;
         cityEnd_y = cityEnd_y + 0.1;
@@ -1448,7 +1455,7 @@ function player_move(){
         playerHeight = parseInt(ini_player_height/3);
     }
 
-    //플레이어 이미지 방향 
+    //플레이어 이미지 방향
     // //목적지 타켓이 플레이어보다 상단에 있으면 상단으로
     // if (playerY >= cityEnd_x  + enemy01h/2 + theCanvas.clientHeight / 20){
     //     playerImage = player;
@@ -1465,38 +1472,38 @@ function player_move(){
     // }
     // if (playerX < theCanvas.clientWidth / 3 - cityEnd_x - enemy01w/2){
     //     playerImage = player_360;
-    // } 
+    // }
 
     Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
     //Context.drawImage(enginImage01,playerX + playerX/20,playerY + 20,playerWidth/5 + Math.floor(Math.random() * 2),playerHeight/4 + Math.floor(Math.random() * 3));
     //엔진 부스터 방향
-    //전진,좌상,우상     
+    //전진,좌상,우상
     if (strKeyEventValue == "ArrowUp" || isKeyCode == 38 || isKeyDown[103] || isKeyCode == 36 || isKeyDown[105] || isKeyCode == 33){
         engin01_sound.currentTime  = 2;
-        engin01_sound.play();   //엔진 점화 사운드 
+        engin01_sound.play();   //엔진 점화 사운드
         Context.drawImage(enginImage01,playerX + playerWidth/2,playerY + playerHeight/30,playerWidth/5 + Math.floor(Math.random() * 3),playerHeight/4 + Math.floor(Math.random() * 4));
-        Context.drawImage(enginImage01,playerX + playerWidth/3,playerY + playerHeight/30,playerWidth/5 + Math.floor(Math.random() * 3),playerHeight/4 + Math.floor(Math.random() * 4));        
+        Context.drawImage(enginImage01,playerX + playerWidth/3,playerY + playerHeight/30,playerWidth/5 + Math.floor(Math.random() * 3),playerHeight/4 + Math.floor(Math.random() * 4));
         Context.drawImage(enginImage01,playerX + playerWidth/2,playerY + playerHeight/15,playerWidth/5 + Math.floor(Math.random() * 5),playerHeight/4 + Math.floor(Math.random() * 3));
-        Context.drawImage(enginImage01,playerX + playerWidth/3,playerY + playerHeight/15,playerWidth/5 + Math.floor(Math.random() * 6),playerHeight/4 + Math.floor(Math.random() * 5));              
+        Context.drawImage(enginImage01,playerX + playerWidth/3,playerY + playerHeight/15,playerWidth/5 + Math.floor(Math.random() * 6),playerHeight/4 + Math.floor(Math.random() * 5));
     }
     //좌
     if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(enginImage01,playerX  + playerWidth/9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
-        Context.drawImage(enginImage01,playerX + playerWidth/5,playerY + playerHeight/10,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));        
+        Context.drawImage(enginImage01,playerX + playerWidth/5,playerY + playerHeight/10,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
         Context.drawImage(enginImage01,playerX  + playerWidth/8,playerY + playerHeight/6,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
-        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));   
+        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
     }
 	//우
     if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(enginImage01,playerX  + playerWidth/1.9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
-        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/10,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));        
+        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/10,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
         Context.drawImage(enginImage01,playerX  + playerWidth/2,playerY + playerHeight/6,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
-        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));         
-        
+        Context.drawImage(enginImage01,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
+
     }
 	// //하
     // if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
@@ -1636,7 +1643,7 @@ function laser_collision(){
              //충돌시 carsh 효과 이미지로
              Context.drawImage(explosionImage01,enemy01x-Math.floor(Math.random()*20),enemy01y+Math.floor(Math.random()*20),20,10);
              Context.drawImage(explosionImage01,enemy01x+Math.floor(Math.random()*20),enemy01y+Math.floor(Math.random()*10),10,10);
-             Context.drawImage(explosionImage01,enemy01x+Math.floor(Math.random()*20),enemy01y-Math.floor(Math.random()*30),20,10); 
+             Context.drawImage(explosionImage01,enemy01x+Math.floor(Math.random()*20),enemy01y-Math.floor(Math.random()*30),20,10);
              crash01_sound.currentTime = 0;
              crash01_sound.play();
 
@@ -1646,7 +1653,7 @@ function laser_collision(){
              if (enemy01_life == 1){
 
                 //타겟 새로 생성
-                //enemy01_init(); 
+                //enemy01_init();
                 explosion_sound.play();
                 explosion_sound.currentTime  = 0;
                 missile01Array = [];
@@ -1668,7 +1675,7 @@ function laser_collision(){
 
                     gameTime = parseInt(gameTime) + 1;
                     Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
-                } 
+                }
 
                 //타겟 새로 출현 시간.
                 var ls_enemy_dealy = parseInt((Math.floor(Math.random()*2) + 1)) * 1000;
@@ -1685,7 +1692,7 @@ function laser_collision(){
                 delete enemy01Image;
                 delete enemy01GunImage;
                 delete enginImage01;
-                
+
                 //enemy01x = 0;
                 //enemy01y = 0;
                 //enemy01Image.addEventListener("load",drawScreen, false);
@@ -1695,14 +1702,13 @@ function laser_collision(){
                 //적01 레이져 폭파중 여부
                 enemy01_collision_chk = 'Y';
 
-                setTimeout(enemy01.enemy01_init,ls_enemy_dealy);
+                setTimeout(enemy01.enemy01_init,ls_enemy_dealy); 
+                setTimeout(enemy02.enemy01_init,ls_enemy_dealy + 1000);
 
-                setTimeout(enemy02.enemy01_init,ls_enemy_dealy);
-                
              }
 
              enemy01_life = enemy01_life - 1;
-  
+
         }
     }
 
@@ -1787,10 +1793,10 @@ function missile01_move(){
         missile01Array[i].bmy  = missile01Array[i].bmy  * missile01Array[i].bspeed;
 
         Context.drawImage(missile01Image,missile01Array[i].bmx,missile01Array[i].bmy,missile01Array[i].bsize,missile01Array[i].bsize);
- 
+
         //플레이어 충돌
         missile01_collision(i);
-   
+
        //화면 이탈시
        //if (missile01Array[i].bmx >= theCanvas.clientWidth  || missile01Array[i].bmx <= 0 ){
         if (  missile01Array[i].bmy >= theCanvas.clientHeight || missile01Array[i].bmy <= 0 ){
@@ -1839,19 +1845,19 @@ function missile01_collision(i){
         //총알과 Y좌표 충돌시
         if ((parseInt(missile01Array[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(missile01Array[i].bmy)  + missile01Array[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
             //console.log("Pdistance",Pdistance)
-            //충돌시 폭파이미지로 변경 
+            //충돌시 폭파이미지로 변경
 
- 
-            
+
+
             if (player_life <= 1){
 
 
-                Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15); 
+                Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
                 Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
                 Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
                 Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
                 Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*50),playerY-Math.floor(Math.random()*60),20,15);
-				
+
                 energe_bar = '';
                 explosion_sound.play();
                 explosion_sound.currentTime  = 0;
@@ -1863,13 +1869,13 @@ function missile01_collision(i){
                 for (var i=0;i<=Pdistance/100;i++){
 
 
-					Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15); 
+					Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
 					Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
 					Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
 					Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
 					Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*50),playerY-Math.floor(Math.random()*60),20,15);
-               
-                } 
+
+                }
 
                 explosion_sound.play();
                 audio.pause();
@@ -1883,20 +1889,20 @@ function missile01_collision(i){
 
 
                 status = 4;    //게임 END
-                 
+
             }else {
-                if (ls_player_collision_chk == 'N'){ 
+                if (ls_player_collision_chk == 'N'){
 
                     Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
-                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);  
-                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25); 
-                    Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);              
+                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);
+                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+                    Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
                     crash02_sound.play();
                     crash02_sound.currentTime  = 0;
                     Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
-                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);  
-                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25); 
-                    Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);               
+                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);
+                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+                    Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
                     player_life = player_life - 1;
                     ls_player_collision_chk = 'Y';
 
@@ -1906,7 +1912,7 @@ function missile01_collision(i){
                     missile01Array[i].by = 0;
                     missile01Array[i].bmx = 0;
                     missile01Array[i].bmy = 0;
-                    missile01Array[i].bsize = 0;                    
+                    missile01Array[i].bsize = 0;
                 }
             }
 
@@ -1957,15 +1963,16 @@ function drawScreen(){
     //}
 
     //적이동
-    enemy01_move(); 
+    enemy01.enemy01_move();
+    enemy02.enemy01_move();
 
     //플레이어 이동(플레이어는 맨 마지막에 그려준다. 그래야 다른 적들보다 앞에서 보여진다.)
     player_move();
 
-    
+
     //적 총알 이동(적총알과 충돌시 폭파이미지는 플레이더 뒤에서 그려준다.)
     missile01_move();
-  
+
 
     //console.log(gameTime,missile01_cnt)
 
@@ -2018,7 +2025,8 @@ function onkeyDown(e, as_strKeyEventValue){
             //레이져 변수 초기화
             laser_init();
 
-            enemy01_init();
+            enemy01.enemy01_init();
+            enemy02.enemy01_init();
 
             // //총알 객체(배열) 생성
             // missile01_create();
@@ -2065,7 +2073,9 @@ function onkeyDown(e, as_strKeyEventValue){
             // //총알 객체(배열) 초기화
             // missile01_init(1);
 
-            enemy01_init();
+
+            enemy01.enemy01_init();
+            enemy02.enemy01_init();
 
             //상태값 : 시작
             status = 1;
@@ -2105,7 +2115,9 @@ function onkeyDown(e, as_strKeyEventValue){
                 // //총알 객체(배열) 초기화
                 // missile01_init(1);
 
-                enemy01_init();
+
+                enemy01.enemy01_init();
+                enemy02.enemy01_init();
 
                 //상태값  : 시작
                 status = 1;

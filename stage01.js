@@ -202,9 +202,7 @@ var Context3 = theCanvas.getContext("2d");
 // Context3.rotate(0,0);	//기준점을 기준으로 회전
 // Context3.translate(theCanvas.width,theCanvas.height);
 // Context3.rotate(180*Math.PI/180);
-
-//켄버스 회전각
-var ll_degree = 10;
+ 
 
 //게임 화면 경계
 var minX = theCanvas.offsetLeft;
@@ -229,7 +227,7 @@ var init_cityEnd_x = 0;            //게임 진행 방향 타겟 x좌표
 var init_cityEnd_y = 0;            //게임 진행 방향 타겟 y좌표
 var init_Pdistance = 0;            //게임 진행 방향 타겟에서 플레이어까지 거리(플레이어 원근 설정을 위해)
 
-
+//초기설정 게임 변수에 저장
 var gameFrame = ini_gameFrame;
 var cityEnd_size = init_cityEnd_size;
 var cityEnd_x = init_cityEnd_x;
@@ -1660,6 +1658,12 @@ function laser_collision(){
                 enemy01Image = noneImage;
                 enemy01GunImage = noneImage;
                 enginImage01 = noneImage;
+
+                //객체 소멸(js는 가비지가 수집되므로 객체 자체를 삭제할 필요가 없음. 참조만 삭제하면 됨. 더이상 참조되는 객체가 없으면 그객체는 자동으로 삭제됨)
+                delete enemy01Image;
+                delete enemy01GunImage;
+                delete enginImage01;
+                
                 //enemy01x = 0;
                 //enemy01y = 0;
                 //enemy01Image.addEventListener("load",drawScreen, false);

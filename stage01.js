@@ -389,8 +389,7 @@ function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy
 
          this.enemy01_init = enemy01_init;
 
-         this.missile01_cnt = missile01_cnt;
-
+         this.missile01_cnt = missile01_cnt; 
          this.missile01X = missile01X;
          this.missile01Y = missile01Y;
 
@@ -398,27 +397,20 @@ function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy
         this.missile01_create = missile01_create;
 
         //적01 미사일 객체(배열) 초기화
-        this.missile01_init = missile01_init;
+        this.missile01_init = missile01_init;  
 
         //적01 이동
-        this.enemy01_move = enemy01_move;
+        this.enemy01_move = enemy01_move; 
 
+        this.missile01_move = missile01_move; 
 
-        this.missile01_move = missile01_move;
-
+        this.missile01_collision = missile01_collision; 
 
         this.energe_express = energe_express;
-}
-
-
-
-var enemy01 = new enemy01_create();
-var enemy02 = new enemy01_create();
-
+}   
 
 //적01 초기화
-function enemy01_init(){
-  
+function enemy01_init(){ 
 
     this.enemy01Image = new Image();
     this.enemy01Image.src = "./img/enemy02.png";
@@ -454,7 +446,7 @@ function enemy01_init(){
 
     //적01 생명
     this.enemy01_life = ini_enemy01_life;
-    this.energe_bar = ini_energe_bar;
+    //this.energe_bar = ini_energe_bar;
 
     //적01 미사일 발사수는 랜덤하게
     this.missile01_cnt = Math.floor(Math.random() * 5) + 3;
@@ -470,8 +462,7 @@ function enemy01_init(){
     this.missile01_init(1);
 
     //return this;
-}
-
+} 
 
 //적01 이동
 function enemy01_move(){
@@ -524,8 +515,8 @@ function enemy01_move(){
     //Context.drawImage(cityEndImage,theCanvas.clientWidth / 2  + cityEnd_x  - 40 + Math.floor(Math.random() * 3), theCanvas.clientHeight / 4 - 50 + Math.floor(Math.random() * 3) ,30,40);
     //Context.drawImage(cityEndGunImage,theCanvas.clientWidth / 2  + cityEnd_x  - 25, theCanvas.clientHeight / 4 - 40 ,Math.floor(Math.random() * 6),Math.floor(Math.random() * 6));
     //적 움직이게한다.
-    this.missile01X = enemy01x;
-    this.missile01Y = enemy01y;
+    this.missile01X = this.enemy01x;
+    this.missile01Y = this.enemy01y;
 
     //적의 크기는 플레이어의 크기보다 커질수는 없다.
     if (this.enemy01w >= playerWidth){
@@ -550,6 +541,10 @@ function enemy01_move(){
     Context.fillText(this.energe_bar,this.enemy01x  - 40 + Math.floor(Math.random() * 3), this.enemy01y - 10);
 }
 
+
+
+var enemy01 = new enemy01_create();
+var enemy02 = new enemy01_create(); 
 
 
 

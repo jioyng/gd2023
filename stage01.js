@@ -402,6 +402,12 @@ function enemy01_create(enemy01Image,enemy01GunImage,enginImage01,enemy01x,enemy
 
         //적01 이동
         this.enemy01_move = enemy01_move;
+
+
+        this.missile01_move = missile01_move;
+
+
+        this.energe_express = energe_express;
 }
 
 
@@ -540,7 +546,7 @@ function enemy01_move(){
 
 
     //타겟 에너지 표시
-    energe_express(this.enemy01_life);
+    this.energe_express(this.enemy01_life);
     Context.fillText(this.energe_bar,this.enemy01x  - 40 + Math.floor(Math.random() * 3), this.enemy01y - 10);
 }
 
@@ -1702,8 +1708,8 @@ function laser_collision(){
                 //적01 레이져 폭파중 여부
                 enemy01_collision_chk = 'Y';
 
-                setTimeout(enemy01.enemy01_init,ls_enemy_dealy); 
-                setTimeout(enemy02.enemy01_init,ls_enemy_dealy + 1000);
+                setTimeout(this.enemy01_init,ls_enemy_dealy); 
+                //setTimeout(enemy02.enemy01_init,ls_enemy_dealy + 1000);
 
              }
 

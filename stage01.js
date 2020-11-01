@@ -1,30 +1,4 @@
-﻿//윈도우 os의 경우 터치버튼 보이기/숨기기
-//if (navigator.platform.substr(0,3) == "Win" ){
-
-    $("#TopCtl").hide();
-    $("#MainCtl").hide();
-    $("#MainCtl2").hide();
-
-    $(".startCtl").hide();
-    $(".directCtl").hide();
-        $(".attackCtl").hide();
-
-//}
-
-//메인화면 터치 버튼 매핑 시작
-function addJavascript(jsname) {
-
-	var th = document.getElementsByTagName('head')[0];
-	var s = document.createElement('script');
-
-	s.setAttribute('type','text/javascript');
-	s.setAttribute('src',jsname);
-	th.appendChild(s);
-
-}
- 
-
-//키입력 저장 array
+﻿//키입력 저장 array
 var isKeyDown = [];
 var isKeyCode = null;
 // var GAME_STATE_READY = 0; // 준비
@@ -35,62 +9,6 @@ var isKeyCode = null;
 //var GameState = GAME_STATE_READY; // 초깃값은 준비 상태
 
 
-//게임 시작
-function gameStart(as_keycode) {
- 
-        isKeyDown[as_keycode] = false;
-
-        audio.play();
-        audio.currentTime  = 0;
-
-        clearInterval(Timer_Id);
-
-        //게임 변수 초기화
-        game_init();
-
-        //플레이어 변수 초기화
-        player_init(); 
-         
-        enemy01_init(); 
-
-        status = 2;         //진행
-
-        Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
-
-}
-
-function gameEnd(as_keycode) {
-
-      if(confirm("게임을 종료하시겠습니까?")){
-
-        audio.pause();
-        //onReady();
-
-        $("#GameCanvas").fadeOut( "slow", function() {
-
-			  window.location = 'https://google.com';
-
-        });
-    }
-}
-
-
-//화면버튼 이벤트발생시 키코드와  맵핑
-function moveDirection(as_keycode) {
-
-  isKeyCode = as_keycode;
-  isKeyDown[as_keycode] = true;
-
-}
-
-//화면버튼 이벤트발생 종료시 키코드와  맵핑 제거
-function moveDirection2(as_keycode) {
-
-  isKeyCode = null;
-  isKeyDown = [];
-  isKeyDown[as_keycode] = false;
-
-}
 
 //게임 진행시 필요한 이벤트 선언
 window.addEventListener("load",drawScreen, false);
@@ -111,51 +29,7 @@ var ls_height = window.innerHeight;	        	//터치 드래그시 상단 주소
 var docV = document.documentElement;
 
 //윈도우 리사이징시 호출
-window.addEventListener("resize",  fit_resize);
-
-//화면 리사이징(캠퍼스 재조정)
-function fit_resize(theCanvas){
-
-    ls_height = window.innerHeight + 30;      //터치 드래그시 상단 주소창 숨기기위해 높이값 더줌.
-
-    window.scrollTo(0,1);
-
-    //세로모드 일경우 가로모드로 전환유도 메세지 보여줌.
-	if (window.matchMedia('(orientation: portrait)').matches) {
-
-        document.getElementById('tot_div').style.visibility = 'hidden';
-		document.getElementById('tot_hidden').style.display = 'block';
-
-	} else {
-
-        document.getElementById('tot_div').style.visibility = 'visible';
-		document.getElementById('tot_hidden').style.display = 'none';
-
-	}
-
-    //켐퍼스 재조정
-	fitToContainer(theCanvas);
-}
-
-//켐퍼스 재조정(화면 꽉차게)
-function fitToContainer(canvas){
-
-    //브라우져 사이즈에 맞게 캠퍼스 확장
-    $("#tot_div").width(ls_width);
-    $("#tot_div").height(ls_height);
-    $("#can_div").width(ls_width);
-    $("#can_div").height(ls_height);
-    $("#game_div").width(ls_width);
-    $("#game_div").height(ls_height);
-    $("#GameCanvas").width(ls_width);
-    $("#GameCanvas").height(ls_height );
-
-    canvas.style.width='100%';
-    canvas.style.clientHeight='100%';
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-}
+window.addEventListener("resize",  fit_resize); 
 
 //게임 로드시 켐퍼스 리사이징 조정
 fitToContainer(theCanvas);
@@ -174,8 +48,71 @@ var minX = theCanvas.offsetLeft;
 var maxX = theCanvas.clientWidth - minX;
 var minY = theCanvas.offsetTop;
 var maxY = theCanvas.clientHeight - minY;
+////////////////////////////////////////게임용 캔버스 관련 설정 끝//////////////////////////////////////
 
-/////////////////////////////////////////게임관련공통///////////////////////////////////////
+/////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
+//캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
+var directonUp = null;
+var directonDown = null;
+var directonLeft = null;
+var directonRight = null;
+var directonUpLeft = null;
+var directonUpRight = null;
+var directonDownLeft = null;
+var directonDownRight = null;
+var directonMiddle = null;
+
+var button01 = null;
+var button02 = null;
+
+directonUp = new Path2D();
+directonUp.fillStyle = "rgb(242, 255, 0)";
+directonUp.rect(minX + 120, maxY - 330, 100, 140);
+
+directonLeft = new Path2D();
+directonLeft.fillStyle = "rgb(242, 255, 0)";
+directonLeft.rect(minX + 10, maxY - 220, 140, 100);
+
+directonRight = new Path2D();
+directonRight.fillStyle = "rgb(242, 255, 0)";
+directonRight.rect(minX + 190, maxY - 220, 140, 100);
+
+directonDown = new Path2D();
+directonDown.fillStyle = "rgb(242, 255, 0)";
+directonDown.rect(minX + 120, maxY - 150, 100, 140);
+
+directonUpLeft = new Path2D();
+directonUpLeft.fillStyle = "rgb(242, 255, 0)";
+directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
+
+directonUpRight = new Path2D();
+directonUpRight.fillStyle = "rgb(242, 255, 0)";
+directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
+
+directonDownLeft = new Path2D();
+directonDownLeft.fillStyle = "rgb(242, 255, 0)";
+directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
+
+directonDownRight = new Path2D();
+directonDownRight.fillStyle = "rgb(242, 255, 0)";
+directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
+
+directonMiddle = new Path2D();
+directonMiddle.fillStyle = "rgb(242, 255, 0)";
+directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+button01 = new Path2D();
+button01.fillStyle = "rgb(242, 255, 0)";
+//button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+button02 = new Path2D();
+button02.fillStyle = "rgb(242, 255, 0)";
+//button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+/////////////////////////////////////////게임 컨트롤 관련 설정 끝////////////////////////////////////////
+
+/////////////////////////////////////////게임 관련 상태 설정 시작////////////////////////////////////////
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
@@ -202,35 +139,9 @@ var Pdistance = init_Pdistance;
 //좌우측 상하단선 백그라운드 거리
 var back_distance = 0;
 var back_distance2 = 0;
+/////////////////////////////////////////게임 관련 공통 설정 끝////////////////////////////////////////////
 
-//게임 변수 초기화
-function game_init(){
-
-    status = init_status;
-    gameFrame = ini_gameFrame;
-    gameTime = init_gameTime;
-    Timer_Id = init_Timer_Id;
-    cityEnd_size = init_cityEnd_size;
-    cityEnd_x = init_cityEnd_x;
-    cityEnd_y = init_cityEnd_y;
-    Pdistance = init_Pdistance;
-
-    enermy01_life = ini_enemy01_life;
-
-    isKeyCode = null;
-    isKeyDown = [];
-	strKeyEventValue = "None";
-    missile01Array = [];
-    missile01_cnt = 1;
-    max_missile01_cnt = ini_max_missile01_cnt;    
-    warp_distance = ini_warp_distance;
-
-    back_distance = 0;
-    back_distance2 = 0;
-    back_distance3 = 0;
-
-}
-
+///////////////////////////////////배경 초기 설정//////////////////////////////////////////////////////////
 //무공간(투명)이미지
 var noneImage = new Image();
 noneImage.src = "./img/none.png";
@@ -270,14 +181,10 @@ groundImage.addEventListener("load",drawScreen, false);
 //강
 var riverImage = new Image();
 riverImage.src = "./img/river.png";
-riverImage.addEventListener("load",drawScreen, false);
+riverImage.addEventListener("load",drawScreen, false); 
+///////////////////////////////////배경 초기 설정 끝////////////////////////////////////////////////////////
 
-//raser arc
-var laser_r = 0;
-var laser_d = 0; 
-
-
-/////////////////////////////////////////플레이어 이미지 로드///////////////////////////////////////
+///////////////////////////////////플레이어 초기 설정///////////////////////////////////////////////////////
 var playerImage = new Image();
 playerImage.src = "./img/player.png";
 //playerImage.src = "player29.png";
@@ -306,30 +213,25 @@ player_270.addEventListener("load",drawScreen, false);
 
 var player_360 = new Image();
 player_360.src = "./img/player_360.png";
-player_360.addEventListener("load",drawScreen, false);
-
+player_360.addEventListener("load",drawScreen, false); 
 
 var player_45 = new Image();
 player_45.src = "./img/player_45.png";
-player_45.addEventListener("load",drawScreen, false);
-
+player_45.addEventListener("load",drawScreen, false); 
 
 var player_warp = new Image();
 player_warp.src = "./img/player_warp.png";
-player_warp.addEventListener("load",drawScreen, false);
-
+player_warp.addEventListener("load",drawScreen, false); 
 
 //폭파이미지01
 var explosionImage01 = new Image();
 explosionImage01.src = "./img/explosion01.png";
-explosionImage01.addEventListener("load",drawScreen, false);
-
+explosionImage01.addEventListener("load",drawScreen, false); 
 
 //엔진이미지01
 var enginImage01 = new Image();
 enginImage01.src = "./img/engin01.png";
-enginImage01.addEventListener("load",drawScreen, false);
-
+enginImage01.addEventListener("load",drawScreen, false); 
 
 //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
 var wayBefore = 'None;'
@@ -356,10 +258,323 @@ var pmovey = 0;
 var ini_Pspeed = 1;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
-var ini_player_life = 10;    //플레이어 생명
+var ini_player_life = 5;    //플레이어 생명
 var player_life = ini_player_life;
-var penerge_bar = ini_energe_bar;
+var penerge_bar = ini_energe_bar; 
+
+//플레이어 공간이동(warp) 거리
+var ini_warp_distance = 15;
+var warp_distance = ini_warp_distance;
+
+//플레이어 총알 충돌 여부
+var player_collision_yn = 'N';  
+///////////////////////////////////플레이어 초기 설정 끝/////////////////////////////////////////////////////
+
+/////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
+var laserImage = new Image();
+laserImage.src = "./img/laser01.png";
+laserImage.addEventListener("load",drawScreen, false);
+
+//레이져 초기 생성 위치
+var laserX = playerX + playerWidth/2;
+var laserY = playerY;
+//레이져 초기 이동위치 = 생성위치
+var lmovex;
+var lmovey;
+//레이져 초기 크기
+var l_size = 10;
+//레이져 초기 속도
+var lspeed = 1;
+//레이져 발사 여부
+var laser_yn = 'N';
+
+var laser_r = 0;
+var laser_d = 0; 
+/////////////////////////////////////////플레이어 레이져 초기 설정//////////////////////////////////////////////
+
+///////////////////////////////////적 초기 설정////////////////////////////////////////////////////////////////
+//적01 이미지
+var enemy01Image = new Image();
+enemy01Image.src = "./img/enemy02.png";
+enemy01Image.addEventListener("load",drawScreen, false);
+
+//적01 건 이미지
+var enemy01GunImage = new Image();
+enemy01GunImage.src = "./img/missile01.png";
+enemy01GunImage.addEventListener("load",drawScreen, false);
+
+//적01 엔진 이미지
+var enginImage01 = new Image();
+enginImage01.src = "./img/engin01.png";
+enginImage01.addEventListener("load",drawScreen, false);
+
+//적01 위치
+var enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x); //시작  x
+var enemy01y = parseInt(theCanvas.clientHeight / 4); //시작 y
+// var enemy01xx = 0;
+// var enemy01yy = 0;
+
+//적01 크기
+var ini_enemy01w = 40;
+var ini_enemy01h = 55;
+var enemy01w = ini_enemy01w;
+var enemy01h = ini_enemy01h;
+
+//적01 생명
+var ini_enemy01_life = 5;
+var enemy01_life = ini_enemy01_life;
+var ini_energe_bar = ''  // '■□';   //에너지 바
+var energe_bar = ''  // '■□';   //에너지 바
+
+//적01 미시일 이미지 및 로드
+var missile01Image = new Image();
+missile01Image.src = "./img/missile01.png";
+missile01Image.addEventListener("load",drawScreen, false);
+
+//적01 미시일 초기 생성 위치
+var missile01X = theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x;
+var missile01Y = theCanvas.clientHeight / 5 + cityEnd_size/5;
+//적01 미시일 초기 이동위치 = 생성위치
+var move_missile01X = missile01X;
+var move_missile01Y = missile01Y;
+//적01 미시일 초기 크기
+var missile01_size = 1;
+//적01 미시일 초기 속도
+var missile01_speed = 1;
+//적01 미시일 초기 방향값
+var missile01_Randon = 0;   //적01 총알 방향값은 랜덤하게
+
+var enemy_dealy_time = 1000;
+
+//화면에 나타나는 적01 미시일수(배열)
+var missile01Array = new Array();
+var missile01_cnt = 1;
+var ini_max_missile01_cnt = 5;
+var enemy01_collision_yn = "N";
+var enemy01_seq = 1; 
+
+//적01 폭파중 여부
+var enemy01_collision_yn = 'N';
+
+//적01 객체 인스턴스 생성
+var enemy01 = new enemy01_init();   
+var enemy02 = new enemy01_init();    
+var enemy03 = new enemy01_init();   
+
+//적01 객체 인스턴스 순번
+enemy01.enemy01_seq = 1;
+enemy02.enemy01_seq = 2; 
+enemy03.enemy01_seq = 3; 
+
+//적01 총알 방향 설정 초기 변수
+var bl_upDown = 1;
+var bl_leftRight = 1;
+var tmp_random = Math.floor(Math.random() * 7)/10;
+var tmp_random2 = 1;
+
+if (Math.floor(Math.random() + 1) == 1){
+    tmp_random2 = 1;
+}else {
+    tmp_random2 = -1;
+} 
+///////////////////////////////////적 초기 설정 끝////////////////////////////////////////////////////////////// 
+
+//윈도우 os의 경우 터치버튼 보이기/숨기기
+//if (navigator.platform.substr(0,3) == "Win" ){
+
+    $("#TopCtl").hide();
+    $("#MainCtl").hide();
+    $("#MainCtl2").hide();
+
+    $(".startCtl").hide();
+    $(".directCtl").hide();
+        $(".attackCtl").hide();
+
+//}
+
+//메인화면 터치 버튼 매핑 시작
+function addJavascript(jsname) {
+
+	var th = document.getElementsByTagName('head')[0];
+	var s = document.createElement('script');
+
+	s.setAttribute('type','text/javascript');
+	s.setAttribute('src',jsname);
+	th.appendChild(s);
+
+}
+
+//게임 시작
+function gameStart(as_keycode) {
+ 
+    isKeyDown[as_keycode] = false;
+
+    audio.play();
+    audio.currentTime  = 0;
+
+    clearInterval(Timer_Id);
+
+    //게임 변수 초기화
+    game_init();
+
+    //플레이어 변수 초기화
+    player_init(); 
      
+    enemy01_init(); 
+
+    status = 2;         //진행
+
+    Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
+
+}
+
+//게임 종료
+function gameEnd(as_keycode) {
+
+  if(confirm("게임을 종료하시겠습니까?")){
+
+        audio.pause();
+        //onReady();
+
+        $("#GameCanvas").fadeOut( "slow", function() {
+
+            window.location = 'https://google.com';
+
+        });
+    }
+} 
+
+//화면버튼 이벤트발생시 키코드와  맵핑
+function moveDirection(as_keycode) {
+
+isKeyCode = as_keycode;
+isKeyDown[as_keycode] = true;
+
+}
+
+//화면버튼 이벤트발생 종료시 키코드와  맵핑 제거
+function moveDirection2(as_keycode) {
+
+isKeyCode = null;
+isKeyDown = [];
+isKeyDown[as_keycode] = false;
+
+}
+
+//화면 리사이징(캠퍼스 재조정)
+function fit_resize(theCanvas){
+
+ls_height = window.innerHeight + 30;      //터치 드래그시 상단 주소창 숨기기위해 높이값 더줌.
+
+window.scrollTo(0,1);
+
+//세로모드 일경우 가로모드로 전환유도 메세지 보여줌.
+if (window.matchMedia('(orientation: portrait)').matches) {
+
+    document.getElementById('tot_div').style.visibility = 'hidden';
+    document.getElementById('tot_hidden').style.display = 'block';
+
+} else {
+
+    document.getElementById('tot_div').style.visibility = 'visible';
+    document.getElementById('tot_hidden').style.display = 'none';
+
+}
+
+//켐퍼스 재조정
+fitToContainer(theCanvas);
+}
+
+//켐퍼스 재조정(화면 꽉차게)
+function fitToContainer(canvas){
+
+//브라우져 사이즈에 맞게 캠퍼스 확장
+$("#tot_div").width(ls_width);
+$("#tot_div").height(ls_height);
+$("#can_div").width(ls_width);
+$("#can_div").height(ls_height);
+$("#game_div").width(ls_width);
+$("#game_div").height(ls_height);
+$("#GameCanvas").width(ls_width);
+$("#GameCanvas").height(ls_height );
+
+canvas.style.width='100%';
+canvas.style.clientHeight='100%';
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+}
+
+//게임 변수 초기화
+function game_init(){ 
+
+    status = init_status;
+    gameFrame = ini_gameFrame;
+    gameTime = init_gameTime;
+    Timer_Id = init_Timer_Id;
+    cityEnd_size = init_cityEnd_size;
+    cityEnd_x = init_cityEnd_x;
+    cityEnd_y = init_cityEnd_y;
+    Pdistance = init_Pdistance;
+
+    enermy01_life = ini_enemy01_life;
+
+    isKeyCode = null;
+    isKeyDown = [];
+	strKeyEventValue = "None";
+    missile01Array = [];
+    missile01_cnt = 1;
+    max_missile01_cnt = ini_max_missile01_cnt;    
+    warp_distance = ini_warp_distance;
+
+    back_distance = 0;
+    back_distance2 = 0;
+    back_distance3 = 0; 
+
+alert("game_init");
+
+    delete enemy01;
+    delete enemy02;
+    delete enemy03
+
+    //적01 크기
+    enemy01w = 20;
+    enemy01h = 35;
+ 
+    //적01 초기 위치
+    enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 100))  + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작  x
+    enemy01y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작 y
+     
+    //적01 생명
+    ini_enemy01_life = 5;
+    enemy01_life = ini_enemy01_life;
+    ini_energe_bar = ''  // '■□';   //에너지 바
+    energe_bar = ''  // '■□';   //에너지 바
+
+     
+    //적01 미시일 초기 생성 위치
+    missile01X = theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x;
+    missile01Y = theCanvas.clientHeight / 5 + cityEnd_size/5;
+    //적01 미시일 초기 이동위치 = 생성위치
+    move_missile01X = missile01X;
+    move_missile01Y = missile01Y;
+    //적01 미시일 초기 크기
+    missile01_size = 1;
+    //적01 미시일 초기 속도
+    missile01_speed = 1;
+    //적01 미시일 초기 방향값
+    missile01_Randon = 0;   //적01 총알 방향값은 랜덤하게
+
+    enemy_dealy_time = 1000;
+
+    //화면에 나타나는 적01 미시일수(배열)
+    missile01Array = [];
+    missile01_cnt = 1;
+    ini_max_missile01_cnt = 5;
+    enemy01_collision_yn = "N";
+    enemy01_seq = 1;  
+
+}
 
 //플레이어 변수 초기화
 function player_init(){
@@ -480,13 +695,13 @@ function player_move(){
         playerImage = player_45;
 	}
 
-	//회피(공간 이동)
+	//와프(공간 이동)
 	if (isKeyDown[17] || isKeyCode == 17  || isKeyCode == 12) { 
 
         warp_sound.currentTime  = 0;
         warp_sound.play();
 
-        //회피 이미지로 변경
+        //와프 이미지로 변경
         for (var i=0;i<=warp_distance;i++){
 
             //공간이동 이미지
@@ -568,8 +783,7 @@ function player_move(){
     }
     if (parseInt(playerHeight) <= parseInt(ini_player_height/3)){
         playerHeight = parseInt(ini_player_height/3);
-    }
-  
+    } 
 
     Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3)); 
 
@@ -614,25 +828,7 @@ function player_move(){
     
 }
 
-/////////////////////////////////////////플레이어 레이져///////////////////////////////////////
-var laserImage = new Image();
-laserImage.src = "./img/laser01.png";
-laserImage.addEventListener("load",drawScreen, false);
-
-//레이져 초기 생성 위치
-var laserX = playerX + playerWidth/2;
-var laserY = playerY;
-//레이져 초기 이동위치 = 생성위치
-var lmovex;
-var lmovey;
-//레이져 초기 크기
-var l_size = 10;
-//레이져 초기 속도
-var lspeed = 1;
-//레이져 발사 여부
-var laser_yn = 'N';
-
-//레이져 초기화
+//플레이어 레이져 초기화
 function laser_init(){
     laserX = playerX + playerWidth/2;
     laserY = playerY;
@@ -647,7 +843,7 @@ function laser_init(){
     laser_yn = 'N';
 }
 
-//레이져 이동
+//플레이어 레이져 이동
 function laser_move(){
 
     if (laser_yn == 'Y'){
@@ -720,77 +916,7 @@ function laser_move(){
     }
 } 
 
-
-
-//적01 이미지
-var enemy01Image = new Image();
-enemy01Image.src = "./img/enemy02.png";
-enemy01Image.addEventListener("load",drawScreen, false);
-
-//적01 건 이미지
-var enemy01GunImage = new Image();
-enemy01GunImage.src = "./img/missile01.png";
-enemy01GunImage.addEventListener("load",drawScreen, false);
-
-//적01 엔진 이미지
-var enginImage01 = new Image();
-enginImage01.src = "./img/engin01.png";
-enginImage01.addEventListener("load",drawScreen, false);
-
-//적01 위치
-var enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x); //시작  x
-var enemy01y = parseInt(theCanvas.clientHeight / 4); //시작 y
-// var enemy01xx = 0;
-// var enemy01yy = 0;
-
-//적01 크기
-var ini_enemy01w = 40;
-var ini_enemy01h = 55;
-var enemy01w = ini_enemy01w;
-var enemy01h = ini_enemy01h;
-
-//적01 생명
-var ini_enemy01_life = 5;
-var enemy01_life = ini_enemy01_life;
-var ini_energe_bar = ''  // '■□';   //에너지 바
-var energe_bar = ''  // '■□';   //에너지 바
-
-//적01 미시일 이미지 및 로드
-var missile01Image = new Image();
-missile01Image.src = "./img/missile01.png";
-missile01Image.addEventListener("load",drawScreen, false);
-
-//적01 미시일 초기 생성 위치
-var missile01X = theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x;
-var missile01Y = theCanvas.clientHeight / 5 + cityEnd_size/5;
-//적01 미시일 초기 이동위치 = 생성위치
-var move_missile01X = missile01X;
-var move_missile01Y = missile01Y;
-//적01 미시일 초기 크기
-var missile01_size = 1;
-//적01 미시일 초기 속도
-var ospeed = 1;
-//적01 미시일 초기 방향값
-var missile01_Randon = 0;   //적01 총알 방향값은 랜덤하게
-
-var enemy_dealy_time = 1000;
-
-//화면에 나타나는 적01 미시일수(배열)
-var missile01Array = new Array();
-var missile01_cnt = 1;
-var ini_max_missile01_cnt = 5;
-var enemy01_collision_yn = "N";
-var enemy01_seq = 1; 
-
-var enemy01 = new enemy01_init();   
-var enemy02 = new enemy01_init();    
-var enemy03 = new enemy01_init();   
-
-enemy01.enemy01_seq = 1;
-enemy02.enemy01_seq = 2; 
-enemy03.enemy01_seq = 3; 
-    
-
+//적01 객체 생성
 function create_enemy01(){             
     enemy01 = new enemy01_init();   
     enemy01.enemy01_seq = 1;
@@ -808,8 +934,8 @@ function create_enemy03(){
 } 
 
 //적01 초기화
-function enemy01_init(){ 
- 
+function enemy01_init(){  
+
     //객체내에서 사용되는 모든 참조객체(변수,이미지,배열,함수등을 모두 생성자 함수에 넣어준다.)
     //참조 개체내에서의 this.propoerty는 해당 생성자함수(클래스)의 현재실행객체의 property를 가리킨다.
     //참조 객체체 외에서의 propoerty는 생성자(클래스)명.property 식으로 가져온다.
@@ -845,18 +971,17 @@ function enemy01_init(){
     this.missile01Image.src = "./img/missile01.png"; 
 
     //적01 레이져 폭파중 여부
-    this.enemy01_collision_yn = 'N'; 
-    
+    this.enemy01_collision_yn = 'N';  
 
     this.enemy_dealy_time = enemy_dealy_time;
 
     //적01 초기 위치
-    this.enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 500)); //시작  x
-    this.enemy01y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 500)); //시작 y
+    this.enemy01x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 100))  + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작  x
+    this.enemy01y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작 y
 
     //적01 초기 크기
-    this.enemy01w = ini_enemy01w + Math.floor(Math.random() * 100);
-    this.enemy01h = ini_enemy01h + Math.floor(Math.random() * 100);
+    this.enemy01w = ini_enemy01w + Math.floor(Math.random() * 2);
+    this.enemy01h = ini_enemy01h + Math.floor(Math.random() * 2);
     //ld = 0;
 
     //적01 생명
@@ -867,7 +992,7 @@ function enemy01_init(){
 
 
     //적01 미사일 발사수는 랜덤하게
-    this.missile01_cnt = Math.floor(Math.random() * 5) + 3;
+    this.missile01_cnt = Math.floor(Math.random() * 5) + 1;
 
     //적01 미사일 발사 시작 위치
     this.missile01X = this.enemy01x;
@@ -879,10 +1004,17 @@ function enemy01_init(){
     this.missile01_create = missile01_create;
     this.missile01_create();
 
+    
+    this.missile01_size = missile01_size;
+    
+    this.missile01_speed = missile01_speed;
+
+    this.missile01_Randon = missile01_Randon;
+
     //적01 미사일 객체(배열) 초기화
     this.missile01_init = missile01_init;
     this.missile01_init(); 
-    
+
     this.missile01_move = missile01_move; 
     //missile01_move();
 
@@ -895,11 +1027,9 @@ function enemy01_init(){
 
     //this.laser_move = laser_move; 
 
-}
-
-
-//적 충돌
-//레이져 적 폭파 효과 시작
+} 
+ 
+//적01 폭파(레이져 충돌)
 function enemy01_collision(){
 
     //적01 위치
@@ -956,7 +1086,7 @@ function enemy01_collision(){
                 }
 
                 //타겟 새로 출현 시간.
-                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*2) + 1)) * 1000;
+                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*5) + 1)) * 1000;
 
                 Context.restore();
 
@@ -1012,21 +1142,7 @@ function enemy01_collision(){
         }
     }
 
-}
-////////////////////////////레이져 족 폭파 효과 끝//////////////////////////////////////////////////   
-
-
-
-//플레이어 공간이동(warp) 거리
-var ini_warp_distance = 15;
-var warp_distance = ini_warp_distance;
-
-//플레이어 총알 충돌 여부
-var ls_player_collision_chk = 'N';
-
-//적01 레이져 폭파중 여부
-var enemy01_collision_yn = 'N';
-
+} 
 
 //플레이어 에너지 표시 함수
 function player_energe(){
@@ -1054,8 +1170,7 @@ function enemy_energe(){
     }
 
     return this.energe_bar;
-}
-
+} 
 
 //적01 이동
 function enemy01_move(){
@@ -1119,13 +1234,13 @@ function enemy01_move(){
     this.missile01X = this.enemy01x;
     this.missile01Y = this.enemy01y;
 
-    //적의 크기는 플레이어의 크기보다 커질수는 없다.
-    if (this.enemy01w >= playerWidth){
-        this.enemy01w = playerWidth
+    //적01의 크기는 플레이어의 크기보다 커질수는 없다.
+    if (this.enemy01w >= playerWidth * 0.8){
+        this.enemy01w = playerWidth  * 0.8
     };
 
-    if (this.enemy01h >= playerHeight){
-        this.enemy01h = playerHeight
+    if (this.enemy01h >= playerHeight  * 0.8){
+        this.enemy01h = playerHeight  * 0.8
     };
 
 
@@ -1139,6 +1254,7 @@ function enemy01_move(){
 
     //타겟 에너지 표시
     this.enemy_energe();
+
     Context.fillText(this.energe_bar,this.enemy01x  - 40 + Math.floor(Math.random() * 3), this.enemy01y - 10);
 } 
 
@@ -1440,69 +1556,9 @@ function game_status(){
         return;
     }
 }
-////////////////////////////////////////////////////////////////////////////////////////
+ 
 
-//캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
-var directonUp = null;
-var directonDown = null;
-var directonLeft = null;
-var directonRight = null;
-var directonUpLeft = null;
-var directonUpRight = null;
-var directonDownLeft = null;
-var directonDownRight = null;
-var directonMiddle = null;
-
-var button01 = null;
-var button02 = null;
-
-directonUp = new Path2D();
-directonUp.fillStyle = "rgb(242, 255, 0)";
-directonUp.rect(minX + 120, maxY - 330, 100, 140);
-
-directonLeft = new Path2D();
-directonLeft.fillStyle = "rgb(242, 255, 0)";
-directonLeft.rect(minX + 10, maxY - 220, 140, 100);
-
-directonRight = new Path2D();
-directonRight.fillStyle = "rgb(242, 255, 0)";
-directonRight.rect(minX + 190, maxY - 220, 140, 100);
-
-directonDown = new Path2D();
-directonDown.fillStyle = "rgb(242, 255, 0)";
-directonDown.rect(minX + 120, maxY - 150, 100, 140);
-
-directonUpLeft = new Path2D();
-directonUpLeft.fillStyle = "rgb(242, 255, 0)";
-directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
-
-directonUpRight = new Path2D();
-directonUpRight.fillStyle = "rgb(242, 255, 0)";
-directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
-
-directonDownLeft = new Path2D();
-directonDownLeft.fillStyle = "rgb(242, 255, 0)";
-directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
-
-directonDownRight = new Path2D();
-directonDownRight.fillStyle = "rgb(242, 255, 0)";
-directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
-
-directonMiddle = new Path2D();
-directonMiddle.fillStyle = "rgb(242, 255, 0)";
-directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-
-button01 = new Path2D();
-button01.fillStyle = "rgb(242, 255, 0)";
-//button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-
-button02 = new Path2D();
-button02.fillStyle = "rgb(242, 255, 0)";
-//button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-
-//캔버스 컨트롬(게임 프래임 진행시 호출하여 생성)
+//캔버스 컨트롤(게임 프래임 진행시 호출하여 생성)
 function gameControl() {
 
     //윈도우의 경우 보여주지않는다.
@@ -1522,8 +1578,7 @@ function gameControl() {
 			Context.stroke(button01);
 			Context.stroke(button02);
 	//}
-}
-
+} 
 
 //돔의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
@@ -1712,25 +1767,25 @@ function clickCanvas(event, as_gb) {
 
 } 
 
-//적 총알 생성
+//적01 총알 생성
 function missile01_create(){
     //missile01Array = [];
  
     //동시 나타나는  총알수
     //for (var i = 0;i<=missile01_cnt; i++){
-        this.missile01Array.push({bx:this.missile01X, by:this.missile01Y, bmx:this.move_missile01X, bmy:this.move_missile01Y, bsize:missile01_size, bspeed:ospeed, bdirection:missile01_Randon});
+        this.missile01Array.push({bx:this.missile01X, by:this.missile01Y, bmx:this.move_missile01X, bmy:this.move_missile01Y, bsize:this.missile01_size, bspeed:this.missile01_speed, bdirection:this.missile01_Randon});
     //}
 
 
    //console.log("this.missile01Array:",this.missile01Array)
 }
 
-//적 총알 변수 초기화(총알의 시작점 위치 지정)
+//적01 총알 변수 초기화(총알의 시작점 위치 지정)
 function missile01_init(){
  
      //console.log("this.missile01Array[i]",this.missile01Array)
-     missile01_size = 1;
-     ls_player_collision_chk = 'N';
+     this.missile01_size = 1;
+     player_collision_yn = 'N';
      //missile01X = missile01X - 40;
 
     for(var i = 0; i < this.missile01Array.length; i++){
@@ -1739,8 +1794,8 @@ function missile01_init(){
         this.missile01Array[i].by = this.missile01Y;
         this.missile01Array[i].bmx = this.missile01X;
         this.missile01Array[i].bmy = this.missile01Y;
-        this.missile01Array[i].bsize = missile01_size;
-        this.missile01Array[i].bspeed  = ospeed;                                      //속도는 랜덤하게 1 ~ 3
+        this.missile01Array[i].bsize = this.missile01_size;
+        this.missile01Array[i].bspeed  = this.missile01_speed;                                      //속도는 랜덤하게 1 ~ 3
 
         if (Math.floor(Math.random() * 2) == 0){
             this.missile01Array[i].bdirection =   Math.floor(Math.random() * 10) * 1;   //총알의 방향은 랜덤하게 생성 => 총알 방향 오른쪽 으로
@@ -1749,21 +1804,9 @@ function missile01_init(){
         }
 
     }
-}
+} 
 
-//적 총알 방향 설정 초기 변수
-var bl_upDown = 1;
-var bl_leftRight = 1;
-var tmp_random = Math.floor(Math.random() * 7)/10;
-var tmp_random2 = 1;
-
-if (Math.floor(Math.random() + 1) == 1){
-    tmp_random2 = 1;
-}else {
-    tmp_random2 = -1;
-}
-
-//총알 이동
+//적01 총알 이동
 function missile01_move(){
 
 
@@ -1771,7 +1814,8 @@ function missile01_move(){
 
    //console.log("missile01Array", this.missile01Array.length);
 
-   missile01_size = missile01_size + 0.2;               //총알 크기
+   this.missile01_size = this.missile01_size + 0.1;               //총알 크기
+
     for(var i = 0; i < this.missile01Array.length; i++){
 
         //총알 이동 좌표
@@ -1793,7 +1837,7 @@ function missile01_move(){
         }
 
         this.missile01Array[i].bmx =  this.missile01Array[i].bmx + this.missile01Array[i].bdirection * bl_leftRight;
-        this.missile01Array[i].bsize = missile01_size;
+        this.missile01Array[i].bsize = this.missile01_size;
         this.missile01Array[i].bmy = this.missile01Array[i].bmy + this.missile01Array[i].bsize * bl_upDown / 2;
         this.missile01Array[i].bmy  = this.missile01Array[i].bmy  * this.missile01Array[i].bspeed;
 
@@ -1816,9 +1860,9 @@ function missile01_move(){
                 //총알 객체(배열) 초기화
                 this.missile01_init();
 
-                missile01_size = 10 * parseInt(Math.floor(gameTime/1500));
+                this.missile01_size = 10 * parseInt(Math.floor(gameTime/1500));
 
-                console.log(missile01_size,Math.floor(gameTime/1500))
+                console.log(this.missile01_size,Math.floor(gameTime/1500))
 
             }else {
                 //5초마다 총알 증가
@@ -1838,8 +1882,7 @@ function missile01_move(){
 }
 
 
-//풀에이어 충돌
-//풀레이어 폭파(총알 충돌)
+//플레이어 폭파(미사일 충돌) 
 function player_collision(i){
 
     //if ((parseInt(missile01Array[i].bmx) <= parseInt(playerX)  + playerWidth) && (parseInt(missile01Array[i].bmx) + missile01Array[i].bsize >= parseInt(playerX)  )){
@@ -1852,12 +1895,9 @@ function player_collision(i){
         //총알과 Y좌표 충돌시
         if ((parseInt(this.missile01Array[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(this.missile01Array[i].bmy)  + this.missile01Array[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
             //console.log("Pdistance",Pdistance)
-            //충돌시 폭파이미지로 변경
+            //충돌시 폭파이미지로 변경 
 
-
-
-            if (player_life <= 1){
-
+            if (player_life <= 1){ 
 
                 // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
                 // Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/20);
@@ -1867,14 +1907,11 @@ function player_collision(i){
 
                 this.energe_bar = '';
                 explosion_sound.play();
-                explosion_sound.currentTime  = 0;
-
-
+                explosion_sound.currentTime  = 0; 
 
                 //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
                 //적이 강할수록 i를 높게한다.(i = 점수)
-                // for (var i=0;i<=Pdistance/300;i++){
-
+                // for (var i=0;i<=Pdistance/300;i++){ 
 
 				// 	Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
 				// 	Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
@@ -1891,14 +1928,12 @@ function player_collision(i){
                 //콜로니 밖 우주 배경그려주기(투명도 적용)
                 Context.save();
 
-                Context.globalAlpha = 0.8;
-
-
+                Context.globalAlpha = 0.8; 
 
                 status = 4;    //게임 END
 
             }else {
-                if (ls_player_collision_chk == 'N'){
+                if (player_collision_yn == 'N'){
 
                     Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/20);
                     Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);
@@ -1911,7 +1946,7 @@ function player_collision(i){
                     // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),45,65);
                     // Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
                     player_life = player_life - 1;
-                    ls_player_collision_chk = 'Y';
+                    player_collision_yn = 'Y';
 
                     //플레이어에 맞은 총알은 않보이게 소멸
                     //missile01Array[i] = null;
@@ -1921,12 +1956,10 @@ function player_collision(i){
                     this.missile01Array[i].bmy = 0;
                     this.missile01Array[i].bsize = 0;
                 }
-            }
-
+            } 
         }
     }
 }
-////////////////////////////////////////////////////////////////////////////////////////
 
 //화면로드(게임 객체의 움직임(이동) 좌표 새로 로드)
 function drawScreen(){
@@ -1969,23 +2002,19 @@ function drawScreen(){
     laser_move();
     //}
 
-    //적이동
-
+    //적01 이동 
     enemy01.enemy01_move();
     enemy02.enemy01_move();
-    enemy03.enemy01_move();
- 
+    enemy03.enemy01_move(); 
      
     //플레이어 이동(플레이어는 맨 마지막에 그려준다. 그래야 다른 적들보다 앞에서 보여진다.)
-    player_move();
+    player_move(); 
 
-
-    //적 총알 이동(적총알과 충돌시 폭파이미지는 플레이더 뒤에서 그려준다.)
+    //적01 총알 이동(적총알과 충돌시 폭파이미지는 플레이더 뒤에서 그려준다.)
     enemy01.missile01_move();
     enemy02.missile01_move();
     enemy03.missile01_move();
-
-
+ 
     //console.log(gameTime,missile01_cnt)
 
     //5초마다 총알 더생성
@@ -2011,6 +2040,8 @@ function drawScreen(){
     Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
 }
 
+
+//키 이벤트 처리(데스크 탑 이용시)
 function onkeyDown(e, as_strKeyEventValue){
 
     strKeyEventValue = e.key;

@@ -231,12 +231,12 @@ enginImage01.addEventListener("load",drawScreen, false);
 var wayBefore = 'None;'
 
 //플레이어 초기값( 크기, 위치 및 기본 이동거리, 스피트)
-var ini_player_width = 70;
-var ini_player_height = 45;
-//var ini_player_width = 80;
-//var ini_player_height = 60;
-var ini_player_width = 160;   //319
-var ini_player_height = 250;  //503
+//var ini_player_width = 70;
+//var ini_player_height = 45;
+var ini_player_width = 130;
+var ini_player_height = 200;
+//var ini_player_width = 160;   //319
+//var ini_player_height = 250;  //503
 var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
 var ini_player_size = 100;    //플레이어 초기 크기 배율
@@ -401,7 +401,7 @@ function addJavascript(jsname) {
 ////////////////// 게임 시작
 function gameStart(as_keycode) {
  
-    alert("start")
+    //alert("start")
     isKeyDown[as_keycode] = false;
 
     audio.play();
@@ -415,7 +415,18 @@ function gameStart(as_keycode) {
     //플레이어 변수 초기화
     player_init(); 
      
-    enemy01_init(); 
+ 
+    create_enemy01();
+    create_enemy02();
+    create_enemy03();
+
+    // enemy01.enemy01_init();
+    // enemy01.enemy01_init();
+    // enemy01.enemy01_init();
+
+    // enemy01.missile01Array;
+    // enemy02.missile01Array;
+    // enemy03.missile01Array;
 
     status = 2;         //진행
 
@@ -749,10 +760,11 @@ function player_move(){
     
     //레이저
 	if (isKeyDown[32] || isKeyCode == 32 ) {
-
+		
+        //게임상태가 진행중이 않은(종료 또틑 멈춤) 경우 레이저버튼 클릭시 재시작
 		if (status != 2)
 		{
-			//alert(status);
+	
 			gameStart(13);
 		}
 
@@ -920,7 +932,7 @@ function laser_move(){
 ////////////////// 적01 객체 생성
 ////////////////// 적01 1th
 function create_enemy01(){        
-    delete enemy01;     
+    //delete enemy01;     
     enemy01 = new enemy01_init();   
     enemy01.enemy01_seq = 1;
     enemy01.missile01_create();
@@ -930,7 +942,7 @@ function create_enemy01(){
 
 ////////////////// 적01 2th
 function create_enemy02(){              
-    delete enemy02;
+    //delete enemy02;
     enemy02 = new enemy01_init();    
     enemy02.enemy01_seq = 2; 
     enemy02.missile01_create();
@@ -939,7 +951,7 @@ function create_enemy02(){
 
 ////////////////// 적01 3th
 function create_enemy03(){         
-    delete enemy03;     
+    //delete enemy03;     
     enemy03 = new enemy01_init();   
     enemy03.enemy01_seq = 3; 
     enemy03.missile01_create();
@@ -2135,11 +2147,11 @@ function onkeyDown(e, as_strKeyEventValue){
             // //미사일 객체(배열) 초기화
             // missile01_init(1);
 
-            alert("end")
-            delete enemy01;
-            delete enemy02;
-            delete enemy03;
-            //enemy01_init();
+            //alert("end")
+            //delete enemy01;
+            //delete enemy02;
+            //delete enemy03;
+            enemy01_init();
 
 
             //상태값 : 시작

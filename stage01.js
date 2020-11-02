@@ -1797,7 +1797,10 @@ function clickCanvas(event, as_gb) {
 ////////////////// 적01 미사일 생성
 function missile01_create(){
     //missile01Array = [];
- 
+    console.log("this.missile01Array.length",this.missile01Array.length);
+    if (this.missile01Array.length >= this.max_missile01_cnt){
+        this.missile01Array = [];
+    }
     //동시 나타나는  미사일수
     //for (var i = 0;i<=missile01_cnt; i++){
         this.missile01Array.push({bx:this.missile01X, by:this.missile01Y, bmx:this.move_missile01X, bmy:this.move_missile01Y, bsize:this.missile01_size, bspeed:this.missile01_speed, bdirection:this.missile01_Randon});

@@ -96,7 +96,7 @@ background-position: 50% -5%; */
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
-			<img id="imgIntro"  src="./img/intro01.jpg"  style="width:100%;height:100%;"/>
+			<img id="imgIntro"  src="./img/intro01.jpg"  style="width:100%;height:auto;"/>
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
 				우주력 2020년.<br> 
 				평화롭던 화성 콜로니에 정체를 모르는 바이러스가 침투했다.<br> 
@@ -299,9 +299,9 @@ f_search_landmode();        //화면 로딩시 자동 호출
 
 			if (stsound != null){
 
-					misound.pause();
-					
-							
+					misound.pause();					
+					//audio.pause();
+
 					stsound.currentTime = 1.8; //재생위치
 
 					stsound.play();
@@ -323,6 +323,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			$(".main").fadeOut( "slow", function() {
 				// Animation complete.
 					//tempDelay(); 
+			    misound.pause();	
 				$("#totIntro").show();
 				//window.location = 'play.html';
 
@@ -342,14 +343,14 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
-						$("#infoText").html("이에 연방내 최고 에이스 파일럿인 아무로는 이에 대한 조사를 명받고<br>콜로니의 심장부인 원자엔진을 정지시카도록 명받는다."); 
+						$("#infoText").html("이에 연방내 최고 에이스 파일럿인 아무로는 이에 대한 조사를 명받고<br>콜로니의 심장부인 원자엔진을 정지시키도록 명받는다."); 
 					}) 			
 				}, 10000);
 								 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("아무로는 최 신식 병기 마크 GD2020을 몰고 출격을 시작한다."); 
+						$("#infoText").html("아무로는 최 신식 병기 마크 GD7을 몰고 출격을 시작하고<br>연방군은 이번 작전명을 코로나2020으로 명한다."); 
 						
 					}) 			
 				}, 15000);

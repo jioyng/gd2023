@@ -328,19 +328,33 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				// Animation complete.
 					//tempDelay(); 
 				misound.pause();	
+		
 				
-				if (IntroSound() != 1)  {
-					return;
-				}
-				
-								
-				$("#totIntro").show();
 				//window.location = 'play.html';
+				setTimeout(startIntro, 1000);
 
 			}); 	
+					  
+  
+		});
+
+
+		function startIntro(){
+
 			
-			if($("#totIntro").show()){
-		
+				
+				// if (IntroSound() != 1)  {
+				// 	return;
+				// }			
+						
+				IntroSound();
+				
+				$("#totIntro").show();
+
+				if($("#totIntro").show()){
+			
+				misound.pause();	
+				
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg"); 
@@ -349,14 +363,14 @@ f_search_landmode();        //화면 로딩시 자동 호출
 						
 					}) 			
 				}, 5000);
-				 
+				
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
 						$("#infoText").html("이에 연방내 최고 에이스 파일럿인 아무로는 이에 대한 조사를 명받고<br>콜로니의 심장부인 원자엔진을 정지시키도록 명받는다."); 
 					}) 			
 				}, 10000);
-								 
+								
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
@@ -364,7 +378,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 						
 					}) 			
 				}, 15000);
-				 								
+												
 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
@@ -373,19 +387,17 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				}, 20000);
 
 				totIntro.addEventListener('click', function() { 
- 
+
 
 					$(".main").fadeOut( "slow", function() {
 						window.location = 'play.html';
 					}) 
-		
-				}) 
-				 
-			}
-		  
-  
-		});
 
+				}) 
+		 
+	}
+
+		}
 
 						
 

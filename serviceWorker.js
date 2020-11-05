@@ -5,6 +5,7 @@ const staticAssets=[
     './play.html',
     './stage01.js',    
     './sound/intro.ogg',     
+    './sound/intro01.ogg',     
     './sound/laser.ogg',     
     './sound/laser01.ogg',    
     './sound/explosion01.ogg',

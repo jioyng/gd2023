@@ -251,6 +251,24 @@ f_search_landmode();        //화면 로딩시 자동 호출
 //  	 		misound.play();
 //    });
 
+	//시작 음악
+	function play_misound(){
+	
+		var misound = document.getElementById('misound');
+ 
+		if (misound != null){
+
+			misound.currentTime = 10; //재생위치
+
+			misound.play();
+
+		}
+
+	}
+
+
+	play_misound();
+
 	//시작버튼 효과음
 	function StSound(){
 
@@ -271,7 +289,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 
 	};
 
-
+	//인트로 음악
 	function IntroSound(){
 		//intro효과
 		var intro01 = document.getElementById('intro01');

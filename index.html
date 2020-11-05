@@ -96,7 +96,7 @@ background-position: 50% -5%; */
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
-			<img id="imgIntro"  src="./img/intro01.jpg"  style="width:100%;height:auto;"/>
+			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;max-height:auto;"/>
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
 				우주력 2020년.<br> 
 				평화롭던 화성 콜로니에 정체를 모르는 바이러스가 침투했다.<br> 
@@ -265,8 +265,13 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			stsound.currentTime = 1.8; //재생위치			
 			
 			stsound.play();
-		}
+		} 
+		return 1;
 
+	};
+
+
+	function IntroSound(){
 		//intro효과
 		var intro01 = document.getElementById('intro01');
 
@@ -277,10 +282,9 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			
 			intro01.play();
 		}
-
-		return 1;
-
 	};
+
+
 
 	//$("#start").bind('touchstart', function(e) {
 	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
@@ -323,7 +327,13 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			$(".main").fadeOut( "slow", function() {
 				// Animation complete.
 					//tempDelay(); 
-			    misound.pause();	
+				misound.pause();	
+				
+				if (IntroSound() != 1)  {
+					return;
+				}
+				
+								
 				$("#totIntro").show();
 				//window.location = 'play.html';
 

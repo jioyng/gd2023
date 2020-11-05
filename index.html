@@ -96,7 +96,7 @@ background-position: 50% -5%; */
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
-			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;max-height:auto;"/>
+			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;max-height:100%"/>
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
 				우주력 2020년.<br> 
 				평화롭던 화성 콜로니에 정체를 모르는 바이러스가 침투했다.<br> 
@@ -348,10 +348,18 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				// }			
 						
 				IntroSound();
-				
+			
+				var ls_width = window.innerWidth;
+				var ls_height = window.innerHeight;	   
+
+				$("#totIntro").width(ls_width);
+				$("#totIntro").height(ls_height);
+
 				$("#totIntro").show();
 
 				if($("#totIntro").show()){
+
+
 			
 				misound.pause();	
 				

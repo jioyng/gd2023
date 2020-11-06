@@ -2,19 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1,  user-scalable=no">-->
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
-	<!--<meta name="viewport" content="width=device-width, user-scalable=no">  -->
-	<meta name="viewport" content="width=device-width,height=device-height, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-	<link rel="manifest" href="manifest.json">
-	<!--마지막으로 PWA가 Safari에서는 잘 인식하지 않는 경우 가 있습니다. 그것을 대비, 출처: https://uxgjs.tistory.com/225 [UX 공작소] -->
-	<link rel="apple-touch-icon" href="touch-icon-iphone.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
-	<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
 </head>
-
-<title> 건닷지 2020</title>
 
 <style type="text/css">
 body {
@@ -90,18 +78,14 @@ background-position: 50% -5%; */
 }
 </style> 
 </head>
-	<body bgcolor="#262626" background="./img/main_intro.jpg"  >	
+	<body bgcolor="#262626" background="./img/end.jpg"  >	
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div> 
-		<audio id='misound' src='./sound/intro.ogg' autoplay></audio>
-		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
+		<audio id='endsound' src='./sound/end.ogg' autoplay></audio>
+		<div id="end" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
 		Game End
-		</div> 
-		<div id="start" class="main"  style="position: absolute; top:75%; left:calc(50% - 100px); width:150px; z-index:200;">
-		Start
-		</div> 
-
+		</div>  
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8"> 
@@ -111,28 +95,35 @@ $(function(){
 
 
 	//시작 음악
-	function play_misound(){
+	function play_endsound(){
 	
-		var misound = document.getElementById('misound');
+		var endsound = document.getElementById('endsound');
  
-		if (misound != null){
+		if (endsound != null){
 
-			misound.currentTime = 10; //재생위치
+			endsound.currentTime = 10; //재생위치
 
-			misound.play();
+			endsound.play();
 
 		}
 
 	}
 
-	play_misound();
+	play_endsound();
 
-    start.addEventListener('click', function() {
+ 
+    document.addEventListener('click', function() { 
+    
+        endsound.pause();	       
+
+        $("#end").fadeOut( "slow", function() {
+           
+            window.location = 'play.html';
         
-        misound.pause();	            
-        window.location = 'index.html';
-        
-    }); 
+            //location.replace("play.html");
+        }) 
+
+    })     
 
 });
 

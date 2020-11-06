@@ -1120,7 +1120,8 @@ function enemy01_collision(){
                     Context.drawImage(this.explosionImage01,this.enemy01x+Math.floor(Math.random()*60),this.enemy01y+Math.floor(Math.random()*50),20 + i,20 + i);
 
                     gameTime = parseInt(gameTime) + 1;
-                    Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
+                    //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
+                    Context.fillText( " + " + i,theCanvas.clientWidth / 2 - 50,100);
                 }
 
                 //타겟 새로 출현 시간.
@@ -2088,7 +2089,8 @@ function drawScreen(){
     //Context.fillText("거리 :" + gameTime + "Km",theCanvas.clientWidth - 100,45);
     //Context.fillText("속도 :" + Pspeed + "Km/s",theCanvas.clientWidth - 100,60);
     //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
-    Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
+    //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
+    Context.fillText("Score : " + gameTime,10,50);    
 } 
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)

@@ -128,6 +128,16 @@ var init_cityEnd_x = 0;            //게임 진행 방향 타겟 x좌표
 var init_cityEnd_y = 0;            //게임 진행 방향 타겟 y좌표
 var init_Pdistance = 0;            //게임 진행 방향 타겟에서 플레이어까지 거리(플레이어 원근 설정을 위해)
 
+//게임 계속 or 종료 버튼
+var button_play = null;
+button_play = new Path2D();
+button_play.fillStyle = "rgb(242, 255, 0)";
+button_play.rect(ls_width/2 - 300, ls_height/2 - 250 , 300, 150);
+var button_end = null;
+button_end = new Path2D();
+button_end.fillStyle = "rgb(242, 255, 0)";
+button_end.rect(ls_width/2 + 10, ls_height/2 - 250 , 300, 150);
+
 //초기설정 게임 변수에 저장
 var gameFrame = ini_gameFrame;
 var cityEnd_size = init_cityEnd_size;
@@ -438,11 +448,39 @@ function gameStart(as_keycode) {
 
 }
 
+
 ////////////////// 게임 종료
 function gameEnd(as_keycode) {
 
-  if(confirm("게임을 나가시겠습니까?")){
+//   if(confirm("게임을 나가시겠습니까?")){
 
+//         audio.pause();
+//         //onReady();
+
+//         $("#GameCanvas").fadeOut( "slow", function() {
+
+//             //window.location = 'end.html';
+//             location.replace("end.html");
+
+//         });
+//     }else {
+
+//         gameStart(13);
+//     }
+
+    // //게임 종료 or 계속
+    // Context2.stroke(button_play);
+    // Context2.stroke(button_end);
+    // //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
+    // Context2.fillText("계속",ls_width/2 - 270, ls_height/2 - 140);
+    // Context2.fillText("종료",ls_width/2 + 90, ls_height/2 - 140);    
+    
+    if (as_keycode == 13){
+
+        gameStart(13);
+
+    }else {
+        
         audio.pause();
         //onReady();
 
@@ -452,9 +490,7 @@ function gameEnd(as_keycode) {
             location.replace("end.html");
 
         });
-    }else {
 
-        gameStart(13);
     }
 } 
 
@@ -1618,7 +1654,8 @@ function gameControl() {
             Context.stroke(directonMiddle);
 
 			Context.stroke(button01);
-			Context.stroke(button02);
+            Context.stroke(button02);
+            
 	//}
 } 
 
@@ -1741,7 +1778,13 @@ function clickCanvas(event, as_gb) {
             if (ls_first_load_yn == "Y"){
                 gameStart(13);  
             }else {                               
-                gameEnd(27);                
+                //gameEnd(27);                
+                //게임 종료 or 계속
+                Context2.stroke(button_play);
+                Context2.stroke(button_end);
+                //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
+                Context2.fillText("계속",ls_width/2 - 270, ls_height/2 - 140);
+                Context2.fillText("종료",ls_width/2 + 90, ls_height/2 - 140);                                    
             }
         }
 
@@ -1767,7 +1810,14 @@ function clickCanvas(event, as_gb) {
             if (ls_first_load_yn == "Y"){
                 gameStart(13);  
             }else {                         
-                gameEnd(27);                
+                //gameEnd(27);                
+                //게임 종료 or 계속
+                Context2.stroke(button_play);
+                Context2.stroke(button_end);
+                //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
+                Context2.fillText("계속",ls_width/2 - 270, ls_height/2 - 140);
+                Context2.fillText("종료",ls_width/2 + 90, ls_height/2 - 140);    
+                                
             }
 		}
 
@@ -1808,12 +1858,29 @@ function clickCanvas(event, as_gb) {
 				wayBefore = "";
 			}
             //playerY = playerY - i; 
-		}
-
+		} 
+                
 		isKeyDown = [];
         isKeyCode = null; 
 
-	} 
+    } 
+    
+    //게임 계속
+    if(Context.isPointInPath(button_play, x,  y)) {
+        isKeyCode = 13;
+        //strKeyEventValue = "LD";
+        Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+        gameEnd(isKeyCode);
+    }
+
+    //게임 종료
+    if(Context.isPointInPath(button_end, x,  y)) {
+        isKeyCode = 27;
+        //strKeyEventValue = "RD";
+        Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+        gameEnd(isKeyCode);
+    }
+        
 } 
 
 ////////////////// 적01 미사일 생성
@@ -2015,10 +2082,12 @@ function player_collision(i){
             } 
         }
     }
-}
+} 
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
 function drawScreen(){
+
+
 
     //게임 진행 컨텍스트(레이어)
     Context.fillStyle = "#000000";
@@ -2034,8 +2103,8 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //게임상태정보표시
-    game_status();
-
+    game_status(); 
+    
 	//게임 컨트롤
     gameControl();
 

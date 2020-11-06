@@ -448,7 +448,8 @@ function gameEnd(as_keycode) {
 
         $("#GameCanvas").fadeOut( "slow", function() {
 
-            window.location = 'end.html';
+            //window.location = 'end.html';
+            location.replace("end.html");
 
         });
     }else {

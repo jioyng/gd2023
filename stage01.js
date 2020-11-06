@@ -448,7 +448,7 @@ function gameEnd(as_keycode) {
 
         $("#GameCanvas").fadeOut( "slow", function() {
 
-            window.location = 'index.html';
+            window.location = 'end.html';
 
         });
     }else {
@@ -1588,7 +1588,7 @@ function game_status(){
         clearInterval(Timer_Id);
         return;
     }else if (status == 4){
-        Context2.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context2.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 200, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     }

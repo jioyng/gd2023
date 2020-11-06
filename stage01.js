@@ -437,16 +437,19 @@ function gameStart(as_keycode) {
 ////////////////// 게임 종료
 function gameEnd(as_keycode) {
 
-  if(confirm("게임을 종료하시겠습니까?")){
+  if(confirm("게임을 나가시겠습니까?")){
 
         audio.pause();
         //onReady();
 
         $("#GameCanvas").fadeOut( "slow", function() {
 
-            window.location = 'https://google.com';
+            window.location = 'index.html';
 
         });
+    }else {
+
+        gameStart(13);
     }
 } 
 
@@ -763,9 +766,8 @@ function player_move(){
 		
         //게임상태가 진행중이 않은(종료 또틑 멈춤) 경우 레이저버튼 클릭시 재시작
 		if (status != 2)
-		{
-	
-			gameStart(13);
+		{            
+            gameStart(13);
 		}
 
         //레이져 변수 초기화
@@ -1725,7 +1727,8 @@ function clickCanvas(event, as_gb) {
 
 		if (status != 2)
 		{
-			gameStart(13);
+            //gameStart(13);
+            gameEnd(27);
         }
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
@@ -1746,7 +1749,8 @@ function clickCanvas(event, as_gb) {
 
 		if (status != 2)
 		{
-			gameStart(13);
+            //gameStart(13);
+            gameEnd(27);
 		}
 
         warp_sound.currentTime  = 0;

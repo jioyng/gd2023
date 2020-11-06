@@ -1118,13 +1118,15 @@ function enemy01_collision(){
                     Context.drawImage(this.explosionImage01,this.enemy01x+Math.floor(Math.random()*60),this.enemy01y+Math.floor(Math.random()*50),20 - i,20 - i);
                     Context.drawImage(this.explosionImage01,this.enemy01x-Math.floor(Math.random()*30),this.enemy01y+Math.floor(Math.random()*40),100 - i,100 - i);
                     Context.drawImage(this.explosionImage01,this.enemy01x+Math.floor(Math.random()*60),this.enemy01y+Math.floor(Math.random()*50),20 + i,20 + i);
-
-                    gameTime = parseInt(gameTime) + 1;
+                    
                     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
            
                 }
 
-                Context.fillText( " + " + i,theCanvas.clientWidth / 2 - 50,100);
+                //적의 생명 * 10 만큼 보너스 스코어
+                Context.fillText( " + " + ini_enemy01_life*10,this.enemy01x,this.enemy01y-10);
+
+                gameTime = parseInt(gameTime) + ini_enemy01_life*10;
 
                 //타겟 새로 출현 시간.
                 this.enemy_dealy_time = parseInt((Math.floor(Math.random()*5) + 1)) * 1000;

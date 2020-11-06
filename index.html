@@ -99,7 +99,7 @@ background-position: 50% -5%; */
 			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;max-height:100%"/>
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
 				우주력 2020년.<br> 
-				평화롭던 화성 콜로니에 정체를 모르는 바이러스가 침투했다.<br> 
+				평화롭던 화성 콜로니14기 내 정체를 모르는 바이러스가 침투했다.<br> 
 				바이러스는 콜로니의 모든 기계에 잠식해 이상 반응을 일으키며<br> 
 				3일 만에 시민들을 혼돈의 도가니로 몰아넣었다.  
 			</div> 
@@ -386,7 +386,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg"); 
 						
-						$("#infoText").html("기게에 잠식된 바이러스는 콜로니 연방내 군사 드론에 침투하였고<br>감염된 드론들은 인간들을 공격하기 시작한다."); 
+						$("#infoText").html("기계에 잠식된 바이러스는 콜로니 연방내 군사 드론에 까지 침투했고<br>감염된 드론들은 이주민들을 공격하기 시작했다."); 
 						
 					}) 			
 				}, 5000);
@@ -394,24 +394,31 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
-						$("#infoText").html("이에 연방내 최고 에이스 파일럿인 아무로는 이에 대한 조사를 명받고<br>콜로니의 심장부인 원자엔진을 정지시키도록 명받는다."); 
+						$("#infoText").html("이에 연방 공군 최고 에이스 아무로는 사건의 조사를 명받고<br>콜로니14기 동력의 근원인 중성자 엔진을 정지 시키기위해<br>파견된다."); 
 					}) 			
 				}, 10000);
 								
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("아무로는 최 신식 병기 마크 GD7을 몰고 출격을 시작하고<br>연방군은 이번 작전명을 코로나2020으로 명한다."); 
+						$("#infoText").html("군은 아무로에게 최고 기술의 결정체인 비밀병기 GD2020을 건내며<br>출격을 지시했고"); 
 						
 					}) 			
 				}, 15000);
-												
+										
+				setTimeout(function() {
+					$(".main").fadeOut( "slow", function() {
+						$("#imgIntro").attr("src","./img/intro05.jpg"); 
+						$("#infoText").html("이번 작전명을 COVID-2020으로 명했다."); 
+						
+					}) 			
+				}, 20000);				
 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						window.location = 'play.html';
 					}) 
-				}, 20000);
+				}, 25000);
 
 				totIntro.addEventListener('click', function() { 
 

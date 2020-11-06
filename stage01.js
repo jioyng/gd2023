@@ -1783,7 +1783,7 @@ function clickCanvas(event, as_gb) {
                 Context2.stroke(button_play);
                 Context2.stroke(button_end);
                 //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 200, ls_height/2 - 140);
+                Context2.fillText("계속",ls_width/2 - 160, ls_height/2 - 140);
                 Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);       
                 
                 isKeyDown = [];
@@ -1820,7 +1820,7 @@ function clickCanvas(event, as_gb) {
                 Context2.stroke(button_play);
                 Context2.stroke(button_end);
                 //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 200, ls_height/2 - 140);
+                Context2.fillText("계속",ls_width/2 - 160, ls_height/2 - 140);
                 Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);    
                 isKeyDown = [];
                 isKeyCode = null;                           

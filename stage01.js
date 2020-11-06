@@ -1783,9 +1783,14 @@ function clickCanvas(event, as_gb) {
                 Context2.stroke(button_play);
                 Context2.stroke(button_end);
                 //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 270, ls_height/2 - 140);
-                Context2.fillText("종료",ls_width/2 + 90, ls_height/2 - 140);                                    
+                Context2.fillText("계속",ls_width/2 - 240, ls_height/2 - 140);
+                Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);       
+                
+                isKeyDown = [];
+                isKeyCode = null;                           
+                return;
             }
+            
         }
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
@@ -1815,9 +1820,11 @@ function clickCanvas(event, as_gb) {
                 Context2.stroke(button_play);
                 Context2.stroke(button_end);
                 //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 270, ls_height/2 - 140);
-                Context2.fillText("종료",ls_width/2 + 90, ls_height/2 - 140);    
-                                
+                Context2.fillText("계속",ls_width/2 - 240, ls_height/2 - 140);
+                Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);    
+                isKeyDown = [];
+                isKeyCode = null;                           
+                return;
             }
 		}
 
@@ -1871,6 +1878,8 @@ function clickCanvas(event, as_gb) {
         //strKeyEventValue = "LD";
         Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
         gameEnd(isKeyCode);
+        isKeyDown = [];
+        isKeyCode = null; 
     }
 
     //게임 종료
@@ -1879,6 +1888,8 @@ function clickCanvas(event, as_gb) {
         //strKeyEventValue = "RD";
         Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
         gameEnd(isKeyCode);
+        isKeyDown = [];
+        isKeyCode = null; 
     }
         
 } 

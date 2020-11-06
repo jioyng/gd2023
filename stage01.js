@@ -1121,8 +1121,10 @@ function enemy01_collision(){
 
                     gameTime = parseInt(gameTime) + 1;
                     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
-                    Context.fillText( " + " + i,theCanvas.clientWidth / 2 - 50,100);
+           
                 }
+
+                Context.fillText( " + " + i,theCanvas.clientWidth / 2 - 50,100);
 
                 //타겟 새로 출현 시간.
                 this.enemy_dealy_time = parseInt((Math.floor(Math.random()*5) + 1)) * 1000;

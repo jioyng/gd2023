@@ -11,6 +11,9 @@ window.addEventListener("load",drawScreen, false);
 window.addEventListener("keydown",onkeyDown, false);
 window.addEventListener("keyup",onkeyUp, false);
 
+//제일 처음 페이지 load 여부
+var ls_first_load_yn = "Y";
+
 //필요한 이벤트 객체 선언
 var strKeyEventType = "None";
 var strKeyEventValue = "None";
@@ -401,6 +404,7 @@ function addJavascript(jsname) {
 ////////////////// 게임 시작
 function gameStart(as_keycode) {
  
+    ls_first_load_yn = "N";
     //alert("start")
     isKeyDown[as_keycode] = false;
 
@@ -1584,7 +1588,7 @@ function game_status(){
         clearInterval(Timer_Id);
         return;
     }else if (status == 4){
-        Context2.fillText("End", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context2.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     }
@@ -1727,8 +1731,12 @@ function clickCanvas(event, as_gb) {
 
 		if (status != 2)
 		{
-            //gameStart(13);
-            gameEnd(27);
+            //재일 처음 페이지 로드시에는 바로 시작
+            if (ls_first_load_yn == "Y"){
+                gameStart(13);  
+            }else {                               
+                gameEnd(27);                
+            }
         }
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
@@ -1749,8 +1757,12 @@ function clickCanvas(event, as_gb) {
 
 		if (status != 2)
 		{
-            //gameStart(13);
-            gameEnd(27);
+            //재일 처음 페이지 로드시에는 바로 시작
+            if (ls_first_load_yn == "Y"){
+                gameStart(13);  
+            }else {                         
+                gameEnd(27);                
+            }
 		}
 
         warp_sound.currentTime  = 0;

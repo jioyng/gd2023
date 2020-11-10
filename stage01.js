@@ -1264,7 +1264,7 @@ function enemy01_move(){
 
     //console.log("enemy01_move",this.enemy01_seq);
 
- 
+  
     //적(enemy01) 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy01x = this.enemy01x + 0.5;
@@ -1302,8 +1302,26 @@ function enemy01_move(){
         //enemy01x = 0;
         //enemy01y = 0;
 
+       //this.enemy01x = cityEnd_x;
+        //this.enemy01y = cityEnd_y;
+         
         this.enemy01w = ini_enemy01w + Math.floor(Math.random() * 100);
         this.enemy01h = ini_enemy01h + Math.floor(Math.random() * 100);
+        
+    }
+
+
+    //적이 게임 경게 밖으로 나가면 초기화
+    if ((this.enemy01x < this.minX || this.enemy01x > this.maxX) || (this.enemy01y < this.miny || this.enemy01y > this.maxy)){
+        this.enemy01w = ini_enemy01w + Math.floor(Math.random() * 100);
+        this.enemy01h = ini_enemy01h + Math.floor(Math.random() * 100);
+        if (this.enemy01_seq == 1){
+            setTimeout(this.create_enemy01,this.enemy_dealy_time);  
+        }else if (this.enemy01_seq == 2){
+            setTimeout(this.create_enemy02,this.enemy_dealy_time);  
+        }else {
+            setTimeout(this.create_enemy03,this.enemy_dealy_time);  
+        }
     }
 
     //적(enemy01)) 이미지
@@ -1360,19 +1378,21 @@ function game_background(){
         cityEnd_x = cityEnd_x + 0.5;
         cityEnd_y = cityEnd_y + 0.3;
     }else if (parseInt(gameTime/500 % 9) == 3){
-    }else if (parseInt(gameTime/500 % 9) == 3){
+        cityEnd_x = cityEnd_x + 0.1
+        cityEnd_y = cityEnd_y - 0.2        
+    }else if (parseInt(gameTime/500 % 9) == 4){
         cityEnd_x = cityEnd_x - 0.6;
         cityEnd_y = cityEnd_y - 0.4;
-    }else if (parseInt(gameTime/500 % 9) == 4){
+    }else if (parseInt(gameTime/500 % 9) == 5){
         cityEnd_x = cityEnd_x + 0.7;
         cityEnd_y = cityEnd_y + 0.4;
-    }else if (parseInt(gameTime/500 % 9) == 5){
+    }else if (parseInt(gameTime/500 % 9) == 6){
         cityEnd_x = cityEnd_x - 0.4;
         cityEnd_y = cityEnd_y - 0.2;
-    }else if (parseInt(gameTime/500 % 9) == 6){
+    }else if (parseInt(gameTime/500 % 9) == 7){
         cityEnd_x = cityEnd_x + 0.3;
         cityEnd_y = cityEnd_y + 0.3;
-    }else if (parseInt(gameTime/500 % 9) == 7){
+    }else if (parseInt(gameTime/500 % 9) == 8){
         cityEnd_x = cityEnd_x - 0.2;
         cityEnd_y = cityEnd_y - 0.1;
     }else {

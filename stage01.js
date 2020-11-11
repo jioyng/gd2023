@@ -1679,6 +1679,46 @@ function gameControl() {
 	//}
 } 
 
+
+
+//////////////////마우스 클릭시 이벤트 메핑
+   window.addEventListener('mousedown', function(event) {
+
+    event.preventDefault()
+   
+    //마우스 왼쪽 버튼 클릭
+    if (event.button == 0){
+      
+        isKeyCode = 32; 
+    }
+
+    //마우스 오른쪽 버튼 클릭
+    if (event.button == 2){
+     
+        isKeyCode = 17;  
+   
+    } 
+  });
+
+  window.addEventListener('mouseup', function(event) {
+
+    event.preventDefault()
+   
+    //마우스 왼쪽 버튼 클릭
+    if (event.button == 0){
+      
+        isKeyCode = null; 
+    }
+
+    //마우스 오른쪽 버튼 클릭
+    if (event.button == 2){
+     
+        isKeyCode = null;  
+       
+    }
+  });  
+
+ 
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
 
@@ -1770,8 +1810,9 @@ function clickCanvas(event, as_gb) {
         pmovex = 0;
         pmovey = 0;
 		Context.stroke(directonMiddle);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-    }
+    } 
 
+      
     //레이져 발사
 	if(Context.isPointInPath(button01, x,  y)) {
 

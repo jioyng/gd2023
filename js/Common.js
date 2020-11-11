@@ -1,26 +1,26 @@
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////공통함수 정의 2019.03 add by JohnRed/////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-// //OS체크
-// function getOSInfo()
-// {
-//    var ua = window.navigator.userAgent;
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////공통함수 정의 2019.03 add by JohnRed/////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+//OS체크
+function getOSInfo()
+{
+   var ua = window.navigator.userAgent;
   
-//    if(ua.indexOf("NT 6.0") != -1) return "Windows Vista/Server 2008";
-//    else if(ua.indexOf("NT 5.2") != -1) return "Windows Server 2003";
-//    else if(ua.indexOf("NT 5.1") != -1) return "Windows XP";
-//    else if(ua.indexOf("NT 5.0") != -1) return "Windows 2000";
-//    else if(ua.indexOf("NT") != -1) return "Windows NT";
-//    else if(ua.indexOf("9x 4.90") != -1) return "Windows Me";
-//    else if(ua.indexOf("98") != -1) return "Windows 98";
-//    else if(ua.indexOf("95") != -1) return "Windows 95";
-//    else if(ua.indexOf("Win16") != -1) return "Windows 3.x";
-//    else if(ua.indexOf("Windows") != -1) return "Windows";
-//    else if(ua.indexOf("Linux") != -1) return "Linux";
-//    else if(ua.indexOf("Macintosh") != -1) return "Macintosh";
-//    else return "";
+   if(ua.indexOf("NT 6.0") != -1) return "Windows Vista/Server 2008";
+   else if(ua.indexOf("NT 5.2") != -1) return "Windows Server 2003";
+   else if(ua.indexOf("NT 5.1") != -1) return "Windows XP";
+   else if(ua.indexOf("NT 5.0") != -1) return "Windows 2000";
+   else if(ua.indexOf("NT") != -1) return "Windows NT";
+   else if(ua.indexOf("9x 4.90") != -1) return "Windows Me";
+   else if(ua.indexOf("98") != -1) return "Windows 98";
+   else if(ua.indexOf("95") != -1) return "Windows 95";
+   else if(ua.indexOf("Win16") != -1) return "Windows 3.x";
+   else if(ua.indexOf("Windows") != -1) return "Windows";
+   else if(ua.indexOf("Linux") != -1) return "Linux";
+   else if(ua.indexOf("Macintosh") != -1) return "Macintosh";
+   else return "";
  
-// } 
+} 
 
 // //현재 파일명+확장자 얻기		
 // var thisfilefullname = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);
@@ -151,18 +151,21 @@ function f_search_landmode(){
 
     //가로모드일때
     if(Math.abs(parseInt(window.orientation)) == 90){
-
+      //alert("가로")
       lstotdiv.style.visibility = "hidden";     
                         
       //f_bgsound();   
       //lsGameCanvas.SetActive(true);
       //bgsound.play();
     } else {
+         
       //세로모드 
       //윈도우일경우.
       if (getOSInfo().indexOf("Windows") >= 0) {
+        //alert("세로1")
         lstotdiv.style.visibility = "hidden"; 
       }else { 
+        //alert("세로2")
         lstotdiv.style.visibility = "visible"; 
       }
       

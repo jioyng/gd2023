@@ -390,12 +390,12 @@ var missile01_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 �
 if (navigator.platform.substr(0,3) == "Win" ){
 
     //$("#TopCtl").hide();
-    $(".MainCtl").hide();
+    $("#MainCtl").hide();
     //$("#MainCtl2").hide(); 
  
-    $(".startCtl").hide();
-    $(".directCtl").hide();
-    $(".attackCtl").hide();
+    $("#startCtl").hide();
+    //$(".directCtl").hide();
+    $("#attackCtl").hide();
 
 }
 

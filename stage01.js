@@ -386,18 +386,18 @@ var missile01_upDown = 1;
 var missile01_leftRight = 1;
 var missile01_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
 
-////////////////// 윈도우 os의 경우 터치버튼 보이기/숨기기
-//if (navigator.platform.substr(0,3) == "Win" ){
+////////////////// 윈도우 os의 경우 터치버튼 보이기/숨기기 
+if (navigator.platform.substr(0,3) == "Win" ){
 
     $("#TopCtl").hide();
     $("#MainCtl").hide();
-    $("#MainCtl2").hide();
-
+    $("#MainCtl2").hide(); 
+ 
     $(".startCtl").hide();
     $(".directCtl").hide();
     $(".attackCtl").hide();
 
-//}
+}
 
 ////////////////// 게임 화면 터치 버튼 매핑 시작
 function addJavascript(jsname) {
@@ -1682,27 +1682,30 @@ function gameControl() {
 
 
 //////////////////마우스 클릭시 이벤트 메핑
-   window.addEventListener('mousedown', function(event) {
-
-    event.preventDefault()
-   
+GameCanvas.addEventListener('mousedown', function(event) {
+ 
+    event.preventDefault();
+ 
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){
       
         isKeyCode = 32; 
+ 
     }
 
     //마우스 오른쪽 버튼 클릭
     if (event.button == 2){
      
+    
         isKeyCode = 17;  
+ 
    
     } 
   });
 
-  window.addEventListener('mouseup', function(event) {
+  GameCanvas.addEventListener('mouseup', function(event) {
 
-    event.preventDefault()
+    //event.preventDefault();
    
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){
@@ -1717,6 +1720,11 @@ function gameControl() {
        
     }
   });  
+
+
+  GameCanvas.oncontextmenu = function () {
+    return false;
+  };
 
  
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)

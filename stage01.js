@@ -387,7 +387,7 @@ var missile01_leftRight = 1;
 var missile01_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
 
 ////////////////// 윈도우 os의 경우 터치버튼 보이기/숨기기 
-if (navigator.platform.substr(0,3) == "Win" ){
+if (navigator.platform.substr(0,3) != "Win" ){
 
     //$("#TopCtl").hide();
     $("#MainCtl").hide();

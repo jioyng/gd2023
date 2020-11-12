@@ -45,11 +45,7 @@ var minX = theCanvas.offsetLeft;
 var maxX = theCanvas.clientWidth - minX;
 var minY = theCanvas.offsetTop;
 var maxY = theCanvas.clientHeight - minY;
-
-
-//게임 마우스 좌측버튼 클릭 좌표
-var mouseX = 0;
-var mouseY = 0;
+ 
 
 /////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
 //캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
@@ -1711,7 +1707,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     } 
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameStartEndButton();
+    gameRetryExitButton();
   });
 
   GameCanvas.addEventListener('mouseup', function(event) {
@@ -1739,8 +1735,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
     return false;
   };
 
- ///////////////// 게임 재시작/종료 버튼 보여주기
- function gameStartEndButton(){
+ ///////////////// 게임 재시도 or 나가기 버튼 보여주기
+ function gameRetryExitButton(){
     if (status != 2)
     {
         //재일 처음 페이지 로드시에는 바로 시작
@@ -1750,12 +1746,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
             
         }else {                               
             //gameEnd(27);                
-            //게임 종료 or 계속
+            //게임 재시도 or 나가기
             Context2.stroke(button_play);
             Context2.stroke(button_end);
             //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-            Context2.fillText("다시",ls_width/2 - 160, ls_height/2 - 140);
-            Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);       
+            Context2.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
+            Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);       
             
             isKeyDown = [];
             isKeyCode = null;                           
@@ -1773,7 +1769,7 @@ function clickCanvas(event, as_gb) {
     //}
     
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameStartEndButton();    
+    gameRetryExitButton();    
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;

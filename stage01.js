@@ -386,18 +386,18 @@ var missile01_upDown = 1;
 var missile01_leftRight = 1;
 var missile01_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
 
-////////////////// 윈도우 os의 경우 터치버튼 보이기/숨기기 
-if (navigator.platform.substr(0,3) != "Win" ){
+// ////////////////// 윈도우 os의 경우 둠 터치버튼 숨기기 
+// if (navigator.platform.substr(0,3) != "Win" ){
 
-    //$("#TopCtl").hide();
-    $("#MainCtl").hide();
-    //$("#MainCtl2").hide(); 
+//     //$("#TopCtl").hide();
+//     $("#MainCtl").hide();
+//     //$("#MainCtl2").hide(); 
  
-    $("#startCtl").hide();
-    //$(".directCtl").hide();
-    $("#attackCtl").hide();
+//     $("#startCtl").hide();
+//     //$(".directCtl").hide();
+//     $("#attackCtl").hide();
 
-}
+// }
 
 ////////////////// 게임 화면 터치 버튼 매핑 시작
 function addJavascript(jsname) {
@@ -1486,7 +1486,7 @@ function game_background(){
     Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 50, theCanvas.clientHeight / 4 - 20 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
     Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    Context3.stroke
 
     //우측하단선
     Context3.beginPath();
@@ -1661,7 +1661,7 @@ function game_status(){
 ////////////////// 캔버스 컨트롤(게임 프래임 진행시 호출하여 생성)
 function gameControl() {
 
-    //윈도우의 경우 보여주지않는다.
+    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) != "Win" ){
             Context.globalAlpha = 0.5;
 
@@ -1749,6 +1749,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
 
+
 	//if (status != 2)
 	//{
 		//gameStart(13);
@@ -1760,6 +1761,11 @@ function clickCanvas(event, as_gb) {
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
 	var y = event.pageY;
+
+    //윈도우의 경우 캔버스 컨트롤을 사용하지 않는다.
+	if (navigator.platform.substr(0,3) == "Win" ){
+        return;
+    }
 
     //방향 up
 	if(Context.isPointInPath(directonUp, x,  y)) {

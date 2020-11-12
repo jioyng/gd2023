@@ -46,6 +46,11 @@ var maxX = theCanvas.clientWidth - minX;
 var minY = theCanvas.offsetTop;
 var maxY = theCanvas.clientHeight - minY;
 
+
+//게임 마우스 좌측버튼 클릭 좌표
+var mouseX = 0;
+var mouseY = 0;
+
 /////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
 //캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
 //키입력 저장 array
@@ -1662,7 +1667,9 @@ function game_status(){
 function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
-	if (navigator.platform.substr(0,3) != "Win" ){
+	if (navigator.platform.substr(0,3) == "Win" ){
+        return;
+    }
             Context.globalAlpha = 0.5;
 
             Context.stroke(directonUp);
@@ -1678,7 +1685,7 @@ function gameControl() {
 			Context.stroke(button01);
             Context.stroke(button02);
             
-	}
+	 
 } 
 
 
@@ -1691,6 +1698,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){ 
         isKeyCode = 32;  
+        
+        x = event.clientX;
+        y = event.clientY;
+
+        laser_radian(x,y);
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -1699,7 +1711,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     } 
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameSEButton();
+    gameStartEndButton();
   });
 
   GameCanvas.addEventListener('mouseup', function(event) {
@@ -1709,6 +1721,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){  
         isKeyCode = null; 
+
+        x = event.clientX;
+        y = event.clientY;
+        
+        laser_radian(x,y);
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -1723,7 +1740,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
   };
 
  ///////////////// 게임 재시작/종료 버튼 보여주기
- function gameSEButton(){
+ function gameStartEndButton(){
     if (status != 2)
     {
         //재일 처음 페이지 로드시에는 바로 시작
@@ -1756,7 +1773,7 @@ function clickCanvas(event, as_gb) {
     //}
     
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameSEButton();    
+    gameStartEndButton();    
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -1858,14 +1875,16 @@ function clickCanvas(event, as_gb) {
 		//Context.fillText((maxX - 250 - x) * -1 ,theCanvas.clientWidth - 250,100);
 		//Context.fillText(maxY - 180 - y ,theCanvas.clientWidth - 250,150);
 
-        //레이저 버튼을 클릭한곳의 각도로 발사되도록 한다.
-		laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
+        // //레이저 버튼을 클릭한곳의 각도로 발사되도록 한다.
+		// laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
 
-		if (laser_r < 0)
-		 laser_r += Math.PI * 2;
-		laser_d = laser_r*180/Math.PI;
-		while (laser_d < 0)
-         laser_d += 360; 
+		// if (laser_r < 0)
+		//  laser_r += Math.PI * 2;
+		// laser_d = laser_r*180/Math.PI;
+		// while (laser_d < 0)
+        //  laser_d += 360; 
+
+        laser_radian(x,y);
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
@@ -1951,6 +1970,30 @@ function clickCanvas(event, as_gb) {
     }
         
 } 
+
+////////////////// 플레이어 레이져 각도 
+function laser_radian(x,y){
+        
+
+        //윈도우에서는 플레이어 기준으로 마우스를 클릭한곳으로 레이져 발사
+        
+        if (navigator.platform.substr(0,3) == "Win" ){
+          
+            laser_r = Math.atan2((playerY - y),(playerX - x) * -1);
+         
+        //레이져 버튼내 중앙 기준 클릭한곳의 각도로 발사되도록 한다.
+        }else {
+		    laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
+        }
+
+
+		if (laser_r < 0)
+		 laser_r += Math.PI * 2;
+		laser_d = laser_r*180/Math.PI;
+		while (laser_d < 0)
+         laser_d += 360; 
+
+}
 
 ////////////////// 적01 미사일 생성
 function missile01_create(){

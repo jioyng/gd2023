@@ -91,7 +91,8 @@ background-position: 50% -5%; */
 </style> 
 </head>
     <!-- <body bgcolor="#262626" background="./img/main_intro.jpg" onload="play_misound();" > -->
-	<body bgcolor="#262626" background="./img/main_intro.jpg"  >	
+	<body bgcolor="#262626" background="./img/main_intro.jpg"  >
+	<div id="tot_div">	
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
@@ -146,7 +147,7 @@ background-position: 50% -5%; */
 		<!-- <div  style="position: absolute; text-align:center; top:90%; color:white;z-index:5; width:96%;">
 			All right reserved by JohnRed since 2020.
 		</div> -->
-
+	</div>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -168,62 +169,23 @@ window.addEventListener('load', ()=>{
 });
 
 $(function(){
- 
-
-//   //인트로(배경)음악
-//   var misound = document.getElementById('misound');
-//   misound.addEventListener("load",misound, false);
-    //misound.currentTime = 9; //재생위치 
- 	//misound.play();	
-	//인트로(배경)음악
-	// var misound2 = new Audio();
-	// misound2.src = "./sound/intro.ogg";
-	// window.addEventListener("load",misound2, true);
-
-//function play_misound(){
-
-//  var promise =  misound2.play();
-
-//    //if (misound != null){
-
-// 	//    misound.currentTime = 10; //재생위치
-
-// 	//    misound.play();
-
-//    //}
-
-//   //var promise = document.querySelector('#misound').play();
-//    if (promise !== undefined) {
-
-// 	   promise.then(_ => {
-// 		   // Autoplay started!
-// 		   alert("test1")
-// 		}).catch(error => {
-// 			// Autoplay was prevented.
-// 			// Show a "Play" button so that user can start playback.
-// 			alert("test2")
-// 			misound.play();
-// 		});
-// 	}
-
-	//};
 
 
-//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
-f_search_landmode();        //화면 로딩시 자동 호출
+	//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
+	f_search_landmode();        //화면 로딩시 자동 호출
 
 	// //우클릭, 드래그, 선택 방지
-	// $(document).on("contextmenu dragstart selectstart",function(e){
-	//     return false;
-	// });
+	$(document).on("contextmenu dragstart selectstart",function(e){
+	    return false;
+	});
 
-	// //화면 드래그 방지
-	// //$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
-	// $('#totdiv').on('scroll touchmove mousewheel', function(event) {
-	// 		event.preventDefault();
-	// 		event.stopPropagation();
-	// 		return false;
-	// });
+	//화면 드래그 방지
+	//$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+	$('#totdiv').on('scroll touchmove mousewheel', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			return false;
+	});
 
 	$(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
 
@@ -236,20 +198,20 @@ f_search_landmode();        //화면 로딩시 자동 호출
 	});
 
 
-//console.log(misound)
-//로드시간
-//setTimeout(play_misound,5000);
-// $(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
-// 	play_misound();
-// });
+	//console.log(misound)
+	//로드시간
+	//setTimeout(play_misound,5000);
+	// $(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
+	// 	play_misound();
+	// });
 
-//    $("#start").mouseover(function(){
-//  			misound.pause();
-//    });
+	//    $("#start").mouseover(function(){
+	//  			misound.pause();
+	//    });
 
-//    $("#start").mouseout(function(){
-//  	 		misound.play();
-//    });
+	//    $("#start").mouseout(function(){
+	//  	 		misound.play();
+	//    });
 
 	//시작 음악
 	function play_misound(){
@@ -301,13 +263,9 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			
 			intro01.play();
 		}
-	};
-
-
-
+	}; 
 	//$("#start").bind('touchstart', function(e) {
-	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
-
+	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함. 
 		start.addEventListener('click', function() {
 		//$("#start").click(function(){
 
@@ -352,15 +310,11 @@ f_search_landmode();        //화면 로딩시 자동 호출
 				//window.location = 'play.html';
 				setTimeout(startIntro, 1000);
 
-			}); 	
-					  
+			}); 	 
   
-		});
+		}); 
 
-
-		function startIntro(){
-
-			
+		function startIntro(){ 
 				
 				// if (IntroSound() != 1)  {
 				// 	return;
@@ -376,9 +330,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 
 				$("#totIntro").show();
 
-				if($("#totIntro").show()){
-
-
+				if($("#totIntro").show()){ 
 			
 				misound.pause();	
 				
@@ -429,11 +381,9 @@ f_search_landmode();        //화면 로딩시 자동 호출
 
 				}) 
 		 
-	}
+			}
 
-		}
-
-						
+		} 		
 
 	//게임 설치 버튼
 	/*
@@ -458,7 +408,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 	}); // 특정 버튼 클릭 시 설치 시작
 
 
-		$("#finish").click(function(){
+	$("#finish").click(function(){
 
 		//alert("기기를 설치합니다.")
 		if(deferredPrompt !== undefined) {
@@ -481,28 +431,28 @@ f_search_landmode();        //화면 로딩시 자동 호출
 			});
 		}
 
-						//윈도우일경우.
-						// if (getOSInfo().indexOf("Windows") >= 0){
-						// 	if (confirm('프로그램을 종료하시겠습니까?') == true){
-						// 		// window.close();
-						// 		// self.close();
-						// 		// self.opner = window.location.href;
-						// 		// self.close();
-						// 		// //window.open('about:blank','_sell').close();
+			//윈도우일경우.
+			// if (getOSInfo().indexOf("Windows") >= 0){
+			// 	if (confirm('프로그램을 종료하시겠습니까?') == true){
+			// 		// window.close();
+			// 		// self.close();
+			// 		// self.opner = window.location.href;
+			// 		// self.close();
+			// 		// //window.open('about:blank','_sell').close();
 
-						// 		// self.opener = self;
-						// 		// window.close();
+			// 		// self.opener = self;
+			// 		// window.close();
 
-						// 		window.open('http://google.com', '_self', '');
-						// 		window.close();
-						// 		return;
-						// 	 }
-						// }else {
-							//navigator.app.exitApp();
-							//onBackKeyDown();
-							//return;
-						//}
-		});
+			// 		window.open('http://google.com', '_self', '');
+			// 		window.close();
+			// 		return;
+			// 	 }
+			// }else {
+				//navigator.app.exitApp();
+				//onBackKeyDown();
+				//return;
+			//}
+	});
 
 
 	// //btnInstall.addEventListener('click', function() {
@@ -526,7 +476,7 @@ f_search_landmode();        //화면 로딩시 자동 호출
 	// 			deferredPrompt = null;
 	// 	    });
 	// 	}
-	// //});
+	// //}); 
 
 });
 

@@ -63,7 +63,7 @@
     </div>
 
 <!--
-    <div id="TopCtl" style="position: absolute; top:5px; left:40px; text-align:left; width:300px; ">
+    <div id="TopCtl" class="TopCtl" style="position: absolute; top:5px; left:40px; text-align:left; width:300px; ">
 	  <br> 
       <button onMouseDown="gameStart(13)" style="opacity:0.1;height:50px;width:100px;" ><b>Start</b></button>
       <button onMouseDown="gameEnd(27)" style="opacity:0.1;height:50px;width:100px;" ><b>&nbsp;End&nbsp;</b></button> 
@@ -393,7 +393,22 @@
 				
 				deferredPrompt = null; 
 		    });
-		} 
+    } 
+    
+
+
+    //////////////////마우스 클릭시 이벤트 메핑
+    tot_div.addEventListener('mousedown', function(event) {
+    
+      event.preventDefault();
+ 
+    });
+
+    //마우스 오른쪽 버튼 클릭시 팝업 방지
+    tot_div.oncontextmenu = function () {
+    return false;
+    };   
+     
 	});
 	 
   </script>

@@ -1691,6 +1691,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
  
     event.preventDefault();
  
+    //모바일일경우 리턴 
+    if (navigator.platform.substr(0,3) != "Win" ){
+        return;
+    }
+
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){ 
         isKeyCode = 32;  
@@ -1708,12 +1713,18 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
     gameRetryExitButton();
+
   });
 
   GameCanvas.addEventListener('mouseup', function(event) {
 
-    //event.preventDefault();
-   
+    event.preventDefault(); 
+
+    //모바일일경우 리턴 
+    if (navigator.platform.substr(0,3) != "Win" ){
+        return;
+    } 
+    
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){  
         isKeyCode = null; 

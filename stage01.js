@@ -1689,12 +1689,14 @@ function gameControl() {
 //////////////////마우스 클릭시 이벤트 메핑
 GameCanvas.addEventListener('mousedown', function(event) {
  
-    event.preventDefault();
+    //event.preventDefault();
  
-    //모바일일경우 리턴 
-    if (navigator.platform.substr(0,3) != "Win" ){
-        return;
-    }
+    //모바일인경우 게임진행시에는 리턴 
+    //if (status == 2){
+        if (navigator.platform.substr(0,3) != "Win" ){
+            return;
+        }
+    //}
 
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){ 
@@ -1718,12 +1720,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
   GameCanvas.addEventListener('mouseup', function(event) {
 
-    event.preventDefault(); 
+    //event.preventDefault(); 
 
-    //모바일일경우 리턴 
-    if (navigator.platform.substr(0,3) != "Win" ){
-        return;
-    } 
+    //모바일인경우 게임진행시에는 리턴 
+    //if (status == 2){
+        if (navigator.platform.substr(0,3) != "Win" ){
+            return;
+        }
+    //}
     
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){  
@@ -1786,8 +1790,8 @@ function clickCanvas(event, as_gb) {
 	var x = event.pageX;
 	var y = event.pageY;
 
-    //윈도우의 경우 캔버스 컨트롤을 사용하지 않는다.
-	if (navigator.platform.substr(0,3) == "Win" ){
+    //윈도우의 경우 캔버스 컨트롤을 사용하지 않는다.(게임 진행일때만) => 재시도/종료 버튼클릭 가능하기 위해
+	if (navigator.platform.substr(0,3) == "Win" && status == 2){
         return;
     }
 
@@ -2141,8 +2145,7 @@ function player_collision(i){
 
             if (player_life <= 1){ 
 
-                // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
-                // Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/20);
+
                 Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
                 Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
                 Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
@@ -2150,18 +2153,6 @@ function player_collision(i){
                 this.energe_bar = '';
                 explosion_sound.play();
                 explosion_sound.currentTime  = 0; 
-
-                //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
-                //적이 강할수록 i를 높게한다.(i = 점수)
-                // for (var i=0;i<=Pdistance/300;i++){ 
-
-				// 	Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),30,15);
-				// 	Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
-				// 	Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
-				// 	Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
-				// 	Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*50),playerY-Math.floor(Math.random()*60),20,15);
-
-                // }
 
                 explosion_sound.play();
                 audio.pause();
@@ -2174,6 +2165,33 @@ function player_collision(i){
 
                 status = 4;    //게임 END
 
+                //게임 점수 저장          
+                localStorage.setItem('current_score',gameTime);
+                var ls_current_score = localStorage.getItem('current_score');  
+
+             
+                var ls_before_score = localStorage.getItem('before_score');
+
+                if (ls_before_score == null || ls_before_score == ""){
+                    localStorage.setItem('before_score',ls_current_score);
+                } 
+
+                //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
+                if (parseInt(ls_current_score) >= parseInt(ls_before_score)){
+                    localStorage.setItem('best_score',ls_current_score);
+                }else {
+                    localStorage.setItem('best_score',ls_before_score);
+                }
+                
+                //베스트 점수를 이전 점수에 저장
+                
+                var ls_best_score = localStorage.getItem('best_score');
+ 
+                    localStorage.setItem('before_score',ls_best_score);
+              
+
+
+
             }else {
                 if (player_collision_yn == 'N'){
 
@@ -2183,10 +2201,7 @@ function player_collision(i){
                     Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/30);
                     crash02_sound.play();
                     crash02_sound.currentTime  = 0;
-                    // Context.drawImage(explosionImage01,playerX+5,playerY - 10,40*(Pdistance/500)*playerWidth/40,60*(Pdistance/500)*playerHeight/60);
-                    // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*50),playerY+Math.floor(Math.random()*50),50,35);
-                    // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),45,65);
-                    // Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/40);
+
                     player_life = player_life - 1;
                     player_collision_yn = 'Y';
 

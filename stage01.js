@@ -45,6 +45,7 @@ var minX = theCanvas.offsetLeft;
 var maxX = theCanvas.clientWidth - minX;
 var minY = theCanvas.offsetTop;
 var maxY = theCanvas.clientHeight - minY;
+ 
 
 /////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
 //캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
@@ -386,18 +387,18 @@ var missile01_upDown = 1;
 var missile01_leftRight = 1;
 var missile01_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
 
-////////////////// 윈도우 os의 경우 터치버튼 보이기/숨기기 
-if (navigator.platform.substr(0,3) == "Win" ){
+// ////////////////// 윈도우 os의 경우 둠 터치버튼 숨기기 
+// if (navigator.platform.substr(0,3) != "Win" ){
 
-    $("#TopCtl").hide();
-    $("#MainCtl").hide();
-    $("#MainCtl2").hide(); 
+//     //$("#TopCtl").hide();
+//     $("#MainCtl").hide();
+//     //$("#MainCtl2").hide(); 
  
-    $(".startCtl").hide();
-    $(".directCtl").hide();
-    $(".attackCtl").hide();
+//     $("#startCtl").hide();
+//     //$(".directCtl").hide();
+//     $("#attackCtl").hide();
 
-}
+// }
 
 ////////////////// 게임 화면 터치 버튼 매핑 시작
 function addJavascript(jsname) {
@@ -1486,7 +1487,7 @@ function game_background(){
     Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 50, theCanvas.clientHeight / 4 - 20 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
     Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    Context3.stroke
 
     //우측하단선
     Context3.beginPath();
@@ -1634,6 +1635,7 @@ function game_background(){
     Context3.globalAlpha = "1"
     Context3.strokeStyle = "ffffff";
 }
+ 
 
 ////////////////// 게임 상태 표시
 function game_status(){
@@ -1653,14 +1655,17 @@ function game_status(){
         Context2.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 200, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
-    }
+    } 
+  
 }
  
 ////////////////// 캔버스 컨트롤(게임 프래임 진행시 호출하여 생성)
 function gameControl() {
 
-    //윈도우의 경우 보여주지않는다.
-	//if (navigator.platform.substr(0,3) != "Win" ){
+    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
+	if (navigator.platform.substr(0,3) == "Win" ){
+        return;
+    }
             Context.globalAlpha = 0.5;
 
             Context.stroke(directonUp);
@@ -1676,7 +1681,7 @@ function gameControl() {
 			Context.stroke(button01);
             Context.stroke(button02);
             
-	//}
+	 
 } 
 
 
@@ -1687,20 +1692,22 @@ GameCanvas.addEventListener('mousedown', function(event) {
     event.preventDefault();
  
     //마우스 왼쪽 버튼 클릭
-    if (event.button == 0){
-      
-        isKeyCode = 32; 
- 
+    if (event.button == 0){ 
+        isKeyCode = 32;  
+        
+        x = event.clientX;
+        y = event.clientY;
+
+        laser_radian(x,y);
     }
 
     //마우스 오른쪽 버튼 클릭
-    if (event.button == 2){
-     
-    
-        isKeyCode = 17;  
- 
-   
+    if (event.button == 2){ 
+        isKeyCode = 17;   
     } 
+
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
+    gameRetryExitButton();
   });
 
   GameCanvas.addEventListener('mouseup', function(event) {
@@ -1708,16 +1715,18 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //event.preventDefault();
    
     //마우스 왼쪽 버튼 클릭
-    if (event.button == 0){
-      
+    if (event.button == 0){  
         isKeyCode = null; 
+
+        x = event.clientX;
+        y = event.clientY;
+        
+        laser_radian(x,y);
     }
 
     //마우스 오른쪽 버튼 클릭
-    if (event.button == 2){
-     
-        isKeyCode = null;  
-       
+    if (event.button == 2){ 
+        isKeyCode = null;   
     }
   });  
 
@@ -1726,18 +1735,50 @@ GameCanvas.addEventListener('mousedown', function(event) {
     return false;
   };
 
- 
+ ///////////////// 게임 재시도 or 나가기 버튼 보여주기
+ function gameRetryExitButton(){
+    if (status != 2)
+    {
+        //재일 처음 페이지 로드시에는 바로 시작
+        if (ls_first_load_yn == "Y"){
+
+            gameStart(13);  
+            
+        }else {                               
+            //gameEnd(27);                
+            //게임 재시도 or 나가기
+            Context2.stroke(button_play);
+            Context2.stroke(button_end);
+            //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
+            Context2.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
+            Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);       
+            
+            isKeyDown = [];
+            isKeyCode = null;                           
+          
+        } 
+    }    
+ }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
+
 
 	//if (status != 2)
 	//{
 		//gameStart(13);
-	//}
+    //}
+    
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
+    gameRetryExitButton();    
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
 	var y = event.pageY;
+
+    //윈도우의 경우 캔버스 컨트롤을 사용하지 않는다.
+	if (navigator.platform.substr(0,3) == "Win" ){
+        return;
+    }
 
     //방향 up
 	if(Context.isPointInPath(directonUp, x,  y)) {
@@ -1830,37 +1871,16 @@ function clickCanvas(event, as_gb) {
 		//Context.fillText((maxX - 250 - x) * -1 ,theCanvas.clientWidth - 250,100);
 		//Context.fillText(maxY - 180 - y ,theCanvas.clientWidth - 250,150);
 
-        //레이저 버튼을 클릭한곳의 각도로 발사되도록 한다.
-		laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
+        // //레이저 버튼을 클릭한곳의 각도로 발사되도록 한다.
+		// laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
 
-		if (laser_r < 0)
-		 laser_r += Math.PI * 2;
-		laser_d = laser_r*180/Math.PI;
-		while (laser_d < 0)
-         laser_d += 360;
+		// if (laser_r < 0)
+		//  laser_r += Math.PI * 2;
+		// laser_d = laser_r*180/Math.PI;
+		// while (laser_d < 0)
+        //  laser_d += 360; 
 
-        //Context.fillText(Math.round(laser_d) ,theCanvas.clientWidth - 250,200);
-
-		if (status != 2)
-		{
-            //재일 처음 페이지 로드시에는 바로 시작
-            if (ls_first_load_yn == "Y"){
-                gameStart(13);  
-            }else {                               
-                //gameEnd(27);                
-                //게임 종료 or 계속
-                Context2.stroke(button_play);
-                Context2.stroke(button_end);
-                //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 160, ls_height/2 - 140);
-                Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);       
-                
-                isKeyDown = [];
-                isKeyCode = null;                           
-                return;
-            }
-            
-        }
+        laser_radian(x,y);
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
@@ -1876,26 +1896,7 @@ function clickCanvas(event, as_gb) {
     //warp(공간 이동)
 	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) {
 
-		Context.stroke(button02);   //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-
-		if (status != 2)
-		{
-            //재일 처음 페이지 로드시에는 바로 시작
-            if (ls_first_load_yn == "Y"){
-                gameStart(13);  
-            }else {                         
-                //gameEnd(27);                
-                //게임 종료 or 계속
-                Context2.stroke(button_play);
-                Context2.stroke(button_end);
-                //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);     
-                Context2.fillText("계속",ls_width/2 - 160, ls_height/2 - 140);
-                Context2.fillText("종료",ls_width/2 + 120, ls_height/2 - 140);    
-                isKeyDown = [];
-                isKeyCode = null;                           
-                return;
-            }
-		}
+		Context.stroke(button02);   //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여) 
 
         warp_sound.currentTime  = 0;
         warp_sound.play(); 
@@ -1940,28 +1941,55 @@ function clickCanvas(event, as_gb) {
         isKeyCode = null; 
 
     } 
-    
-    //게임 계속
-    if(Context.isPointInPath(button_play, x,  y)) {
-        isKeyCode = 13;
-        //strKeyEventValue = "LD";
-        Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-        gameEnd(isKeyCode);
-        isKeyDown = [];
-        isKeyCode = null; 
-    }
+     
 
-    //게임 종료
-    if(Context.isPointInPath(button_end, x,  y)) {
-        isKeyCode = 27;
-        //strKeyEventValue = "RD";
-        Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-        gameEnd(isKeyCode);
-        isKeyDown = [];
-        isKeyCode = null; 
+    if(status != 2){    
+        //게임 계속
+        if(Context.isPointInPath(button_play, x,  y)) {
+            isKeyCode = 13;
+            //strKeyEventValue = "LD";
+            Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            gameEnd(isKeyCode);
+            isKeyDown = [];
+            isKeyCode = null; 
+        }
+
+        //게임 종료
+        if(Context.isPointInPath(button_end, x,  y)) {
+            isKeyCode = 27;
+            //strKeyEventValue = "RD";
+            Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            gameEnd(isKeyCode);
+            isKeyDown = [];
+            isKeyCode = null; 
+        }
     }
         
 } 
+
+////////////////// 플레이어 레이져 각도 
+function laser_radian(x,y){
+        
+
+        //윈도우에서는 플레이어 기준으로 마우스를 클릭한곳으로 레이져 발사
+        
+        if (navigator.platform.substr(0,3) == "Win" ){
+          
+            laser_r = Math.atan2((playerY - y),(playerX - x) * -1);
+         
+        //레이져 버튼내 중앙 기준 클릭한곳의 각도로 발사되도록 한다.
+        }else {
+		    laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
+        }
+
+
+		if (laser_r < 0)
+		 laser_r += Math.PI * 2;
+		laser_d = laser_r*180/Math.PI;
+		while (laser_d < 0)
+         laser_d += 360; 
+
+}
 
 ////////////////// 적01 미사일 생성
 function missile01_create(){
@@ -2408,4 +2436,16 @@ function onkeyUp(e){
     strKeyEventValue = "None";
  
 }
- 
+
+//마우스 우클릭, 드래그, 선택 방지
+$(document).on("contextmenu dragstart selectstart",function(e){
+    return false;
+});
+
+//화면 드래그 방지
+//$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+$('#GameCanvas').on('scroll touchmove mousewheel', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+});	

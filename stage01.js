@@ -2165,28 +2165,25 @@ function player_collision(i){
 
                 status = 4;    //게임 END
 
-                //게임 점수 저장          
-                localStorage.setItem('current_score',gameTime);
-                var ls_current_score = localStorage.getItem('current_score');  
-
-             
-                var ls_before_score = localStorage.getItem('before_score');
-
+                //게임 점수 저장    
+                var ls_current_score = gameTime;        
+                localStorage.setItem('current_score',ls_current_score);
+ 
+                var ls_before_score = localStorage.getItem('before_score'); 
                 if (ls_before_score == null || ls_before_score == ""){
-                    localStorage.setItem('before_score',ls_current_score);
+                    ls_before_score = ls_current_score;
+                    localStorage.setItem('before_score',ls_current_score); 
                 } 
 
                 //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
-                if (parseInt(ls_current_score) >= parseInt(ls_before_score)){
+                if (parseInt(ls_current_score) > parseInt(ls_before_score)){
                     localStorage.setItem('best_score',ls_current_score);
                 }else {
                     localStorage.setItem('best_score',ls_before_score);
                 }
                 
-                //베스트 점수를 이전 점수에 저장
-                
-                var ls_best_score = localStorage.getItem('best_score');
- 
+                // 이전 점수에 베스트 점수를 저장 
+                var ls_best_score = localStorage.getItem('best_score'); 
                     localStorage.setItem('before_score',ls_best_score);
               
 

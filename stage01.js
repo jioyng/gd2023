@@ -1190,6 +1190,10 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
+    //플레이어의 거리에 따라 적 크기 변경
+    this.enemy02w = this.enemy02w * (Pdistance/500) -  Math.floor(Math.random() * 3);
+    this.enemy02h = this.enemy02h * (Pdistance/500) -  Math.floor(Math.random() * 3);
+
     //적(enemy02) 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + 0.5;
@@ -1412,13 +1416,14 @@ function game_background(){
     Context3.lineTo(theCanvas.clientWidth - 400 + 5, 0);
     Context3.strokeStyle = "#grey";; //선 색상
     Context3.stroke();
+ 
 
     //우중앙
     Context3.beginPath();
     Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 50, theCanvas.clientHeight / 4 - 20 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
     Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke
+    Context3.stroke(); 
 
     //우측하단선
     Context3.beginPath();
@@ -1437,11 +1442,16 @@ function game_background(){
     //for (i=0;i<=100;i++){
 		back_distance2 = back_distance2 + Pspeed*8;
 
-		if (back_distance2 >= 800){
+		if (back_distance2 >= 1000){
 				back_distance2 = 0;
-		}
+        }
+        
+        if (parseInt(gameTime/2000) % 2 == 0){
+            Context3.fillStyle = 'yellow'; // 채우기 색 지정
+        }else {
+            Context3.fillStyle = 'skyblue'; // 채우기 색 지정
+        } 
 
-        Context3.fillStyle = 'yellow'; // 채우기 색 지정
         Context3.globalAlpha = "0.5"
         Context3.strokeStyle = "balck";
 

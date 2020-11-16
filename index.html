@@ -92,9 +92,9 @@ background-position: 50% -5%; */
 </head>
     <!-- <body bgcolor="#262626" background="./img/main_intro.jpg" onload="play_misound();" > -->
 	<body bgcolor="#262626" background="./img/main_intro.jpg"  >
-	<!-- <div id="tot_div">	 -->
+	<div id="tot_div">	 
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
-				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
+				<!-- <p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p> -->
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;max-height:100%"/>
@@ -144,10 +144,10 @@ background-position: 50% -5%; */
 		<div id="start" class="main"  style="position: absolute; top:75%; left:calc(50% - 100px); width:150px; z-index:200;">
 		Start
 		</div>
-		<!-- <div  style="position: absolute; text-align:center; top:90%; color:white;z-index:5; width:96%;">
-			All right reserved by JohnRed since 2020.
-		</div> -->
-	<!-- </div> -->
+		 <div  style="position: absolute; text-align:center; top:94%; color:white;z-index:5; width:96%;">
+			All right reserved by JohnRed.
+		</div>
+	</div>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -180,7 +180,7 @@ $(function(){
 	});
 
 	//화면 드래그 방지
-	//$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+	$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
 	$('#totdiv').on('scroll touchmove mousewheel', function(event) {
 			event.preventDefault();
 			event.stopPropagation();
@@ -326,13 +326,13 @@ $(function(){
 				//인트로 시작 사운드
 				IntroSound();
 			
-				 var ls_width = window.innerWidth;
-				 var ls_height = window.innerHeight;	   
-				//var ls_width = document.innerWidth;
-				//var ls_height = document.innerHeight;	   				
+				// var ls_width = window.innerWidth;
+				// var ls_height = window.innerHeight;	   
+				var ls_width = document.innerWidth;
+				var ls_height = document.innerHeight;	   				
 
-				$("#totIntro").width(ls_width);
-				$("#totIntro").height(ls_height);
+				//$("#totIntro").width(ls_width);
+				//$("#totIntro").height(ls_height);
 
 				$("#totIntro").show();
 

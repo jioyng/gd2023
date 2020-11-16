@@ -1009,8 +1009,8 @@ function enemy02_init(index){
     this.enemy02y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작 y
 
     //적02 초기 크기
-    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 2);
-    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 2);
+    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 10);
+    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 10);
     //ld = 0;
 
     //적02 생명
@@ -1191,8 +1191,8 @@ function enemy_energe(){
 function enemy02_move(){ 
 
     //플레이어의 거리에 따라 적 크기 변경
-    this.enemy02w = this.enemy02w * (Pdistance/500) -  Math.floor(Math.random() * 3);
-    this.enemy02h = this.enemy02h * (Pdistance/500) -  Math.floor(Math.random() * 3);
+    this.enemy02w = this.enemy02w * (Pdistance/100) -  Math.floor(Math.random() * 10);
+    this.enemy02h = this.enemy02h * (Pdistance/100) -  Math.floor(Math.random() * 10);
 
     //적(enemy02) 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){

@@ -172,7 +172,7 @@ $(function(){
 
 
 	//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
-	//f_search_landmode();        //화면 로딩시 자동 호출
+	f_search_landmode();        //화면 로딩시 자동 호출
 
 	// //우클릭, 드래그, 선택 방지
 	$(document).on("contextmenu dragstart selectstart",function(e){
@@ -326,10 +326,10 @@ $(function(){
 				//인트로 시작 사운드
 				IntroSound();
 			
-				// var ls_width = window.innerWidth;
-				// var ls_height = window.innerHeight;	   
-				var ls_width = document.innerWidth;
-				var ls_height = document.innerHeight;	   				
+				 var ls_width = window.innerWidth;
+				 var ls_height = window.innerHeight;	   
+				//var ls_width = document.innerWidth;
+				//var ls_height = document.innerHeight;	   				
 
 				$("#totIntro").width(ls_width);
 				$("#totIntro").height(ls_height);
@@ -353,7 +353,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
 						$("#infoText").html("수일 후 연방 정보국은 이 이상 반응의 원인이 콜로니로 부터 수만 광년<br>떨어진 코로나 은하로 부터 전송된 이상 전파에 의한 것임을 밝혀냈고"); 
-						$("#infoText").html("이에 연방군 최고 에이스 코맨더 Lee는 사건의 조사를 위해<br>콜로니 산업지대의 통신 제어를 담당하는 Main A.I 시스템 파괴를 명받는다.");
+						$("#infoText").html("이에 연방군 최고 에이스 코맨더 Lee는 사건의 조사를 위해<br>콜로니 산업지대의 통신 제어를 담당하는 Main A.I 시설의 파괴를 명받는다.");
 					}) 			
 				}, 10000);
 								

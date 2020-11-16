@@ -102,7 +102,7 @@ background-position: 50% -5%; */
 				우주력 2020년.<br> 
 				평화롭던 화성 콜로니14기 내에 정체를 모르는 바이러스가 침투했다.<br> 
 				바이러스는 콜로니의 모든 기계에 잠식해 이상 반응을 일으키며<br> 
-				30일 만에 모든 시민들을 혼돈의 도가니로 몰아넣었다.  
+				3일 만에 모든 시민들을 혼돈의 도가니로 몰아넣었다.  
 			</div> 
 		</div>		
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -313,17 +313,23 @@ $(function(){
 			}); 	 
   
 		}); 
-
+ 
 		function startIntro(){ 
 				
+				//전체화면으로 실행		
+				//toggleFullScreen();
+     
 				// if (IntroSound() != 1)  {
 				// 	return;
 				// }			
-						
+				
+				//인트로 시작 사운드
 				IntroSound();
 			
-				var ls_width = window.innerWidth;
-				var ls_height = window.innerHeight;	   
+				// var ls_width = window.innerWidth;
+				// var ls_height = window.innerHeight;	   
+				var ls_width = document.innerWidth;
+				var ls_height = document.innerHeight;	   				
 
 				$("#totIntro").width(ls_width);
 				$("#totIntro").height(ls_height);
@@ -346,14 +352,15 @@ $(function(){
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
-						$("#infoText").html("이에 연방 최고 에이스인 코맨더 Lee-k 는 사건의 조사를 위해<br>콜로니14기 동력 제어를 담당하는 슈퍼 A.I 엔진 COVID의 파괴를<br>명받는다."); 
+						$("#infoText").html("몇일 후 연방 정보국은 이상 반응의 원인이 콜로니로 부터 수만 광년<br>떨어진 코로나 행성으로 부터 전송된 이상 전파에 의한 것임을 밝혀냈고"); 
+						$("#infoText").html("이에 연방 최고 에이스인 코맨더 Lee는 사건의 조사를 위해<br>콜로니 공장지대의 통신 제어를 담당하는 A.I 산업시설의 파괴를 명받는다.");
 					}) 			
 				}, 10000);
 								
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("Lee-K는 즉각 연방군 최신 전투기 GD2020에 직접 탑승하고<br>출격을 시작한다."); 
+						$("#infoText").html("Lee는 즉각 연방군 최신 전투기 GD-2020에 탑승하고 출격을 시작한다."); 
 						
 					}) 			
 				}, 15000);
@@ -361,7 +368,7 @@ $(function(){
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro05.jpg"); 
-						$("#infoText").html("군은 이번 작전명을 'Distory COVID 2020' 으로 명했다."); 
+						$("#infoText").html("군은 이번 작전명을 DESTROY CORONA로 명했다."); 
 						
 					}) 			
 				}, 20000);				
@@ -374,14 +381,19 @@ $(function(){
 
 				totIntro.addEventListener('click', function() { 
 
+					$(".main").fadeOut( "slow", function() { 
 
-					$(".main").fadeOut( "slow", function() {
+
 						window.location = 'play.html';
+					 
+						//var href = 'play.html';					 
+						//$("#totIntro").load(href); 
 					}) 
 
 				}) 
 		 
-			}
+			} 
+			
 
 		} 		
 

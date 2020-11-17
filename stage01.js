@@ -1234,8 +1234,8 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/100;
-        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/100;
+        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/120;
+        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/120;
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
@@ -1299,9 +1299,11 @@ function enemy02_move(){
     }
     Context.drawImage(this.enginImage01,this.enemy02x - 10 - this.enemy02w/4 - Math.floor(Math.random() * 8),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 4) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);   
     Context.drawImage(this.enemy02Image,this.enemy02x - 40, this.enemy02y ,this.enemy02w,this.enemy02h);
-    Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/30, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/40,Math.floor(Math.random() * 5 + this.enemy02w/40));
-    Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/37, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/30,Math.floor(Math.random() * 5 + this.enemy02w/30));
-    
+    //적이 너무 작은경우(멀리있는경우) 총은 그려주지 않는다.(총이 몸체박으로 삐져나와 이상함.)
+    if ( this.enemy02_size >= 2){        
+        Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/30, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/40,Math.floor(Math.random() * 5 + this.enemy02w/40));
+        Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/37, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/30,Math.floor(Math.random() * 5 + this.enemy02w/30));
+    }
 
     //적 에너지 표시 
     this.enemy_energe();
@@ -2008,7 +2010,9 @@ function missile01_init(){
 ////////////////// 적02 미사일 경로
 function missile01_move(){ 
    
-   this.missile01_size = this.missile01_size + 0.1;               //미사일 크기
+   //this.missile01_size = this.missile01_size + 0.1;               //미사일 크기
+   this.missile01_size = this.missile01_size + enemy02_size/10;                //미사일 크기
+   
 
     for(var i = 0; i < this.missile01Array.length; i++){
 

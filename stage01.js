@@ -325,15 +325,23 @@ var enginImage01 = new Image();
 enginImage01.src = "./img/engin01.png";
 enginImage01.addEventListener("load",drawScreen, false);
 
+//적02 크기
+var enemy02_size = 1;
+//적02 스피드
+var enemy02_speed = 1; 
+
 //적02 위치
 var enemy02x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x); //시작  x
 var enemy02y = parseInt(theCanvas.clientHeight / 4); //시작 y
-// var enemy02xx = 0;
-// var enemy02yy = 0;
+//적02 이동위치
+var enemy02xx = 0;
+var enemy02yy = 0;
 
 //적02 크기
-var ini_enemy02w = 40;
-var ini_enemy02h = 55;
+// var ini_enemy02w = 40;
+// var ini_enemy02h = 55;
+var ini_enemy02w = 20;
+var ini_enemy02h = 25;
 var enemy02w = ini_enemy02w;
 var enemy02h = ini_enemy02h;
 
@@ -535,7 +543,10 @@ function game_init(){
     cityEnd_size = init_cityEnd_size;
     cityEnd_x = init_cityEnd_x;
     cityEnd_y = init_cityEnd_y;
-    Pdistance = init_Pdistance;
+    enemy02_size = enemy02_size;
+    enemy02_speed = enemy02_speed;
+    enemy02xx = enemy02xx;
+    enemy02yy = enemy02yy;
 
     enemy02_life = ini_enemy02_life;
 
@@ -1002,6 +1013,7 @@ function enemy02_init(index){
     //적02 레이져 폭파중 여부
     this.enemy02_collision_yn = 'N';
 
+    //적02 출현 지연시간
     this.enemy_dealy_time = enemy_dealy_time;
 
     //적02 초기 위치
@@ -1012,6 +1024,15 @@ function enemy02_init(index){
     this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 10);
     this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 10);
     //ld = 0;
+
+    //적02 크기(배율)
+    this.enemy02_size =  (Math.floor(Math.random() * 5) + 1);
+    //적02 스피드
+    this.enemy02_speed =  (Math.floor(Math.random() * 10) + 1);
+    //적02 x축 이동 위치
+    this.enemy02xx = Math.floor(Math.random() * 3);
+    //적02 x축 이동 위치
+    this.enemy02yy = Math.floor(Math.random() * 3);
 
     //적02 생명
     this.enemy02_life = ini_enemy02_life;
@@ -1191,48 +1212,48 @@ function enemy_energe(){
 function enemy02_move(){ 
 
     //플레이어의 거리에 따라 적 크기 변경
-    this.enemy02w = this.enemy02w * (Pdistance/100) -  Math.floor(Math.random() * 10);
-    this.enemy02h = this.enemy02h * (Pdistance/100) -  Math.floor(Math.random() * 10);
+    this.enemy02w = this.enemy02w * this.enemy02_size;
+    this.enemy02h = this.enemy02h * this.enemy02_size;
+ 
 
-    //적(enemy02) 이동
+
+    //적(enemy02) 왔다같다 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
-        this.enemy02x = this.enemy02x + 0.5;
-        this.enemy02y = this.enemy02y + 0.1;
+        this.enemy02x = this.enemy02x + this.enemy02xx;
+        this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + 0.1;
-        this.enemy02h = this.enemy02h + 0.2;
+        this.enemy02w = this.enemy02w + this.enemy02_size;
+        this.enemy02h = this.enemy02h + this.enemy02_size;
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
-        this.enemy02x = this.enemy02x - 0.5;
-        this.enemy02y = this.enemy02y - 0.2;
+        this.enemy02x = this.enemy02x - this.enemy02xx;
+        this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - 0.1;
-        this.enemy02h = this.enemy02h - 0.2;
+        this.enemy02w = this.enemy02w - this.enemy02_size;
+        this.enemy02h = this.enemy02h - this.enemy02_size;
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
-        this.enemy02x = this.enemy02x + 0.6;
-        this.enemy02y = this.enemy02y + 0.2;
+        this.enemy02x = this.enemy02x + this.enemy02xx;
+        this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + 0.1;
-        this.enemy02h = this.enemy02h + 0.2;
+        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/100;
+        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/100;
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
-        this.enemy02x = this.enemy02x - 0.7;
-        this.enemy02y = this.enemy02y - 0.4;
+        this.enemy02x = this.enemy02x - this.enemy02xx;
+        this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - 0.1;
-        this.enemy02h = this.enemy02h - 0.2;
+        this.enemy02w = this.enemy02w - this.enemy02_size;
+        this.enemy02h = this.enemy02h - this.enemy02_size;
     }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
-        this.enemy02x = this.enemy02x + 0.2;
-        this.enemy02y = this.enemy02y + 0.3;
+        this.enemy02x = this.enemy02x + this.enemy02xx;
+        this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + 0.1;
-        this.enemy02h = this.enemy02h + 0.2;
+        this.enemy02w = this.enemy02w + this.enemy02_size;
+        this.enemy02h = this.enemy02h + this.enemy02_size;
     }else {
-        //enemy02xx = 0;
-        //enemy02yy = 0;
-        //enemy02x = 0;
-        //enemy02y = 0;
+        this.enemy02xx = 0;
+        this.enemy02yy = 0; 
 
-        //this.enemy02x = cityEnd_x;
-        //this.enemy02y = cityEnd_y;
+        this.enemy02x = cityEnd_x;
+        this.enemy02y = cityEnd_y;
 
         this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
         this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
@@ -1271,14 +1292,16 @@ function enemy02_move(){
     if (this.enemy02h >= playerHeight  * 0.8){
         this.enemy02h = playerHeight  * 0.8
     };
- 
-    Context.drawImage(this.enginImage01,this.enemy02x - this.enemy02w/4 + Math.floor(Math.random() * 6),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 3) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);
-    Context.drawImage(this.enginImage01,this.enemy02x - 10 - this.enemy02w/4 - Math.floor(Math.random() * 8),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 4) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);
 
+    //적이 너무 작은경우(멀리있는경우) 오른쪽 엔진은 그려주지 않는다.(엔지하나가 몸체박으로 삐져나와 이상함.)
+    if ( this.enemy02_size >= 3){        
+        Context.drawImage(this.enginImage01,this.enemy02x - this.enemy02w/4 + Math.floor(Math.random() * 6),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 3) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);    
+    }
+    Context.drawImage(this.enginImage01,this.enemy02x - 10 - this.enemy02w/4 - Math.floor(Math.random() * 8),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 4) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);   
     Context.drawImage(this.enemy02Image,this.enemy02x - 40, this.enemy02y ,this.enemy02w,this.enemy02h);
     Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/30, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/40,Math.floor(Math.random() * 5 + this.enemy02w/40));
     Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/37, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/30,Math.floor(Math.random() * 5 + this.enemy02w/30));
-
+    
 
     //적 에너지 표시 
     this.enemy_energe();

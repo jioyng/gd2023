@@ -1213,36 +1213,35 @@ function enemy02_move(){
 
     //플레이어의 거리에 따라 적 크기 변경
     this.enemy02w = this.enemy02w * this.enemy02_size;
-    this.enemy02h = this.enemy02h * this.enemy02_size;
- 
+    this.enemy02h = this.enemy02h * this.enemy02_size; 
 
 
     //적(enemy02) 왔다같다 이동
-    if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
+    if (parseInt(gameTime/(400*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + this.enemy02_size;
         this.enemy02h = this.enemy02h + this.enemy02_size;
-    }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
+    }else if (parseInt(gameTime/(400*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;
-    }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
-        this.enemy02x = this.enemy02x + this.enemy02xx;
+    }else if (parseInt(gameTime/(400*Pspeed)) % 5 == 0){
+        //this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/120;
-        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/120;
-    }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
+        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/150;
+        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/150;
+    }else if (parseInt(gameTime/(400*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
-        this.enemy02y = this.enemy02y - this.enemy02yy;
+        //this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;
-    }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
+    }else if (parseInt(gameTime/(400*Pspeed)) % 1 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
@@ -1263,7 +1262,7 @@ function enemy02_move(){
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
     if (this.enemy02x > maxX){
-        this.enemy02x = this.enemy02x - (Math.floor(Math.random() * 5) + 1); 
+        this.enemy02x = this.enemy02x - (Math.floor(Math.random() * 5) - 1); 
     }
 
     if (this.enemy02x < minX){
@@ -1271,7 +1270,7 @@ function enemy02_move(){
     }    
 
     if (this.enemy02y > maxY){        
-        this.enemy02y = this.enemy02y  - (Math.floor(Math.random() * 5) + 1);
+        this.enemy02y = this.enemy02y  - (Math.floor(Math.random() * 5) - 1);
     }
 
     if (this.enemy02y < minY){        
@@ -2046,9 +2045,10 @@ function missile01_move(){
         //플레이어 충돌
         this.player_collision();
 
-       //미사일 화면 이탈시
+    
+       //미사일 화면 이탈시 또는 미사일이 너무 커지면
        //if (missile01Array[i].bmx >= theCanvas.clientWidth  || missile01Array[i].bmx <= 0 ){
-        if ( this.missile01Array[i].bmy >= theCanvas.clientHeight || this.missile01Array[i].bmy <= 0 ){
+        if ( this.missile01Array[i].bmy >= theCanvas.clientHeight || this.missile01Array[i].bmy <= 0 || this.missile01Array[i].bsize >= 100){
 
             //최대 max_missile01_cnt 개까지만 생성
             if (1 == Math.floor(Math.random()*2)){
@@ -2099,6 +2099,9 @@ function player_collision(){
 
             if (player_life <= 1){
 
+                explosion_sound.currentTime  = 4;
+                explosion_sound.play();
+   
 
                 Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
                 Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);

@@ -1213,44 +1213,43 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
-    //적 크기(적은 움직이면서 점점 커진다.)
-    //this.enemy02w = this.enemy02w + this.enemy02_size;
-    //this.enemy02h = this.enemy02h * this.enemy02_size;
-    //this.enemy02w = this.enemy02w + this.enemy02_speed;
-    //this.enemy02h = this.enemy02h + this.enemy02_speed;         
-    //var ll_tmp_size_random = Math.floor(Math.random() * 10);
+    //적 크기(적은 움직이면서 점점 커지거나 작아진다.)
+    this.enemy02w = this.enemy02w * this.enemy02_size;
+    this.enemy02h = this.enemy02h * this.enemy02_size;
 
     //적(enemy02) 왔다같다 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)*2;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)*2;
-    }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
-        this.enemy02x = this.enemy02x - this.enemy02xx;
-        this.enemy02y = this.enemy02y - this.enemy02yy;
+        this.enemy02_size = this.enemy02_size + 0.1; 
 
-        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed);
-        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed);
+    }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
+        this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
+        this.enemy02y = this.enemy02y - this.enemy02yy * enemy02_speed;
+
+        this.enemy02_size = this.enemy02_size - 0.1; 
+
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
-        this.enemy02y = this.enemy02y + this.enemy02yy;
+        this.enemy02y = this.enemy02y + this.enemy02yy * enemy02_speed;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)*2;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)*2;
+
+        this.enemy02_size = this.enemy02_size + 0.1;
+
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
-        this.enemy02x = this.enemy02x - this.enemy02xx;
-        this.enemy02y = this.enemy02y - this.enemy02yy;
+        this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
+        this.enemy02y = this.enemy02y - this.enemy02yy;  
 
-        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed);
-        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed);
+        this.enemy02_size = this.enemy02_size;
+
     }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
+
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
+ 
+        this.enemy02_size = this.enemy02_size - 0.1;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)*2;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)*2;
     }else {
         this.enemy02xx = 0;
         this.enemy02yy = 0; 
@@ -1258,13 +1257,8 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        this.enemy02w = ini_enemy02w + (this.enemy02_size*this.enemy02_speed);
-        this.enemy02h = ini_enemy02h + (this.enemy02_size*this.enemy02_speed);
-
-        //적 크기 
-        //this.enemy02w = this.enemy02w + 1;
-        //this.enemy02h = this.enemy02h + 1;       
-
+        this.enemy02_size = this.enemy02_size + 0.1;
+         
     }
 
 

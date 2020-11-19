@@ -1213,9 +1213,11 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
-    // //적 크기(적은 움직이면서 점점 커진다.)
+    //적 크기(적은 움직이면서 점점 커진다.)
     // this.enemy02w = this.enemy02w * this.enemy02_size;
-    // this.enemy02h = this.enemy02h * this.enemy02_size; 
+    // this.enemy02h = this.enemy02h * this.enemy02_size;
+    this.enemy02w = this.enemy02w + this.enemy02_speed;
+    this.enemy02h = this.enemy02h + this.enemy02_speed;         
 
 
     //적(enemy02) 왔다같다 이동
@@ -1259,28 +1261,28 @@ function enemy02_move(){
         //this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
         //this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
 
-        //적 크기(적은 움직이면서 점점 커진다.)
-        this.enemy02w = this.enemy02w + this.enemy02_speed;
-        this.enemy02h = this.enemy02h + this.enemy02_speed;         
+        //적 크기(적은 움직이면서 점점 작아진다.)
+        this.enemy02w = this.enemy02w - 0.5;
+        this.enemy02h = this.enemy02h - 0.5;       
 
     }
 
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
-    if (this.enemy02x > maxX){
-        this.enemy02x = this.enemy02x - (Math.floor(Math.random() * 5) - this.enemy02xx); 
+    if (this.enemy02x >= maxX){
+        this.enemy02x = this.enemy02x - Math.floor(Math.random() * 5) - 1; 
     }
 
-    if (this.enemy02x < minX){
-        this.enemy02x = this.enemy02x + (Math.floor(Math.random() * 5) + this.enemy02xx); 
+    if (this.enemy02x <= minX){
+        this.enemy02x = this.enemy02x + Math.floor(Math.random() * 5) + 1; 
     }    
 
-    if (this.enemy02y > maxY){        
-        this.enemy02y = this.enemy02y  - (Math.floor(Math.random() * 5) - this.enemy02yy);
+    if (this.enemy02y >= maxY){        
+        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 5) - 1;
     }
 
-    if (this.enemy02y < minY){        
-        this.enemy02y = this.enemy02y  + (Math.floor(Math.random() * 5) + this.enemy02yy);
+    if (this.enemy02y <= minY){        
+        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 5) + 1;
     }    
 
 

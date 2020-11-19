@@ -1221,20 +1221,20 @@ function enemy02_move(){
         this.enemy02_size = this.enemy02_size + 0.01; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
-        this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
-        this.enemy02y = this.enemy02y - this.enemy02yy * enemy02_speed;
+        this.enemy02x = this.enemy02x - this.enemy02xx * this.enemy02_speed;
+        this.enemy02y = this.enemy02y - this.enemy02yy * this.enemy02_speed;
 
         this.enemy02_size = this.enemy02_size - 0.01; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
-        this.enemy02y = this.enemy02y + this.enemy02yy * enemy02_speed;
+        this.enemy02y = this.enemy02y + this.enemy02yy * this.enemy02_speed;
 
 
         this.enemy02_size = this.enemy02_size + 0.01;
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
-        this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
+        this.enemy02x = this.enemy02x - this.enemy02xx * this.enemy02_speed;
         this.enemy02y = this.enemy02y - this.enemy02yy;  
 
         this.enemy02_size = this.enemy02_size;
@@ -1267,19 +1267,19 @@ function enemy02_move(){
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
     if (this.enemy02x > maxX - this.enemy02w){
-        this.enemy02x = this.enemy02x - Math.floor(Math.random() * 5) - 1; 
+        this.enemy02x = this.enemy02x - Math.floor(Math.random() * 10) - 1 * this.enemy02_speed; 
     }
 
     if (this.enemy02x < minX){
-        this.enemy02x = this.enemy02x + Math.floor(Math.random() * 5) + 1; 
+        this.enemy02x = this.enemy02x + Math.floor(Math.random() * 10) + 1 * this.enemy02_speed; 
     }    
 
     if (this.enemy02y > maxY - this.enemy02h){        
-        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 5) - 1;
+        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 10) - 1 * this.enemy02_speed; 
     }
 
     if (this.enemy02y < minY){        
-        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 5) + 1;
+        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 10) + 1 * this.enemy02_speed; 
     }    
 
 

@@ -1218,7 +1218,7 @@ function enemy02_move(){
     //this.enemy02h = this.enemy02h * this.enemy02_size;
     //this.enemy02w = this.enemy02w + this.enemy02_speed;
     //this.enemy02h = this.enemy02h + this.enemy02_speed;         
-    var ll_tmp_size_random = Math.floor(Math.random() * 2);
+    var ll_tmp_size_random = Math.floor(Math.random() * 10);
 
     //적(enemy02) 왔다같다 이동
     if (parseInt(gameTime/(500*Pspeed)) % 5 == 0){
@@ -1261,9 +1261,9 @@ function enemy02_move(){
         //this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
         //this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
 
-        //적 크기(적은 움직이면서 점점 작아진다.)
-        this.enemy02w = this.enemy02w;
-        this.enemy02h = this.enemy02h;       
+        //적 크기 
+        this.enemy02w = this.enemy02w + 1;
+        this.enemy02h = this.enemy02h + 1;       
 
     }
 

@@ -1028,7 +1028,7 @@ function enemy02_init(index){
     //ld = 0;
 
     //적02 크기(배율)
-    this.enemy02_size =  Math.floor(Math.random() * 4) + 1;
+    this.enemy02_size =  Math.floor(Math.random() * 9) + 1;
     //적02 스피드
     this.enemy02_speed =  Math.floor(Math.random() * 4)  + 1;
     //적02 x축 이동 위치

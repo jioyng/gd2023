@@ -1017,12 +1017,12 @@ function enemy02_init(index){
     this.enemy_dealy_time = enemy_dealy_time;
 
     //적02 초기 위치
-    this.enemy02x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 100))  + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작  x
-    this.enemy02y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작 y
+    this.enemy02x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 10))  + (Math.floor(Math.random() * 30)) - (Math.floor(Math.random() * 300)); //시작  x
+    this.enemy02y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 30)) - (Math.floor(Math.random() * 30)); //시작 y
 
     //적02 초기 크기
-    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 10);
-    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 10);
+    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 5);
+    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 5);
     //ld = 0;
 
     //적02 크기(배율)
@@ -1230,14 +1230,14 @@ function enemy02_move(){
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;
     }else if (parseInt(gameTime/(400*Pspeed)) % 5 == 0){
-        //this.enemy02x = this.enemy02x + this.enemy02xx;
+        this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/150;
         this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/150;
     }else if (parseInt(gameTime/(400*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
-        //this.enemy02y = this.enemy02y - this.enemy02yy;
+        this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;

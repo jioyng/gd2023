@@ -1218,39 +1218,39 @@ function enemy02_move(){
     //this.enemy02h = this.enemy02h * this.enemy02_size;
     //this.enemy02w = this.enemy02w + this.enemy02_speed;
     //this.enemy02h = this.enemy02h + this.enemy02_speed;         
-    var ll_tmp_size_random = Math.floor(Math.random() * 10);
+    //var ll_tmp_size_random = Math.floor(Math.random() * 10);
 
     //적(enemy02) 왔다같다 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + ll_tmp_size_random;
-        this.enemy02h = this.enemy02h + ll_tmp_size_random;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - ll_tmp_size_random;
-        this.enemy02h = this.enemy02h - ll_tmp_size_random;
+        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed)/10;
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + ll_tmp_size_random;
-        this.enemy02h = this.enemy02h + ll_tmp_size_random;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - ll_tmp_size_random;
-        this.enemy02h = this.enemy02h - ll_tmp_size_random;
+        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed)/10;
     }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + ll_tmp_size_random;
-        this.enemy02h = this.enemy02h + ll_tmp_size_random;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
     }else {
         this.enemy02xx = 0;
         this.enemy02yy = 0; 
@@ -1262,8 +1262,8 @@ function enemy02_move(){
         //this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
 
         //적 크기 
-        this.enemy02w = this.enemy02w + 1;
-        this.enemy02h = this.enemy02h + 1;       
+        //this.enemy02w = this.enemy02w + 1;
+        //this.enemy02h = this.enemy02h + 1;       
 
     }
 

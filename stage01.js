@@ -1214,10 +1214,10 @@ function enemy_energe(){
 function enemy02_move(){ 
 
     //적 크기(적은 움직이면서 점점 커진다.)
-    // this.enemy02w = this.enemy02w * this.enemy02_size;
-    // this.enemy02h = this.enemy02h * this.enemy02_size;
-    this.enemy02w = this.enemy02w + this.enemy02_speed;
-    this.enemy02h = this.enemy02h + this.enemy02_speed;         
+    this.enemy02w = this.enemy02w * this.enemy02_size;
+    this.enemy02h = this.enemy02h * this.enemy02_size;
+    //this.enemy02w = this.enemy02w + this.enemy02_speed;
+    //this.enemy02h = this.enemy02h + this.enemy02_speed;         
 
 
     //적(enemy02) 왔다같다 이동

@@ -1030,7 +1030,7 @@ function enemy02_init(index){
     //적02 크기(배율)
     this.enemy02_size =  Math.floor(Math.random() * 4) + 1;
     //적02 스피드
-    this.enemy02_speed =  Math.floor(Math.random() * 4)  + 1;
+    this.enemy02_speed =  Math.floor(Math.random() * 2)  + 1;
     //적02 x축 이동 위치
     this.enemy02xx = Math.floor(Math.random() * 2) + enemy02_speed;
     //적02 x축 이동 위치
@@ -1267,19 +1267,19 @@ function enemy02_move(){
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
     if (this.enemy02x > maxX - this.enemy02w){
-        this.enemy02x = this.enemy02x - Math.floor(Math.random() * 10) - 1 * this.enemy02_speed; 
+        this.enemy02x = this.enemy02x - Math.floor(Math.random() * 2) - 1 * this.enemy02_speed; 
     }
 
-    if (this.enemy02x < minX){
-        this.enemy02x = this.enemy02x + Math.floor(Math.random() * 10) + 1 * this.enemy02_speed; 
+    if (this.enemy02x < minX + this.enemy02w){
+        this.enemy02x = this.enemy02x + Math.floor(Math.random() * 2) + 1 * this.enemy02_speed; 
     }    
 
     if (this.enemy02y > maxY - this.enemy02h){        
-        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 10) - 1 * this.enemy02_speed; 
+        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 2) - 1 * this.enemy02_speed; 
     }
 
-    if (this.enemy02y < minY){        
-        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 10) + 1 * this.enemy02_speed; 
+    if (this.enemy02y < minY + this.enemy02h){        
+        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 2) + 1 * this.enemy02_speed; 
     }    
 
 

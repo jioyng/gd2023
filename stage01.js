@@ -1028,9 +1028,9 @@ function enemy02_init(index){
     //ld = 0;
 
     //적02 크기(배율)
-    this.enemy02_size =  Math.floor(Math.random() * 5);
+    this.enemy02_size =  Math.floor(Math.random() * 4) + 1;
     //적02 스피드
-    this.enemy02_speed =  Math.floor(Math.random() * 5);
+    this.enemy02_speed =  Math.floor(Math.random() * 4)  + 1;
     //적02 x축 이동 위치
     this.enemy02xx = Math.floor(Math.random() * 2) + enemy02_speed;
     //적02 x축 이동 위치
@@ -1258,8 +1258,8 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        //this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
-        //this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
+        this.enemy02w = ini_enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02h = ini_enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
 
         //적 크기 
         //this.enemy02w = this.enemy02w + 1;

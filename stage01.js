@@ -389,7 +389,7 @@ var enemy02_collision_yn = 'N';
 
 //적02 객체 인스턴스 생성
 //적02 초기 출현 갯수
-var enemy02_cnt = 2;
+var enemy02_cnt = 1;
 var enemy02_array = [];
  
 create_enemy02();
@@ -1398,17 +1398,19 @@ function game_background(){
     Context3.stroke();
 
     //좌측상단선
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
-    Context3.lineTo(400, 0);
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+    // Context3.lineTo(400, 0);
+    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.stroke();
 
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
-    Context3.lineTo(400 - 5, 0);
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    for (var i=0;i<4;i++){
+        Context3.beginPath();
+        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+        Context3.lineTo(400 - 30 * i, 0);
+        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.stroke();
+    }
 
     //좌중앙
     Context3.beginPath();
@@ -1419,33 +1421,38 @@ function game_background(){
     Context3.stroke();
 
     //좌측하단선
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
-    Context3.lineTo(-300, theCanvas.clientHeight);
-    //Context3.strokeStyle = "#f0f0f0";; //선 색상
-    Context3.strokeStyle = "grey";; //선 색상
-    Context3.stroke();
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
+    // Context3.lineTo(-300, theCanvas.clientHeight);
+    // //Context3.strokeStyle = "#f0f0f0";; //선 색상
+    // Context3.strokeStyle = "grey";; //선 색상
+    // Context3.stroke();
 
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
-    Context3.lineTo(-300 + 10, theCanvas.clientHeight + 10);
-    //Context3.strokeStyle = "#f0f0f0";; //선 색상
-    Context3.strokeStyle = "grey";; //선 색상
-    Context3.stroke();
+    for (var i=0;i<4;i++){
+        Context3.beginPath();
+        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
+        Context3.lineTo(-300 -  i, theCanvas.clientHeight + 30 * i);
+        //Context3.strokeStyle = "#f0f0f0";; //선 색상
+        Context3.strokeStyle = "grey";; //선 색상
+        Context3.stroke();
+    }
+
+
 
     //우측상단선
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 30, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
-    Context3.lineTo(theCanvas.clientWidth - 400, 0 );
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 30, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+    // Context3.lineTo(theCanvas.clientWidth - 400, 0 );
+    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.stroke();
 
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 30, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
-    Context3.lineTo(theCanvas.clientWidth - 400 + 5, 0);
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
- 
+    for (var i=0;i<4;i++){
+        Context3.beginPath();
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+        Context3.lineTo(theCanvas.clientWidth - 400 + 30 * i, 0);
+        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.stroke();
+    }
 
     //우중앙
     Context3.beginPath();
@@ -1455,17 +1462,22 @@ function game_background(){
     Context3.stroke(); 
 
     //우측하단선
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 30, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
-    Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - 150 );  //배경 선(타겟으로부터 화면우측하단끝)
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x  + 30, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
+    // Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - 150);  //배경 선(타겟으로부터 화면우측하단끝)
+    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.stroke();
 
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x  + 30, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
-    Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - 150 - 10 );  //배경 선(타겟으로부터 화면우측하단끝)
-    Context3.strokeStyle = "#grey";; //선 색상
-    Context3.stroke();
+    for (var i=0;i<4;i++){
+        Context3.beginPath();
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
+        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 20 );  //배경 선(타겟으로부터 화면우측하단끝)
+        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.stroke();
+    }
+
+
+    
 
     //루프를 많이 돌리수록 두께가 두꺼워지네
     //for (i=0;i<=100;i++){
@@ -1492,18 +1504,18 @@ function game_background(){
 
         Context3.beginPath();
         //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 15  + cityEnd_y, 55 + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
+        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5  + cityEnd_y, 55 + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
         Context3.stroke();
 
-        //메인원1
-        Context3.beginPath();
-        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y, 0, Math.PI * 2);
-        Context3.stroke();
+        // //메인원1
+        // Context3.beginPath();
+        // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y, 0, Math.PI * 2);
+        // Context3.stroke();
 
-        //메인원2
-        Context3.beginPath();
-        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + Math.floor(Math.random() * 3) + 1 ,85 +  back_distance2 + cityEnd_y, 0, Math.PI * 2);
-        Context3.stroke();
+        // //메인원2
+        // Context3.beginPath();
+        // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + Math.floor(Math.random() * 3) + 1 ,85 +  back_distance2 + cityEnd_y, 0, Math.PI * 2);
+        // Context3.stroke();
     //}
 
     //코로니 배경 건물

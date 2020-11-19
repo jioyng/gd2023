@@ -1219,7 +1219,7 @@ function enemy02_move(){
 
 
     //적(enemy02) 왔다같다 이동
-    if (parseInt(gameTime/(300*Pspeed)) % 5 == 0){
+    if (parseInt(gameTime/(500*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
@@ -1268,19 +1268,19 @@ function enemy02_move(){
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
     if (this.enemy02x > maxX){
-        this.enemy02x = this.enemy02x - (Math.floor(Math.random() * 5) - 1); 
+        this.enemy02x = this.enemy02x - (Math.floor(Math.random() * 5) - this.enemy02xx); 
     }
 
     if (this.enemy02x < minX){
-        this.enemy02x = this.enemy02x + (Math.floor(Math.random() * 5) + 1); 
+        this.enemy02x = this.enemy02x + (Math.floor(Math.random() * 5) + this.enemy02xx); 
     }    
 
     if (this.enemy02y > maxY){        
-        this.enemy02y = this.enemy02y  - (Math.floor(Math.random() * 5) - 1);
+        this.enemy02y = this.enemy02y  - (Math.floor(Math.random() * 5) - this.enemy02yy);
     }
 
     if (this.enemy02y < minY){        
-        this.enemy02y = this.enemy02y  + (Math.floor(Math.random() * 5) + 1);
+        this.enemy02y = this.enemy02y  + (Math.floor(Math.random() * 5) + this.enemy02yy);
     }    
 
 
@@ -1326,7 +1326,7 @@ function game_background(){
 
     //시간이 흐름에 따라 게임 타겟 방향 좌표 이동
     gameTime++;         //시간 증가
-    back_distance = back_distance + Pspeed*6;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
+    back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
 	//back_distance = back_distance + 0.1;
 
@@ -1470,7 +1470,7 @@ function game_background(){
 
     //루프를 많이 돌리수록 두께가 두꺼워지네
     //for (i=0;i<=100;i++){
-		back_distance2 = back_distance2 + Pspeed*8;
+		back_distance2 = back_distance2 + Pspeed*10;
 
 		if (back_distance2 >= 1000){
 				back_distance2 = 0;

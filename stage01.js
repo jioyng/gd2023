@@ -1221,31 +1221,31 @@ function enemy02_move(){
     var ll_tmp_size_random = Math.floor(Math.random() * 10);
 
     //적(enemy02) 왔다같다 이동
-    if (parseInt(gameTime/(500*Pspeed)) % 5 == 0){
+    if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + ll_tmp_size_random;
         this.enemy02h = this.enemy02h + ll_tmp_size_random;
-    }else if (parseInt(gameTime/(500*Pspeed)) % 4 == 0){
+    }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - ll_tmp_size_random;
         this.enemy02h = this.enemy02h - ll_tmp_size_random;
-    }else if (parseInt(gameTime/(500*Pspeed)) % 5 == 0){
+    }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + ll_tmp_size_random;
         this.enemy02h = this.enemy02h + ll_tmp_size_random;
-    }else if (parseInt(gameTime/(500*Pspeed)) % 6 == 0){
+    }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - ll_tmp_size_random;
         this.enemy02h = this.enemy02h - ll_tmp_size_random;
-    }else if (parseInt(gameTime/(500*Pspeed)) % 1 == 0){
+    }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
@@ -1269,7 +1269,7 @@ function enemy02_move(){
 
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
-    if (this.enemy02x >= maxX){
+    if (this.enemy02x >= maxX - this.enemy02w){
         this.enemy02x = this.enemy02x - Math.floor(Math.random() * 5) - 1; 
     }
 
@@ -1277,7 +1277,7 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + Math.floor(Math.random() * 5) + 1; 
     }    
 
-    if (this.enemy02y >= maxY){        
+    if (this.enemy02y >= maxY - this.enemy02h){        
         this.enemy02y = this.enemy02y - Math.floor(Math.random() * 5) - 1;
     }
 

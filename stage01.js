@@ -1032,9 +1032,9 @@ function enemy02_init(index){
     //적02 스피드
     this.enemy02_speed =  Math.floor(Math.random() * 10) + 1;
     //적02 x축 이동 위치
-    this.enemy02xx = Math.floor(Math.random() * 3) + 1;
+    this.enemy02xx = Math.floor(Math.random() * 3) + enemy02_speed;
     //적02 x축 이동 위치
-    this.enemy02yy = Math.floor(Math.random() * 3) + 1;
+    this.enemy02yy = Math.floor(Math.random() * 3) + enemy02_speed;
 
     //적02 생명
     this.enemy02_life = ini_enemy02_life;
@@ -1235,8 +1235,8 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/150;
-        this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/150;
+        this.enemy02w = this.enemy02w + this.enemy02_size;
+        this.enemy02h = this.enemy02h + this.enemy02_size;
     }else if (parseInt(gameTime/(300*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;

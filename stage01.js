@@ -1213,9 +1213,9 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
-    //적 크기(적은 움직이면서 점점 커진다.)
-    this.enemy02w = this.enemy02w * this.enemy02_size;
-    this.enemy02h = this.enemy02h * this.enemy02_size; 
+    // //적 크기(적은 움직이면서 점점 커진다.)
+    // this.enemy02w = this.enemy02w * this.enemy02_size;
+    // this.enemy02h = this.enemy02h * this.enemy02_size; 
 
 
     //적(enemy02) 왔다같다 이동
@@ -1256,8 +1256,12 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
-        this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
+        //this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 100);
+        //this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 100);
+
+        //적 크기(적은 움직이면서 점점 커진다.)
+        this.enemy02w = this.enemy02w + this.enemy02_speed;
+        this.enemy02h = this.enemy02h + this.enemy02_speed;         
 
     }
 

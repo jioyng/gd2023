@@ -340,8 +340,10 @@ var enemy02yy = 0;
 //적02 크기
 // var ini_enemy02w = 40;
 // var ini_enemy02h = 55;
-var ini_enemy02w = 20;
-var ini_enemy02h = 25;
+// var ini_enemy02w = 20;
+// var ini_enemy02h = 25;
+var ini_enemy02w = 40/5;
+var ini_enemy02h = 55/5;
 var enemy02w = ini_enemy02w;
 var enemy02h = ini_enemy02h;
 
@@ -1026,7 +1028,7 @@ function enemy02_init(index){
     //ld = 0;
 
     //적02 크기(배율)
-    this.enemy02_size =  (Math.floor(Math.random() * 5) + 1);
+    this.enemy02_size =  (Math.floor(Math.random() * 10) + 1);
     //적02 스피드
     this.enemy02_speed =  (Math.floor(Math.random() * 10) + 1);
     //적02 x축 이동 위치
@@ -1211,7 +1213,7 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
-    //플레이어의 거리에 따라 적 크기 변경
+    //적 크기
     this.enemy02w = this.enemy02w * this.enemy02_size;
     this.enemy02h = this.enemy02h * this.enemy02_size; 
 
@@ -1293,13 +1295,13 @@ function enemy02_move(){
     };
 
     //적이 너무 작은경우(멀리있는경우) 오른쪽 엔진은 그려주지 않는다.(엔지하나가 몸체박으로 삐져나와 이상함.)
-    if ( this.enemy02_size >= 3){        
+    if ( this.enemy02_size >= 5){        
         Context.drawImage(this.enginImage01,this.enemy02x - this.enemy02w/4 + Math.floor(Math.random() * 6),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 3) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);    
     }
     Context.drawImage(this.enginImage01,this.enemy02x - 10 - this.enemy02w/4 - Math.floor(Math.random() * 8),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 4) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);   
     Context.drawImage(this.enemy02Image,this.enemy02x - 40, this.enemy02y ,this.enemy02w,this.enemy02h);
     //적이 너무 작은경우(멀리있는경우) 총은 그려주지 않는다.(총이 몸체박으로 삐져나와 이상함.)
-    if ( this.enemy02_size >= 2){        
+    if ( this.enemy02_size >= 5){        
         Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/30, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/40,Math.floor(Math.random() * 5 + this.enemy02w/40));
         Context.drawImage(this.enemy02GunImage,this.enemy02x + this.enemy02w/37, this.enemy02y + this.enemy02h/10 ,Math.floor(Math.random() * 6) + this.enemy02w/30,Math.floor(Math.random() * 5 + this.enemy02w/30));
     }

@@ -342,8 +342,8 @@ var enemy02yy = 0;
 // var ini_enemy02h = 55;
 // var ini_enemy02w = 20;
 // var ini_enemy02h = 25;
-var ini_enemy02w = 40/2;
-var ini_enemy02h = 55/2;
+var ini_enemy02w = 40;
+var ini_enemy02h = 55;
 var enemy02w = ini_enemy02w;
 var enemy02h = ini_enemy02h;
 

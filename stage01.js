@@ -566,8 +566,8 @@ function game_init(){
     back_distance3 = 0;
  
     //적02 크기
-    enemy02w = 20;
-    enemy02h = 35;
+    enemy02w = ini_enemy02w;
+    enemy02h = ini_enemy02w;
 
     //적02 초기 위치
     enemy02x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 100))  + (Math.floor(Math.random() * 300)) - (Math.floor(Math.random() * 300)); //시작  x
@@ -1023,18 +1023,18 @@ function enemy02_init(index){
     this.enemy02y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 30)) - (Math.floor(Math.random() * 30)); //시작 y
 
     //적02 초기 크기
-    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 5);
-    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 5);
+    this.enemy02w = ini_enemy02w + Math.floor(Math.random() * 3);
+    this.enemy02h = ini_enemy02h + Math.floor(Math.random() * 4);
     //ld = 0;
 
     //적02 크기(배율)
-    this.enemy02_size =  (Math.floor(Math.random() * 10) + 1);
+    this.enemy02_size =  Math.floor(Math.random() * 10) + 1;
     //적02 스피드
-    this.enemy02_speed =  (Math.floor(Math.random() * 10) + 1);
+    this.enemy02_speed =  Math.floor(Math.random() * 10) + 1;
     //적02 x축 이동 위치
-    this.enemy02xx = Math.floor(Math.random() * 3);
+    this.enemy02xx = Math.floor(Math.random() * 3) + 1;
     //적02 x축 이동 위치
-    this.enemy02yy = Math.floor(Math.random() * 3);
+    this.enemy02yy = Math.floor(Math.random() * 3) + 1;
 
     //적02 생명
     this.enemy02_life = ini_enemy02_life;
@@ -1213,37 +1213,37 @@ function enemy_energe(){
 ////////////////// 적02 이동
 function enemy02_move(){ 
 
-    //적 크기
+    //적 크기(적은 움직이면서 점점 커진다.)
     this.enemy02w = this.enemy02w * this.enemy02_size;
     this.enemy02h = this.enemy02h * this.enemy02_size; 
 
 
     //적(enemy02) 왔다같다 이동
-    if (parseInt(gameTime/(400*Pspeed)) % 5 == 0){
+    if (parseInt(gameTime/(300*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + this.enemy02_size;
         this.enemy02h = this.enemy02h + this.enemy02_size;
-    }else if (parseInt(gameTime/(400*Pspeed)) % 4 == 0){
+    }else if (parseInt(gameTime/(300*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;
-    }else if (parseInt(gameTime/(400*Pspeed)) % 5 == 0){
+    }else if (parseInt(gameTime/(300*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
         this.enemy02w = this.enemy02w + this.enemy02_size * Pdistance/150;
         this.enemy02h = this.enemy02h + this.enemy02_size * Pdistance/150;
-    }else if (parseInt(gameTime/(400*Pspeed)) % 6 == 0){
+    }else if (parseInt(gameTime/(300*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
         this.enemy02w = this.enemy02w - this.enemy02_size;
         this.enemy02h = this.enemy02h - this.enemy02_size;
-    }else if (parseInt(gameTime/(400*Pspeed)) % 1 == 0){
+    }else if (parseInt(gameTime/(300*Pspeed)) % 1 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 

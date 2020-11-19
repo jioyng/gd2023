@@ -1225,32 +1225,32 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed);
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed);
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed);
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = this.enemy02w - (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = this.enemy02h - (this.enemy02_size*this.enemy02_speed);
     }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
 
-        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = this.enemy02w + (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = this.enemy02h + (this.enemy02_size*this.enemy02_speed);
     }else {
         this.enemy02xx = 0;
         this.enemy02yy = 0; 
@@ -1258,8 +1258,8 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        this.enemy02w = ini_enemy02w + (this.enemy02_size*this.enemy02_speed)/10;
-        this.enemy02h = ini_enemy02h + (this.enemy02_size*this.enemy02_speed)/10;
+        this.enemy02w = ini_enemy02w + (this.enemy02_size*this.enemy02_speed);
+        this.enemy02h = ini_enemy02h + (this.enemy02_size*this.enemy02_speed);
 
         //적 크기 
         //this.enemy02w = this.enemy02w + 1;

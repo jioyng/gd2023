@@ -1211,31 +1211,27 @@ function enemy_energe(){
 }
 
 ////////////////// 적02 이동
-function enemy02_move(){ 
-
-    //적 크기(적은 움직이면서 점점 커지거나 작아진다.)
-    this.enemy02w = this.enemy02w * this.enemy02_size;
-    this.enemy02h = this.enemy02h * this.enemy02_size;
+function enemy02_move(){  
 
     //적(enemy02) 왔다같다 이동
     if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02_size = this.enemy02_size + 0.1; 
+        this.enemy02_size = this.enemy02_size + 0.05; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
         this.enemy02y = this.enemy02y - this.enemy02yy * enemy02_speed;
 
-        this.enemy02_size = this.enemy02_size - 0.1; 
+        this.enemy02_size = this.enemy02_size - 0.05; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy * enemy02_speed;
 
 
-        this.enemy02_size = this.enemy02_size + 0.1;
+        this.enemy02_size = this.enemy02_size + 0.05;
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
@@ -1248,7 +1244,7 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
  
-        this.enemy02_size = this.enemy02_size - 0.1;
+        this.enemy02_size = this.enemy02_size - 0.05;
 
     }else {
         this.enemy02xx = 0;
@@ -1257,25 +1253,32 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        this.enemy02_size = this.enemy02_size + 0.1;
+        this.enemy02_size = this.enemy02_size + 0.05;
          
     }
 
+    //적 크기 배율은 1 ~ 5를 넘지 못한다.
+    if (this.enemy02_size >= 5){this.enemy02_size = 5};
+    if (this.enemy02_size <= 1){this.enemy02_size = 1};
+
+    //적 크기(적은 움직이면서 점점 커지거나 작아진다.)
+    this.enemy02w = this.enemy02w * this.enemy02_size;
+    this.enemy02h = this.enemy02h * this.enemy02_size;   
 
     //적이 게임 경게 밖으로 나가지 못하다록 한다.
-    if (this.enemy02x >= maxX - this.enemy02w){
+    if (this.enemy02x > maxX - this.enemy02w){
         this.enemy02x = this.enemy02x - Math.floor(Math.random() * 5) - 1; 
     }
 
-    if (this.enemy02x <= minX){
+    if (this.enemy02x < minX){
         this.enemy02x = this.enemy02x + Math.floor(Math.random() * 5) + 1; 
     }    
 
-    if (this.enemy02y >= maxY - this.enemy02h){        
+    if (this.enemy02y > maxY - this.enemy02h){        
         this.enemy02y = this.enemy02y - Math.floor(Math.random() * 5) - 1;
     }
 
-    if (this.enemy02y <= minY){        
+    if (this.enemy02y < minY){        
         this.enemy02y = this.enemy02y + Math.floor(Math.random() * 5) + 1;
     }    
 

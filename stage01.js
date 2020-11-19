@@ -1218,20 +1218,20 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy;
 
-        this.enemy02_size = this.enemy02_size + 0.05; 
+        this.enemy02_size = this.enemy02_size + 0.01; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
         this.enemy02y = this.enemy02y - this.enemy02yy * enemy02_speed;
 
-        this.enemy02_size = this.enemy02_size - 0.05; 
+        this.enemy02_size = this.enemy02_size - 0.01; 
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y + this.enemy02yy * enemy02_speed;
 
 
-        this.enemy02_size = this.enemy02_size + 0.05;
+        this.enemy02_size = this.enemy02_size + 0.01;
 
     }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
         this.enemy02x = this.enemy02x - this.enemy02xx * enemy02_speed;
@@ -1244,7 +1244,7 @@ function enemy02_move(){
         this.enemy02x = this.enemy02x + this.enemy02xx;
         this.enemy02y = this.enemy02y - this.enemy02yy;
  
-        this.enemy02_size = this.enemy02_size - 0.05;
+        this.enemy02_size = this.enemy02_size - 0.01;
 
     }else {
         this.enemy02xx = 0;
@@ -1253,7 +1253,7 @@ function enemy02_move(){
         this.enemy02x = cityEnd_x;
         this.enemy02y = cityEnd_y;
 
-        this.enemy02_size = this.enemy02_size + 0.05;
+        this.enemy02_size = this.enemy02_size + 0.01;
          
     }
 

@@ -569,10 +569,7 @@ function game_init(){
  
     //배경종점으로부터의 거리
     Pdistance = init_Pdistance;
-    Edistance = init_Edistance;
-
-    this.enemy02_didtance = enemy02_didtance;
-
+    Edistance = init_Edistance; 
 
     //적02 크기
     enemy02w = ini_enemy02w;
@@ -1060,6 +1057,10 @@ function enemy02_init(index){
     this.enemy02_move = enemy02_move;
 
 
+    //타겟에서 적까지 거리
+    this.Edistance = Edistance;    
+
+
     //적02 미사일 발사수는 랜덤하게
     this.missile01_cnt = Math.floor(Math.random() * 5) + 1;
     this.max_missile01_cnt = max_missile01_cnt;
@@ -1101,8 +1102,10 @@ function enemy02_init(index){
     //플레이어 충돌
     this.player_collision = player_collision; 
 
-    //타겟에서 적까지 거리
-    this.Edistance = Edistance;
+    //배경종점에서 적까지 거리
+    this.enemy02_didtance = enemy02_didtance;
+
+
  
 }
 

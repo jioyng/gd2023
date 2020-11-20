@@ -1044,8 +1044,8 @@ function enemy02_init(index){
     //적02 초기 위치
     //this.enemy02x = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 10))  + (Math.floor(Math.random() * 30)) - (Math.floor(Math.random() * 300)); //시작  x
     //this.enemy02y = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 100)) - (Math.floor(Math.random() * 100)); //시작 y
-    this.enemy02x = ini_enemy02x;
-    this.enemy02y = ini_enemy02y;
+    this.enemy02x = ini_enemy02x  + (Math.floor(Math.random() * 100)) - (Math.floor(Math.random() * 100));
+    this.enemy02y = ini_enemy02y  + (Math.floor(Math.random() * 50)) - (Math.floor(Math.random() * 50));
 
     
     //적02 초기 크기

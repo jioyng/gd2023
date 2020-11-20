@@ -1341,6 +1341,7 @@ function enemy02_move(){
         this.enemy02h = playerHeight  * 0.8;
     }; 
 
+    
     //적이 너무 작은경우(멀리있는경우) 오른쪽 엔진은 그려주지 않는다.(엔지하나가 몸체박으로 삐져나와 이상함.)
     if ( this.enemy02w >= ini_enemy02w*0.8){        
         Context.drawImage(this.enginImage01,this.enemy02x - this.enemy02w/4 + Math.floor(Math.random() * 6),this.enemy02y + this.enemy02h/8,Math.floor(Math.random() * 3) +  this.enemy02w/3,Math.floor(Math.random() * 4) +  this.enemy02h/3);    

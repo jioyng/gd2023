@@ -130,6 +130,7 @@ var init_cityEnd_size = 100;       //게임 진행 방향 타겟 사이즈
 var init_cityEnd_x = 0;            //게임 진행 방향 타겟 x좌표
 var init_cityEnd_y = 0;            //게임 진행 방향 타겟 y좌표
 var init_Pdistance = 0;            //게임 진행 방향 타겟에서 플레이어까지 거리(플레이어 원근 설정을 위해)
+var init_Edistance = 0;            //게임 진행 방향 타켓에서 적까지의 거리
 
 //게임 계속 or 종료 버튼
 var button_play = null;
@@ -147,6 +148,7 @@ var cityEnd_size = init_cityEnd_size;
 var cityEnd_x = init_cityEnd_x;
 var cityEnd_y = init_cityEnd_y;
 var Pdistance = init_Pdistance;
+var Edistance = init_Edistance;
 
 //좌우측 상하단선 백그라운드 거리
 var back_distance = 0;
@@ -565,6 +567,10 @@ function game_init(){
     back_distance2 = 0;
     back_distance3 = 0;
  
+    //배경종점으로부터의 거리
+    Pdistance = init_Pdistance;
+    Edistance = init_Edistance;
+
     //적02 크기
     enemy02w = ini_enemy02w;
     enemy02h = ini_enemy02w;
@@ -654,6 +660,14 @@ function player_didtance(){
 
     //게임방향타겟(배경 중심점)으로부터의 거리
     Pdistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - playerX))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - playerY)),2));
+
+}
+
+////////////////// 적02 거리
+function enemy02_didtance(){
+
+    //게임방향타겟(배경 중심점)으로부터의 거리
+    Edistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - this.enemy02x))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - this.enemy02yy)),2));
 
 }
 
@@ -1083,6 +1097,9 @@ function enemy02_init(index){
 
     //플레이어 충돌
     this.player_collision = player_collision; 
+
+    //타겟에서 적까지 거리
+    this.Edistance = Edistance;
  
 }
 
@@ -1256,6 +1273,10 @@ function enemy02_move(){
         this.enemy02_size = this.enemy02_size + 0.01;
          
     }
+
+    //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정 
+    this.enemy02w = this.ini_enemy02w * this.enemy02_size/100000*Edistance*0.8
+    this.enemy02h = this.ini_enemy02h * this.enemy02_size/100000*Edistance*0.8
 
     //적 크기 배율은 1 ~ 5를 넘지 못한다.
     if (this.enemy02_size >= 5){this.enemy02_size = 5};

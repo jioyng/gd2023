@@ -1280,11 +1280,17 @@ function enemy02_move(){
          
     }
 
-    this.enemy02_didtance();
+    this.enemy02_didtance(); 
+ 
+    this.Edistance = this.Edistance/1000;
+    //console.log("this.Edistance",this.Edistance);
 
+    this.enemy02_size = this.enemy02_size * this.Edistance * 10;
     //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정 
-    this.enemy02w = this.ini_enemy02w * this.enemy02_size/100000*Edistance*0.8;
-    this.enemy02h = this.ini_enemy02h * this.enemy02_size/100000*Edistance*0.8;
+    this.enemy02w = this.enemy02w * this.enemy02_size;
+    this.enemy02h = this.enemy02h * this.enemy02_size; 
+
+    //console.log(this.enemy02w,this.enemy02h)
 
     //적 크기 배율은 1 ~ 5를 넘지 못한다.
     if (this.enemy02_size >= 5){this.enemy02_size = 5};

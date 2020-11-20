@@ -1322,11 +1322,11 @@ function enemy02_move(){
     }    
 
     if (this.enemy02y > maxY - this.enemy02h){        
-        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 2) - 1; 
+        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 2); 
     }
 
     if (this.enemy02y < minY + this.enemy02h){        
-        this.enemy02y = this.enemy02y + Math.floor(Math.random() * 2) + 1; 
+        this.enemy02y = this.enemy02y - Math.floor(Math.random() * 2); 
     }    
 
 

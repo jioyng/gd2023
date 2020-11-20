@@ -571,6 +571,9 @@ function game_init(){
     Pdistance = init_Pdistance;
     Edistance = init_Edistance;
 
+    this.enemy02_didtance = enemy02_didtance;
+
+
     //적02 크기
     enemy02w = ini_enemy02w;
     enemy02h = ini_enemy02w;
@@ -667,7 +670,7 @@ function player_didtance(){
 function enemy02_didtance(){
 
     //게임방향타겟(배경 중심점)으로부터의 거리
-    Edistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - this.enemy02x))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - this.enemy02yy)),2));
+    this.Edistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - this.enemy02x))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - this.enemy02y)),2));
 
 }
 
@@ -1274,9 +1277,11 @@ function enemy02_move(){
          
     }
 
+    this.enemy02_didtance();
+
     //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정 
-    this.enemy02w = this.ini_enemy02w * this.enemy02_size/100000*Edistance*0.8
-    this.enemy02h = this.ini_enemy02h * this.enemy02_size/100000*Edistance*0.8
+    this.enemy02w = this.ini_enemy02w * this.enemy02_size/100000*Edistance*0.8;
+    this.enemy02h = this.ini_enemy02h * this.enemy02_size/100000*Edistance*0.8;
 
     //적 크기 배율은 1 ~ 5를 넘지 못한다.
     if (this.enemy02_size >= 5){this.enemy02_size = 5};

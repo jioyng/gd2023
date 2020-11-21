@@ -751,7 +751,7 @@ function player_move(){
 	}
 
 	//와프(공간 이동)
-	if (isKeyDown[17] || isKeyCode == 17  || isKeyCode == 12) {
+	if (isKeyDown[17] || isKeyCode == 17) {
 
         warp_sound.currentTime  = 0;
         warp_sound.play();
@@ -819,7 +819,7 @@ function player_move(){
 	}
 
     //브래이크
-    if(isKeyCode == 16){
+    if(isKeyCode == 16 || isKeyCode == 12){
         pmovex = 0;
         pmovey = 0;
         playerImage = player;

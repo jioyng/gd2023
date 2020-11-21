@@ -376,43 +376,43 @@
 		return false; 
 	}); // 특정 버튼 클릭 시 설치 시작 
 	
-	btnInstall.addEventListener('click', function() { 
+	// btnInstall.addEventListener('click', function() { 
 
-		if(deferredPrompt !== undefined) { 
-			// The user has had a postive interaction with our app and Chrome 
-			// has tried to prompt previously, so let's show the prompt. 
-			deferredPrompt.prompt();
+	// 	if(deferredPrompt !== undefined) { 
+	// 		// The user has had a postive interaction with our app and Chrome 
+	// 		// has tried to prompt previously, so let's show the prompt. 
+	// 		deferredPrompt.prompt();
 			
-			// Follow what the user has done with the prompt. 
-			deferredPrompt.userChoice.then(function(choiceResult) { 
-				console.log(choiceResult.outcome); 
+	// 		// Follow what the user has done with the prompt. 
+	// 		deferredPrompt.userChoice.then(function(choiceResult) { 
+	// 			console.log(choiceResult.outcome); 
 				
-				if(choiceResult.outcome == 'dismissed') { 
-					console.log('User cancelled home screen install'); 
-				} else { 
-					console.log('User added to home screen'); 
-				}
-				// We no longer need the prompt. Clear it up. 
+	// 			if(choiceResult.outcome == 'dismissed') { 
+	// 				console.log('User cancelled home screen install'); 
+	// 			} else { 
+	// 				console.log('User added to home screen'); 
+	// 			}
+	// 			// We no longer need the prompt. Clear it up. 
 				
-				deferredPrompt = null; 
-		    });
-    } 
+	// 			deferredPrompt = null; 
+	// 	    });
+  //   } 
     
 
 
-    //////////////////마우스 클릭시 이벤트 메핑
-    tot_div.addEventListener('mousedown', function(event) {
+  //   //////////////////마우스 클릭시 이벤트 메핑
+  //   tot_div.addEventListener('mousedown', function(event) {
     
-      event.preventDefault();
+  //     event.preventDefault();
  
-    });
+  //   });
 
-    //마우스 오른쪽 버튼 클릭시 팝업 방지
-    tot_div.oncontextmenu = function () {
-    return false;
-    };   
+  //   //마우스 오른쪽 버튼 클릭시 팝업 방지
+  //   tot_div.oncontextmenu = function () {
+  //   return false;
+  //   };   
      
-	});
+	// });
 	 
   </script>
   <!-- <script type="text/javascript" src="./js/hammer.js"></script>   -->

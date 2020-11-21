@@ -1085,7 +1085,7 @@ function enemy_init(index){
         this.weappon_size = weappon_size;
 
         //적 미사일 속도
-        this.weappon_speed = weappon_speed / 2;
+        this.weappon_speed = weappon_speed;
 
     }
 

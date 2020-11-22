@@ -694,7 +694,7 @@ function game_init(){
     //화면에 나타나는 적 미시일수(배열)
     //weapponArray = [];
     weappon_cnt = 1;
-    ini_max_weappon_cnt = 5;
+    //ini_max_weappon_cnt = 5;
     max_weappon_cnt = ini_max_weappon_cnt;
     enemy_collision_yn = "N";
     enemy_index = null;
@@ -1161,8 +1161,8 @@ function enemy_init(index){
         this.weappon_speed = weappon_speed;
 
         //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 3) + 1;
-        this.max_weappon_cnt = max_weappon_cnt; 
+        this.weappon_cnt = Math.floor(Math.random() * 4) + 1;
+        this.max_weappon_cnt = 5; 
 
     }
  
@@ -2271,7 +2271,7 @@ function weappon_move(){
             this.weappon_size = this.weappon_size + enemy_size/20;  
 
             //총알 반은 위로 반은 아래로향한다.
-            if (this.weappon_index >= parseInt(this.max_weappon_cnt/2)/2){
+            if (this.weappon_index%2==0){
                 this.weappon_upDown = -1;               
             }else {
                 this.weappon_upDown = 1;
@@ -2280,7 +2280,7 @@ function weappon_move(){
 
         this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight;
         this.weapponArray[i].bsize = this.weappon_size;
-        this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / 4; //<= 총알 속도의 핵심(his.weappon_upDown / 4).
+        this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*2) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
         this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed;
 
         Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize,this.weapponArray[i].bsize);
@@ -2476,8 +2476,9 @@ function drawScreen(){
     //     }
     // }
 
-    //10초마다 적 추가생성
-    if(gameTime % 1000 === 0){
+    //10초마다 적 추가생성 => 5초로
+    //if(gameTime % 1000 === 0){
+    if(gameTime % 500 === 0){
 
         //적 추가 생성
         enemy_cnt = enemy_cnt + 1;

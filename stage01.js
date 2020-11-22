@@ -1699,7 +1699,7 @@ function game_background(){
         Context3.stroke();
 
         //메인원2
-        if (parseInt(String(gameTime).substr(0,1))%2 == 0){
+        if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
             Context3.beginPath();
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
             Context3.stroke();

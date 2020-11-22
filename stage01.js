@@ -1193,7 +1193,7 @@ function enemy_init(index){
     //this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + (Math.floor(Math.random() * 10))  + (Math.floor(Math.random() * 30)) - (Math.floor(Math.random() * 300)); //시작  x
     //this.enemyy = parseInt(theCanvas.clientHeight / 4) + (Math.floor(Math.random() * 100)) - (Math.floor(Math.random() * 100)); //시작 y
     this.enemyx = ini_enemyx  + (Math.floor(Math.random() * 100)) - (Math.floor(Math.random() * 100));
-    this.enemyy = ini_enemyy  + (Math.floor(Math.random() * 50)) - (Math.floor(Math.random() * 50));
+    this.enemyy = ini_enemyy  + (Math.floor(Math.random() * 100)) - (Math.floor(Math.random() * 100));
 
 
     //ld = 0;
@@ -1201,7 +1201,7 @@ function enemy_init(index){
     //적 크기(배율)
     this.enemy_size =  Math.floor(Math.random() * 3);
     //적 스피드
-    this.enemy_speed =  Math.floor(Math.random() * 3);
+    this.enemy_speed =  Math.floor(Math.random() * 2);
     //적 x축 이동 위치
     this.enemyxx = Math.floor(Math.random() * 2);
     //적 x축 이동 위치
@@ -1379,49 +1379,42 @@ function enemy_energe(){
 
 ////////////////// 적 이동
 function enemy_move(){  
+//alert(String(gameTime*100).substr(0,2));
+//alert(parseInt(String(gameTime*100).substr(0,2)) % 5)
+
+//console.log(String(gameTime).substr(String(gameTime).length-3,1))
 
     //적(enemy) 왔다같다 이동
-    if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
+    if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
         this.enemyx = this.enemyx + this.enemyxx;
-        this.enemyy = this.enemyy + this.enemyyy;
-
-        //this.enemy_size = this.enemy_size + 0.01; 
-
-    }else if (parseInt(gameTime/(200*Pspeed)) % 4 == 0){
+        this.enemyy = this.enemyy + this.enemyyy; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-
-        //this.enemy_size = this.enemy_size - 0.01; 
-
-    }else if (parseInt(gameTime/(200*Pspeed)) % 5 == 0){
+        this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
         this.enemyx = this.enemyx + this.enemyxx;
-        this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-
-
-        //this.enemy_size = this.enemy_size + 0.01;
-
-    }else if (parseInt(gameTime/(200*Pspeed)) % 6 == 0){
+        this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        this.enemyy = this.enemyy - this.enemyyy;  
-
-        //this.enemy_size = this.enemy_size;
-
-    }else if (parseInt(gameTime/(200*Pspeed)) % 1 == 0){
-
+        this.enemyy = this.enemyy - this.enemyyy;    
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){ 
         this.enemyx = this.enemyx + this.enemyxx;
-        this.enemyy = this.enemyy - this.enemyyy;
- 
-        //this.enemy_size = this.enemy_size - 0.01;
-
-    }else {
-        //this.enemyx = this.enemyxx - Math.floor(Math.random() * 1) + Math.floor(Math.random() * 1);
-        //this.enemyy = this.enemyyy  - Math.floor(Math.random() * 1) + Math.floor(Math.random() * 1); 
-
-        //this.enemyx = cityEnd_x;
-        //this.enemyy = cityEnd_y;
-
-        //this.enemy_size = this.enemy_size + 0.01;
-         
+        this.enemyy = this.enemyy - this.enemyyy; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
+        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyy = this.enemyy + this.enemyyy; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
+        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed; 
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy - this.enemyyy;    
+    }else { 
+        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyy = this.enemyy + this.enemyyy; 
     }
 
     this.enemy_didtance(); 

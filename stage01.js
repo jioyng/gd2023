@@ -316,7 +316,6 @@ var laser_d = 0;
 var enemyImage = new Image();
 var enemyGunImage = new Image();
 var weapponImage = new Image();
-var enginImage = new Image();
 
 //적01 이미지
 var enemy01Image = new Image();

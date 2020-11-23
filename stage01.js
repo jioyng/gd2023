@@ -2227,12 +2227,15 @@ function weappon_move(){
 
         this.weappon_index = i;
 
+        //console.log(this.enemy_size,enemy_size)
         //미사일 이동 좌표
         if (this.enemy_type == 2){     //적 타입이 2인경우만 유도탄
                        
             //유도 미사일 특징
             //1.크기가 크다.
-            this.weappon_size = this.weappon_size + enemy_size/10;               
+            //this.weappon_size = this.weappon_size + this.enemy_size/10;               
+            this.weappon_size = this.weappon_size + 0.2;               
+
             //2.좌우로 흔들린다.
             this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*10);
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*3);            
@@ -2261,7 +2264,8 @@ function weappon_move(){
 
             //일반총알 특징
             //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
-            this.weappon_size = this.weappon_size + enemy_size/20;  
+            //this.weappon_size = this.weappon_size + this.enemy_size/20;  
+            this.weappon_size = this.weappon_size + 0.1;               
 
             //총알 반은 위로 반은 아래로향한다.
             if (this.weappon_index%2==0){
@@ -2273,7 +2277,7 @@ function weappon_move(){
 
         this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight;
         this.weapponArray[i].bsize = this.weappon_size;
-        this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*2) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
+        this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
         this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed;
 
         Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize,this.weapponArray[i].bsize);

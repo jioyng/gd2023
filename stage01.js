@@ -1293,7 +1293,7 @@ function enemy_collision(){
                 //enemy_init();
                 explosion_sound.play();
                 explosion_sound.currentTime  = 0;
-                this.weapponArray = [];
+                //this.weapponArray = [];     //적 폭파되도 발생된 총알은 사라지지 않도록 한다. 
                 this.energe_bar = '';
 
                 //콜로니 밖 우주 배경그려주기(투명도 적용)

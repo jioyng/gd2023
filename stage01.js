@@ -2371,6 +2371,10 @@ function player_collision(){
                 audio.pause();
                 audio.currentTime  = 0;
 
+                playerImage = noneImage;
+                laserImage = noneImage;
+                player_warp =  noneImage;                
+
                 //콜로니 밖 우주 배경그려주기(투명도 적용)
                 Context.save();
 
@@ -2410,11 +2414,8 @@ function player_collision(){
                     crash02_sound.currentTime  = 0;
 
                     player_life = player_life - 1;
-                    player_collision_yn = 'Y';
-                    
-                    playerImage = noneImage;
-                    laserImage = noneImage;
-                    player_warp =  noneImage;
+                    player_collision_yn = 'Y'; 
+
 
                     //플레이어에 맞은 미사일은 않보이게 소멸
                     //weapponArray[i] = null;

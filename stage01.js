@@ -583,6 +583,11 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
+    playerImage.src = "./img/player.png";
+    laserImage.src = "./img/laser01.png";
+    player_warp.src = "./img/player_warp.png";
+    
+
     status = init_status;
     gameFrame = ini_gameFrame;
     gameTime = init_gameTime;

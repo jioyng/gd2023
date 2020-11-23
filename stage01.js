@@ -2265,9 +2265,9 @@ function weappon_move(){
 
             //총알 반은 위로 반은 아래로향한다.
             if (this.weappon_index%2==0){
-                this.weappon_upDown = -1;               
+                this.weappon_upDown = 1;               
             }else {
-                this.weappon_upDown = 1;
+                this.weappon_upDown = -1;
             }
         }
 

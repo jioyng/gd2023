@@ -2403,6 +2403,7 @@ function player_collision(){
                     
                     playerImage = noneImage;
                     laserImage = noneImage;
+                    player_warp =  noneImage;
 
                     //플레이어에 맞은 미사일은 않보이게 소멸
                     //weapponArray[i] = null;

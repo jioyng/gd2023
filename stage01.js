@@ -236,6 +236,11 @@ var player_warp = new Image();
 player_warp.src = "./img/player_warp.png";
 player_warp.addEventListener("load",drawScreen, false);
 
+var warp = new Image();
+warp.src = "./img/player_warp.png";
+warp.addEventListener("load",drawScreen, false);
+
+
 //폭파이미지01
 var explosionImage01 = new Image();
 explosionImage01.src = "./img/explosion01.png";
@@ -290,6 +295,10 @@ var player_collision_yn = 'N';
 var laserImage = new Image();
 laserImage.src = "./img/laser01.png";
 laserImage.addEventListener("load",drawScreen, false);
+
+var laser = new Image();
+laser.src = "./img/laser01.png";
+laser.addEventListener("load",drawScreen, false);
 
 //레이져 초기 생성 위치
 var laserX = playerX + playerWidth/2;
@@ -581,12 +590,7 @@ canvas.height = canvas.offsetHeight;
 }
 
 ////////////////// 게임 변수 초기화
-function game_init(){
-
-    playerImage.src = "./img/player.png";
-    laserImage.src = "./img/laser01.png";
-    player_warp.src = "./img/player_warp.png";
-    
+function game_init(){ 
 
     status = init_status;
     gameFrame = ini_gameFrame;
@@ -716,7 +720,9 @@ function player_init(){
     Pspeed = ini_Pspeed;
     before_pspeed = 0;
     player_life = ini_player_life;
-    playerImage = player;
+    playerImage = player; 
+    laserImage = laser;
+    player_warp = warp;    
 
 }
 

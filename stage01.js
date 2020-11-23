@@ -678,12 +678,7 @@ function game_init(){
     //적 미시일 초기 이동위치 = 생성위치
     move_weapponX = weapponX;
     move_weapponY = weapponY;
-    //적 미시일 초기 크기
-    weappon_size = 1;
-    //적 미시일 초기 속도
-    weappon_speed = 1;
-    //적 미시일 초기 방향값
-    weappon_Randon = 0;   //적 미사일 방향값은 랜덤하게
+    
 
     weappon_upDown = 1;
     weappon_leftRight = 1;
@@ -1128,7 +1123,7 @@ function enemy_init(index){
         this.weappon_speed = weappon_speed;
 
         //적 동시  발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 7) + 1;
+        this.weappon_cnt = Math.floor(Math.random() * 4) + 4;
         this.max_weappon_cnt = 8;        
 
         
@@ -1687,17 +1682,21 @@ function game_background(){
         Context3.strokeStyle = "balck";
 
 
+        
         //메인원1
-        Context3.beginPath();
-        //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4   + cityEnd_y, 50 + back_distance, 0, Math.PI * 2);
-        Context3.stroke();
+        for(var i=0;i<5;i++){
+            Context3.beginPath();
+            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4   + cityEnd_y, 70 + back_distance, 0, Math.PI * 2);
+            Context3.stroke();
 
-        Context3.beginPath();
-        //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-        Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5  + cityEnd_y, 55 + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
-        Context3.stroke();
+            Context3.beginPath();
+            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
+            Context3.stroke();
+        }
 
+ 
         //메인원2
         if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
             Context3.beginPath();
@@ -2268,10 +2267,16 @@ function weappon_move(){
             this.weappon_size = this.weappon_size + 0.1;               
 
             //총알 반은 위로 반은 아래로향한다.
-            if (this.weappon_index%2==0){
+            if (this.weappon_index%4 == 0){
                 this.weappon_upDown = 1;               
-            }else {
+            }else if (this.weappon_index%4 == 1){
                 this.weappon_upDown = -1;
+            }else if (this.weappon_index%4 == 2){
+                this.weappon_leftRight = -1;
+                this.weappon_upDown = this.weappon_tmp_random;
+            }else {
+                this.weappon_leftRight = 1;
+                this.weappon_upDown = this.weappon_tmp_random;
             }
         }
 
@@ -2288,7 +2293,7 @@ function weappon_move(){
     
        //미사일 화면 이탈시 또는 미사일이 너무 커지면
        //if (weapponArray[i].bmx >= theCanvas.clientWidth  || weapponArray[i].bmx <= 0 ){
-        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderY || this.weapponArray[i].bmy + add_borderY <= 0 || this.weapponArray[i].bsize >= 100){
+        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderY || this.weapponArray[i].bmy + add_borderY <= 0 || this.weapponArray[i].bsize >= 150){
 
             //최대 max_weappon_cnt 개까지만 생성
             if (1 == Math.floor(Math.random()*2)){

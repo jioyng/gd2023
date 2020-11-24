@@ -2417,9 +2417,15 @@ function player_collision(){
 
 
                 //게임 재시작 or 종료
+<<<<<<< HEAD
                 ls_first_load_yn = "N";
                 gameRetryExitButton();
 
+=======
+                //ls_first_load_yn = "N";
+                //gameRetryExitButton(); 
+                 
+>>>>>>> hzy1001-patch-1
 
             }else {
                 if (player_collision_yn == 'N'){

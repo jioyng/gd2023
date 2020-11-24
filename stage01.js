@@ -1939,7 +1939,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
  function gameRetryExitButton(){
-
+ 
     if (status != 2)
     {
         //재일 처음 페이지 로드시에는 바로 시작
@@ -1963,7 +1963,6 @@ GameCanvas.addEventListener('mousedown', function(event) {
             isKeyCode = null;
 
         }
-        return;
     }
  }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
@@ -2069,7 +2068,7 @@ function clickCanvas(event, as_gb) {
 
 
     //레이져 발사
-	if(Context.isPointInPath(button01, x,  y)) {
+	if(Context.isPointInPath(button01, x,  y)) { 
 
 		Context.stroke(button01);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
         //Context.fillText(Math.round(laser_r),maxX - 250, maxY - 180);
@@ -2553,7 +2552,7 @@ function onkeyDown(e, as_strKeyEventValue){
     //게임 진행 상태
     if (strKeyEventValue == "Enter" || isKeyCode == 13){
 
-        //alert(status+","+Pspeed)
+        //alert(status+","+Pspeed) 
         //상태별 상태값 설정
         if(status == 1){        //시작
 

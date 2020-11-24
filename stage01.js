@@ -2409,7 +2409,7 @@ function player_collision(){
                 //게임 재식작 or 종료
                 gameRetryExitButton();
 
-                return;
+                //return;
 
             }else {
                 if (player_collision_yn == 'N'){

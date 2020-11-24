@@ -1901,7 +1901,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    //gameRetryExitButton();
+    gameRetryExitButton();
 
   });
 
@@ -1974,7 +1974,7 @@ function clickCanvas(event, as_gb) {
     //}
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    //gameRetryExitButton();
+    gameRetryExitButton();
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -2416,8 +2416,8 @@ function player_collision(){
 
 
                 //게임 재시작 or 종료
-                ls_first_load_yn = "N";
-                gameRetryExitButton();
+                //ls_first_load_yn = "N";
+                //gameRetryExitButton();
 
             }else {
                 if (player_collision_yn == 'N'){
@@ -2535,11 +2535,11 @@ function drawScreen(){
 
     Context.fillText("Score : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,50);
 
-    // if(gameTime<=50){
-    //     Context2.font = '100px Arial';
-    //     Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
-    //     Context2.font = '30px Arial';
-    // }
+    if(gameTime<=50){
+        Context2.font = '100px Arial';
+        Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context2.font = '30px Arial';
+    }
 }
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)

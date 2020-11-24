@@ -1289,7 +1289,7 @@ function enemy_collision(){
              Context.drawImage(this.explosionImage01,this.enemyx+Math.floor(Math.random()*20),this.enemyy-Math.floor(Math.random()*30),20,10);
 
              //적 총알 충돌 사운드는 좀 짧게
-             crash01_sound.currentTime = 1;
+             crash01_sound.currentTime = 0.5;
              crash01_sound.play(); 
              
              laser_init();

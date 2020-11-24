@@ -2535,11 +2535,11 @@ function drawScreen(){
 
     Context.fillText("Score : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,50);
 
-    if(gameTime<=50){
-        Context2.font = '100px Arial';
-        Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
-        Context2.font = '30px Arial';
-    }
+    // if(gameTime<=50){
+    //     Context2.font = '100px Arial';
+    //     Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+    //     Context2.font = '30px Arial';
+    // }
 }
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)

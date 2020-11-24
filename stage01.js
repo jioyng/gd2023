@@ -1287,6 +1287,8 @@ function enemy_collision(){
              Context.drawImage(this.explosionImage01,this.enemyx-Math.floor(Math.random()*20),this.enemyy+Math.floor(Math.random()*20),20,10);
              Context.drawImage(this.explosionImage01,this.enemyx+Math.floor(Math.random()*20),this.enemyy+Math.floor(Math.random()*10),10,10);
              Context.drawImage(this.explosionImage01,this.enemyx+Math.floor(Math.random()*20),this.enemyy-Math.floor(Math.random()*30),20,10);
+
+             //적 총알 충돌 사운드는 좀 짧게
              crash01_sound.currentTime = 0;
              crash01_sound.play(); 
              
@@ -2403,6 +2405,12 @@ function player_collision(){
                 // 이전 점수에 베스트 점수를 저장
                 var ls_best_score = localStorage.getItem('best_score');
                     localStorage.setItem('before_score',ls_best_score); 
+
+
+                //게임 재식작 or 종료
+                //gameRetryExitButton();
+
+                return;
 
             }else {
                 if (player_collision_yn == 'N'){

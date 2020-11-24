@@ -481,6 +481,7 @@ function addJavascript(jsname) {
 ////////////////// 게임 시작
 function gameStart(as_keycode) {
 
+
     ls_first_load_yn = "N";
     //alert("start")
     isKeyDown[as_keycode] = false;
@@ -489,6 +490,7 @@ function gameStart(as_keycode) {
     audio.currentTime  = 0;
 
     clearInterval(Timer_Id);
+
 
     //게임 변수 초기화
     game_init();
@@ -1831,7 +1833,7 @@ function game_status(){
     Context2.font = '100px Arial';
 
     if (status == 1){
-        Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        //Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     }else if (status == 3){
@@ -1943,6 +1945,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         if (ls_first_load_yn == "Y"){
 
             gameStart(13);
+            
 
         }else {
             //gameEnd(27);
@@ -2527,7 +2530,14 @@ function drawScreen(){
     //Context.fillText("속도 :" + Pspeed + "Km/s",theCanvas.clientWidth - 100,60);
     //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
-    Context.fillText("Score : " + gameTime,10,50);
+    
+    Context.fillText("Score : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,50);
+    
+    if(gameTime<=50){    
+        Context2.font = '100px Arial';     
+        Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context2.font = '30px Arial';
+    } 
 }
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)

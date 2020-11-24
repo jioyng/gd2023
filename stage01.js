@@ -379,8 +379,8 @@ var enemy_size = 1;
 var enemy_speed = 1; 
 
 //적 초기 위치
-var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 10); //시작  x
-var ini_enemyy = parseInt(theCanvas.clientHeight / 4) + Math.floor(Math.random() * 10); //시작 y
+var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 20) - Math.floor(Math.random() * 20); //시작  x
+var ini_enemyy = parseInt(theCanvas.clientHeight / 4) + Math.floor(Math.random() * 10) + 50; //시작 y
 
 //적 이동위치
 var enemyxx = 0;
@@ -391,10 +391,10 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-// var ini_enemyw = 40;
-// var ini_enemyh = 55;
-var ini_enemyw = 60;
-var ini_enemyh = 80;
+var ini_enemyw = 40;
+var ini_enemyh = 55;
+//var ini_enemyw = 60;
+//var ini_enemyh = 80;
 var enemyw = ini_enemyw;
 var enemyh = ini_enemyh;
 
@@ -1157,8 +1157,8 @@ function enemy_init(index){
         this.weapponImage.src = weappon02Image.src;
 
         //적 초기 크기
-        this.enemyw = ini_enemyw - 20 + Math.floor(Math.random() * 3);
-        this.enemyh = ini_enemyh + 20 + Math.floor(Math.random() * 4);        
+        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
+        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);        
                 
         //적 미사일 크기
         this.weappon_size = weappon_size;
@@ -1474,14 +1474,14 @@ function enemy_move(){
     // }; 
 
     //적의 크기는 적의 초기 크기 * 0.8 보다 커질수는 없다.
-    if (this.enemyw > ini_enemyw * 0.8){
-        this.enemyw =  ini_enemyw * 0.8; 
+    if (this.enemyw > ini_enemyw * 1){
+        this.enemyw =  ini_enemyw * 1; 
         //this.enemy_size = this.enemy_size - 1;
         //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
     };
 
-    if (this.enemyh > ini_enemyh * 0.8){ 
-        this.enemyh =  ini_enemyh * 0.8;
+    if (this.enemyh > ini_enemyh * 1){ 
+        this.enemyh =  ini_enemyh * 1;
         //this.enemy_size = this.enemy_size - 1;
         //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
     };
@@ -2270,6 +2270,7 @@ function weappon_move(){
             }
         }else {
  
+            add_borderX = theCanvas.clientWidth;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
             add_borderY = theCanvas.clientHeight;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
 
             //일반총알 특징
@@ -2304,7 +2305,7 @@ function weappon_move(){
     
        //미사일 화면 이탈시 또는 미사일이 너무 커지면
        //if (weapponArray[i].bmx >= theCanvas.clientWidth  || weapponArray[i].bmx <= 0 ){
-        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderY || this.weapponArray[i].bmy + add_borderY <= 0 || this.weapponArray[i].bsize >= 150){
+        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0 || this.weapponArray[i].bsize >= 150){
 
             //최대 max_weappon_cnt 개까지만 생성
             if (1 == Math.floor(Math.random()*2)){

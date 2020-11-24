@@ -1901,7 +1901,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameRetryExitButton();
+    //gameRetryExitButton();
 
   });
 
@@ -1939,15 +1939,18 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
  function gameRetryExitButton(){
+     
     if (status != 2)
     {
         //재일 처음 페이지 로드시에는 바로 시작
         if (ls_first_load_yn == "Y"){
 
             gameStart(13);
-            
+             
 
         }else {
+            
+            Context2.font = '50px Arial';
             //gameEnd(27);
             //게임 재시도 or 나가기
             Context2.stroke(button_play);
@@ -1960,6 +1963,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
             isKeyCode = null;
 
         }
+        return;
     }
  }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
@@ -1971,7 +1975,7 @@ function clickCanvas(event, as_gb) {
     //}
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameRetryExitButton();
+    //gameRetryExitButton();
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -2412,10 +2416,10 @@ function player_collision(){
                     localStorage.setItem('before_score',ls_best_score); 
 
 
-                //게임 재식작 or 종료
-                //gameRetryExitButton();
-
-                return;
+                //게임 재시작 or 종료
+                ls_first_load_yn = "N";
+                gameRetryExitButton(); 
+                 
 
             }else {
                 if (player_collision_yn == 'N'){

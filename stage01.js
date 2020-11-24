@@ -379,7 +379,7 @@ var enemy_size = 1;
 var enemy_speed = 1; 
 
 //적 초기 위치
-var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 20) - Math.floor(Math.random() * 20); //시작  x
+var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 50); //시작  x
 var ini_enemyy = parseInt(theCanvas.clientHeight / 4) + Math.floor(Math.random() * 10) + 50; //시작 y
 
 //적 이동위치
@@ -1406,23 +1406,23 @@ function enemy_move(){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
         this.enemyy = this.enemyy - this.enemyyy;    
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){ 
-        this.enemyx = this.enemyx + this.enemyxx;
-        this.enemyy = this.enemyy - this.enemyyy; 
+        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);   ;
+        this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);     
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyx = this.enemyx - this.enemyxx;
         this.enemyy = this.enemyy + this.enemyyy; 
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed; 
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);  
         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed; 
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        this.enemyy = this.enemyy - this.enemyyy;    
+        this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);    
     }else { 
-        this.enemyx = this.enemyx + this.enemyxx;
-        this.enemyy = this.enemyy + this.enemyyy; 
+        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);
+        this.enemyy = this.enemyy + this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
     }
 
     this.enemy_didtance(); 
@@ -1455,7 +1455,7 @@ function enemy_move(){
 
     if (this.enemyy > maxY - 30){        
         this.enemyyy = 0;
-        this.enemyy = this.enemyy + Math.floor(Math.random() * 2); 
+        this.enemyy = this.enemyy - Math.floor(Math.random() * 2); 
     }
 
     if (this.enemyy < minY + 30){        
@@ -2282,15 +2282,17 @@ function weappon_move(){
 
             //총알 반은 위로 반은 아래로향한다.
             if (this.weappon_index%4 == 0){
-                this.weappon_upDown = 1;               
+                this.weappon_upDown = 1;     
+                this.weappon_leftRight =  1 * (Math.floor(Math.random() * 1)==0?1:-1);          
             }else if (this.weappon_index%4 == 1){
                 this.weappon_upDown = -1;
+                this.weappon_leftRight =  1 * (Math.floor(Math.random() * 1)==0?1:-1);
             }else if (this.weappon_index%4 == 2){
-                this.weappon_leftRight = -1;
-                this.weappon_upDown = this.weappon_tmp_random;
+                this.weappon_leftRight = -1 - (Math.floor(Math.random() * 1) + 1);
+                this.weappon_upDown = this.weappon_tmp_random * (Math.floor(Math.random() * 1)==0?1:-1);    
             }else {
-                this.weappon_leftRight = 1;
-                this.weappon_upDown = this.weappon_tmp_random;
+                this.weappon_leftRight = 1 + (Math.floor(Math.random() * 1) + 1);
+                this.weappon_upDown = this.weappon_tmp_random * (Math.floor(Math.random() * 1)==0?1:-1);    
             }
         }
 

@@ -428,7 +428,7 @@ var enemy_dealy_time = 1000;
 var weapponArray = new Array();
 var weappon_index = 0;     //현재 미사일 인덱스
 var weappon_cnt = 1;
-var ini_max_weappon_cnt = 5;
+var ini_max_weappon_cnt = 6;
 var max_weappon_cnt = ini_max_weappon_cnt;
 var enemy_collision_yn = "N";
 
@@ -652,7 +652,7 @@ function game_init(){
 	strKeyEventValue = "None";
     weapponArray = [];
     weappon_cnt = 1;
-    ini_max_weappon_cnt = 5;
+    ini_max_weappon_cnt = 8;
     max_weappon_cnt = ini_max_weappon_cnt;
     warp_distance = ini_warp_distance;
 
@@ -1170,7 +1170,7 @@ function enemy_init(index){
 
         //적 동시 미사일 발사수는 랜덤하게
         this.weappon_cnt = Math.floor(Math.random() * 4) + 1;
-        this.max_weappon_cnt = 5;
+        this.max_weappon_cnt = 6;
 
     }
 
@@ -1331,7 +1331,7 @@ function enemy_collision(){
                 gameTime = parseInt(gameTime) + ini_enemy_life*10;
 
                 //타겟 새로 출현 시간.
-                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*5) + 1)) * 1000;
+                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*2) + 1)) * 1000;
 
                 Context.restore();
 

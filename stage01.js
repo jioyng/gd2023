@@ -391,10 +391,10 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-var ini_enemyw = 40;
-var ini_enemyh = 55;
-//var ini_enemyw = 60;
-//var ini_enemyh = 80;
+//var ini_enemyw = 40;
+//var ini_enemyh = 55;
+var ini_enemyw = 60;
+var ini_enemyh = 80;
 var enemyw = ini_enemyw;
 var enemyh = ini_enemyh;
 
@@ -693,7 +693,7 @@ function game_init(){
 
     weappon_upDown = 1;
     weappon_leftRight = 1;
-    weappon_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 좌표
+    weappon_tmp_random = Math.floor(Math.random() * 5)/10;    //플레이어 위치에 따른 미사일 Y축 좌표
 
     enemy_dealy_time = 1000;
 
@@ -1396,7 +1396,7 @@ function enemy_move(){
 
     //적(enemy) 왔다같다 이동
     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyx = this.enemyx + this.enemyxx - 1;
         this.enemyy = this.enemyy + this.enemyyy;
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
@@ -1417,14 +1417,14 @@ function enemy_move(){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
+        this.enemyy = this.enemyy + this.enemyyy;
     }else {
-        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);
-        this.enemyy = this.enemyy + this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
+        this.enemyx = this.enemyx + this.enemyxx + 1;
+        this.enemyy = this.enemyy + this.enemyyy - 1;
     }
 
     this.enemy_didtance();
@@ -1433,7 +1433,7 @@ function enemy_move(){
     //console.log("this.Edistance",this.Edistance);
 
     //적 다가옴에 따라 크기도 커진다.(원근효과)
-    this.enemy_size = this.enemy_size * this.Edistance * 0.5;
+    this.enemy_size = this.enemy_size * this.Edistance * 0.8;
     //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정
     this.enemyw = this.enemyw * this.enemy_size;
     this.enemyh = this.enemyh * this.enemy_size;

@@ -391,10 +391,10 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-//var ini_enemyw = 40;
-//var ini_enemyh = 55;
-var ini_enemyw = 60;
-var ini_enemyh = 80;
+var ini_enemyw = 40;
+var ini_enemyh = 55;
+//var ini_enemyw = 60;
+//var ini_enemyh = 80;
 var enemyw = ini_enemyw;
 var enemyh = ini_enemyh;
 
@@ -1433,7 +1433,8 @@ function enemy_move(){
     //console.log("this.Edistance",this.Edistance);
 
     //적 다가옴에 따라 크기도 커진다.(원근효과)
-    this.enemy_size = this.enemy_size * this.Edistance * 0.8;
+    //this.enemy_size = this.enemy_size * this.Edistance * 0.8;
+    this.enemy_size = this.enemy_size * this.Edistance;
     //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정
     this.enemyw = this.enemyw * this.enemy_size;
     this.enemyh = this.enemyh * this.enemy_size;

@@ -379,8 +379,8 @@ var enemy_size = 1;
 var enemy_speed = 1;
 
 //적 초기 위치
-var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 50); //시작  x
-var ini_enemyy = parseInt(theCanvas.clientHeight / 4) + Math.floor(Math.random() * 10) + 50; //시작 y
+var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+var ini_enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
 
 //적 이동위치
 var enemyxx = 0;

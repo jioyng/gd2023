@@ -1331,7 +1331,7 @@ function enemy_collision(){
                 gameTime = parseInt(gameTime) + ini_enemy_life*10;
 
                 //타겟 새로 출현 시간.
-                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*2) + 1)) * 1000;
+                this.enemy_dealy_time = parseInt((Math.floor(Math.random()*3) + 2)) * 1000;
 
                 Context.restore();
 
@@ -2511,9 +2511,10 @@ function drawScreen(){
     //     }
     // }
 
-    //10초마다 적 추가생성 => 5초로
-    //if(gameTime % 1000 === 0){
-    if(gameTime % 500 === 0){
+    //10초마다 적 추가생성 => 5초
+    //if(gameTime % 500 === 0){
+    //랜덤하게
+    if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){
 
         //적 추가 생성
         enemy_cnt = enemy_cnt + 1;

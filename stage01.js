@@ -1979,6 +1979,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
             isKeyDown = [];
             isKeyCode = null;
 
+            return;
         }
     }
  }

@@ -321,6 +321,15 @@ var laser_yn = 'N';
 var laser_r = 0;
 var laser_d = 0;
 
+///////////////////////////////////전함 초기 설정////////////////////////////////////////////////////////////////
+//전함 이미지
+var shipImage = new Image();
+    shipImage.src = "./img/ship01.png";
+    shipImage.addEventListener("load",drawScreen, false);
+//var enemyGunImage = new Image();
+//var weapponImage = new Image();
+
+
 ///////////////////////////////////적 초기 설정////////////////////////////////////////////////////////////////
 //적 이미지
 var enemyImage = new Image();
@@ -391,7 +400,7 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-var ini_enemyw = 40;
+var ini_enemyw = 42;
 var ini_enemyh = 55;
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;
@@ -1394,6 +1403,9 @@ function enemy_move(){
 
 //console.log(String(gameTime).substr(String(gameTime).length-3,1))
 
+    //전함 이미지
+    Context.drawImage(shipImage,100 ,100,45,15)
+
     //적(enemy) 왔다같다 이동
     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
         this.enemyx = this.enemyx + this.enemyxx - 1;
@@ -1581,7 +1593,7 @@ function game_background(){
     Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
 
     //콜로니끝
-    Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  120 ,120 );
+    Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
 
     Context.restore();
 
@@ -1820,6 +1832,9 @@ function game_background(){
         }
     //}
 
+
+    
+    
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
     Context3.globalAlpha = "1"
@@ -2419,6 +2434,7 @@ function player_collision(){
                 //게임 재시작 or 종료
                 ls_first_load_yn = "N";
                 gameRetryExitButton();
+                return;
 
             }else {
                 if (player_collision_yn == 'N'){

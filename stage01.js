@@ -616,6 +616,10 @@ function game_init(){
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
 
+    //전함 초기화
+    shipx = ini_shipx;
+    shipy = ini_shipy;
+
     //적 생명
     ini_enemy_life = 5;
     enemy_life = ini_enemy_life;
@@ -1178,7 +1182,7 @@ function enemy_init(index){
         this.weappon_speed = weappon_speed;
 
         //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 4) + 1;
+        this.weappon_cnt = Math.floor(Math.random() * 4) + 2;
         this.max_weappon_cnt = 6;
 
     }
@@ -1396,15 +1400,12 @@ function enemy_energe(){
     return this.energe_bar;
 }
 
-////////////////// 적 이동
+////////////////// 적 이동 
 function enemy_move(){
 //alert(String(gameTime*100).substr(0,2));
 //alert(parseInt(String(gameTime*100).substr(0,2)) % 5)
 
-//console.log(String(gameTime).substr(String(gameTime).length-3,1))
-
-    //전함 이미지
-    Context.drawImage(shipImage,100 ,100,45,15)
+//console.log(String(gameTime).substr(String(gameTime).length-3,1)) 
 
     //적(enemy) 왔다같다 이동
     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
@@ -2228,7 +2229,7 @@ function weappon_create(){
 function weappon_init(){
 
      //console.log("this.weapponArray[i]",this.weapponArray)
-     this.weappon_size = 1;
+     this.weappon_size = 1; 
      player_collision_yn = 'N';
      //weapponX = weapponX - 40;
 
@@ -2270,6 +2271,14 @@ function weappon_move(){
             //this.weappon_size = this.weappon_size + this.enemy_size/10;
             this.weappon_size = this.weappon_size + 0.2;
 
+
+            //미사일 화면 이탈시 또는 미사일이 너무 커지면
+            if (this.weapponArray[i].bsize >= 150){
+                this.weapponArray[i].bsize = 150;
+                this.weappon_size = 0.1;
+            }
+            
+            
             //2.좌우로 흔들린다.
             this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*10);
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*3);
@@ -2302,6 +2311,13 @@ function weappon_move(){
             //this.weappon_size = this.weappon_size + this.enemy_size/20;
             this.weappon_size = this.weappon_size + 0.1;
 
+            //미사일 화면 이탈시 또는 미사일이 너무 커지면
+            if (this.weapponArray[i].bsize >= 50){
+                this.weapponArray[i].bsize = 50;
+                this.weappon_size = 0.1;
+            }
+
+
             //총알 반은 위로 반은 아래로향한다.
             if (this.weappon_index%4 == 0){
                 this.weappon_upDown = 1;
@@ -2331,7 +2347,8 @@ function weappon_move(){
 
        //미사일 화면 이탈시 또는 미사일이 너무 커지면
        //if (weapponArray[i].bmx >= theCanvas.clientWidth  || weapponArray[i].bmx <= 0 ){
-        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0 || this.weapponArray[i].bsize >= 150){
+       //if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0 || this.weapponArray[i].bsize >= 150){
+        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0){
 
             //최대 max_weappon_cnt 개까지만 생성
             if (1 == Math.floor(Math.random()*2)){
@@ -2340,7 +2357,7 @@ function weappon_move(){
 
                 //미사일 객체(배열) 초기화
                 this.weappon_init();
-                this.weappon_size = 3 * parseInt(Math.floor(gameTime/1500));
+                //this.weappon_size = 3 * parseInt(Math.floor(gameTime/1500));
 
             }else {
                 //5초마다 미사일 증가
@@ -2463,6 +2480,12 @@ function player_collision(){
     }
 }
 
+    //전함 이미지 
+    var ini_shipx = maxX;
+    var ini_shipy = maxY/5;
+    var shipx = ini_shipx;
+    var shipy = ini_shipy/5;
+
 ////////////////// 화면 로드(게임 프래임 수 만큼)
 function drawScreen(){
 
@@ -2490,6 +2513,21 @@ function drawScreen(){
 		game_background();
 	//}
 
+
+    //전함 이동
+    if (ini_shipx > 0){
+         
+        shipx = shipx - 0.1;
+        //shipx = shipx/10;
+        
+        Context.drawImage(shipImage,shipx,shipy,60,20)
+        Context.drawImage(shipImage,shipx,shipy + 50,30,10)
+
+    }
+
+
+    
+        
     //플레이어 경계
     player_border();
 

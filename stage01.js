@@ -1967,6 +1967,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         }else {
 
+            playerImage = noneImage;
+            laserImage = noneImage;
+            player_warp =  noneImage;
+                        
             Context2.font = '50px Arial';
             //gameEnd(27);
             //게임 재시도 or 나가기
@@ -2408,6 +2412,9 @@ function player_collision(){
                 Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
                 Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
+                playerImage = explosionImage01;
+                player_warp = explosionImage01;
+
                 this.energe_bar = '';
                 explosion_sound.play();
                 explosion_sound.currentTime  = 0;
@@ -2416,9 +2423,9 @@ function player_collision(){
                 audio.pause();
                 audio.currentTime  = 0;
 
-                playerImage = noneImage;
-                laserImage = noneImage;
-                player_warp =  noneImage;
+                // playerImage = noneImage;
+                // laserImage = noneImage;
+                // player_warp =  noneImage;
 
                 //콜로니 밖 우주 배경그려주기(투명도 적용)
                 Context.save();

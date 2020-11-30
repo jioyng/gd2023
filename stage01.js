@@ -2019,10 +2019,10 @@ function clickCanvas(event, as_gb) {
             isKeyDown = [];
             isKeyCode = null;
         }
-        //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-        gameRetryExitButton();
-
     }
+
+        //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
+        gameRetryExitButton();   
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;

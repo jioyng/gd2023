@@ -1902,11 +1902,6 @@ GameCanvas.addEventListener('mousedown', function(event) {
         }
     //}
 
-    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (status != 2){    
-         gameRetryExitButton();    
-    }
-
     //마우스 왼쪽 버튼 클릭
     if (event.button == 0){
         isKeyCode = 32;
@@ -1922,7 +1917,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
         isKeyCode = 17;
     }
 
-
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
+    gameRetryExitButton();
 
   });
 
@@ -1959,17 +1955,29 @@ GameCanvas.addEventListener('mousedown', function(event) {
   };
 
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
- function gameRetryExitButton(){ 
+ function gameRetryExitButton(){
+ 
     
     if (status != 2)
-    {   
-        
+    { 
+
+        // playerImage = noneImage;
+        // laserImage = noneImage;
+        // player_warp =  noneImage;
+                Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+                Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+                Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
+
+                playerImage = explosionImage01;
+                player_warp = explosionImage01;
         //재일 처음 페이지 로드시에는 바로 시작
         if (ls_first_load_yn == "Y"){
 
-            gameStart(13); 
+            gameStart(13);
 
-        }else { 
+
+        }else {
+
                         
             Context2.font = '50px Arial';
             //gameEnd(27);
@@ -1981,9 +1989,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
             Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
 
             isKeyDown = [];
-            isKeyCode = null; 
+            isKeyCode = null;
 
-        } 
+        }
+
         
         return;
     }
@@ -1994,35 +2003,10 @@ function clickCanvas(event, as_gb) {
 	//if (status != 2)
 	//{
 		//gameStart(13);
-    //} 
+    //}
 
-    if(status != 2){
-
-
-
-        //게임 계속
-        if(Context.isPointInPath(button_play, x,  y)) {
-            isKeyCode = 13;
-            //strKeyEventValue = "LD";
-            Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-            gameEnd(isKeyCode);
-            isKeyDown = [];
-            isKeyCode = null;
-        }
-
-        //게임 종료
-        if(Context.isPointInPath(button_end, x,  y)) {
-            isKeyCode = 27;
-            //strKeyEventValue = "RD";
-            Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-            gameEnd(isKeyCode);
-            isKeyDown = [];
-            isKeyCode = null;
-        }
-    }
-
-        //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-        gameRetryExitButton();   
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
+    gameRetryExitButton();
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -2193,8 +2177,30 @@ function clickCanvas(event, as_gb) {
 		isKeyDown = [];
         isKeyCode = null;
 
-    } 
+    }
 
+
+    if(status != 2){
+        //게임 계속
+        if(Context.isPointInPath(button_play, x,  y)) {
+            isKeyCode = 13;
+            //strKeyEventValue = "LD";
+            Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            gameEnd(isKeyCode);
+            isKeyDown = [];
+            isKeyCode = null;
+        }
+
+        //게임 종료
+        if(Context.isPointInPath(button_end, x,  y)) {
+            isKeyCode = 27;
+            //strKeyEventValue = "RD";
+            Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            gameEnd(isKeyCode);
+            isKeyDown = [];
+            isKeyCode = null;
+        }
+    }
 
 }
 
@@ -2404,10 +2410,13 @@ function player_collision(){
         //미사일과 Y좌표 충돌시
         if ((parseInt(this.weapponArray[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(this.weapponArray[i].bmy)  + this.weapponArray[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
             //console.log("Pdistance",Pdistance)
-            //충돌시 폭파이미지로 변경 
-            if (player_life <= 1){ 
+            //충돌시 폭파이미지로 변경
+
+            if (player_life <= 1){
+
                 // explosion_sound.currentTime  = 4;
-                // explosion_sound.play(); 
+                // explosion_sound.play();
+
 
                 Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
                 Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);

@@ -123,6 +123,8 @@ var ini_gameFrame = 60;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
+var init_gameScore = 0;
+var gameScore = 0;
 //화면 타이머 id
 var init_Timer_Id = 0;  //var Timer_Id = setInterval(drawScreen, 1000/gameFrame); <= 재일 처음 시작시에는 움지기지 않는다.
 var Timer_Id = 0;
@@ -283,6 +285,10 @@ var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바
 var ini_player_life = 5;    //플레이어 생명
 var player_life = ini_player_life;
 var penerge_bar = ini_energe_bar;
+
+var ini_player_cnt = 0;    //초기 플레이어 갯수
+var player_cnt = ini_player_cnt;
+
 
 //플레이어 공간이동(warp) 거리
 var ini_warp_distance = 15;
@@ -603,15 +609,25 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
+    //플레이어 갯수가 더이상 없는경우만 초기화 한다. 
+    if (parseInt(player_cnt) > 0){
+        return;
+    }
+
     status = init_status;
     gameFrame = ini_gameFrame;
     gameTime = init_gameTime;
+    gameScore = init_gameScore; 
     Timer_Id = init_Timer_Id;
     cityEnd_size = init_cityEnd_size;
     cityEnd_x = init_cityEnd_x;
     cityEnd_y = init_cityEnd_y;
     enemy_size = enemy_size;
     enemy_speed = enemy_speed;
+
+    //남은 플레이어 갯수
+    //ini_player_cnt = 0;  
+    player_cnt = ini_player_cnt;
 
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
@@ -738,7 +754,6 @@ function player_init(){
     playerImage = player;
     laserImage = laser;
     player_warp = warp;
-
 }
 
 ////////////////// 플레이어 경계 이탈 방지
@@ -1340,8 +1355,8 @@ function enemy_collision(){
                 //적의 생명 * 10 만큼 보너스 스코어
                 Context.font = '100px Arial';
                 Context.fillText( " + " + ini_enemy_life * 10,this.enemyx,this.enemyy-10);
-                //alert(this.enemyx + "," +  this.enemyy)
-                gameTime = parseInt(gameTime) + ini_enemy_life*10;
+                //alert(this.enemyx + "," +  this.enemyy)            
+                gameScore = parseInt(gameScore) + ini_enemy_life*10;
 
                 //타겟 새로 출현 시간.
                 this.enemy_dealy_time = parseInt((Math.floor(Math.random()*3) + 2)) * 1000;
@@ -1538,6 +1553,7 @@ function game_background(){
 
     //시간이 흐름에 따라 게임 타겟 방향 좌표 이동
     gameTime++;         //시간 증가
+    gameScore++;
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
 	//back_distance = back_distance + 0.1;
@@ -1964,14 +1980,16 @@ GameCanvas.addEventListener('mousedown', function(event) {
         // playerImage = noneImage;
         // laserImage = noneImage;
         // player_warp =  noneImage;
-                Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
-                Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
-                Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
+        Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+        Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+        Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-                playerImage = explosionImage01;
-                player_warp = explosionImage01;
+        playerImage = explosionImage01;
+        player_warp = explosionImage01;
+
+        //alert(player_cnt);
         //재일 처음 페이지 로드시에는 바로 시작
-        if (ls_first_load_yn == "Y"){
+        if (ls_first_load_yn == "Y" && parseInt(player_cnt) > 0){
 
             gameStart(13);
 
@@ -2445,30 +2463,48 @@ function player_collision(){
                 status = 4;    //게임 END
 
                 //게임 점수 저장
-                var ls_current_score = gameTime;
+                var ls_current_score = gameScore;
+                var ls_current_time = gameTime;
                 localStorage.setItem('current_score',ls_current_score);
+                localStorage.setItem('current_time',ls_current_time);
 
                 var ls_before_score = localStorage.getItem('before_score');
+                var ls_before_time = localStorage.getItem('before_time');
+ 
+
                 if (ls_before_score == null || ls_before_score == ""){
                     ls_before_score = ls_current_score;
+                    ls_before_time = ls_current_time;
                     localStorage.setItem('before_score',ls_current_score);
-                }
+                    localStorage.setItem('before_time',ls_current_time);
+                } 
 
                 //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
                 if (parseInt(ls_current_score) > parseInt(ls_before_score)){
                     localStorage.setItem('best_score',ls_current_score);
+                    localStorage.setItem('best_time',ls_current_time);
                 }else {
                     localStorage.setItem('best_score',ls_before_score);
+                    localStorage.setItem('best_time',ls_before_time);
                 }
 
                 // 이전 점수에 베스트 점수를 저장
-                var ls_best_score = localStorage.getItem('best_score');
+                var ls_best_score = localStorage.getItem('best_score'); 
                     localStorage.setItem('before_score',ls_best_score);
+                var ls_best_time = localStorage.getItem('best_time'); 
+                    localStorage.setItem('before_time',ls_best_time);                    
 
 
-                //게임 재시작 or 종료
-                ls_first_load_yn = "N";
-                gameRetryExitButton();
+                //게임 재시작 or 종료                
+                if (parseInt(player_cnt) > 0){
+                    player_cnt = parseInt(player_cnt) - 1;
+                    ls_first_load_yn = "Y";
+                }else {
+                    ls_first_load_yn = "N";
+                }
+
+                gameRetryExitButton(); 
+
                 return;
 
             }else {
@@ -2520,6 +2556,13 @@ function drawScreen(){
     Context2.fillStyle = "#ffffff";
     Context2.font = '100px Arial';
 
+    //플레이어 갯수(10000점마다 1개씩 증가)    
+    if (parseInt(gameTime) % 1000 == 0){
+
+        player_cnt =  player_cnt + 1;
+
+    }
+    
     //게임상태정보표시
     game_status();
 
@@ -2607,7 +2650,9 @@ function drawScreen(){
     //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
 
-    Context.fillText("Score : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,50);
+    Context.fillText("Score : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+    Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,100);
+    Context.fillText("Bonus: " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,150);
 
     if(gameTime<=50){
         Context2.font = '100px Arial';

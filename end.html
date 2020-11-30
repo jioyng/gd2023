@@ -31,7 +31,7 @@ background-position: 50% -5%; */
 		</div> 
 		<audio id='endsound' src='./sound/end.ogg' autoplay></audio>
 		<div id="endgame" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
-		Game End<br><br> 
+		Game End<br>
 		<div id="score" style="text-align:center;font-size:40pt;"></div>  
 		</div> 
 	</div>
@@ -92,7 +92,7 @@ $(function(){
 	var ls_current_time = localStorage.getItem('current_time');          
 	var ls_best_time = localStorage.getItem('best_time');	
 
-	$("#score").html("현재 점수 : " + ls_current_score + "<br>소요 시간 : " + ls_current_time + "<br>최고 점수 : " + ls_best_score + "<br>소요 시간 : " + ls_best_time);
+	$("#score").html("현재 점수 : " + ls_current_score + "<br>소요 시간 : " + ls_current_time + "<br><br>최고 점수 : " + ls_best_score + "<br>소요 시간 : " + ls_best_time);
 		
 	
 

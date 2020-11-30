@@ -1957,8 +1957,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
  function gameRetryExitButton(){
  
+    
     if (status != 2)
-    {
+    { 
+
+        playerImage = noneImage;
+        laserImage = noneImage;
+        player_warp =  noneImage;
+
         //재일 처음 페이지 로드시에는 바로 시작
         if (ls_first_load_yn == "Y"){
 
@@ -1967,9 +1973,6 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         }else {
 
-            playerImage = noneImage;
-            laserImage = noneImage;
-            player_warp =  noneImage;
                         
             Context2.font = '50px Arial';
             //gameEnd(27);
@@ -1983,8 +1986,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
             isKeyDown = [];
             isKeyCode = null;
 
-            return;
         }
+
+        
+        return;
     }
  }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)

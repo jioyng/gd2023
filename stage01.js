@@ -1961,10 +1961,15 @@ GameCanvas.addEventListener('mousedown', function(event) {
     if (status != 2)
     { 
 
-        playerImage = noneImage;
-        laserImage = noneImage;
-        player_warp =  noneImage;
+        // playerImage = noneImage;
+        // laserImage = noneImage;
+        // player_warp =  noneImage;
+        Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+        Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+        Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
+        playerImage = explosionImage01;
+        player_warp = explosionImage01;
         //재일 처음 페이지 로드시에는 바로 시작
         if (ls_first_load_yn == "Y"){
 
@@ -1985,6 +1990,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             isKeyDown = [];
             isKeyCode = null;
+
+            playerImage = noneImage;
+            laserImage = noneImage;
+            player_warp =  noneImage;            
 
         }
 

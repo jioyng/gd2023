@@ -2557,7 +2557,7 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //플레이어 갯수(10000점마다 1개씩 증가)    
-    if (parseInt(gameTime) % 10000 == 0){
+    if (parseInt(gameTime) % 5000 == 0){
 
         player_cnt =  player_cnt + 1;
 

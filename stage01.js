@@ -507,7 +507,7 @@ function gameStart(as_keycode) {
 
     //사운드 초기화
     audio.play();
-    audio.currentTime  = 0;
+    //audio.currentTime  = 0;
 
     //플레이어 변수 초기화
     player_init();
@@ -619,6 +619,9 @@ function game_init(){
 
         return;
     }
+
+    //오디오 처음부터
+    audio.currentTime  = 0;
 
     status = init_status;
     gameFrame = ini_gameFrame;

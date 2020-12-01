@@ -286,7 +286,7 @@ var ini_player_life = 5;    //플레이어 생명
 var player_life = ini_player_life;
 var penerge_bar = ini_energe_bar;
 
-var ini_player_cnt = 0;    //초기 플레이어 갯수
+var ini_player_cnt = 0;    //초기 플레이어 갯수(보너스)
 var player_cnt = ini_player_cnt;
 
 
@@ -494,29 +494,32 @@ function addJavascript(jsname) {
 }
 
 ////////////////// 게임 시작
-function gameStart(as_keycode) {
+function gameStart(as_keycode) { 
 
-
+    //최초 페이지 로드 여부
     ls_first_load_yn = "N";
-    //alert("start")
-    isKeyDown[as_keycode] = false;
-
-    audio.play();
-    audio.currentTime  = 0;
-
-    clearInterval(Timer_Id);
-
+ 
+    //키코드 널
+    isKeyDown[as_keycode] = false;  
 
     //게임 변수 초기화
-    game_init();
+    game_init(); 
+
+    //사운드 초기화
+    audio.play();
+    audio.currentTime  = 0;
 
     //플레이어 변수 초기화
     player_init();
 
     //적 생성
     create_enemy();
+    
+    //진행 상태
+    status = 2;         
 
-    status = 2;         //진행
+    //타이머 초기화
+    clearInterval(Timer_Id); 
 
     Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
 
@@ -609,8 +612,11 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
-    //플레이어 갯수가 더이상 없는경우만 초기화 한다. 
+    //플레이어 갯수(보너스)가 더이상 없는경우만 초기화 한다. 
     if (parseInt(player_cnt) > 0){
+
+        playerImage = player_warp;
+
         return;
     }
 
@@ -625,7 +631,7 @@ function game_init(){
     enemy_size = enemy_size;
     enemy_speed = enemy_speed;
 
-    //남은 플레이어 갯수
+    //남은 플레이어 갯수(보너스)
     //ini_player_cnt = 0;  
     player_cnt = ini_player_cnt;
 
@@ -2556,8 +2562,8 @@ function drawScreen(){
     Context2.fillStyle = "#ffffff";
     Context2.font = '100px Arial';
 
-    //플레이어 갯수(10000점마다 1개씩 증가)    
-    if (parseInt(gameTime) % 5000 == 0){
+    //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
+    if (parseInt(gameTime) % 1000 == 0){
 
         player_cnt =  player_cnt + 1;
 

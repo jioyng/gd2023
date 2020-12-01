@@ -2455,7 +2455,7 @@ function player_collision(){
 
                 explosion_sound.play();
                 audio.pause();
-                audio.currentTime  = 0;
+                //audio.currentTime  = 0;
 
                 // playerImage = noneImage;
                 // laserImage = noneImage;

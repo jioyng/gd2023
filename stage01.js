@@ -612,12 +612,13 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
-    //플레이어 갯수(보너스)가 더이상 없는경우만 초기화 한다. 
+    //플레이어 갯수(보너스)가 더이상 없는경우만 게임 초기화 한다. 
     if (parseInt(player_cnt) > 0){
 
         //시작시 잠시동안은 warp 이미지
-        playerImage = player_warp;
-
+        player_init();
+        //playerImage = player_warp;
+        
         return;
     }
 
@@ -645,6 +646,9 @@ function game_init(){
     //전함 초기화
     shipx = ini_shipx;
     shipy = ini_shipy;
+
+    //보너스 발생 여부
+    bonus_cnt = 1;
 
     //적 생명
     ini_enemy_life = 5;
@@ -764,6 +768,7 @@ function player_init(){
     playerImage = player;
     laserImage = laser;
     player_warp = warp;
+    //player_cnt = ini_player_cnt;
 }
 
 ////////////////// 플레이어 경계 이탈 방지
@@ -1944,7 +1949,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameRetryExitButton();
+    if (ls_first_load_yn != "Y"){
+        gameRetryExitButton();
+    }
 
   });
 
@@ -1990,12 +1997,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
         // playerImage = noneImage;
         // laserImage = noneImage;
         // player_warp =  noneImage;
-        Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
-        Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
-        Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
+        // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+        // Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+        // Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-        playerImage = explosionImage01;
-        player_warp = explosionImage01;
+        // playerImage = explosionImage01;
+        // player_warp = explosionImage01;
 
         //alert(player_cnt);
         //재일 처음 페이지 로드시에는 바로 시작
@@ -2034,7 +2041,9 @@ function clickCanvas(event, as_gb) {
     //}
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    gameRetryExitButton();
+    if (ls_first_load_yn != "Y"){    
+        gameRetryExitButton();
+    }
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -2549,6 +2558,9 @@ function player_collision(){
     var ini_shipy = maxY/5;
     var shipx = ini_shipx;
     var shipy = ini_shipy/5;
+ 
+    //보너스 발생 전후 여부
+    var bonus_cnt = 1; 
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
 function drawScreen(){
@@ -2566,17 +2578,27 @@ function drawScreen(){
     Context2.fillStyle = "#ffffff";
     Context2.font = '100px Arial';
 
-    //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
-    if (parseInt(gameTime) % 1000 == 0){
+    //console.log("gameScore/1000",parseInt(gameScore/1000))
+    //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
+    //bonus_cnt = Math.floor(gameScore/1000);
+    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
+        
+        //if (gameScore%1000 == 0){
+            
+            if (player_cnt > 0){
+                bonus_sound.play();
+                 
+                bonus_cnt = bonus_cnt + 1;
+                //alert(bonus_cnt)
+               
+            }
 
-        if (player_cnt > 1){
-            bonus_sound.play();
-        }
+            player_cnt =  player_cnt + 1;             
+           
 
-        player_cnt =  player_cnt + 1;
-
+       // }  
     }
-    
+
     //게임상태정보표시
     game_status();
 

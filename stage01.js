@@ -616,7 +616,7 @@ function game_init(){
     if (parseInt(player_cnt) > 0){
 
         //시작시 잠시동안은 플레이어 대기(warp) 이미지로...
-        for (var i=0;i<=1000;i++){
+        for (var i=0;i<=5000;i++){
             
             playerImage = player_warp;
             
@@ -2555,6 +2555,8 @@ function player_collision(){
     var shipy = ini_shipy/5;
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
+var tmp_bonus_cnt = 1;
+var tmp_bonus_chk = 'N';
 function drawScreen(){
 
     //게임 진행 컨텍스트(레이어)
@@ -2571,13 +2573,21 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
-    if (parseInt(gameTime) % 1000 == 0){
+    if (parseInt(gameScore) / 1000 == tmp_bonus_cnt){
 
-        if (player_cnt > 0){
-            bonus_sound.play();
+        //만점이 넘을때마다 딱 한번씩 수행
+        tmp_bonus_chk = 'Y';
+
+        if (tmp_bonus_chk == 'Y'){
+            if (player_cnt > 0){
+                bonus_sound.play();
+            }
+
+            player_cnt =  player_cnt + 1; 
+            tmp_bonus_cnt = tmp_bonus_cnt + 1;
         }
 
-        player_cnt =  player_cnt + 1;
+        tmp_bonus_chk = 'N'; 
 
     }
     

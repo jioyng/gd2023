@@ -616,9 +616,10 @@ function game_init(){
     if (parseInt(player_cnt) > 0){
 
         //시작시 잠시동안은 플레이어 대기(warp) 이미지로...
-        for (var i=0;i<=5000;i++){
-            
-            playerImage = player_warp;
+        for (var i=0;i<=1000;i++){
+
+            player_init();
+            playerImage = player_warp; 
             
         }
         
@@ -642,6 +643,10 @@ function game_init(){
     //남은 플레이어 갯수(보너스)
     //ini_player_cnt = 0;  
     player_cnt = ini_player_cnt;
+
+    //보너스 초기화
+    tmp_bonus_cnt = 1;
+    tmp_bonus_chk = 'N';    
 
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
@@ -2548,15 +2553,18 @@ function player_collision(){
     }
 }
 
-    //전함 이미지 
-    var ini_shipx = maxX;
-    var ini_shipy = maxY/5;
-    var shipx = ini_shipx;
-    var shipy = ini_shipy/5;
+//전함 이미지 
+var ini_shipx = maxX;
+var ini_shipy = maxY/5;
+var shipx = ini_shipx;
+var shipy = ini_shipy/5;
 
-////////////////// 화면 로드(게임 프래임 수 만큼)
+//보너스 생성 관련    
 var tmp_bonus_cnt = 1;
 var tmp_bonus_chk = 'N';
+
+////////////////// 화면 로드(게임 프래임 수 만큼)
+
 function drawScreen(){
 
     //게임 진행 컨텍스트(레이어)
@@ -2573,7 +2581,7 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
-    if (parseInt(gameScore) / 1000 == tmp_bonus_cnt){
+    if (Math.floor(parseInt(gameScore) / 1000) == tmp_bonus_cnt){
 
         //만점이 넘을때마다 딱 한번씩 수행
         tmp_bonus_chk = 'Y';

@@ -2687,8 +2687,8 @@ function drawScreen(){
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
 
     Context.fillText("Score : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
-    Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,100);
-    Context.fillText("Bonus: " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,150);
+    //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,100);
+    Context.fillText("Bonus: " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
 
     if(gameTime<=50){
         Context2.font = '100px Arial';

@@ -611,18 +611,13 @@ canvas.height = canvas.offsetHeight;
 
 ////////////////// 게임 변수 초기화
 function game_init(){
-  
-    //플레이어 갯수(보너스)가 있는경우 게임 초기화 하지않고 계속 이어지도록 한다. 
+
+    //플레이어 갯수(보너스)가 더이상 없는경우만 초기화 한다. 
     if (parseInt(player_cnt) > 0){
 
-        //시작시 잠시동안은 플레이어 대기(warp) 이미지로...
-        for (var i=0;i<=1000;i++){
+        //시작시 잠시동안은 warp 이미지
+        playerImage = player_warp;
 
-            player_init();
-            playerImage = player_warp; 
-            
-        }
-        
         return;
     }
 
@@ -643,10 +638,6 @@ function game_init(){
     //남은 플레이어 갯수(보너스)
     //ini_player_cnt = 0;  
     player_cnt = ini_player_cnt;
-
-    //보너스 초기화
-    tmp_bonus_cnt = 1;
-    tmp_bonus_chk = 'N';    
 
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
@@ -2553,18 +2544,13 @@ function player_collision(){
     }
 }
 
-//전함 이미지 
-var ini_shipx = maxX;
-var ini_shipy = maxY/5;
-var shipx = ini_shipx;
-var shipy = ini_shipy/5;
-
-//보너스 생성 관련    
-var tmp_bonus_cnt = 1;
-var tmp_bonus_chk = 'N';
+    //전함 이미지 
+    var ini_shipx = maxX;
+    var ini_shipy = maxY/5;
+    var shipx = ini_shipx;
+    var shipy = ini_shipy/5;
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
-
 function drawScreen(){
 
     //게임 진행 컨텍스트(레이어)
@@ -2581,21 +2567,13 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
-    if (Math.floor(parseInt(gameScore) / 1000) == tmp_bonus_cnt){
+    if (parseInt(gameTime) % 1000 == 0){
 
-        //만점이 넘을때마다 딱 한번씩 수행
-        tmp_bonus_chk = 'Y';
-
-        if (tmp_bonus_chk == 'Y'){
-            if (player_cnt > 0){
-                bonus_sound.play();
-            }
-
-            player_cnt =  player_cnt + 1; 
-            tmp_bonus_cnt = tmp_bonus_cnt + 1;
+        if (player_cnt > 1){
+            bonus_sound.play();
         }
 
-        tmp_bonus_chk = 'N'; 
+        player_cnt =  player_cnt + 1;
 
     }
     

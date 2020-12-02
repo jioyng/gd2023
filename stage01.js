@@ -611,13 +611,17 @@ canvas.height = canvas.offsetHeight;
 
 ////////////////// 게임 변수 초기화
 function game_init(){
-
-    //플레이어 갯수(보너스)가 더이상 없는경우만 초기화 한다. 
+  
+    //플레이어 갯수(보너스)가 있는경우 게임 초기화 하지않고 계속 이어지도록 한다. 
     if (parseInt(player_cnt) > 0){
 
-        //시작시 잠시동안은 warp 이미지
-        playerImage = player_warp;
-
+        //시작시 잠시동안은 플레이어 대기(warp) 이미지로...
+        for (var i=0;i<=300;i++){
+            
+            playerImage = player_warp;
+            
+        }
+        
         return;
     }
 
@@ -2569,7 +2573,9 @@ function drawScreen(){
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
     if (parseInt(gameTime) % 1000 == 0){
 
-        bonus_sound.play();
+        if (player_cnt > 1){
+            bonus_sound.play();
+        }
 
         player_cnt =  player_cnt + 1;
 

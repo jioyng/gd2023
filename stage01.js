@@ -636,6 +636,8 @@ function game_init(){
     enemy_size = enemy_size;
     enemy_speed = enemy_speed;
 
+ 
+
     //남은 플레이어 갯수(보너스)
     //ini_player_cnt = 0;  
     player_cnt = ini_player_cnt;
@@ -1949,9 +1951,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    //if (ls_first_load_yn != "Y"){
+    if (ls_first_load_yn == "N"){
         gameRetryExitButton();
-    //}
+    }else {
+        gameStart(13);
+    }
 
   });
 
@@ -2041,8 +2045,10 @@ function clickCanvas(event, as_gb) {
     //}
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (ls_first_load_yn != "Y"){    
+    if (ls_first_load_yn == "N"){    
         gameRetryExitButton();
+    }else {
+        gameStart(13);
     }
 
 	//as_gb 1: mouseClick, 2: onMouseMove

@@ -616,7 +616,7 @@ function game_init(){
     if (parseInt(player_cnt) > 0){
 
         //시작시 잠시동안은 플레이어 대기(warp) 이미지로...
-        for (var i=0;i<=300;i++){
+        for (var i=0;i<=1000;i++){
             
             playerImage = player_warp;
             
@@ -2573,7 +2573,7 @@ function drawScreen(){
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
     if (parseInt(gameTime) % 1000 == 0){
 
-        if (player_cnt > 1){
+        if (player_cnt > 0){
             bonus_sound.play();
         }
 

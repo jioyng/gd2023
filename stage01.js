@@ -1949,9 +1949,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (ls_first_load_yn != "Y"){
+    //if (ls_first_load_yn != "Y"){
         gameRetryExitButton();
-    }
+    //}
 
   });
 

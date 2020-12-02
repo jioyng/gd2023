@@ -2569,6 +2569,8 @@ function drawScreen(){
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)    
     if (parseInt(gameTime) % 1000 == 0){
 
+        bonus_sound.play();
+
         player_cnt =  player_cnt + 1;
 
     }

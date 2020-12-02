@@ -12,7 +12,8 @@ const staticAssets=[
     './sound/explosion01.ogg',
     './sound/sound01.ogg',
     './sound/warp01.ogg',
-    './sound/end.ogg'
+    './sound/end.ogg',
+    './sound/bonus.ogg'    
 ];
  
 self.addEventListener('install', async event=>{

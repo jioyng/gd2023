@@ -503,7 +503,7 @@ function gameStart(as_keycode) {
     isKeyDown[as_keycode] = false;  
 
     //게임시작사운드
-    start.play();
+    start_sound.play();
 
     //게임 변수 초기화
     game_init(); 

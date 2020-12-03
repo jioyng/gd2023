@@ -2006,12 +2006,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
          playerImage = noneImage;
          laserImage = noneImage;
          player_warp =  noneImage;
-        // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
-        // Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
-        // Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
+         Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+         Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+         Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-        // playerImage = explosionImage01;
-        // player_warp = explosionImage01;
+         playerImage = explosionImage01;
+         player_warp = explosionImage01;
 
         //alert(player_cnt);
         //제일 처음 페이지 로드시에는 바로 시작
@@ -2608,7 +2608,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 2000 &&  bonus_cnt == Math.floor(gameScore/2000)){    
+    if (gameScore >= 5000 &&  bonus_cnt == Math.floor(gameScore/5000)){    
         
         //if (gameScore%1000 == 0){
             

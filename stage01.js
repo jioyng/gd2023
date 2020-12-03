@@ -497,7 +497,7 @@ function addJavascript(jsname) {
 function gameStart(as_keycode) { 
 
     //최초 페이지 로드 여부
-    first_load_yn = "N";
+    //first_load_yn = "N";
  
     //키코드 널
     isKeyDown[as_keycode] = false;  
@@ -535,6 +535,7 @@ function gameEnd(as_keycode) {
     if (as_keycode == 13){
 
         gameStart(13);
+        first_load_yn = "N";
 
     }else {
 
@@ -945,6 +946,7 @@ function player_move(){
 		if (status != 2)
 		{
             gameStart(13);
+            first_load_yn = "N";
 		}
 
         //레이져 변수 초기화
@@ -1960,8 +1962,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
     if (first_load_yn == "Y"){    
         gameStart(13);
+        first_load_yn = "N"
     }else { 
-        alert("mounse")
         gameRetryExitButton(); 
     }
 
@@ -2022,6 +2024,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         if (first_load_yn == "Y"){
 
             gameStart(13);
+            first_load_yn = "N";
 
 
         }else {
@@ -2042,7 +2045,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         }
 
         
-        //return;
+        return;
     }
  }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
@@ -2055,12 +2058,13 @@ function clickCanvas(event, as_gb) {
 
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
-    // if (first_load_yn == "Y"){    
-    //     gameStart(13);
-    // }else { 
-    //     //alert("touch")
-    //     gameRetryExitButton(); 
-    // }
+    if (first_load_yn == "Y"){    
+        gameStart(13);
+        first_load_yn = "N";
+    }else { 
+        //alert("touch")
+        gameRetryExitButton(); 
+    }
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
@@ -2531,15 +2535,17 @@ function player_collision(){
                     localStorage.setItem('before_time',ls_best_time);                    
 
 
+                alert(player_cnt)
                 //플레이어가 남아있는경우 자동으로 시작              
                 if (parseInt(player_cnt) > 0){
                     player_cnt = parseInt(player_cnt) - 1;
                     //first_load_yn = "Y";
                     gameStart(13);
+                    first_load_yn = "N";
                 //게임 재시작 or 종료  
                 }else {
                     //first_load_yn = "N"; 
-                    alert("end")
+                    //alert("end")
                     gameRetryExitButton(); 
                 } 
 

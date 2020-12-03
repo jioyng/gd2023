@@ -502,6 +502,9 @@ function gameStart(as_keycode) {
     //키코드 널
     isKeyDown[as_keycode] = false;  
 
+    //게임시작사운드
+    start.play();
+
     //게임 변수 초기화
     game_init(); 
 
@@ -2525,7 +2528,7 @@ function player_collision(){
                     player_cnt = parseInt(player_cnt) - 1;
                     ls_first_load_yn = "Y";
                 }else {
-                    ls_first_load_yn = "N";
+                    ls_first_load_yn = "N"; 
                 }
 
                 gameRetryExitButton(); 

@@ -2054,6 +2054,7 @@ function clickCanvas(event, as_gb) {
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
     if (first_load_yn == "N"){    
         gameRetryExitButton();
+        return;
     }else {
         gameStart(13);
     }

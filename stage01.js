@@ -1956,11 +1956,13 @@ GameCanvas.addEventListener('mousedown', function(event) {
         isKeyCode = 17;
     }
 
-    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (first_load_yn == "N"){
-        gameRetryExitButton();
-    }else {
+    //플레이어(보너스)가 남아있는경우 자동 재시작
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
+    if (first_load_yn == "Y"){    
         gameStart(13);
+    }else { 
+        alert("mounse")
+        gameRetryExitButton(); 
     }
 
   });
@@ -2051,12 +2053,13 @@ function clickCanvas(event, as_gb) {
 		//gameStart(13);
     //}
 
-    //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (first_load_yn == "N"){    
-        gameRetryExitButton();
-        return;
-    }else {
+    //플레이어(보너스)가 남아있는경우 자동 재시작
+    //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
+    if (first_load_yn == "Y"){    
         gameStart(13);
+    }else { 
+        alert("touch")
+        gameRetryExitButton(); 
     }
 
 	//as_gb 1: mouseClick, 2: onMouseMove
@@ -2536,6 +2539,7 @@ function player_collision(){
                 //게임 재시작 or 종료  
                 }else {
                     //first_load_yn = "N"; 
+                    alert("end")
                     gameRetryExitButton(); 
                 } 
 

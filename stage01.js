@@ -2004,9 +2004,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
     if (status != 2)
     { 
 
-        // playerImage = noneImage;
-        // laserImage = noneImage;
-        // player_warp =  noneImage;
+         playerImage = noneImage;
+         laserImage = noneImage;
+         player_warp =  noneImage;
         // Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
         // Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
         // Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
@@ -2015,8 +2015,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
         // player_warp = explosionImage01;
 
         //alert(player_cnt);
-        //재일 처음 페이지 로드시에는 바로 시작
-        if (first_load_yn == "Y" && parseInt(player_cnt) > 0){
+        //제일 처음 페이지 로드시에는 바로 시작
+        //if (first_load_yn == "Y" && parseInt(player_cnt) > 0){
+        if (first_load_yn == "Y"){
 
             gameStart(13);
 
@@ -2526,15 +2527,16 @@ function player_collision(){
                     localStorage.setItem('before_time',ls_best_time);                    
 
 
-                //게임 재시작 or 종료                
+                //플레이어가 남아있는경우 자동으로 시작              
                 if (parseInt(player_cnt) > 0){
                     player_cnt = parseInt(player_cnt) - 1;
                     //first_load_yn = "Y";
+                    gameStart(13);
+                //게임 재시작 or 종료  
                 }else {
                     //first_load_yn = "N"; 
-                }
-
-                gameRetryExitButton(); 
+                    gameRetryExitButton(); 
+                } 
 
                 return;
 

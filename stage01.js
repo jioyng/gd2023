@@ -12,7 +12,7 @@ window.addEventListener("keydown",onkeyDown, false);
 window.addEventListener("keyup",onkeyUp, false);
 
 //제일 처음 페이지 load 여부
-var ls_first_load_yn = "Y";
+var first_load_yn = "Y";
 
 //필요한 이벤트 객체 선언
 var strKeyEventType = "None";
@@ -497,7 +497,7 @@ function addJavascript(jsname) {
 function gameStart(as_keycode) { 
 
     //최초 페이지 로드 여부
-    ls_first_load_yn = "N";
+    first_load_yn = "N";
  
     //키코드 널
     isKeyDown[as_keycode] = false;  
@@ -624,6 +624,9 @@ function game_init(){
         
         return;
     }
+
+    //게임 제일 처음 로드 여부
+    first_load_yn = "N";
 
     //오디오 처음부터
     audio.currentTime  = 0;
@@ -1954,7 +1957,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (ls_first_load_yn == "N"){
+    if (first_load_yn == "N"){
         gameRetryExitButton();
     }else {
         gameStart(13);
@@ -2013,7 +2016,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         //alert(player_cnt);
         //재일 처음 페이지 로드시에는 바로 시작
-        if (ls_first_load_yn == "Y" && parseInt(player_cnt) > 0){
+        if (first_load_yn == "Y" && parseInt(player_cnt) > 0){
 
             gameStart(13);
 
@@ -2048,7 +2051,7 @@ function clickCanvas(event, as_gb) {
     //}
 
     //게인 진행중이 아닐때 마우스로 화면 클릭시 다시,종료 버튼 보여줌
-    if (ls_first_load_yn == "N"){    
+    if (first_load_yn == "N"){    
         gameRetryExitButton();
     }else {
         gameStart(13);
@@ -2526,9 +2529,9 @@ function player_collision(){
                 //게임 재시작 or 종료                
                 if (parseInt(player_cnt) > 0){
                     player_cnt = parseInt(player_cnt) - 1;
-                    ls_first_load_yn = "Y";
+                    //first_load_yn = "Y";
                 }else {
-                    ls_first_load_yn = "N"; 
+                    //first_load_yn = "N"; 
                 }
 
                 gameRetryExitButton(); 
@@ -2590,7 +2593,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
+    if (gameScore >= 5000 &&  bonus_cnt == Math.floor(gameScore/5000)){    
         
         //if (gameScore%1000 == 0){
             

@@ -617,8 +617,7 @@ function game_init(){
 
     //플레이어 갯수(보너스)가 더이상 없는경우만 게임 초기화 한다. 
     if (parseInt(player_cnt) > 0){
-
-        //시작시 잠시동안은 warp 이미지
+ 
         player_init(); 
         
         return;
@@ -2539,6 +2538,12 @@ function player_collision(){
                     //출현 사운드
                     appear_sound.play();
                     gameStart(13); 
+
+                    isKeyDown = [];
+                    isKeyCode = null;
+                    wayBefore = null;
+                    pmovex = 0;
+                    pmovey = 0;                    
 
                 //게임 재시작 or 종료  
                 }else { 

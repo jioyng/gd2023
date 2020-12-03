@@ -2595,7 +2595,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 5000 &&  bonus_cnt == Math.floor(gameScore/5000)){    
+    if (gameScore >= 2000 &&  bonus_cnt == Math.floor(gameScore/2000)){    
         
         //if (gameScore%1000 == 0){
             

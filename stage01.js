@@ -534,8 +534,7 @@ function gameEnd(as_keycode) {
 
     if (as_keycode == 13){
 
-        gameStart(13);
-        first_load_yn = "N";
+        gameStart(13); 
 
     }else {
 
@@ -945,8 +944,7 @@ function player_move(){
         //게임상태가 진행중이 않은(종료 또틑 멈춤) 경우 레이저버튼 클릭시 재시작
 		if (status != 2)
 		{
-            gameStart(13);
-            first_load_yn = "N";
+            gameStart(13); 
 		}
 
         //레이져 변수 초기화
@@ -1961,8 +1959,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
     if (first_load_yn == "Y"){    
-        gameStart(13);
-        first_load_yn = "N"
+        gameStart(13); 
     }else { 
         gameRetryExitButton(); 
     }
@@ -2023,8 +2020,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //if (first_load_yn == "Y" && parseInt(player_cnt) > 0){
         if (first_load_yn == "Y"){
 
-            gameStart(13);
-            first_load_yn = "N";
+            gameStart(13); 
 
 
         }else {
@@ -2059,8 +2055,7 @@ function clickCanvas(event, as_gb) {
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
     if (first_load_yn == "Y"){    
-        gameStart(13);
-        first_load_yn = "N";
+        gameStart(13); 
     }else { 
         //alert("touch")
         gameRetryExitButton(); 
@@ -2535,16 +2530,16 @@ function player_collision(){
                     localStorage.setItem('before_time',ls_best_time);                    
 
  
-                //플레이어가 남아있는경우 자동으로 시작              
+                //플레이어가 남아있는경우 자동으로 시작   
+                player_cnt = parseInt(player_cnt) - 1;
+
                 if (parseInt(player_cnt) > 0){
-                    player_cnt = parseInt(player_cnt) - 1;
-                    first_load_yn = "Y";
-                    gameStart(13);
-                    first_load_yn = "N";
+            
+                    gameStart(13); 
+
                 //게임 재시작 or 종료  
-                }else {
-                    first_load_yn = "N"; 
-                    //alert("end")
+                }else { 
+
                     gameRetryExitButton(); 
                 } 
 

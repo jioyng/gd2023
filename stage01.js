@@ -2055,12 +2055,12 @@ function clickCanvas(event, as_gb) {
 
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
-    if (first_load_yn == "Y"){    
-        gameStart(13);
-    }else { 
-        alert("touch")
-        gameRetryExitButton(); 
-    }
+    // if (first_load_yn == "Y"){    
+    //     gameStart(13);
+    // }else { 
+    //     //alert("touch")
+    //     gameRetryExitButton(); 
+    // }
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;

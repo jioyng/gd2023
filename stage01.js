@@ -2534,17 +2534,16 @@ function player_collision(){
                 var ls_best_time = localStorage.getItem('best_time'); 
                     localStorage.setItem('before_time',ls_best_time);                    
 
-
-                alert(player_cnt)
+ 
                 //플레이어가 남아있는경우 자동으로 시작              
                 if (parseInt(player_cnt) > 0){
                     player_cnt = parseInt(player_cnt) - 1;
-                    //first_load_yn = "Y";
+                    first_load_yn = "Y";
                     gameStart(13);
                     first_load_yn = "N";
                 //게임 재시작 or 종료  
                 }else {
-                    //first_load_yn = "N"; 
+                    first_load_yn = "N"; 
                     //alert("end")
                     gameRetryExitButton(); 
                 } 

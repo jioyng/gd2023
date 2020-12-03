@@ -503,7 +503,7 @@ function gameStart(as_keycode) {
     isKeyDown[as_keycode] = false;  
 
     //게임시작사운드
-    start_sound.play();
+    //start_sound.play();
 
     //게임 변수 초기화
     game_init(); 
@@ -619,8 +619,7 @@ function game_init(){
     if (parseInt(player_cnt) > 0){
 
         //시작시 잠시동안은 warp 이미지
-        player_init();
-        //playerImage = player_warp;
+        player_init(); 
         
         return;
     }
@@ -2535,6 +2534,10 @@ function player_collision(){
 
                 if (parseInt(player_cnt) > 0){
             
+                    //잠시만 와프 이미지
+                    playerImage = player_warp;  
+                    //출현 사운드
+                    appear_sound.play();
                     gameStart(13); 
 
                 //게임 재시작 or 종료  

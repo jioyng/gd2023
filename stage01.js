@@ -289,13 +289,15 @@ var penerge_bar = ini_energe_bar;
 var ini_player_cnt = 0;    //초기 플레이어 갯수(보너스)
 var player_cnt = ini_player_cnt;
 
-
 //플레이어 공간이동(warp) 거리
 var ini_warp_distance = 15;
 var warp_distance = ini_warp_distance;
 
 //플레이어 미사일 충돌 여부
 var player_collision_yn = 'N';
+
+//보너스 발생 전후 여부
+var bonus_cnt = 1; 
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
 var laserImage = new Image();
@@ -327,14 +329,19 @@ var laser_yn = 'N';
 var laser_r = 0;
 var laser_d = 0;
 
-///////////////////////////////////전함 초기 설정////////////////////////////////////////////////////////////////
-//전함 이미지
-var shipImage = new Image();
-    shipImage.src = "./img/ship01.png";
-    shipImage.addEventListener("load",drawScreen, false);
+///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
+//전함01 이미지
+var ship01_Image = new Image();
+    ship01_Image.src = "./img/ship01.png";
+    ship01_Image.addEventListener("load",drawScreen, false);
 //var enemyGunImage = new Image();
 //var weapponImage = new Image();
 
+//전함01 이동좌표
+var ini_ship01x = maxX;
+var ini_ship01y = maxY/5;
+var ship01x = ini_ship01x;
+var ship01y = ini_ship01y/5;
 
 ///////////////////////////////////적 초기 설정////////////////////////////////////////////////////////////////
 //적 이미지
@@ -649,9 +656,9 @@ function game_init(){
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
 
-    //전함 초기화
-    shipx = ini_shipx;
-    shipy = ini_shipy;
+    //전함01 초기화
+    ship01x = ini_ship01x;
+    ship01y = ini_ship01y;
 
     //보너스 발생 여부
     bonus_cnt = 1;
@@ -1569,6 +1576,30 @@ function enemy_move(){
 
 }
 
+
+
+////////////////// 전함01 이동
+function ship01_move(){
+
+
+    if (gameTime >= 500000){
+        alert("광선발사")
+        return;        
+    }
+        //전함01 이동
+        if (ini_ship01x > 0){
+         
+            ship01x = ship01x - 0.1;
+            //ship01x = ship01x/10;
+            
+            Context.drawImage(ship01_Image,ship01x - 10,ship01y,60,20)
+            Context.drawImage(ship01_Image,ship01x,ship01y + 50,30,10)
+            Context.drawImage(ship01_Image,ship01x + 20,ship01y + 20,65,15)
+            Context.drawImage(ship01_Image,ship01x + 10,ship01y + 30,15,5)
+            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 35,24,8)
+    
+        }    
+}
 ////////////////// 게임 배경 화면
 function game_background(){
 
@@ -1615,7 +1646,7 @@ function game_background(){
         cityEnd_y = cityEnd_y + 0.2
     }
 
-    Context.globalAlpha = 0.5;
+    //Context.globalAlpha = 0.5;
 
     //콜로니 밖 우주 배경그려주기(투명도 적용)
     Context.save();
@@ -1630,14 +1661,29 @@ function game_background(){
 
     Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
 
-    //콜로니끝
-    Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
+    //콜로니끝 
+    //콜로니 끝 근처는 어둡다.
+    Context3.beginPath();
+    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,100 +  Math.floor(Math.random() * 5) ,0,2*Math.PI); 
+ 
+    if (Math.floor(Math.random() * 2) == 2){
+        Context3.stroke();        //원 테두리
+        //Context3.fillStyle = 'gray';
+    }else{
+        Context3.fillStyle = 'black';
+    }
+    Context3.fillStyle = 'black';
+    Context3.fill();
+
+    //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
+    //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 , theCanvas.clientHeight / 4 + cityEnd_y - 40 +  Math.floor(Math.random() * 3) ,  60 ,40 );
+    Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  25 ,30 );
 
     Context.restore();
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = "0.4"
+    Context3.globalAlpha = 0.2 * Math.floor(Math.random() * 3)
 
     //중앙상단선
     Context3.beginPath();
@@ -1657,7 +1703,7 @@ function game_background(){
 
     for (var i=0;i<4;i++){
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 40 + cityEnd_y);
         Context3.lineTo(400 - 30 * i, 0);
         Context3.strokeStyle = "#grey";; //선 색상
         Context3.stroke();
@@ -1699,7 +1745,7 @@ function game_background(){
 
     for (var i=0;i<4;i++){
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 40 + cityEnd_y);
         Context3.lineTo(theCanvas.clientWidth - 400 + 30 * i, 0);
         Context3.strokeStyle = "#grey";; //선 색상
         Context3.stroke();
@@ -1790,8 +1836,11 @@ function game_background(){
         Context3.globalAlpha = "0.08"
         Context3.fill();
 
+        
         //console.log("t",parseInt(gameTime/200) % 3);
 
+
+         
         if (parseInt(gameTime/1000) % 2 == 0){
             cityImage = city01Image;
         }else {
@@ -1810,11 +1859,12 @@ function game_background(){
             var random06 = Math.floor(Math.random() * 30) + 1;
 
             Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
-            Context3.globalAlpha = "0.5"
+            Context3.globalAlpha = 1
             Context3.strokeStyle = "balck";
 
             //건물 이미지
-            Context3.globalAlpha = "0.2"
+            //Context3.globalAlpha = 0.2;
+            Context3.globalAlpha = 0.4;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
@@ -1823,7 +1873,7 @@ function game_background(){
                 Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }
 
-            Context3.globalAlpha = "0.6"
+            Context3.globalAlpha = 0.6
 
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
@@ -1833,40 +1883,42 @@ function game_background(){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 3  + j + random01 + cityEnd_y , 1 * random01 + j*2 - (cityEnd_x/200*j) ,20 * random03)
             }
 
-            //상단 선 및 좌우 측 벽 조명
-            Context3.fillStyle = 'yellow'; // 채우기 색 지정
-            Context3.globalAlpha = "0.01"
-            Context3.strokeStyle = "balck";
+            // //상단 선 및 좌우 측 벽 조명
+            // Context3.fillStyle = 'yellow'; // 채우기 색 지정
+            // Context3.globalAlpha = "0.01"
+            // Context3.strokeStyle = "balck";
 
-            Context3.beginPath();
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 25  - Math.floor(Math.random() * 5)  + cityEnd_y, 40 - random01, 0, Math.PI * 2);
-            Context3.stroke();
+            // Context3.beginPath();
+            // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 25  - Math.floor(Math.random() * 5)  + cityEnd_y, 40 - random01, 0, Math.PI * 2);
+            // Context3.stroke();
 
-            Context3.fillStyle = 'black'; // 채우기 색 지정
-            Context3.globalAlpha = "0.03"
-            Context3.strokeStyle = "balck";
+            // Context3.fillStyle = 'black'; // 채우기 색 지정
+            // Context3.globalAlpha = "0.03"
+            // Context3.strokeStyle = "balck";
 
+			// Context3.beginPath();
+			// Context3.globalAlpha = "0.01"
+			// Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 2 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
+			// Context3.stroke();
+
+            //콜로니 끝 근처 원
 			Context3.beginPath();
-			Context3.globalAlpha = "0.01"
-			Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 2 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
+			Context3.globalAlpha = 0.04 * Math.floor(Math.random() * 5)
+			Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
 			Context3.stroke();
 
-			Context3.beginPath();
-			Context3.globalAlpha = "0.03"
-			Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 20 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
-			Context3.stroke();
-
-            k = k + 50;  //조명 간격
+            //k = k + 50;  //조명 간격
             //우측중단선 조명
-            Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x + k , theCanvas.clientHeight / 4 - 30 + cityEnd_y  , 5 + k/100 , 10  + k/20);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x + k , theCanvas.clientHeight / 4 - 30 + cityEnd_y  , 5 + k/100 , 10  + k/20);
 
             //중앙 통로 끝
-            Context3.fillRect(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x  - 40  , theCanvas.clientHeight / 4 - 50 + cityEnd_y  , 40 + k/20   , 60  );
+            //Context3.fillRect(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x  - 40  , theCanvas.clientHeight / 4 - 50 + cityEnd_y  , 40 + k/20   , 60  );
 
             //좌측 중단 조명
-            Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
-            j = j + (10*random03);     //건물 상하 조밀도
+            //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
+            j = j + (11*random03);     //건물 상하 조밀도
         }
     //}
 
@@ -2578,19 +2630,12 @@ function player_collision(){
             }
         }
     }
-}
+} 
 
-    //전함 이미지 
-    var ini_shipx = maxX;
-    var ini_shipy = maxY/5;
-    var shipx = ini_shipx;
-    var shipy = ini_shipy/5;
- 
-    //보너스 발생 전후 여부
-    var bonus_cnt = 1; 
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
 function drawScreen(){
+
 
     //게임 진행 컨텍스트(레이어)
     Context.fillStyle = "#000000";
@@ -2608,7 +2653,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 5000 &&  bonus_cnt == Math.floor(gameScore/5000)){    
+    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
         
         //if (gameScore%1000 == 0){
             
@@ -2632,25 +2677,15 @@ function drawScreen(){
 	//게임 컨트롤
     gameControl();
 
+    //전함01 이동
+    ship01_move();   
+    
+    
     //게임 배경 화면
 	//if (gameTime % 2 === 0){
 		game_background();
-	//}
+	//} 
 
-
-    //전함 이동
-    if (ini_shipx > 0){
-         
-        shipx = shipx - 0.1;
-        //shipx = shipx/10;
-        
-        Context.drawImage(shipImage,shipx,shipy,60,20)
-        Context.drawImage(shipImage,shipx,shipy + 50,30,10)
-
-    }
-
-
-    
         
     //플레이어 경계
     player_border();
@@ -2714,8 +2749,8 @@ function drawScreen(){
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
 
     Context.fillText("Score : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
-    //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,100);
     Context.fillText("Bonus: " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
+    Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
 
     if(gameTime<=50){
         Context2.font = '100px Arial';

@@ -1683,15 +1683,19 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.2 * Math.floor(Math.random() * 3)
+    Context3.globalAlpha = 0.5 * Math.floor(Math.random() * 10)
 
+    //for (var i=1;i<=5;i++){
     //중앙상단선
     Context3.beginPath();
     //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
-	Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 , theCanvas.clientHeight / 4 - 100 + cityEnd_y);
+	Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 , theCanvas.clientHeight / 4 - 50 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth / 2  +  Math.floor(Math.random() * 10), 0);
     Context3.strokeStyle = "#grey";; //선 색상
     Context3.stroke();
+    //}   
+
+ 
 
     //좌측상단선
     // Context3.beginPath();
@@ -1711,7 +1715,7 @@ function game_background(){
 
     //좌중앙
     Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 50 , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
+    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 15 , theCanvas.clientHeight / 4 + cityEnd_y);
     Context3.lineTo(0, theCanvas.clientHeight/6   +  Math.floor(Math.random() * 10));
     //Context3.strokeStyle = "#f0f0f0";; //선 색상
     Context3.strokeStyle = "grey";; //선 색상
@@ -1753,7 +1757,7 @@ function game_background(){
 
     //우중앙
     Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 50, theCanvas.clientHeight / 4 - 20 + cityEnd_y);
+    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 15, theCanvas.clientHeight / 4 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
     Context3.strokeStyle = "#grey";; //선 색상
     Context3.stroke();

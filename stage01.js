@@ -1893,8 +1893,8 @@ function game_background(){
             cityImage = city01Image;
 
             Context3.closePath();
-            Context3.fillStyle="darkblack";
-            Context3.globalAlpha = 0.8;
+            Context3.fillStyle="black";
+            Context3.globalAlpha = 0.6;
             Context3.fill(); 
         
             
@@ -1902,8 +1902,8 @@ function game_background(){
             cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="darksky";
-            Context3.globalAlpha = 0.6;
+            Context3.fillStyle="skyblue";
+            Context3.globalAlpha = 0.4;
             Context3.fill(); 
                         
         }
@@ -2710,7 +2710,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
+    if (gameScore >= 2000 &&  bonus_cnt == Math.floor(gameScore/2000)){    
         
         //if (gameScore%1000 == 0){
             

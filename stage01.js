@@ -1716,7 +1716,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.5 * Math.floor(Math.random() * 10)
+    Context3.globalAlpha = 0.4 * Math.floor(Math.random() * 10)
 
     //for (var i=1;i<=5;i++){
     //중앙상단선
@@ -1821,8 +1821,8 @@ function game_background(){
             Context3.fillStyle = 'skyblue'; // 채우기 색 지정
         }
 
-        Context3.globalAlpha = "0.4"
-        Context3.strokeStyle = "balck";
+        //Context3.globalAlpha = "0.4"
+        //Context3.strokeStyle = "balck";
 
         //메인원1
         for(var i=0;i<5;i++){
@@ -1857,8 +1857,7 @@ function game_background(){
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
         Context3.lineTo(360  , 0);
         Context3.lineTo( theCanvas.clientWidth - 360 , 0);
-
-
+ 
       
         if (parseInt(gameTime/1000) % 2 == 0){
             cityImage = city01Image;
@@ -1890,25 +1889,24 @@ function game_background(){
         //console.log("t",parseInt(gameTime/200) % 3); 
          
         if (parseInt(gameTime/1000) % 2 == 0){
-            cityImage = city01Image;
+           // cityImage = city01Image;
 
             Context3.closePath();
-            Context3.fillStyle="skyblack";
+            Context3.fillStyle="darksky";
             Context3.globalAlpha = 0.6;
-            Context3.fill(); 
-        
+            Context3.fill();  
             
         }else {
-            cityImage = city02Image;
+           // cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="black";
+            Context3.fillStyle="darkyellow";
             Context3.globalAlpha = 0.8;
             Context3.fill(); 
                         
         }
 
-        k = 0; //조명 간격
+        //k = 0; //조명 간격
 
         for (var j = 0; j < 800; j++){
 
@@ -1919,9 +1917,9 @@ function game_background(){
             var random05 = Math.floor(Math.random() * 20) + 1;
             var random06 = Math.floor(Math.random() * 30) + 1;
 
-            Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
-            Context3.globalAlpha = 1
-            Context3.strokeStyle = "balck";
+            //Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
+            //Context3.globalAlpha = 1
+            //Context3.strokeStyle = "balck";
 
             //건물 이미지
             //Context3.globalAlpha = 0.2;
@@ -1934,7 +1932,7 @@ function game_background(){
                 Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }
 
-            Context3.globalAlpha = 0.6
+            Context3.globalAlpha = 0.5
 
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
@@ -1964,7 +1962,7 @@ function game_background(){
 
             //콜로니 끝 근처 원
 			Context3.beginPath();
-			Context3.globalAlpha = 0.04 * Math.floor(Math.random() * 5)
+			Context3.globalAlpha = 0.08 * Math.floor(Math.random() * 3)
 			Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
 			Context3.stroke();
 
@@ -1985,7 +1983,7 @@ function game_background(){
     
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = "1"
+    Context3.globalAlpha = 0.8;
     Context3.strokeStyle = "ffffff";
 }
 

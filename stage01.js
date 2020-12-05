@@ -1716,7 +1716,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.4 * Math.floor(Math.random() * 10)
+    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 10)
 
     //for (var i=1;i<=5;i++){
     //중앙상단선
@@ -1735,10 +1735,10 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<4;i++){
+    for (var i=0;i<3;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 40 + cityEnd_y);
-        Context3.lineTo(400 - 30 * i, 0);
+        Context3.lineTo(400 - 10 * i, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
@@ -1776,10 +1776,10 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<4;i++){
+    for (var i=0;i<3;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 40 + cityEnd_y);
-        Context3.lineTo(theCanvas.clientWidth - 400 + 30 * i, 0);
+        Context3.lineTo(theCanvas.clientWidth - 400 + 10 * i, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }

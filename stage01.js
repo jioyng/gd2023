@@ -1893,7 +1893,7 @@ function game_background(){
             cityImage = city01Image;
 
             Context3.closePath();
-            Context3.fillStyle="black";
+            Context3.fillStyle="darkblack";
             Context3.globalAlpha = 0.8;
             Context3.fill(); 
         
@@ -1902,7 +1902,7 @@ function game_background(){
             cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="skyblue";
+            Context3.fillStyle="darksky";
             Context3.globalAlpha = 0.6;
             Context3.fill(); 
                         

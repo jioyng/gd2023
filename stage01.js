@@ -1706,9 +1706,7 @@ function game_background(){
     }
     
     Context3.fillStyle = 'black';
-    Context3.fill();
-
-    
+    Context3.fill(); 
     
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 , theCanvas.clientHeight / 4 + cityEnd_y - 40 +  Math.floor(Math.random() * 3) ,  60 ,40 );
@@ -1854,6 +1852,18 @@ function game_background(){
     //코로니 배경 건물
     //for (var i = 0; i < 1; i++){
 
+        //삼각형(지붕 안개)
+        Context3.beginPath();
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
+        Context3.lineTo(310  , 0);
+        Context3.lineTo( theCanvas.clientWidth - 310 , 0);
+
+        Context3.closePath();
+        Context3.fillStyle="black";
+        Context3.globalAlpha = 0.4;
+        Context3.fill(); 
+        
+        
         //삼각형(지면 안개)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
@@ -1862,7 +1872,7 @@ function game_background(){
 
         Context3.closePath();
         Context3.fillStyle="skyblack";
-        Context3.globalAlpha = "0.08"
+        Context3.globalAlpha = 0.1;
         Context3.fill(); 
         
         //console.log("t",parseInt(gameTime/200) % 3); 

@@ -1970,7 +1970,7 @@ function game_background(){
 
             //건물 이미지
             //Context3.globalAlpha = 0.2;
-            Context3.globalAlpha = 0.4;
+            Context3.globalAlpha = 0.5;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
@@ -1979,12 +1979,12 @@ function game_background(){
                 Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }
 
-            Context3.globalAlpha = 0.5
+            Context3.globalAlpha = 0.6;
 
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else {
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 3  + j + random01 + cityEnd_y , 1 * random01 + j*2 - (cityEnd_x/200*j) ,20 * random03)
             }
@@ -2024,7 +2024,13 @@ function game_background(){
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-            j = j + (12*random03);     //건물 상하 조밀도
+            if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
+                 j = j + (12*random03);     //건물 상하 조밀도
+            }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
+                j = j + (11*random03);     //건물 상하 조밀도
+            }else {
+                j = j + (10*random03);     //건물 상하 조밀도
+            }
         }
     //} 
     
@@ -2189,6 +2195,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             isKeyDown = [];
             isKeyCode = null;
+
+            return;
 
         }
 
@@ -2703,6 +2711,8 @@ function player_collision(){
                 }else { 
 
                     gameRetryExitButton(); 
+                    
+                    
                 } 
 
                 return;

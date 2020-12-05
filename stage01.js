@@ -145,6 +145,12 @@ button_end = new Path2D();
 button_end.fillStyle = "rgb(242, 255, 0)";
 button_end.rect(ls_width/2 + 10, ls_height/2 - 250 , 300, 150);
 
+var button_continue = null;
+button_continue = new Path2D();
+button_continue.fillStyle = "rgb(242, 255, 0)";
+button_continue.rect(ls_width/2 - 250, ls_height/2 - 80 , 500, 150);
+
+
 //초기설정 게임 변수에 저장
 var gameFrame = ini_gameFrame;
 var cityEnd_size = init_cityEnd_size;
@@ -2189,9 +2195,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
             //게임 재시도 or 나가기
             Context2.stroke(button_play);
             Context2.stroke(button_end);
+            Context2.stroke(button_continue);
             //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);
             Context2.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
             Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
+            Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height/2);
 
             isKeyDown = [];
             isKeyCode = null;
@@ -2413,6 +2421,12 @@ function clickCanvas(event, as_gb) {
             isKeyDown = [];
             isKeyCode = null;
         }
+
+        //게임 계속
+        if(Context.isPointInPath(button_continue, x,  y)) {
+            player_cnt = 1;
+            gameStart(13);  
+        }        
     }
 
 }
@@ -2765,7 +2779,7 @@ function drawScreen(){
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 2000 &&  bonus_cnt == Math.floor(gameScore/2000)){    
+    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
         
         //if (gameScore%1000 == 0){
             

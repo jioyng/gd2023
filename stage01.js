@@ -1856,24 +1856,50 @@ function game_background(){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
         Context3.lineTo(360  , 0);
-        Context3.lineTo( theCanvas.clientWidth - 360 , 0);
+        Context3.lineTo( theCanvas.clientWidth - 360 , 0); 
+         
+        if (parseInt(gameTime/1000) % 5 == 0){
+            // cityImage = city01Image;
  
-      
-
-
-        Context3.closePath();
-        Context3.fillStyle="#504D3B";
-        Context3.globalAlpha = 0.3;
-        Context3.fill(); 
-        
+             Context3.closePath();
+             Context3.fillStyle="#40608E";
+             Context3.globalAlpha = 0.1;
+             Context3.fill();  
+             
+         }else if (parseInt(gameTime/1000) % 5 == 1){
+             // cityImage = city02Image;
   
-        if (parseInt(gameTime/1000) % 3 == 0){
-            Context3.globalAlpha = 0.2;
-        }else if (parseInt(gameTime/1000) % 3 == 1){
-            Context3.globalAlpha = 0.4;                        
-        }
+              Context3.closePath();
+              Context3.fillStyle="#408E8C";
+              Context3.globalAlpha = 0.12;
+              Context3.fill(); 
+                          
+         }else if (parseInt(gameTime/1000) % 5 == 2){
+            // cityImage = city02Image;
  
-        Context3.fill();       
+             Context3.closePath();
+             Context3.fillStyle="#9EA46B";
+             Context3.globalAlpha = 0.14;
+             Context3.fill(); 
+                         
+         }else if (parseInt(gameTime/1000) % 5 == 3){
+             // cityImage = city02Image;
+  
+              Context3.closePath();
+              Context3.fillStyle="#091413";
+              Context3.globalAlpha = 0.16;
+              Context3.fill(); 
+                          
+          }else {
+            // cityImage = city02Image;
+ 
+             Context3.closePath();
+             Context3.fillStyle="#8E9695";
+             Context3.globalAlpha = 0.1;
+             Context3.fill(); 
+                         
+         }
+  
 
         
         //삼각형(지면 안개)

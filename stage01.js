@@ -1855,14 +1855,30 @@ function game_background(){
         //삼각형(지붕 안개)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
-        Context3.lineTo(310  , 0);
-        Context3.lineTo( theCanvas.clientWidth - 310 , 0);
+        Context3.lineTo(360  , 0);
+        Context3.lineTo( theCanvas.clientWidth - 360 , 0);
 
-        Context3.closePath();
-        Context3.fillStyle="black";
-        Context3.globalAlpha = 0.4;
-        Context3.fill(); 
+
+      
+        if (parseInt(gameTime/1000) % 2 == 0){
+            cityImage = city01Image;
+
+            Context3.closePath();
+            Context3.fillStyle="black";
+            Context3.globalAlpha = 0.4;
+            Context3.fill(); 
         
+            
+        }else {
+            cityImage = city02Image;
+
+            Context3.closePath();
+            Context3.fillStyle="greyblue";
+            Context3.globalAlpha = 0.2;
+            Context3.fill(); 
+                        
+        }
+
         
         //삼각형(지면 안개)
         Context3.beginPath();
@@ -1870,17 +1886,26 @@ function game_background(){
         Context3.lineTo(-200  , theCanvas.clientHeight);
         Context3.lineTo( theCanvas.clientWidth  , theCanvas.clientHeight);
 
-        Context3.closePath();
-        Context3.fillStyle="skyblack";
-        Context3.globalAlpha = 0.1;
-        Context3.fill(); 
-        
+
         //console.log("t",parseInt(gameTime/200) % 3); 
          
         if (parseInt(gameTime/1000) % 2 == 0){
             cityImage = city01Image;
+
+            Context3.closePath();
+            Context3.fillStyle="black";
+            Context3.globalAlpha = 0.8;
+            Context3.fill(); 
+        
+            
         }else {
             cityImage = city02Image;
+
+            Context3.closePath();
+            Context3.fillStyle="skyblue";
+            Context3.globalAlpha = 0.6;
+            Context3.fill(); 
+                        
         }
 
         k = 0; //조명 간격

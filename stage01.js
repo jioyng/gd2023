@@ -1724,7 +1724,7 @@ function game_background(){
     //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
 	Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 , theCanvas.clientHeight / 4 - 50 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth / 2  +  Math.floor(Math.random() * 10), 0);
-    Context3.strokeStyle = "#grey";; //선 색상
+    Context3.strokeStyle = "grey";; //선 색상
     Context3.stroke();
     //}   
 
@@ -1732,14 +1732,14 @@ function game_background(){
     // Context3.beginPath();
     // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
     // Context3.lineTo(400, 0);
-    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
     for (var i=0;i<4;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 40 + cityEnd_y);
         Context3.lineTo(400 - 30 * i, 0);
-        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
 
@@ -1773,14 +1773,14 @@ function game_background(){
     // Context3.beginPath();
     // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 30, theCanvas.clientHeight / 4 - 80 + cityEnd_y);
     // Context3.lineTo(theCanvas.clientWidth - 400, 0 );
-    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
     for (var i=0;i<4;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 40 + cityEnd_y);
         Context3.lineTo(theCanvas.clientWidth - 400 + 30 * i, 0);
-        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
 
@@ -1788,21 +1788,21 @@ function game_background(){
     Context3.beginPath();
     Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 15, theCanvas.clientHeight / 4 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
-    Context3.strokeStyle = "#grey";; //선 색상
+    Context3.strokeStyle = "grey";; //선 색상
     Context3.stroke();
 
     //우측하단선
     // Context3.beginPath();
     // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x  + 30, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
     // Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - 150);  //배경 선(타겟으로부터 화면우측하단끝)
-    // Context3.strokeStyle = "#grey";; //선 색상
+    // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
     for (var i=0;i<4;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
         Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 20 );  //배경 선(타겟으로부터 화면우측하단끝)
-        Context3.strokeStyle = "#grey";; //선 색상
+        Context3.strokeStyle = "grey"; //선 색상
         Context3.stroke();
     }
  
@@ -1815,11 +1815,11 @@ function game_background(){
 				back_distance2 = 0;
         }
 
-        if (parseInt(gameTime/2000) % 2 == 0){
-            Context3.fillStyle = 'darkyellow'; // 채우기 색 지정
-        }else {
-            Context3.fillStyle = 'skyblue'; // 채우기 색 지정
-        }
+        // if (parseInt(gameTime/2000) % 2 == 0){
+        //     Context3.fillStyle = 'darkyellow'; // 채우기 색 지정
+        // }else {
+        //     Context3.fillStyle = 'skyblue'; // 채우기 색 지정
+        // }
 
         //Context3.globalAlpha = "0.4"
         //Context3.strokeStyle = "balck";
@@ -1859,24 +1859,21 @@ function game_background(){
         Context3.lineTo( theCanvas.clientWidth - 360 , 0);
  
       
-        if (parseInt(gameTime/1000) % 2 == 0){
-            cityImage = city01Image;
 
-            Context3.closePath();
-            Context3.fillStyle="black";
-            Context3.globalAlpha = 0.2;
-            Context3.fill(); 
+
+        Context3.closePath();
+        Context3.fillStyle="#504D3B";
+        Context3.globalAlpha = 0.3;
+        Context3.fill(); 
         
-            
-        }else {
-            cityImage = city02Image;
-
-            Context3.closePath();
-            Context3.fillStyle="black";
-            Context3.globalAlpha = 0.4;
-            Context3.fill(); 
-                        
+  
+        if (parseInt(gameTime/1000) % 3 == 0){
+            Context3.globalAlpha = 0.2;
+        }else if (parseInt(gameTime/1000) % 3 == 1){
+            Context3.globalAlpha = 0.4;                        
         }
+ 
+        Context3.fill();       
 
         
         //삼각형(지면 안개)
@@ -1888,20 +1885,44 @@ function game_background(){
 
         //console.log("t",parseInt(gameTime/200) % 3); 
          
-        if (parseInt(gameTime/1000) % 2 == 0){
+        if (parseInt(gameTime/1000) % 5 == 0){
            // cityImage = city01Image;
 
             Context3.closePath();
-            Context3.fillStyle="darksky";
-            Context3.globalAlpha = 0.6;
+            Context3.fillStyle="#40608E";
+            Context3.globalAlpha = 0.3;
             Context3.fill();  
             
-        }else {
+        }else if (parseInt(gameTime/1000) % 5 == 1){
+            // cityImage = city02Image;
+ 
+             Context3.closePath();
+             Context3.fillStyle="#408E8C";
+             Context3.globalAlpha = 0.3;
+             Context3.fill(); 
+                         
+        }else if (parseInt(gameTime/1000) % 5 == 2){
            // cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="darkyellow";
-            Context3.globalAlpha = 0.8;
+            Context3.fillStyle="#9EA46B";
+            Context3.globalAlpha = 0.4;
+            Context3.fill(); 
+                        
+        }else if (parseInt(gameTime/1000) % 5 == 3){
+            // cityImage = city02Image;
+ 
+             Context3.closePath();
+             Context3.fillStyle="#091413";
+             Context3.globalAlpha = 0.6;
+             Context3.fill(); 
+                         
+         }else {
+           // cityImage = city02Image;
+
+            Context3.closePath();
+            Context3.fillStyle="#8E9695";
+            Context3.globalAlpha = 0.5;
             Context3.fill(); 
                         
         }

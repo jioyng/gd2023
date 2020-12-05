@@ -1821,7 +1821,7 @@ function game_background(){
             Context3.fillStyle = 'skyblue'; // 채우기 색 지정
         }
 
-        Context3.globalAlpha = "0.5"
+        Context3.globalAlpha = "0.4"
         Context3.strokeStyle = "balck";
 
         //메인원1
@@ -1865,7 +1865,7 @@ function game_background(){
 
             Context3.closePath();
             Context3.fillStyle="black";
-            Context3.globalAlpha = 0.4;
+            Context3.globalAlpha = 0.6;
             Context3.fill(); 
         
             
@@ -1873,8 +1873,8 @@ function game_background(){
             cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="greyblue";
-            Context3.globalAlpha = 0.2;
+            Context3.fillStyle="black";
+            Context3.globalAlpha = 0.8;
             Context3.fill(); 
                         
         }
@@ -1882,7 +1882,7 @@ function game_background(){
         
         //삼각형(지면 안개)
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
         Context3.lineTo(-200  , theCanvas.clientHeight);
         Context3.lineTo( theCanvas.clientWidth  , theCanvas.clientHeight);
 
@@ -1894,7 +1894,7 @@ function game_background(){
 
             Context3.closePath();
             Context3.fillStyle="black";
-            Context3.globalAlpha = 0.6;
+            Context3.globalAlpha = 0.9;
             Context3.fill(); 
         
             
@@ -1902,8 +1902,8 @@ function game_background(){
             cityImage = city02Image;
 
             Context3.closePath();
-            Context3.fillStyle="skyblue";
-            Context3.globalAlpha = 0.4;
+            Context3.fillStyle="black";
+            Context3.globalAlpha = 0.8;
             Context3.fill(); 
                         
         }
@@ -1979,7 +1979,7 @@ function game_background(){
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-            j = j + (11*random03);     //건물 상하 조밀도
+            j = j + (12*random03);     //건물 상하 조밀도
         }
     //} 
     

@@ -628,11 +628,11 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
-    //플레이어 갯수(보너스)가 더이상 없는경우만 게임 초기화 한다. 
-    if (parseInt(player_cnt) > 0){
- 
-        player_init(); 
-        
+    //플레이어 초기화
+    player_init(); 
+
+    //게임 초기화(플레이어 갯수(보너스)가 더이상 없는경우만 수행한다.) 
+    if (parseInt(player_cnt) > 0){  
         return;
     }
 
@@ -652,8 +652,6 @@ function game_init(){
     cityEnd_y = init_cityEnd_y;
     enemy_size = enemy_size;
     enemy_speed = enemy_speed;
-
- 
 
     //남은 플레이어 갯수(보너스)
     //ini_player_cnt = 0;  

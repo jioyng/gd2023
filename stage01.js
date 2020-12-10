@@ -1766,10 +1766,10 @@ function game_background(){
     // Context3.stroke();
 
 
-    for (var i=0;i<1;i++){
+    for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
-        Context3.lineTo(-300 -  i, theCanvas.clientHeight + 30 * i);
+        Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 40 * i);
         //Context3.strokeStyle = "#f0f0f0";; //선 색상
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 1;
@@ -1805,10 +1805,10 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<1;i++){
+    for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
-        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 20 - theCanvas.clientHeight/5);  //배경 선(타겟으로부터 화면우측하단끝)
+        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 40 - theCanvas.clientHeight/5);  //배경 선(타겟으로부터 화면우측하단끝)
         Context3.strokeStyle = "grey"; //선 색상
         Context3.stroke();
     }
@@ -1832,7 +1832,7 @@ function game_background(){
         //Context3.strokeStyle = "balck";
 
         //메인원1
-        for(var i=0;i<4;i++){
+        for(var i=0;i<5;i++){
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4   + cityEnd_y, 70 + back_distance, 0, Math.PI * 2);
@@ -1977,45 +1977,46 @@ function game_background(){
             //Context3.globalAlpha = 1
             //Context3.strokeStyle = "balck";
 
-            //건물 이미지
+            //지면 땅
             //Context3.globalAlpha = 0.2;
             Context3.globalAlpha = 0.4;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 5  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 5  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else {
-                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 5  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
             }
 
             Context3.globalAlpha = 0.6;
 
+            //지면 건물
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*4 - (cityEnd_x/200*j) ,20 * random03)
             }else {
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 3  + j + random01 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }
 
-            //지붕 반사
+            //지붕 건물 반사
             Context3.globalAlpha = 0.04;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else {
                 Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
             }
                         
-
+            //지붕 땅 반사
             Context3.globalAlpha = 0.06;
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else {
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }
             
             

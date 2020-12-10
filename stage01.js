@@ -1720,7 +1720,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 10)
+    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 6)
 
     //for (var i=1;i<=5;i++){
     //중앙상단선

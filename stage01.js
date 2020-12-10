@@ -1739,21 +1739,21 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<3;i++){
+    for (var i=0;i<=10;i++){
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 - 40 + cityEnd_y);
-        Context3.lineTo(400 - 10 * i, 0);
+        Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - i + 20 , theCanvas.clientHeight / 4 - 40 + i*2 + cityEnd_y);
+        Context3.lineTo(400 - 200 * i, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
 
-    //좌중앙
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 15 , theCanvas.clientHeight / 4 + cityEnd_y);
-    Context3.lineTo(0, theCanvas.clientHeight/6   +  Math.floor(Math.random() * 10));
-    //Context3.strokeStyle = "#f0f0f0";; //선 색상
-    Context3.strokeStyle = "grey";; //선 색상
-    Context3.stroke();
+    // //좌중앙
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 15 , theCanvas.clientHeight / 4 + cityEnd_y);
+    // Context3.lineTo(0, theCanvas.clientHeight/6   +  Math.floor(Math.random() * 10));
+    // //Context3.strokeStyle = "#f0f0f0";; //선 색상
+    // Context3.strokeStyle = "grey";; //선 색상
+    // Context3.stroke();
 
     //좌측하단선
     // Context3.beginPath();
@@ -1764,7 +1764,7 @@ function game_background(){
     // Context3.stroke();
 
 
-    for (var i=0;i<4;i++){
+    for (var i=0;i<1;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
         Context3.lineTo(-300 -  i, theCanvas.clientHeight + 30 * i);
@@ -1780,20 +1780,20 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<3;i++){
+    for (var i=0;i<=10;i++){
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x, theCanvas.clientHeight / 4 - 40 + cityEnd_y);
-        Context3.lineTo(theCanvas.clientWidth - 400 + 10 * i, 0);
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + i - 20, theCanvas.clientHeight / 4 - 40 + i*2 + cityEnd_y);
+        Context3.lineTo(theCanvas.clientWidth - 400 + 200 * i, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
 
-    //우중앙
-    Context3.beginPath();
-    Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 15, theCanvas.clientHeight / 4 + cityEnd_y);
-    Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
-    Context3.strokeStyle = "grey";; //선 색상
-    Context3.stroke();
+    // //우중앙
+    // Context3.beginPath();
+    // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + 15, theCanvas.clientHeight / 4 + cityEnd_y);
+    // Context3.lineTo(theCanvas.clientWidth,  theCanvas.clientHeight / 4 - 50 +  Math.floor(Math.random() * 10));
+    // Context3.strokeStyle = "grey";; //선 색상
+    // Context3.stroke();
 
     //우측하단선
     // Context3.beginPath();
@@ -1802,10 +1802,10 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<4;i++){
+    for (var i=0;i<1;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
-        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 20 );  //배경 선(타겟으로부터 화면우측하단끝)
+        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 20 - theCanvas.clientHeight/5);  //배경 선(타겟으로부터 화면우측하단끝)
         Context3.strokeStyle = "grey"; //선 색상
         Context3.stroke();
     }
@@ -1909,8 +1909,8 @@ function game_background(){
         //삼각형(지면 안개)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
-        Context3.lineTo(-200  , theCanvas.clientHeight);
-        Context3.lineTo( theCanvas.clientWidth  , theCanvas.clientHeight);
+        Context3.lineTo(-200  , theCanvas.clientHeight - theCanvas.clientHeight/5);
+        Context3.lineTo( theCanvas.clientWidth  , theCanvas.clientHeight - theCanvas.clientHeight/3);
 
 
         //console.log("t",parseInt(gameTime/200) % 3); 

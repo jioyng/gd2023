@@ -1720,7 +1720,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 6)
+    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 4)
 
     //for (var i=1;i<=5;i++){
     //중앙상단선
@@ -1729,6 +1729,7 @@ function game_background(){
 	Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 , theCanvas.clientHeight / 4 - 50 + cityEnd_y);
     Context3.lineTo(theCanvas.clientWidth / 2  +  Math.floor(Math.random() * 10), 0);
     Context3.strokeStyle = "grey";; //선 색상
+    Context3.lineWidth = 5;
     Context3.stroke();
     //}   
 
@@ -1742,8 +1743,9 @@ function game_background(){
     for (var i=0;i<=10;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - i + 20 , theCanvas.clientHeight / 4 - 40 + i*2 + cityEnd_y);
-        Context3.lineTo(400 - 200 * i, 0);
-        Context3.strokeStyle = "grey";; //선 색상
+        Context3.lineTo(200 - 200 * i, 0);
+        Context3.strokeStyle = "grey"; //선 색상
+        Context3.lineWidth = 2;
         Context3.stroke();
     }
 
@@ -1770,6 +1772,7 @@ function game_background(){
         Context3.lineTo(-300 -  i, theCanvas.clientHeight + 30 * i);
         //Context3.strokeStyle = "#f0f0f0";; //선 색상
         Context3.strokeStyle = "grey";; //선 색상
+        Context3.lineWidth = 1;
         Context3.stroke();
     }
 
@@ -1783,7 +1786,7 @@ function game_background(){
     for (var i=0;i<=10;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x + i - 20, theCanvas.clientHeight / 4 - 40 + i*2 + cityEnd_y);
-        Context3.lineTo(theCanvas.clientWidth - 400 + 200 * i, 0);
+        Context3.lineTo(theCanvas.clientWidth - 200 + 200 * i, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.stroke();
     }
@@ -1829,7 +1832,7 @@ function game_background(){
         //Context3.strokeStyle = "balck";
 
         //메인원1
-        for(var i=0;i<5;i++){
+        for(var i=0;i<4;i++){
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4   + cityEnd_y, 70 + back_distance, 0, Math.PI * 2);
@@ -1838,6 +1841,7 @@ function game_background(){
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
+            Context3.lineWidth = i;
             Context3.stroke();
         }
 
@@ -1845,6 +1849,7 @@ function game_background(){
         if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
             Context3.beginPath();
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
+            Context3.lineWidth = 1;
             Context3.stroke();
         }
 
@@ -1974,13 +1979,13 @@ function game_background(){
 
             //건물 이미지
             //Context3.globalAlpha = 0.2;
-            Context3.globalAlpha = 0.5;
+            Context3.globalAlpha = 0.4;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else {
-                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
             }
 
             Context3.globalAlpha = 0.6;
@@ -1988,10 +1993,32 @@ function game_background(){
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }else {
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 3  + j + random01 + cityEnd_y , 1 * random01 + j*2 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 3  + j + random01 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
             }
+
+            //지붕 반사
+            Context3.globalAlpha = 0.04;
+            if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
+                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+            }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
+                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+            }else {
+                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+            }
+                        
+
+            Context3.globalAlpha = 0.06;
+            if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+            }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+            }else {
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+            }
+            
+            
 
             // //상단 선 및 좌우 측 벽 조명
             // Context3.fillStyle = 'yellow'; // 채우기 색 지정

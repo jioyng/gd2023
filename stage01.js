@@ -1891,7 +1891,7 @@ function game_background(){
     //for (var i = 0; i < 1; i++){
 
         //신기하게 아래 주석처리하면 안개 효과가 짙어지네..
-        //삼각형(지붕 안개)
+        //삼각형(지붕 안개 효과)
         // Context3.beginPath();
         // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
         // Context3.lineTo(360  , 0);
@@ -1941,12 +1941,12 @@ function game_background(){
   
 
         
-        //삼각형(지면 안개)
+        //삼각형(지면 안개 효과)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
         Context3.lineTo(-200  , theCanvas.clientHeight - theCanvas.clientHeight/30);
         Context3.lineWidth = 1;
-        Context3.lineTo( theCanvas.clientWidth  , theCanvas.clientHeight - theCanvas.clientHeight/30);
+        Context3.lineTo( theCanvas.clientWidth + 100 + cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_y);
 
 
         //console.log("t",parseInt(gameTime/200) % 3); 

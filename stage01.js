@@ -1870,8 +1870,27 @@ function game_background(){
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
             Context3.lineWidth = i;
+            //Context3.lineWidth = 2;
+            Context3.stroke();
+
+
+            // //중앙상단에서 좌측하단 기둥
+            // Context3.beginPath();        
+            // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 ,  theCanvas.clientHeight / 4 - 50 + cityEnd_y - i * 100);
+            // Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1, 0 , theCanvas.clientHeight / 4 - 50 + i*10 + cityEnd_y);
+            // Context3.strokeStyle = "grey";; //선 색상
+            // Context3.lineWidth = 2;
+            // Context3.stroke();  
+                    
+
+            //중앙상단에서 좌측하단 기둥 
+            Context3.beginPath();            
+            Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 100  - back_distance + cityEnd_x) ;             
+            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 20 - back_distance, theCanvas.clientHeight / 4 - 50 + back_distance/2 + cityEnd_y);
+            Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = 2;
             Context3.stroke();
+
         }
 
         //메인원2

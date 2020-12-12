@@ -1795,7 +1795,7 @@ function game_background(){
     for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
-        Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 30 * i);
+        Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 40 * i);
         //Context3.strokeStyle = "#f0f0f0";; //선 색상
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 1;
@@ -1944,9 +1944,9 @@ function game_background(){
         //삼각형(지면 안개 효과)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
-        Context3.lineTo(-200 - cityEnd_x , theCanvas.clientHeight - theCanvas.clientHeight/30 - cityEnd_y);
+        Context3.lineTo(-200 - cityEnd_x, theCanvas.clientHeight - theCanvas.clientHeight/30);
         Context3.lineWidth = 1;
-        Context3.lineTo( theCanvas.clientWidth + 100 + cityEnd_x - cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_x - cityEnd_y);
+        Context3.lineTo( theCanvas.clientWidth + 200 + cityEnd_x - cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_x - cityEnd_y);
 
 
         //console.log("t",parseInt(gameTime/200) % 3); 

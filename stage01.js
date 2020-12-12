@@ -1860,7 +1860,7 @@ function game_background(){
         //Context3.strokeStyle = "balck";
 
         //메인원1
-        for(var i=0;i<5;i++){
+        for(var i=0;i<=4;i++){
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4   + cityEnd_y, 70 + back_distance, 0, Math.PI * 2);
@@ -1882,22 +1882,43 @@ function game_background(){
             // Context3.lineWidth = 2;
             // Context3.stroke();  
                     
+            //중앙 기둥 시작 마디
+            Context3.beginPath();
+            Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance, back_distance2/100, 0,Math.PI * 2);
+            Context3.lineWidth = i - 2;
+            Context3.stroke();
 
             //중앙상단에서 좌측하단 기둥 
             Context3.beginPath();            
             Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y);
             Context3.strokeStyle = "grey";; //선 색상
-            Context3.lineWidth = 2;
+            Context3.lineWidth = i;
             Context3.stroke();
+
+            //좌측 기둥 끝 마디
+            Context3.beginPath();
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y, 10 + i , 0,Math.PI * 2);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
+            Context3.lineWidth = 2;
+            Context3.stroke();                        
 
             //중앙상단에서 우측하단 기둥 
             Context3.beginPath();            
             Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 40 + back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y);
             Context3.strokeStyle = "grey";; //선 색상
-            Context3.lineWidth = 2;
+            Context3.lineWidth = 1;
             Context3.stroke();
+
+            //우측 기둥 끝 마디
+            Context3.beginPath();
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 40 + back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y, 10 + i , 0,Math.PI * 2);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
+            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
+            Context3.lineWidth = 2;
+            Context3.stroke();                
 
 
         }
@@ -1906,7 +1927,7 @@ function game_background(){
         if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
             Context3.beginPath();
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
-            Context3.lineWidth = 1;
+            Context3.lineWidth = i - 2;
             Context3.stroke();
         }
 

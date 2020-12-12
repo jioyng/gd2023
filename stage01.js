@@ -1730,7 +1730,7 @@ function game_background(){
         Context3.beginPath();
         //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 , theCanvas.clientHeight / 4 - 50 + cityEnd_y);
-        Context3.lineTo(theCanvas.clientWidth / 2  +  Math.floor(Math.random() * 10), 0);
+        Context3.lineTo(theCanvas.clientWidth / 2  +  Math.floor(Math.random() * 10) + cityEnd_x, 0);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 2;
         Context3.stroke();
@@ -1795,7 +1795,7 @@ function game_background(){
     for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
-        Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 40 * i);
+        Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 30 * i);
         //Context3.strokeStyle = "#f0f0f0";; //선 색상
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 1;
@@ -1835,7 +1835,7 @@ function game_background(){
     for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
-        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 40 - theCanvas.clientHeight/5);  //배경 선(타겟으로부터 화면우측하단끝)
+        Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 40 - theCanvas.clientHeight/10);  //배경 선(타겟으로부터 화면우측하단끝)
         Context3.strokeStyle = "grey"; //선 색상
         Context3.lineWidth = 2;
         Context3.stroke();
@@ -1944,9 +1944,9 @@ function game_background(){
         //삼각형(지면 안개 효과)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
-        Context3.lineTo(-200  , theCanvas.clientHeight - theCanvas.clientHeight/30);
+        Context3.lineTo(-200 - cityEnd_x , theCanvas.clientHeight - theCanvas.clientHeight/30 - cityEnd_y);
         Context3.lineWidth = 1;
-        Context3.lineTo( theCanvas.clientWidth + 100 + cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_y);
+        Context3.lineTo( theCanvas.clientWidth + 100 + cityEnd_x - cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_x - cityEnd_y);
 
 
         //console.log("t",parseInt(gameTime/200) % 3); 

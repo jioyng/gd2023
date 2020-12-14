@@ -1891,14 +1891,14 @@ function game_background(){
             //중앙상단에서 좌측하단 기둥 
             Context3.beginPath();            
             Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
-            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 10 - i*3 + back_distance/2 + cityEnd_y);
+            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i - back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = i;
             Context3.stroke();
 
             //좌측 기둥 끝 마디
             Context3.beginPath();
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 10 - i*3 + back_distance/2 + cityEnd_y, i , 0,Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i - back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i, i , 0,Math.PI * 2);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
             Context3.lineWidth = 2;
@@ -1907,14 +1907,14 @@ function game_background(){
             //중앙상단에서 우측하단 기둥 
             Context3.beginPath();            
             Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
-            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 40 + back_distance, theCanvas.clientHeight / 10 - i*3 + back_distance/2 + cityEnd_y);
+            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = 1;
             Context3.stroke();
 
             //우측 기둥 끝 마디
             Context3.beginPath();
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 40 + back_distance, theCanvas.clientHeight / 10 - i*3 + back_distance/2 + cityEnd_y, i , 0,Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i, i , 0,Math.PI * 2);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
             Context3.lineWidth = 2;

@@ -83,6 +83,8 @@
      
         socket.on('SEND', function(msg) {
             var msgLine = $('<div class="msgLine">');
+                // msgLine.css('text-align', 'center');
+                msgLine.css('color', 'red');
             var msgBox = $('<div class="msgBox">');
                     
             msgBox.append(msg);

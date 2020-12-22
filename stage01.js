@@ -2310,14 +2310,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             isKeyDown = [];
             isKeyCode = null;
+ 
 
-            return;
-
-        }
-
-        
-        return;
+        } 
     }
+
+    return;
  }
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {

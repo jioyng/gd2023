@@ -99,10 +99,8 @@ background-position: 50% -5%; */
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;"/>
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
-				우주력 2020년.<br> 
-				평화롭던 화성 콜로니에 정체를 모르는 외계 바이러스가 침투했다.<br> 
-				바이러스는 콜로니의 모든 기기에 잠식해 이상 반응을 일으키며<br> 
-				반년만에 모든 시민들을 혼돈의 도가니로 몰아넣었다.  
+				우주력 2020년, 평화롭던 화성 콜로니에 정체를 모르는 외계 바이러스가 침투했다.<br> 
+				바이러스는 콜로니의 군사 시설 및 기기에까지 침투하였고, 이상 반응을 일으키며 급속도로 퍼져나가기 시작했다.  
 			</div> 
 		</div>		
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -344,7 +342,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg"); 
 						
-						$("#infoText").html("마침내 바이러스는 콜로니 에너지 제어의 핵식인 M.A.I(마더 인공지능) 시스템에까지 침투 했고<br>이로인해 감염된 군용 드론들은 이상반응을 일으키며 시민들을<br>공격하기 시작한다."); 
+						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능(M.A.I)시스템에 까지 침투 했고<br>M.A.I에 의해 제어되는 드론들은 시민들을 공격하기 시작했다."); 
 						
 					}) 			
 				}, 5000);
@@ -352,14 +350,14 @@ $(function(){
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
-						$("#infoText").html("몇달 후... 우주 연방 정보국은 이상 반응의 원인이 수만 광년 떨어진<br>코로나19 은하로 부터 발생된 이상 자기파에 의해 생성된 것임을<br>밝혀냈고, 이를 저지하기 위한 비밀 작전 GD2020을 펼친다."); 						
+						$("#infoText").html("몇달이 지다고 마침내 우주 연방 정보국은 이상 반응의 원인이 수만 광년 떨어진<br>행성 코로나19 로부터 발생된 이상 자기파에 의한 것임을밝혀냈고,<br> 이를 제거하기 위한 비밀 작전 GD2020을 펼친다."); 						
 					}) 			
 				}, 10000);
 								
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("이에 우주 연방군 최고의 에이스 코맨더 Lee는 작전의 성공을 위해<br>비밀리에 마더 인공지능 시스템(M.A.I)의 파괴를 명받는다.");																		
+						$("#infoText").html("이에 우주 연방군 최고의 에이스 코맨더 Lee는 작전의 성공을 위해 비밀리에 M.A.I의 파괴를 명받는다.");																		
 					}) 			
 				}, 15000);
 										
@@ -367,7 +365,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro05.jpg"); 
 						//화이자, 모더나, 아스트라제네카
-						$("#infoText").html("Lee는 즉각 연방군의 최신 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 존비 드론들의 공격을 받기 시작하는데..."); 						 						
+						$("#infoText").html("Lee는 즉각 연방군의 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만<br>이를 가로막는 드론들의 거센 공격을 받기 시작한다."); 						 						
 					}) 			
 				}, 20000);				
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello NodeJs</title>
+        <script src="http://127.0.0.1:8088/socket.io/socket.io.js"></script>
+        <!-- <script src="nodejs.js"></script> -->
+        <script> 
+
+function onPageLoaded(){
+ 
+    
+ var socket = io.connect("http://127.0.0.1:8088");
+
+ socket.on("getusername",function(name){
+     alert("내이름은"+name);
+ });
+}
+         var msg = 0;
+
+            function connect(){
+                var socket = io();  
+
+                msg = msg + 1; 
+
+                socket.emit('SEND', msg);
+            }
+
+        </script>        
+    </head>
+    <body>
+        <button onclick="connect();">접속</button>
+    </body>
+</html>

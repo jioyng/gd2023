@@ -1,11 +1,36 @@
-var http = require('http');
+var express = require('express');
+var app = express(); 
+var http = require('http'); 
 
-http.createServer(function(request,response){ 
-    response.end("Hello Node <- response.end");
-    console.log("서버 실행중")
-}).listen(8088 , function(){
+var server = http.Server(app);       //익스프레스를 탑제한 http서버
+var socket = require('socket.io');   //소켓 IO
+var io = socket(server);             //웹서버를 탑제한 소켓 IO
 
-    // /response.end("Server is Stared");
+app.use('/', function(req, resp) {   //익스프레스 라우팅
+    resp.sendFile(__dirname + '/nodejs.html');
+});  
 
-    console.log("서버 시작")
-})
+server.listen(8088, function() {
+    console.log('Server On !');
+});
+
+io.on('connection', function(socket) { 
+ 
+      
+    socket.emit('getusername', "홍길동"); 
+
+    socket.on('SEND', function(msg) {
+        console.log(msg); 
+    }); 
+
+    socket.on('disconnect', function() { 
+        console.log("사용자 연결 해제");
+    }); 
+
+});
+
+// var socketio  = require("socket.io");
+// var io2 = socketio.listen(server);       
+// io2.sockets.on("connection",function(socket){
+//     console.log("test");
+// })   

@@ -5,6 +5,7 @@ var http = require('http');
 var server = http.Server(app);       //익스프레스를 탑제한 http서버
 var socket = require('socket.io');   //소켓 IO
 var io = socket(server);             //웹서버를 탑제한 소켓 IO
+var i = 0;
 
 app.use('/', function(req, resp) {   //익스프레스 라우팅
     resp.sendFile(__dirname + '/nodejs.html');
@@ -17,15 +18,17 @@ server.listen(8088, function() {
 io.on('connection', function(socket) { 
  
       
-    socket.emit('getusername', "홍길동"); 
+    i = i + 1;
+    
+    socket.emit('getusername', "홍길동" + i); 
 
     socket.on('SEND', function(msg) {
         console.log(msg); 
     }); 
 
-    socket.on('disconnect', function() { 
-        console.log("사용자 연결 해제");
-    }); 
+    // socket.on('disconnect', function() { 
+    //     console.log("사용자 연결 해제");
+    // }); 
 
 });
 

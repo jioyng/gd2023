@@ -1932,7 +1932,7 @@ function game_background(){
             //좌측 기둥 끝 마디에서 땅까지
             Context3.beginPath();            
             Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);             
-            Context3.lineTo(theCanvas.clientWidth / 2  - cityEnd_x + cityEnd_size/2 + 2*i , theCanvas.clientHeight + i  + cityEnd_y + i);
+            Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x + cityEnd_size/2 + 2*i , theCanvas.clientHeight + i  + cityEnd_y + i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = i/10;
             Context3.stroke();            

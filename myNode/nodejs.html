@@ -20,15 +20,23 @@
                         alert("내이름은"+name);
                     });
             }
+            
 
             var msg = 0;
 
             function connect(){
-                var socket = io();  
+                var socket = io();   
 
-                msg = msg + 1; 
+                //var socket = io.connect("http://127.0.0.1:8088");
 
+                socket.on("getusername",function(name){
+                    alert("내이름은"+name);
+                });       
+                 
                 socket.emit('SEND', msg);
+
+                
+                msg = msg + 1; 
             }
 
         </script>        

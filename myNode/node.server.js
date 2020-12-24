@@ -18,13 +18,16 @@ server.listen(8088, function() {
 io.on('connection', function(socket) { 
  
       
-    i = i + 1;
-    
-    socket.emit('getusername', "홍길동" + i); 
+    //i = i + 1;
 
     socket.on('SEND', function(msg) {
         console.log(msg); 
+        i= msg;
     }); 
+
+        
+    socket.emit('getusername', "홍길동" + i); 
+
 
     // socket.on('disconnect', function() { 
     //     console.log("사용자 연결 해제");

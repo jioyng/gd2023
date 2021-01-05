@@ -4,14 +4,21 @@
         <meta charset="UTF-8" />
         <title>Hello NodeJs</title> 
         <script src="//127.0.0.1:9892/socket.io/socket.io.js"></script>
-        <script src="nodejs.js"></script>   
+        <script src="nodejs.js"></script>     
         <script>
 
                  var socket = io.connect("//127.0.0.1:9892");
+        
+    
+                socket.on("get_user_data",function(name){
+                    alert("내이름은" + name + "입니다.");
+                });
+            
                
         </script>
     </head>
     <body> 
         노드 소켓 테스트 첫 페이지~
     </body>
+
 </html>

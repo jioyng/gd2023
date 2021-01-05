@@ -15,8 +15,7 @@ server.listen(8088, function() {
     console.log('Server On !');
 });
 
-io.on('connection', function(socket) { 
- 
+io.on('connection', function(socket) {  
       
     //i = i + 1;
 

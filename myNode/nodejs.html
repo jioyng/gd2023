@@ -2,46 +2,16 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
-        <title>Hello NodeJs</title>
-        <script src="http://127.0.0.1:8088/socket.io/socket.io.js"></script>
-        <!-- <script src="nodejs.js"></script> -->
-        <script> 
+        <title>Hello NodeJs</title> 
+        <script src="//127.0.0.1:9892/socket.io/socket.io.js"></script>
+        <script src="nodejs.js"></script>   
+        <script>
 
-            //window.addEventListener("load", onPageLoaded, false);
-
-            onPageLoaded();
-
-            function onPageLoaded(){
-            
-                        
-                    var socket = io.connect("http://127.0.0.1:8088");
-
-                    socket.on("getusername",function(name){
-                        alert("내이름은"+name);
-                    });
-            }
-            
-
-            var msg = 0;
-
-            function connect(){
-                var socket = io();   
-
-                //var socket = io.connect("http://127.0.0.1:8088");
-
-                socket.on("getusername",function(name){
-                    alert("내이름은"+name);
-                });       
-                 
-                socket.emit('SEND', msg);
-
-                
-                msg = msg + 1; 
-            }
-
-        </script>        
+                 var socket = io.connect("//127.0.0.1:9892");
+               
+        </script>
     </head>
-    <body>
-        <button onclick="connect();">접속</button>
+    <body> 
+        노드 소켓 테스트 첫 페이지~
     </body>
 </html>

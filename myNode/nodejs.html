@@ -9,9 +9,11 @@
 
                  var socket = io.connect("//127.0.0.1:9892");
         
-    
+                 var ls_names = "";
+
                 socket.on("get_user_data",function(name){
-                    alert("내이름은" + name + "입니다.");
+                    ls_names = ls_names + "내이름은" + name + "입니다.<br>"
+                    document.write("내이름은" + name + "입니다.<br>");
                 });
             
                

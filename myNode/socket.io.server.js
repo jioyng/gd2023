@@ -39,17 +39,24 @@ function RandomNextInt(max)
 //접속자
 var names = ['길동','동수','승기','채윤','지완'];
 var ls_names = "";
+var i = 0;
 
 //클라이언트 접속
 io.sockets.on("connection", function( socket )
 {
     var random = RandomNextInt(5) - 1;
-
-    ls_names = ls_names + names[random] + "<br>";
+    i++;
+    ls_names = ls_names + i + " : " + names[random] + "<br>";
     
-    console.log("[Client Connected] name : " + names[random]);
+    console.log("[New Client Connected] name : " + names[random]);
 
-    socket.emit("get_user_data", ls_names);
+    socket.emit("get_user_data",ls_names);
+
+    //접속 해제
+    socket.on('disconnect',function(){
+        console.log(" 접속 해제]");
+        i--;
+    })
 });
 
 

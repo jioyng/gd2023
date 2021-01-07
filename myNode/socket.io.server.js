@@ -21,8 +21,9 @@ server.listen(9892, function(){
 
 //socketio모듈을 인스턴스화 하여 핸들해야한다
 var socketio = require("socket.io")(server); //참조url: https://stackoverflow.com/questions/41623528/io-on-is-not-a-function
-
 var io = socketio.listen( server ); 
+
+var socketList = [];
 
 //socketio.on("connection", function(socket)
 io.on("connection", function(socket)
@@ -41,21 +42,66 @@ var names = ['길동','동수','승기','채윤','지완'];
 var ls_names = "";
 var i = 0;
 
+var j = 0;
+
 //클라이언트 접속
 io.sockets.on("connection", function( socket )
 {
-    var random = RandomNextInt(5) - 1;
-    i++;
-    ls_names = ls_names + i + " : " + names[random] + "<br>";
+    socketList.push(socket);
     
-    console.log("[New Client Connected] name : " + names[random]);
+    var random = RandomNextInt(5) - 1;
+ 
+    ls_names = ls_names + " ID : " + socket.id + " | Name : " + names[random] + "<br>"; 
 
-    socket.emit("get_user_data",ls_names);
+    //신규접속자
+    console.log("[New Client Connected] name : " + names[random]); 
+    //socket.emit("get_user_data",ls_names);
+    socketList.forEach(function(item, i) {
+        console.log(item.id);
+        //if (item != socket) {
+            item.emit('get_user_data', ls_names);
+        //}
+    });
+
+    
+    //받은메세지
+    socket.on("get_send_message",function(send_message){  
+       
+        // console.log("socket",socket.id);
+   
+        // var ls_send_message = " -> " + send_message;
+       
+        // console.log("[Send Client Message] message : " + ls_send_message);
+
+        // socket.emit("get_user_data",ls_names + ls_send_message);
+        console.log("socket.id:",socket.id);
+        socketList.forEach(function(item, i) {
+            console.log(item.id);
+            //if (item != socket) {
+                var ls_send_message = ls_names + " -> " + send_message;
+                item.emit('get_user_data', ls_send_message);
+            //}
+        });
+                
+
+    });
+
+
+    setInterval(fn_test, 1000/60);
+
+    function fn_test(){
+      
+        console.log("j",j) 
+        socket.emit("get_move_message",j);   
+        j = j + 1;
+    }
+
 
     //접속 해제
     socket.on('disconnect',function(){
         console.log(" 접속 해제]");
         i--;
+        socketList.splice(socketList.indexOf(socket), 1);
     })
 });
 

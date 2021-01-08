@@ -35,7 +35,7 @@ background-position: 50% -5%; */
   position:relative;
 }
 
-#start {
+.button {
 	text-decoration:none;
 	font-family:Arial;
 	box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 3px 2px;
@@ -69,7 +69,7 @@ background-position: 50% -5%; */
 	border-style:solid;
 }
 
-#start:active {
+#button:active {
 	box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
 	o-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
 	-moz-box-shadow:inset #cfbacf 0px 5px 8px -1px,#f0e4f0 1px 0 2px;
@@ -78,7 +78,7 @@ background-position: 50% -5%; */
 	top:3px
 }
 
-#start:hover {
+#button:hover {
 	background:#5f7a8a;
 	background:-o-linear-gradient(90deg, #5f7a8a, #a2b8b8);
 	background:-moz-linear-gradient( center top, #5f7a8a 5%, #a2b8b8 100% );
@@ -98,9 +98,9 @@ background-position: 50% -5%; */
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;"/>
-			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.8em; text-align:left; position: absolute;">  
+			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">  
 				우주력 2020년, 평화롭던 화성의 콜로니 연합에 정체를 모르는 외계 바이러스가 침투한다.<br> 
-				바이러스는 콜로니의 군사 시설 및 기기에까지 침투하였고, 이상 반응을 일으키며 급속도로 퍼져나가기 시작했다.  
+				바이러스는 콜로니의 군사 시설 및 기기에까지 침투하였고, 이상 반응을 일으키며 급속도로<br>퍼져나가기 시작했다.  
 			</div> 
 		</div>		
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -139,9 +139,15 @@ background-position: 50% -5%; */
 			<!-- Sorry, your browser does not support inline SVG. -->
 		</svg>
 		</div>
-		<div id="start" class="main"  style="position: absolute; top:75%; left:calc(50% - 100px); width:150px; z-index:200;">
-		Start
+		<div id="start" class="button"  style="position: absolute; top:60%; left:calc(50% - 110px); width:160px; z-index:200;">
+		Single Play
 		</div>
+		<div id="multi" class="button"  style="position: absolute; top:78%; left:calc(50% - 110px); width:160px; z-index:200;">
+		Multi Play
+		</div>
+		<!-- <div id="option" class="button"  style="position: absolute; top:87%; left:calc(50% - 100px); width:150px; z-index:200;">
+		Option
+		</div>				 -->
 		 <div  style="position: absolute; text-align:center; top:94%; color:white;z-index:5; width:96%;">
 			All right reserved by JohnRed.
 		</div>
@@ -342,7 +348,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg"); 
 						
-						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능(M.A.I)시스템에 까지 침투 했고<br>M.A.I에 의해 제어되는 드론들은 시민들을 공격하기 시작한다."); 
+						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능시스템 M.A.I까지 침투 했고<br>M.A.I에 의해 제어되는 기기들은 시민들을 공격하기 시작한다."); 
 						
 					}) 			
 				}, 5000);
@@ -351,14 +357,14 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg"); 
 						$("#infoText").html("몇달이 지다고... 우주 연방 정보국은 바이러스의 원인이 수만 광년 떨어진<br>행성 코로나19 로부터 발생된 이상 전자기파에 의한 것임을 밝혀냈고,<br>   \
-						                     확산을 막기위한 작전으로 '전체 단절 2020'(Gloval Disconnection 2020)을 펼친다."); 						
+						                     확산을 막기위한 작전으로 GD2020을 펼친다."); 						
 					}) 			
 				}, 10000);
 								
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("이에 우주 연방군 최고 에이스인 코맨더 LeeKey는 비밀리에 작적 성공의 핵심인 M.A.I의 파괴를 명받는다.");																		
+						$("#infoText").html("이에 우주 연방군 최고 에이스인 코맨더 LeeKey는 비밀리에 작적 성공의 핵심인 M.A.I의<br>파괴를 명받는다.");																		
 					}) 			
 				}, 15000);
 										
@@ -366,7 +372,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro05.jpg"); 
 						//화이자, 모더나, 아스트라제네카
-						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자-X에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작하는데..."); 						 						
+						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작하는데..."); 						 						
 					}) 			
 				}, 20000);				
 

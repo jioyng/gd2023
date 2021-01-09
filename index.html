@@ -97,10 +97,10 @@ background-position: 50% -5%; */
 				<p style="display:table-cell; text-align:center; vertical-align:middle;"><!--This game is impossible on portrait.--></p>
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
-			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width:100%;"/>
+			<img id="imgIntro"  src="./img/intro01.jpg"  style="max-width: 100%; height: auto;"/ >
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">  
 				우주력 2020년, 평화롭던 화성의 콜로니 연합에 정체를 모르는 외계 바이러스가 침투한다.<br> 
-				바이러스는 콜로니의 군사 시설 및 기기에까지 침투하였고, 이상 반응을 일으키며 급속도로<br>퍼져나가기 시작했다.  
+				바이러스는 콜로니의 산업 및 군사 방위 시설에 까지 침투하였고, 이상 반응을 일으키며<br>급속도로 퍼져나가기 시작했다.  
 			</div> 
 		</div>		
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -372,7 +372,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro05.jpg"); 
 						//화이자, 모더나, 아스트라제네카
-						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작하는데..."); 						 						
+						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작한다."); 						 						
 					}) 			
 				}, 20000);				
 

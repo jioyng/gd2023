@@ -141,7 +141,8 @@ window.addEventListener(orientationEvent, function() {
 //screen.lockOrientation("orientation");
 
 /////////////////가로, 새로 모드 감지.////////////////////////////////// 
-function f_search_landmode(){
+function f_search_landmode(){ 
+  
   var lstotdiv = document.getElementById("totdiv");           //화면 가리개
     //var lsGameCanvas = document.getElementById("GameCanvas");
     

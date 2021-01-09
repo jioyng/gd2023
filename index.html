@@ -88,28 +88,28 @@ background-position: 50% -5%; */
 	background:-ms-linear-gradient(#5f7a8a, #a2b8b8);
 	background:linear-gradient(#5f7a8a, #a2b8b8);
 }
-</style> 
+</style>
 </head>
     <!-- <body bgcolor="#262626" background="./img/main_intro.jpg" onload="play_misound();" > -->
 	<body bgcolor="#262626" background="./img/main_intro.jpg"  >
 	<!-- <div id="tot_div">	  -->
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
-				<p style="display:table-cell; text-align:center; vertical-align:middle;"><!--This game is impossible on portrait.--></p>
+				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg" >
-			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">  
-				우주력 2020년, 평화롭던 화성의 콜로니 연합에 정체를 모르는 외계 바이러스가 침투한다.<br> 
-				바이러스는 콜로니의 산업 및 군사 방위 시설에 까지 침투하였고, 이상 반응을 일으키며<br>급속도로 퍼져나가기 시작했다.  
-			</div> 
-		</div>		
+			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
+				우주력 2020년, 평화롭던 화성의 콜로니 연합에 정체를 모르는 외계 바이러스가 침투한다.<br>
+				바이러스는 콜로니의 산업 및 군사 방위 시설에 까지 침투하였고, 이상 반응을 일으키며<br>급속도로 퍼져나가기 시작했다.
+			</div>
+		</div>
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
 		<!-- <iframe  src='./sound/intro.ogg' allow="autoplay" id="audio"  style="display:none"></iframe>   		 -->
 	    <!-- <iframe  src='./sound/intro.ogg' allow="autoplay" id="audio"  style="display:none"></iframe>    -->
 		<!-- <audio id="misound" autoplay loop> -->
 		<!-- <iframe  src='./sound/intro.ogg' id="audio"  style="display:none"></iframe>  -->
 		<!-- <audio id="misound" autoplay loop></audio>
-			<source src='./sound/intro.ogg' type="audio/ogg">				
+			<source src='./sound/intro.ogg' type="audio/ogg">
 		</audio> -->
 		 <!-- 음원 자동재생 참고 : https://d0gf00t.tistory.com/36 -->
 		<!-- <iframe src="./sound/intro.ogg" allow="autoplay" id="misound" style="display: none"></iframe>
@@ -118,7 +118,7 @@ background-position: 50% -5%; */
 		</audio>    -->
 		<audio id='misound' src='./sound/intro.ogg'></audio>
 		 <audio id='stsound' src='./sound/laser.ogg'></audio>
-		 <audio id='intro01' src='./sound/intro01.ogg'></audio>		
+		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
 		    <!-- <button id="finish" style="opacity:0.2" ><b>&nbsp;설치&nbsp;</b></button> -->
@@ -172,6 +172,24 @@ window.addEventListener('load', ()=>{
 	}
 });
 
+//윈도우 리사이징 호출
+window.addEventListener("resize",  fit_resize);
+
+function fit_resize(){
+	var ls_width = window.innerWidth;
+	var ls_height = window.innerHeight;
+// var ls_width = document.innerWidth;
+// var ls_height = document.innerHeight;
+
+	$("#totIntro").width(ls_width);
+	$("#totIntro").height(ls_height);
+
+
+	$("#imgIntro").width(ls_width);
+	$("#imgIntro").height(ls_height);
+}
+
+
 $(function(){
 
 
@@ -219,9 +237,9 @@ $(function(){
 
 	//시작 음악
 	function play_misound(){
-	
+
 		var misound = document.getElementById('misound');
- 
+
 		if (misound != null){
 
 			misound.currentTime = 10; //재생위치
@@ -246,11 +264,11 @@ $(function(){
 
 			//intro01.pause();
 			misound.pause();
-			
-			stsound.currentTime = 1.8; //재생위치			
-			
+
+			stsound.currentTime = 1.8; //재생위치
+
 			stsound.play();
-		} 
+		}
 		return 1;
 
 	};
@@ -261,15 +279,15 @@ $(function(){
 		var intro01 = document.getElementById('intro01');
 
 		if (intro01 != null){
-			//stsound.currentTime = 2; //재생위치 
-			
-			intro01.currentTime = 13; //재생위치			
-			
+			//stsound.currentTime = 2; //재생위치
+
+			intro01.currentTime = 13; //재생위치
+
 			intro01.play();
 		}
-	}; 
+	};
 	//$("#start").bind('touchstart', function(e) {
-	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함. 
+	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
 		start.addEventListener('click', function() {
 		//$("#start").click(function(){
 
@@ -284,7 +302,7 @@ $(function(){
 
 			if (stsound != null){
 
-					misound.pause();					
+					misound.pause();
 					//audio.pause();
 
 					stsound.currentTime = 1.8; //재생위치
@@ -302,38 +320,38 @@ $(function(){
 			top:-100,
 				left:-200
 			});
- 
- 
+
+
 			//인트로 안내 화면
 			$(".main").fadeOut( "slow", function() {
 				// Animation complete.
-					//tempDelay(); 
-				misound.pause();	
-		
-				
+					//tempDelay();
+				misound.pause();
+
+
 				//window.location = 'play.html';
 				setTimeout(startIntro, 1000);
 
-			}); 	 
-  
-		}); 
- 
-		function startIntro(){ 
-				
-				//전체화면으로 실행		
+			});
+
+		});
+
+		function startIntro(){
+
+				//전체화면으로 실행
 				toggleFullScreen();
-     
+
 				// if (IntroSound() != 1)  {
 				// 	return;
-				// }			
-				
+				// }
+
 				//인트로 시작 사운드
 				IntroSound();
-			
+
 				 var ls_width = window.innerWidth;
-				 var ls_height = window.innerHeight;	   
+				 var ls_height = window.innerHeight;
 				// var ls_width = document.innerWidth;
-				// var ls_height = document.innerHeight;	   				
+				// var ls_height = document.innerHeight;
 
 				 $("#totIntro").width(ls_width);
 				 $("#totIntro").height(ls_height);
@@ -344,65 +362,65 @@ $(function(){
 
 				//$("#totIntro").show();
 
-				if($("#totIntro").show()){ 
-			
-				misound.pause();	
-				
+				if($("#totIntro").show()){
+
+				misound.pause();
+
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
-						$("#imgIntro").attr("src","./img/intro02.jpg"); 
-						
-						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능시스템 M.A.I까지 침투 했고<br>M.A.I에 의해 제어되는 기기들은 시민들을 공격하기 시작한다."); 
-						
-					}) 			
+						$("#imgIntro").attr("src","./img/intro02.jpg");
+
+						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능시스템 M.A.I까지 침투 했고<br>M.A.I에 의해 제어되는 기기들은 시민들을 공격하기 시작한다.");
+
+					})
 				}, 5000);
-				
+
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
-						$("#imgIntro").attr("src","./img/intro03.jpg"); 
+						$("#imgIntro").attr("src","./img/intro03.jpg");
 						$("#infoText").html("얼마의 시간이 지나고... 우주 연방 정보국은 바이러스의 원인이 수만 광년 떨어진<br>행성 코로나19 로부터 발생된 이상 전자기파에 의한 것임을 밝혀냈고,<br>   \
-						                     확산을 막기위한 작전으로 GD2020을 펼친다."); 						
-					}) 			
+						                     확산을 막기위한 작전으로 GD2020을 펼친다.");
+					})
 				}, 10000);
-								
+
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
-						$("#imgIntro").attr("src","./img/intro04.jpg"); 
-						$("#infoText").html("이에 우주 연방군 최고 에이스인 코맨더 LeeKey는 비밀리에 작적 성공의 핵심인 M.A.I의<br>파괴를 명받는다.");																		
-					}) 			
+						$("#imgIntro").attr("src","./img/intro04.jpg");
+						$("#infoText").html("이에 우주 연방군 최고 에이스인 코맨더 LeeKey는 비밀리에 작적 성공의 핵심인 M.A.I의<br>파괴를 명받는다.");
+					})
 				}, 15000);
-										
+
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
-						$("#imgIntro").attr("src","./img/intro05.jpg"); 
+						$("#imgIntro").attr("src","./img/intro05.jpg");
 						//화이자, 모더나, 아스트라제네카
-						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작한다."); 						 						
-					}) 			
-				}, 20000);				
+						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작한다.");
+					})
+				}, 20000);
 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						window.location = 'play.html';
-					}) 
+					})
 				}, 25000);
 
-				totIntro.addEventListener('click', function() { 
+				totIntro.addEventListener('click', function() {
 
-					$(".main").fadeOut( "slow", function() { 
+					$(".main").fadeOut( "slow", function() {
 
 
 						window.location = 'play.html';
-					 
-						//var href = 'play.html';					 
-						//$("#totIntro").load(href); 
-					}) 
 
-				}) 
-		 
-			} 
-			
+						//var href = 'play.html';
+						//$("#totIntro").load(href);
+					})
 
-		} 		
+				})
+
+			}
+
+
+		}
 
 	//게임 설치 버튼
 	/*
@@ -495,10 +513,10 @@ $(function(){
 	// 			deferredPrompt = null;
 	// 	    });
 	// 	}
-	// //}); 
+	// //});
 
 });
 
-</script>		
+</script>
 </body>
 </html>

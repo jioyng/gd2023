@@ -88,6 +88,14 @@ background-position: 50% -5%; */
 	background:-ms-linear-gradient(#5f7a8a, #a2b8b8);
 	background:linear-gradient(#5f7a8a, #a2b8b8);
 }
+
+.circle {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
 </style>
 </head>
     <!-- <body bgcolor="#262626" background="./img/main_intro.jpg" onload="play_misound();" > -->
@@ -121,7 +129,7 @@ background-position: 50% -5%; */
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
 			<br>
-		    <!-- <button id="finish" style="opacity:0.2" ><b>&nbsp;설치&nbsp;</b></button> -->
+		    <button id="CColor" class="circle" style="opacity:0.2" ></button>
 		</div>
 		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
 		Gun Dodge 2020
@@ -444,6 +452,24 @@ $(function(){
 		return false;
 	}); // 특정 버튼 클릭 시 설치 시작
 
+
+	//var ls_CColor = "white"
+	var ls_CColor = localStorage.getItem('control_color');        
+		$("#CColor").css("background-color",ls_CColor);
+	
+	$("#CColor").click(function(){  
+		
+		if (ls_CColor == "red"){ 
+			ls_CColor = "white";
+			$("#CColor").css("background-color",ls_CColor);
+			localStorage.setItem('control_color',ls_CColor);		
+		}else {
+			ls_CColor = "red";
+			$("#CColor").css("background-color",ls_CColor);
+			localStorage.setItem('control_color',ls_CColor);
+		}
+		
+	})
 
 	$("#finish").click(function(){
 

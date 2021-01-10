@@ -69,49 +69,55 @@ var directonMiddle = null;
 var button01 = null;
 var button02 = null;
 
+var ls_CColor = localStorage.getItem('control_color'); 
+var ls_fillText = "rgb(242, 255, 0)";
+if (ls_CColor == "red"){
+    ls_fillText = "rgb(242, 0, 0)";
+};
+
 directonUp = new Path2D();
-directonUp.fillStyle = "rgb(242, 255, 0)";
+directonUp.fillStyle = ls_fillText;
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
 
 directonLeft = new Path2D();
-directonLeft.fillStyle = "rgb(242, 255, 0)";
+directonLeft.fillStyle = ls_fillText;
 directonLeft.rect(minX + 10, maxY - 220, 140, 100);
 
 directonRight = new Path2D();
-directonRight.fillStyle = "rgb(242, 255, 0)";
+directonRight.fillStyle = ls_fillText;
 directonRight.rect(minX + 190, maxY - 220, 140, 100);
 
 directonDown = new Path2D();
-directonDown.fillStyle = "rgb(242, 255, 0)";
+directonDown.fillStyle = ls_fillText;
 directonDown.rect(minX + 120, maxY - 150, 100, 140);
 
 directonUpLeft = new Path2D();
-directonUpLeft.fillStyle = "rgb(242, 255, 0)";
+directonUpLeft.fillStyle = ls_fillText;
 directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
 
 directonUpRight = new Path2D();
-directonUpRight.fillStyle = "rgb(242, 255, 0)";
+directonUpRight.fillStyle = ls_fillText;
 directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
 
 directonDownLeft = new Path2D();
-directonDownLeft.fillStyle = "rgb(242, 255, 0)";
+directonDownLeft.fillStyle = ls_fillText;
 directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
 
 directonDownRight = new Path2D();
-directonDownRight.fillStyle = "rgb(242, 255, 0)";
+directonDownRight.fillStyle = ls_fillText;
 directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
 
 directonMiddle = new Path2D();
-directonMiddle.fillStyle = "rgb(242, 255, 0)";
+directonMiddle.fillStyle = ls_fillText;
 directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button01 = new Path2D();
-button01.fillStyle = "rgb(242, 255, 0)";
+button01.fillStyle = ls_fillText;
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button02 = new Path2D();
-button02.fillStyle = "rgb(242, 255, 0)";
+button02.fillStyle = ls_fillText;
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 

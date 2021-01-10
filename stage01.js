@@ -70,54 +70,50 @@ var button01 = null;
 var button02 = null;
 
 var ls_CColor = localStorage.getItem('control_color'); 
-var ls_fillText = "rgb(242, 255, 0)";
-if (ls_CColor == "red"){
-    ls_fillText = "rgb(242, 0, 0)";
-};
-
+ 
 directonUp = new Path2D();
-directonUp.fillStyle = ls_fillText;
+directonUp.fillStyle = ls_CColor; 
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
 
 directonLeft = new Path2D();
-directonLeft.fillStyle = ls_fillText;
+directonLeft.fillStyle = ls_CColor;
 directonLeft.rect(minX + 10, maxY - 220, 140, 100);
 
 directonRight = new Path2D();
-directonRight.fillStyle = ls_fillText;
+directonRight.fillStyle = ls_CColor;
 directonRight.rect(minX + 190, maxY - 220, 140, 100);
 
 directonDown = new Path2D();
-directonDown.fillStyle = ls_fillText;
+directonDown.fillStyle = ls_CColor;
 directonDown.rect(minX + 120, maxY - 150, 100, 140);
 
 directonUpLeft = new Path2D();
-directonUpLeft.fillStyle = ls_fillText;
+directonUpLeft.fillStyle = ls_CColor;
 directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
 
 directonUpRight = new Path2D();
-directonUpRight.fillStyle = ls_fillText;
+directonUpRight.fillStyle = ls_CColor;
 directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
 
 directonDownLeft = new Path2D();
-directonDownLeft.fillStyle = ls_fillText;
+directonDownLeft.fillStyle = ls_CColor;
 directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
 
 directonDownRight = new Path2D();
-directonDownRight.fillStyle = ls_fillText;
+directonDownRight.fillStyle = ls_CColor;
 directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
 
 directonMiddle = new Path2D();
-directonMiddle.fillStyle = ls_fillText;
+directonMiddle.fillStyle = ls_CColor;
 directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button01 = new Path2D();
-button01.fillStyle = ls_fillText;
+button01.fillStyle = ls_CColor;
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button02 = new Path2D();
-button02.fillStyle = ls_fillText;
+button02.fillStyle = ls_CColor;
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
@@ -2209,6 +2205,14 @@ function gameControl() {
 
     Context.globalAlpha = 0.5;
 
+    //색상값이 white가 아닌경우 테두리랑 투명도를 높여준다.
+    if (ls_CColor != 'white'){
+        Context.globalAlpha = 1;
+        Context.lineWidth = "2";
+        Context.strokeStyle = ls_CColor;
+        Context.fillStyle = ls_CColor;
+    }
+
     Context.stroke(directonUp);
     Context.stroke(directonLeft);
     Context.stroke(directonRight);
@@ -2221,6 +2225,7 @@ function gameControl() {
 
     Context.stroke(button01);
     Context.stroke(button02);
+
 }
 
 //////////////////마우스 클릭시 이벤트 메핑

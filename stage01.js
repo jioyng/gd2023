@@ -69,51 +69,53 @@ var directonMiddle = null;
 var button01 = null;
 var button02 = null;
 
+
+//컨트롤 색상
 var ls_CColor = localStorage.getItem('control_color'); 
  
 directonUp = new Path2D();
-directonUp.fillStyle = ls_CColor; 
+directonUp.fillStyle = "rgb(242, 255, 0)";; 
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
 
 directonLeft = new Path2D();
-directonLeft.fillStyle = ls_CColor;
+directonLeft.fillStyle = "rgb(242, 255, 0)";;
 directonLeft.rect(minX + 10, maxY - 220, 140, 100);
 
 directonRight = new Path2D();
-directonRight.fillStyle = ls_CColor;
+directonRight.fillStyle = "rgb(242, 255, 0)";;
 directonRight.rect(minX + 190, maxY - 220, 140, 100);
 
 directonDown = new Path2D();
-directonDown.fillStyle = ls_CColor;
+directonDown.fillStyle = "rgb(242, 255, 0)";;
 directonDown.rect(minX + 120, maxY - 150, 100, 140);
 
 directonUpLeft = new Path2D();
-directonUpLeft.fillStyle = ls_CColor;
+directonUpLeft.fillStyle = "rgb(242, 255, 0)";;
 directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
 
 directonUpRight = new Path2D();
-directonUpRight.fillStyle = ls_CColor;
+directonUpRight.fillStyle = "rgb(242, 255, 0)";;
 directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
 
 directonDownLeft = new Path2D();
-directonDownLeft.fillStyle = ls_CColor;
+directonDownLeft.fillStyle = "rgb(242, 255, 0)";;
 directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
 
 directonDownRight = new Path2D();
-directonDownRight.fillStyle = ls_CColor;
+directonDownRight.fillStyle = "rgb(242, 255, 0)";;
 directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
 
 directonMiddle = new Path2D();
-directonMiddle.fillStyle = ls_CColor;
+directonMiddle.fillStyle = "rgb(242, 255, 0)";;
 directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button01 = new Path2D();
-button01.fillStyle = ls_CColor;
+button01.fillStyle = "rgb(242, 255, 0)";;
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button02 = new Path2D();
-button02.fillStyle = ls_CColor;
+button02.fillStyle = "rgb(242, 255, 0)";;
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 

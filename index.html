@@ -457,39 +457,29 @@ $(function(){
 
 	//dev모드
 	var ls_DColor = localStorage.getItem('dev_color');        
-		$("#DColor").css("background-color",ls_DColor);
 	
 	$("#DColor").click(function(){  
  
-		if (ls_DColor == "green"){ 
-			ls_DColor = "white";
-			$("#DColor").css("background-color",ls_DColor);
-			localStorage.setItem('dev_color',ls_DColor);		
-		}else {
-			ls_DColor = "green";
-			$("#DColor").css("background-color",ls_DColor);
-			localStorage.setItem('dev_color',ls_DColor);
-		}
+		(ls_DColor == "green"?ls_DColor = "white":ls_DColor = "green"); 
 		
+		$("#DColor").css("background-color",ls_DColor);
+		localStorage.setItem('dev_color',ls_DColor);	
 	})
+
+	$("#DColor").css("background-color",ls_DColor);
 
 	//control색상
 	var ls_CColor = localStorage.getItem('control_color');        
-		$("#CColor").css("background-color",ls_CColor);
-	
+		
 	$("#CColor").click(function(){  
 		
-		if (ls_CColor == "red"){ 
-			ls_CColor = "white";
-			$("#CColor").css("background-color",ls_CColor);
-			localStorage.setItem('control_color',ls_CColor);		
-		}else {
-			ls_CColor = "red";
-			$("#CColor").css("background-color",ls_CColor);
-			localStorage.setItem('control_color',ls_CColor);
-		}
-		
+		(ls_CColor == "red"?ls_CColor = "white":ls_CColor = "red"); 
+
+		$("#CColor").css("background-color",ls_CColor);
+		localStorage.setItem('control_color',ls_CColor);			
 	})
+
+	$("#CColor").css("background-color",ls_CColor);	
 
 	//전체화면모드
 	var ls_TColor = localStorage.getItem('total_color');        

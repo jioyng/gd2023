@@ -2216,7 +2216,7 @@ function gameControl() {
     Context.globalAlpha = 0.5;
 
     //색상값이 white가 아닌경우 테두리랑 투명도를 높여준다.
-    if (ls_CColor != 'white'){
+    if (ls_CColor == 'white'){
         Context.globalAlpha = 1;
         Context.lineWidth = "2";
         Context.strokeStyle = ls_CColor;
@@ -2345,7 +2345,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
             Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
 
             //개발모드일경우만 이어서 플레이 가능
-            if (ls_DColor == "white"){
+            if (ls_DColor != "white"){
                 Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height/2);
                 Context2.stroke(button_continue);                
             }

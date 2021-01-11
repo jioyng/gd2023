@@ -502,6 +502,7 @@ $(function(){
 			$("#TColor").css("background-color",ls_TColor);
 			localStorage.setItem('total_color',ls_TColor);		
 			toggleFullScreen();
+			
 		}else {
 			ls_TColor = "yellow";
 			$("#TColor").css("background-color",ls_TColor);
@@ -509,6 +510,8 @@ $(function(){
 			toggleFullScreen();	
 		}
 		
+			//윈도우 리사이징 호출
+			window.addEventListener("resize",  fit_resize);		
 	})
 
 

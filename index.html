@@ -128,8 +128,11 @@ background-position: 50% -5%; */
 		 <audio id='stsound' src='./sound/laser.ogg'></audio>
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
 		<div style="position: absolute; top: 0px; right: 10px; z-index:200;">
+		    <button id="DColor" class="circle" style="opacity:0.2" ></button>			
 			<br>
-		    <button id="CColor" class="circle" style="opacity:0.2" ></button>
+			<button id="CColor" class="circle" style="opacity:0.2" ></button>
+			<br>
+		    <button id="TColor" class="circle" style="opacity:0.2" ></button>			
 		</div>
 		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
 		Gun Dodge 2020
@@ -202,7 +205,7 @@ $(function(){
 
 
 	//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
-	//f_search_landmode();        //화면 로딩시 자동 호출
+	//f_search_lanDColor();        //화면 로딩시 자동 호출
 
 	// //우클릭, 드래그, 선택 방지
 	$(document).on("contextmenu dragstart selectstart",function(e){
@@ -452,8 +455,23 @@ $(function(){
 		return false;
 	}); // 특정 버튼 클릭 시 설치 시작
 
+	var ls_DColor = localStorage.getItem('dev_color');        
+		$("#DColor").css("background-color",ls_DColor);
+	
+	$("#DColor").click(function(){  
+ 
+		if (ls_DColor == "green"){ 
+			ls_DColor = "white";
+			$("#DColor").css("background-color",ls_DColor);
+			localStorage.setItem('dev_color',ls_DColor);		
+		}else {
+			ls_DColor = "green";
+			$("#DColor").css("background-color",ls_DColor);
+			localStorage.setItem('dev_color',ls_DColor);
+		}
+		
+	})
 
-	//var ls_CColor = "white"
 	var ls_CColor = localStorage.getItem('control_color');        
 		$("#CColor").css("background-color",ls_CColor);
 	
@@ -470,6 +488,26 @@ $(function(){
 		}
 		
 	})
+
+	var ls_TColor = localStorage.getItem('total_color');        
+		$("#TColor").css("background-color",ls_TColor);
+	
+	$("#TColor").click(function(){  
+		
+		if (ls_TColor == "yellow"){ 
+			ls_TColor = "white";
+			$("#TColor").css("background-color",ls_TColor);
+			localStorage.setItem('total_color',ls_TColor);		
+			toggleFullScreen();
+		}else {
+			ls_TColor = "yellow";
+			$("#TColor").css("background-color",ls_TColor);
+			localStorage.setItem('total_color',ls_TColor);
+			toggleFullScreen();	
+		}
+		
+	})
+
 
 	$("#finish").click(function(){
 

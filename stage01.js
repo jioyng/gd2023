@@ -69,10 +69,18 @@ var directonMiddle = null;
 var button01 = null;
 var button02 = null;
 
-
 //컨트롤 색상
 var ls_CColor = localStorage.getItem('control_color'); 
  
+//DEV 색상
+var ls_DColor = localStorage.getItem('dev_color'); 
+
+// //전체화면
+// var ls_TColor = localStorage.getItem('total_color'); 
+// if (ls_TColor == "yellow"){ 	
+//     toggleFullScreen();
+// }
+
 directonUp = new Path2D();
 directonUp.fillStyle = "rgb(242, 255, 0)";; 
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
@@ -2332,11 +2340,15 @@ GameCanvas.addEventListener('mousedown', function(event) {
             //게임 재시도 or 나가기
             Context2.stroke(button_play);
             Context2.stroke(button_end);
-            Context2.stroke(button_continue);
             //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);
             Context2.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
             Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
-            Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height/2);
+
+            //개발모드일경우만 이어서 플레이 가능
+            if (ls_DColor == "white"){
+                Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height/2);
+                Context2.stroke(button_continue);                
+            }
 
             isKeyDown = [];
             isKeyCode = null;
@@ -3176,3 +3188,29 @@ $('#GameCanvas').on('scroll touchmove mousewheel', function(event) {
         event.stopPropagation();
         return false;
 });
+
+//전체화면으로 실행하기
+function toggleFullScreen() {
+    if (!document.fullscreenElement &&    // alternative standard method
+        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      }
+    } else {
+      // if (document.exitFullscreen) {
+      //   document.exitFullscreen();
+      // } else if (document.msExitFullscreen) {
+      //   document.msExitFullscreen();
+      // } else if (document.mozCancelFullScreen) {
+      //   document.mozCancelFullScreen();
+      // } else if (document.webkitExitFullscreen) {
+      //   document.webkitExitFullscreen();
+      // }
+    }
+  }

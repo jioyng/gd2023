@@ -131,7 +131,7 @@ button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radi
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 60;  //60프레임
+var ini_gameFrame = 30;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -297,7 +297,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 2;         //플레이어 초기 스피드
+var ini_Pspeed = 1;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명

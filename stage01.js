@@ -2250,7 +2250,7 @@ function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
-        //return;
+        return;
     }
 
     Context.globalAlpha = 0.5;
@@ -2579,11 +2579,11 @@ function clickCanvas(event, as_gb) {
         //동일한곳을 지속적으로 누르고 있으면 필살기 발생
         //레이져 필살기
 
-        laser_charge_yn = 'Y'; 
+ 
 
-        if (laser_charge_total_time > 60){
+        if (laser_charge_yn == 'N' && laser_charge_total_time > 60){
             //if (laser_charge_yn = 'Y'){
-    
+                laser_charge_yn = 'Y'; 
                 appear_sound.play();
                 //playerImage = player;
     

@@ -2586,6 +2586,7 @@ function clickCanvas(event, as_gb) {
                 laser_charge_yn = 'Y'; 
                 appear_sound.play();
                 //playerImage = player;
+                
     
                 l_width = laser_charge_total_time/4;
                 l_size = 10;

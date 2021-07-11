@@ -70,19 +70,19 @@ var button01 = null;
 var button02 = null;
 
 //컨트롤 색상
-var ls_CColor = localStorage.getItem('control_color');
-
+var ls_CColor = localStorage.getItem('control_color'); 
+ 
 //DEV 색상
-var ls_DColor = localStorage.getItem('dev_color');
+var ls_DColor = localStorage.getItem('dev_color'); 
 
 // //전체화면
-// var ls_TColor = localStorage.getItem('total_color');
-// if (ls_TColor == "yellow"){
+// var ls_TColor = localStorage.getItem('total_color'); 
+// if (ls_TColor == "yellow"){ 	
 //     toggleFullScreen();
 // }
 
 directonUp = new Path2D();
-directonUp.fillStyle = "rgb(242, 255, 0)";;
+directonUp.fillStyle = "rgb(242, 255, 0)";; 
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
 
 directonLeft = new Path2D();
@@ -315,7 +315,7 @@ var warp_distance = ini_warp_distance;
 var player_collision_yn = 'N';
 
 //보너스 발생 전후 여부
-var bonus_cnt = 1;
+var bonus_cnt = 1; 
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
 var laserImage = new Image();
@@ -336,7 +336,6 @@ var lmovey;
 
 //레이져 초기 크기
 var l_size = 1;
-var l_width = 2;
 
 //레이져 초기 속도
 var lspeed = 1;
@@ -347,10 +346,6 @@ var laser_yn = 'N';
 //레이져 각도
 var laser_r = 0;
 var laser_d = 0;
-
-
-//레이져 필살기 충전 : 마우스(버튼클릭) 유지시간.
-var laser_charge_start_time = 0,  laser_charge_total_time = 0, laser_charge_yn = 'N';
 
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
@@ -524,19 +519,19 @@ function addJavascript(jsname) {
 }
 
 ////////////////// 게임 시작
-function gameStart(as_keycode) {
+function gameStart(as_keycode) { 
 
     //최초 페이지 로드 여부
     //first_load_yn = "N";
-
+ 
     //키코드 널
-    isKeyDown[as_keycode] = false;
+    isKeyDown[as_keycode] = false;  
 
     //게임시작사운드
     //start_sound.play();
 
     //게임 변수 초기화
-    game_init();
+    game_init(); 
 
     //사운드 초기화
     audio.play();
@@ -547,12 +542,12 @@ function gameStart(as_keycode) {
 
     //적 생성
     create_enemy();
-
+    
     //진행 상태
-    status = 2;
+    status = 2;         
 
     //타이머 초기화
-    clearInterval(Timer_Id);
+    clearInterval(Timer_Id); 
 
     Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
 
@@ -564,7 +559,7 @@ function gameEnd(as_keycode) {
 
     if (as_keycode == 13){
 
-        gameStart(13);
+        gameStart(13); 
 
     }else {
 
@@ -646,10 +641,10 @@ canvas.height = canvas.offsetHeight;
 function game_init(){
 
     //플레이어 초기화
-    player_init();
+    player_init(); 
 
-    //게임 초기화(플레이어 갯수(보너스)가 더이상 없는경우만 수행한다.)
-    if (parseInt(player_cnt) > 0){
+    //게임 초기화(플레이어 갯수(보너스)가 더이상 없는경우만 수행한다.) 
+    if (parseInt(player_cnt) > 0){  
         return;
     }
 
@@ -662,7 +657,7 @@ function game_init(){
     status = init_status;
     gameFrame = ini_gameFrame;
     gameTime = init_gameTime;
-    gameScore = init_gameScore;
+    gameScore = init_gameScore; 
     Timer_Id = init_Timer_Id;
     cityEnd_size = init_cityEnd_size;
     cityEnd_x = init_cityEnd_x;
@@ -671,16 +666,11 @@ function game_init(){
     enemy_speed = enemy_speed;
 
     //남은 플레이어 갯수(보너스)
-    //ini_player_cnt = 0;
+    //ini_player_cnt = 0;  
     player_cnt = ini_player_cnt;
 
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
     //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
-
-    // //레이져 필살기관련
-    // laser_charge_start_time = 0;
-    // laser_charge_yn = 0;
-    // laser_charge_total_time = 0;
 
     //전함01 초기화
     ship01x = ini_ship01x;
@@ -807,11 +797,6 @@ function player_init(){
     playerImage = player;
     laserImage = laser;
     player_warp = warp;
-
-    //레이져 필살기 변수 초기화
-    laser_charge_total_time = 0;
-    laser_charge_yn = 'N';
-    laser_charge_start_time = gameTime;
     //player_cnt = ini_player_cnt;
 }
 
@@ -855,10 +840,6 @@ function enemy_didtance(){
 
 ////////////////// 플레이어 이동
 function player_move(){
-
-    //플레이어가 움직이면 필살기 충전은 초기환된다.
-    //laser_charge_total_time = 0;
-    //laser_charge_start_time = gameTime;
 
     //방향이동(키이벤트보다는 프레임에 설정하는게 더 부드러움.)
     //좌
@@ -984,7 +965,7 @@ function player_move(){
         //게임상태가 진행중이 않은(종료 또틑 멈춤) 경우 레이저버튼 클릭시 재시작
 		if (status != 2)
 		{
-            gameStart(13);
+            gameStart(13); 
 		}
 
         //레이져 변수 초기화
@@ -1069,8 +1050,6 @@ function laser_init(){
     lmovey = laserY - 5;
     //레이져 초기 크기
     l_size = 1;
-    l_width = 2;
-
     //레이져 초기 속도
     lspeed = 1;
     //레이져 발사 여부
@@ -1084,8 +1063,7 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10);
 
-        //for (i=0;i<=150;i++){
-        for (i=0;i<=100;i++){
+        for (i=0;i<=150;i++){
 
             //플레이어 거리에 따른 레이져 크기 변경
             l_size = 1;
@@ -1139,7 +1117,7 @@ function laser_move(){
             lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
             lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
 
-            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
+            Context.drawImage(laserImage,lmovex,lmovey,2,l_size);
         }
     }
 }
@@ -1367,14 +1345,14 @@ function enemy_collision(){
     this.enemyh = ini_enemyh;
 
     //레이져 크기
-    //l_size = 1;
-    //l_size = 100;  //사이즈가 1이면 적이 잘 않맞는다.
+    l_size = 1;
+    l_size = 100;  //사이즈가 1이면 적이 잘 않맞는다.
 
     //적 레이져 폭파중 여부
     if (this.enemy_collision_yn == 'Y') return;                  //적이 폭파되고 새로출현할깨까지 않보이는경우 수행하지 않는다.
 
     //레이져와 적 X좌표 충돌시
-    if (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)) && ((parseInt(lmovex) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw))){
+    if (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)) && ((parseInt(lmovex) + parseInt(l_size)) >= parseInt(this.enemyx))){
 
         //레이져와 적 Y좌표 충돌시
         if ((parseInt(lmovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)) ) && ((parseInt(lmovey)  + parseInt(l_size)) >= parseInt(this.enemyy)   )){
@@ -1388,32 +1366,10 @@ function enemy_collision(){
              crash01_sound.currentTime = 0;
              crash01_sound.play();
 
-    
-
-             //적 에너지 차감
-             //필살기일때는 10씩 차감
-             console.log(laser_charge_yn,laser_charge_total_time)
-             if (laser_charge_total_time > 60){
-                //alert("t")
-                this.enemy_life = this.enemy_life - 10;                 
-
-             }else {
-                this.enemy_life = this.enemy_life - 1;
-             }
-
-             laser_charge_total_time = 0;
-             laser_charge_start_time = gameTime;
-             laser_charge_yn = 'N';
-
-             
-             //적 에너지를 다시 그려준다.
-             this.enemy_energe();
-
-
              laser_init();
 
              //적 파괴되면 새로운 타겟 등장
-             if (this.enemy_life <= 0){
+             if (this.enemy_life == 1){
 
                 //타겟 새로 생성
                 //enemy_init();
@@ -1443,7 +1399,7 @@ function enemy_collision(){
                 //적의 생명 * 10 만큼 보너스 스코어
                 Context.font = '100px Arial';
                 Context.fillText( " + " + ini_enemy_life * 10,this.enemyx,this.enemyy-10);
-                //alert(this.enemyx + "," +  this.enemyy)
+                //alert(this.enemyx + "," +  this.enemyy)            
                 gameScore = parseInt(gameScore) + ini_enemy_life*10;
 
                 //타겟 새로 출현 시간.
@@ -1464,6 +1420,11 @@ function enemy_collision(){
 
              }
 
+             //적 에너지 차감
+             this.enemy_life = this.enemy_life - 1;
+
+             //적 에너지를 다시 그려준다.
+             this.enemy_energe();
 
         }
     }
@@ -1498,12 +1459,12 @@ function enemy_energe(){
     return this.energe_bar;
 }
 
-////////////////// 적 이동
+////////////////// 적 이동 
 function enemy_move(){
 //alert(String(gameTime*100).substr(0,2));
 //alert(parseInt(String(gameTime*100).substr(0,2)) % 5)
 
-//console.log(String(gameTime).substr(String(gameTime).length-3,1))
+//console.log(String(gameTime).substr(String(gameTime).length-3,1)) 
 
     //적(enemy) 왔다같다 이동
     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
@@ -1639,21 +1600,21 @@ function ship01_move(){
 
     if (gameTime >= 500000){
         alert("광선발사")
-        return;
+        return;        
     }
         //전함01 이동
         if (ini_ship01x > 0){
-
+         
             ship01x = ship01x - 0.1;
             //ship01x = ship01x/10;
-
+            
             Context.drawImage(ship01_Image,ship01x - 10,ship01y,60,20)
             Context.drawImage(ship01_Image,ship01x,ship01y + 50,30,10)
             Context.drawImage(ship01_Image,ship01x + 20,ship01y + 20,65,15)
             Context.drawImage(ship01_Image,ship01x + 10,ship01y + 30,15,5)
             Context.drawImage(ship01_Image,ship01x + 30,ship01y + 35,24,8)
-
-        }
+    
+        }    
 }
 ////////////////// 게임 배경 화면
 function game_background(){
@@ -1716,11 +1677,11 @@ function game_background(){
 
     Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
 
-    //콜로니끝
+    //콜로니끝 
     //콜로니 끝 근처는 어둡다.
     Context3.beginPath();
-    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,100 +  Math.floor(Math.random() * 5) ,0,2*Math.PI);
-
+    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,100 +  Math.floor(Math.random() * 5) ,0,2*Math.PI); 
+ 
     if (Math.floor(Math.random() * 2) == 2){
         Context3.stroke();        //원 테두리
         //Context3.fillStyle = 'gray';
@@ -1729,40 +1690,40 @@ function game_background(){
     }
 
     Context3.fillStyle = 'black';
-    Context3.fill();
+    Context3.fill(); 
 
 
-    //콜로니끝2
+    //콜로니끝2 
     //콜로니 끝 근처는 어둡다.
     Context3.beginPath();
-    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,200 +  Math.floor(Math.random() * 5) ,0,2*Math.PI);
-
+    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,200 +  Math.floor(Math.random() * 5) ,0,2*Math.PI); 
+ 
     if (Math.floor(Math.random() * 2) == 2){
         Context3.stroke();        //원 테두리
         //Context3.fillStyle = 'gray';
     }else{
         Context3.fillStyle = 'black';
     }
-
+    
     Context3.fillStyle = 'black';
     Context3.fill();
 
 
-    //콜로니끝3
+    //콜로니끝3 
     //콜로니 끝 근처는 어둡다.
     Context3.beginPath();
-    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,500 +  Math.floor(Math.random() * 5) ,0,2*Math.PI);
-
+    Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 4 + cityEnd_y +  Math.floor(Math.random() * 3) ,500 +  Math.floor(Math.random() * 5) ,0,2*Math.PI); 
+ 
     if (Math.floor(Math.random() * 2) == 2){
         Context3.stroke();        //원 테두리
         //Context3.fillStyle = 'gray';
     }else{
         Context3.fillStyle = 'black';
     }
-
+    
     //Context3.fillStyle = 'black';
-    Context3.fill();
-
+    Context3.fill(); 
+    
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 , theCanvas.clientHeight / 4 + cityEnd_y - 40 +  Math.floor(Math.random() * 3) ,  60 ,40 );
     Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  25 ,30 );
@@ -1776,7 +1737,7 @@ function game_background(){
     //for (var i=1;i<=5;i++){
 
     //중앙상단선
-    for (var i=0;i<=10;i++){
+    for (var i=0;i<=10;i++){ 
 
         Context3.beginPath();
         //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
@@ -1785,7 +1746,7 @@ function game_background(){
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 2;
         Context3.stroke();
-        //}
+        //}   
 
         //중앙상단에서 좌측 상단선 까지
         Context3.beginPath();
@@ -1803,12 +1764,12 @@ function game_background(){
         Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x + i - 20  + i * 100, theCanvas.clientHeight / 4 - 50 - i*10  + cityEnd_y);
         Context3.strokeStyle = "grey";; //선 색상
         Context3.lineWidth = 2;
-        Context3.stroke();
+        Context3.stroke();        
 
     }
 
 
-
+    
     //좌측상단선
     // Context3.beginPath();
     // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 , theCanvas.clientHeight / 4 - 80 + cityEnd_y);
@@ -1816,8 +1777,8 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<=10;i++){
-
+    for (var i=0;i<=10;i++){ 
+    
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - i + 20 , theCanvas.clientHeight / 4 - 40 + i*2 + cityEnd_y);
         Context3.lineTo(200 - 200 * i, 0);
@@ -1891,7 +1852,7 @@ function game_background(){
         Context3.lineWidth = 2;
         Context3.stroke();
     }
-
+ 
 
     //루프를 많이 돌리수록 두께가 두꺼워지네
     //for (i=0;i<=100;i++){
@@ -1926,22 +1887,22 @@ function game_background(){
 
 
             // //중앙상단에서 좌측하단 기둥
-            // Context3.beginPath();
+            // Context3.beginPath();        
             // Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 ,  theCanvas.clientHeight / 4 - 50 + cityEnd_y - i * 100);
             // Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1, 0 , theCanvas.clientHeight / 4 - 50 + i*10 + cityEnd_y);
             // Context3.strokeStyle = "grey";; //선 색상
             // Context3.lineWidth = 2;
-            // Context3.stroke();
-
+            // Context3.stroke();  
+                    
             //중앙 기둥 시작 마디
             Context3.beginPath();
             Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance, i*3, 0,Math.PI * 2);
             Context3.lineWidth = i - 2;
             Context3.stroke();
 
-            //중앙상단에서 좌측하단 기둥
-            Context3.beginPath();
-            Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;
+            //중앙상단에서 좌측하단 기둥 
+            Context3.beginPath();            
+            Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i - back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = i;
@@ -1953,20 +1914,20 @@ function game_background(){
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
             Context3.lineWidth = 2;
-            Context3.stroke();
-
+            Context3.stroke();               
+            
             //좌측 기둥 끝 마디에서 땅까지
-            Context3.beginPath();
-            Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i - back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
+            Context3.beginPath();            
+            Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i - back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 2*i , theCanvas.clientHeight + i  + cityEnd_y + i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = i/10;
             Context3.stroke();
+            
 
-
-            //중앙상단에서 우측하단 기둥
-            Context3.beginPath();
-            Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;
+            //중앙상단에서 우측하단 기둥 
+            Context3.beginPath();            
+            Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 + back_distance/10, theCanvas.clientHeight / 4 - 50  - back_distance) ;             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = 1;
@@ -1978,15 +1939,15 @@ function game_background(){
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 20 , 5);
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 - 40 - back_distance, theCanvas.clientHeight / 4 - 100 + back_distance/2 + cityEnd_y , 5 , 20);
             Context3.lineWidth = 2;
-            Context3.stroke();
-
+            Context3.stroke();   
+            
             //좌측 기둥 끝 마디에서 땅까지
-            Context3.beginPath();
-            Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);
+            Context3.beginPath();            
+            Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 + 2*i + back_distance, theCanvas.clientHeight / 10 - i + back_distance/2 + cityEnd_y - i);             
             Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x + cityEnd_size/2 + 2*i , theCanvas.clientHeight + i  + cityEnd_y + i);
             Context3.strokeStyle = "grey";; //선 색상
             Context3.lineWidth = i/10;
-            Context3.stroke();
+            Context3.stroke();            
 
 
         }
@@ -2012,52 +1973,52 @@ function game_background(){
         // Context3.beginPath();
         // Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 20 + cityEnd_y);
         // Context3.lineTo(360  , 0);
-        // Context3.lineTo( theCanvas.clientWidth - 360 , 0);
-
+        // Context3.lineTo( theCanvas.clientWidth - 360 , 0); 
+         
         if (parseInt(gameTime/1000) % 5 == 0){
             // cityImage = city01Image;
-
+ 
              Context3.closePath();
              Context3.fillStyle="#40608E";
              Context3.globalAlpha = 0.1;
-             Context3.fill();
-
+             Context3.fill();  
+             
          }else if (parseInt(gameTime/1000) % 5 == 1){
              // cityImage = city02Image;
-
+  
               Context3.closePath();
               Context3.fillStyle="#408E8C";
               Context3.globalAlpha = 0.12;
-              Context3.fill();
-
+              Context3.fill(); 
+                          
          }else if (parseInt(gameTime/1000) % 5 == 2){
             // cityImage = city02Image;
-
+ 
              Context3.closePath();
              Context3.fillStyle="#9EA46B";
              Context3.globalAlpha = 0.14;
-             Context3.fill();
-
+             Context3.fill(); 
+                         
          }else if (parseInt(gameTime/1000) % 5 == 3){
              // cityImage = city02Image;
-
+  
               Context3.closePath();
               Context3.fillStyle="#091413";
               Context3.globalAlpha = 0.16;
-              Context3.fill();
-
+              Context3.fill(); 
+                          
           }else {
             // cityImage = city02Image;
-
+ 
              Context3.closePath();
              Context3.fillStyle="#8E9695";
              Context3.globalAlpha = 0.1;
-             Context3.fill();
-
+             Context3.fill(); 
+                         
          }
+  
 
-
-
+        
         //삼각형(지면 안개 효과)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
@@ -2066,48 +2027,48 @@ function game_background(){
         Context3.lineTo( theCanvas.clientWidth + 200 + cityEnd_x - cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_x - cityEnd_y);
 
 
-        //console.log("t",parseInt(gameTime/200) % 3);
-
-        if (parseInt(gameTime/2000) % 5 == 0){
+        //console.log("t",parseInt(gameTime/200) % 3); 
+         
+        if (parseInt(gameTime/1000) % 5 == 0){
            // cityImage = city01Image;
 
             Context3.closePath();
             Context3.fillStyle="#40608E";
             Context3.globalAlpha = 0.3;
-            Context3.fill();
-
-        }else if (parseInt(gameTime/2000) % 5 == 1){
+            Context3.fill();  
+            
+        }else if (parseInt(gameTime/1000) % 5 == 1){
             // cityImage = city02Image;
-
+ 
              Context3.closePath();
              Context3.fillStyle="#408E8C";
              Context3.globalAlpha = 0.3;
-             Context3.fill();
-
-        }else if (parseInt(gameTime/2000) % 5 == 2){
+             Context3.fill(); 
+                         
+        }else if (parseInt(gameTime/1000) % 5 == 2){
            // cityImage = city02Image;
 
             Context3.closePath();
             Context3.fillStyle="#9EA46B";
             Context3.globalAlpha = 0.4;
-            Context3.fill();
-
-        }else if (parseInt(gameTime/2000) % 5 == 3){
+            Context3.fill(); 
+                        
+        }else if (parseInt(gameTime/1000) % 5 == 3){
             // cityImage = city02Image;
-
+ 
              Context3.closePath();
              Context3.fillStyle="#091413";
              Context3.globalAlpha = 0.6;
-             Context3.fill();
-
+             Context3.fill(); 
+                         
          }else {
            // cityImage = city02Image;
 
             Context3.closePath();
             Context3.fillStyle="#8E9695";
             Context3.globalAlpha = 0.5;
-            Context3.fill();
-
+            Context3.fill(); 
+                        
         }
 
         //k = 0; //조명 간격
@@ -2156,7 +2117,7 @@ function game_background(){
             }else {
                 Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
             }
-
+                        
             //지붕 땅 반사
             Context3.globalAlpha = 0.06;
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
@@ -2166,8 +2127,8 @@ function game_background(){
             }else {
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }
-
-
+            
+            
 
             // //상단 선 및 좌우 측 벽 조명
             // Context3.fillStyle = 'yellow'; // 채우기 색 지정
@@ -2205,7 +2166,6 @@ function game_background(){
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-            //j = j + 10;
             if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
                  j = j + (12*random03);     //건물 상하 조밀도
             }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
@@ -2214,8 +2174,8 @@ function game_background(){
                 j = j + (10*random03);     //건물 상하 조밀도
             }
         }
-    //}
-
+    //} 
+    
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
     Context3.globalAlpha = 0.8;
@@ -2250,7 +2210,7 @@ function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
-        //return;
+        return;
     }
 
     Context.globalAlpha = 0.5;
@@ -2278,13 +2238,8 @@ function gameControl() {
 
 }
 
-
 //////////////////마우스 클릭시 이벤트 메핑
 GameCanvas.addEventListener('mousedown', function(event) {
-
-    // laser_charge_total_time = 0;
-    // laser_charge_start_time = gameTime;
-    // laser_charge_yn = 'N';
 
     //event.preventDefault();
 
@@ -2295,41 +2250,32 @@ GameCanvas.addEventListener('mousedown', function(event) {
         }
     //}
 
-    //마우스 왼쪽 버튼 클릭(down)
+    //마우스 왼쪽 버튼 클릭
     if (event.button == 0){
-
         isKeyCode = 32;
 
         x = event.clientX;
         y = event.clientY;
 
         laser_radian(x,y);
-
-        laser_charge_total_time = 0;
-        laser_charge_start_time = gameTime;
-        laser_charge_yn = 'Y';
-
     }
 
     //마우스 오른쪽 버튼 클릭
     if (event.button == 2){
-
         isKeyCode = 17;
-
-
     }
 
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
-    if (first_load_yn == "Y"){
-        gameStart(13);
-    }else {
-        gameRetryExitButton();
+    if (first_load_yn == "Y"){    
+        gameStart(13); 
+    }else { 
+        gameRetryExitButton(); 
     }
 
   });
 
-  GameCanvas.addEventListener('mouseup', function(event) { 
+  GameCanvas.addEventListener('mouseup', function(event) {
 
     //event.preventDefault();
 
@@ -2340,8 +2286,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         }
     //}
 
-
-    //마우스 왼쪽 버튼 떼기(up)
+    //마우스 왼쪽 버튼 클릭
     if (event.button == 0){
         isKeyCode = null;
 
@@ -2349,46 +2294,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
         y = event.clientY;
 
         laser_radian(x,y);
-
-        //laser_charge_yn = gameTime;
-
-        //마우스를 누른후 뗀 시간.
-        //laser_charge_total_time = laser_charge_yn - laser_charge_start_time;
-
-        //console.log("레이져충전시간:",laser_charge_total_time);
-
-        if (laser_charge_total_time > 60){
-        //if (laser_charge_yn = 'Y'){
-
-            appear_sound.play();
-            //playerImage = player;
-
-            l_width = laser_charge_total_time/4;
-            l_size = 10;
-
-            //l_size = l_size*(Pdistance/100);
-            //l_size = 10;
-
-            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-            //alert("필살기 발사");
-            //laser_charge_total_time = 0;
-            laser_charge_yn = 'N';
-            //laser_charge_start_time = gameTime;
-            //playerImage = player;
-
-        }
-
     }
 
-    //마우스 오른쪽 버튼 떼기
+    //마우스 오른쪽 버튼 클릭
     if (event.button == 2){
         isKeyCode = null;
     }
-
-    // laser_charge_total_time = 0;
-    laser_charge_yn = 'N';
-    // laser_charge_start_time = gameTime;
-
   });
 
 
@@ -2398,10 +2309,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
  function gameRetryExitButton(){
-
-
+ 
+    
     if (status != 2)
-    {
+    { 
 
          playerImage = noneImage;
          laserImage = noneImage;
@@ -2418,12 +2329,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //if (first_load_yn == "Y" && parseInt(player_cnt) > 0){
         if (first_load_yn == "Y"){
 
-            gameStart(13);
+            gameStart(13); 
 
 
         }else {
 
-
+                        
             Context2.font = '50px Arial';
             //gameEnd(27);
             //게임 재시도 or 나가기
@@ -2436,14 +2347,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
             //개발모드일경우만 이어서 플레이 가능
             if (ls_DColor == "green"){
                 Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height/2);
-                Context2.stroke(button_continue);
+                Context2.stroke(button_continue);                
             }
 
             isKeyDown = [];
             isKeyCode = null;
+ 
 
-
-        }
+        } 
     }
 
     return;
@@ -2458,11 +2369,11 @@ function clickCanvas(event, as_gb) {
 
     //플레이어(보너스)가 남아있는경우 자동 재시작
     //게인 진행중이 아닐때 마우스로 화면 클릭시 재시도,종료 버튼 보여줌
-    if (first_load_yn == "Y"){
-        gameStart(13);
-    }else {
+    if (first_load_yn == "Y"){    
+        gameStart(13); 
+    }else { 
         //alert("touch")
-        gameRetryExitButton();
+        gameRetryExitButton(); 
     }
 
 	//as_gb 1: mouseClick, 2: onMouseMove
@@ -2557,9 +2468,9 @@ function clickCanvas(event, as_gb) {
 
 
     //레이져 발사
-	if(Context.isPointInPath(button01, x,  y)) {
+	if(Context.isPointInPath(button01, x,  y)) { 
 
-		Context.stroke(button01);    //키 입력 반입체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(button01);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
         //Context.fillText(Math.round(laser_r),maxX - 250, maxY - 180);
 		Context.fillText("*",x, y);
 		//Context.fillText((maxX - 250 - x) * -1 ,theCanvas.clientWidth - 250,100);
@@ -2575,35 +2486,6 @@ function clickCanvas(event, as_gb) {
         //  laser_d += 360;
 
         laser_radian(x,y);
-
-        //동일한곳을 지속적으로 누르고 있으면 필살기 발생
-        //레이져 필살기
-
-        laser_charge_yn = 'Y'; 
-
-        if (laser_charge_total_time > 60){
-            //if (laser_charge_yn = 'Y'){
-    
-                appear_sound.play();
-                //playerImage = player;
-    
-                l_width = laser_charge_total_time/4;
-                l_size = 10;
-    
-                //l_size = l_size*(Pdistance/100);
-                //l_size = 10;
-    
-                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-                //alert("필살기 발사");
-                //laser_charge_total_time = 0;
-                laser_charge_yn = 'N';
-                //laser_charge_start_time = gameTime;
-                //playerImage = player;
-    
-        }else {
-            laser_charge_total_time = 0;
-            laser_charge_start_time = gameTime;
-        }
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
@@ -2690,8 +2572,8 @@ function clickCanvas(event, as_gb) {
         //게임 계속
         if(Context.isPointInPath(button_continue, x,  y)) {
             player_cnt = 1;
-            gameStart(13);
-        }
+            gameStart(13);  
+        }        
     }
 
 }
@@ -2736,7 +2618,7 @@ function weappon_create(){
 function weappon_init(){
 
      //console.log("this.weapponArray[i]",this.weapponArray)
-     this.weappon_size = 1;
+     this.weappon_size = 1; 
      player_collision_yn = 'N';
      //weapponX = weapponX - 40;
 
@@ -2784,8 +2666,8 @@ function weappon_move(){
                 this.weapponArray[i].bsize = 150;
                 this.weappon_size = 0.1;
             }
-
-
+            
+            
             //2.좌우로 흔들린다.
             this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*10);
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*3);
@@ -2944,14 +2826,14 @@ function player_collision(){
 
                 var ls_before_score = localStorage.getItem('before_score');
                 var ls_before_time = localStorage.getItem('before_time');
-
+ 
 
                 if (ls_before_score == null || ls_before_score == ""){
                     ls_before_score = ls_current_score;
                     ls_before_time = ls_current_time;
                     localStorage.setItem('before_score',ls_current_score);
                     localStorage.setItem('before_time',ls_current_time);
-                }
+                } 
 
                 //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
                 if (parseInt(ls_current_score) > parseInt(ls_before_score)){
@@ -2963,36 +2845,36 @@ function player_collision(){
                 }
 
                 // 이전 점수에 베스트 점수를 저장
-                var ls_best_score = localStorage.getItem('best_score');
+                var ls_best_score = localStorage.getItem('best_score'); 
                     localStorage.setItem('before_score',ls_best_score);
-                var ls_best_time = localStorage.getItem('best_time');
-                    localStorage.setItem('before_time',ls_best_time);
+                var ls_best_time = localStorage.getItem('best_time'); 
+                    localStorage.setItem('before_time',ls_best_time);                    
 
-
-                //플레이어가 남아있는경우 자동으로 시작
+ 
+                //플레이어가 남아있는경우 자동으로 시작   
                 player_cnt = parseInt(player_cnt) - 1;
 
                 if (parseInt(player_cnt) > 0){
-
+            
                     //잠시만 와프 이미지
-                    playerImage = player_warp;
+                    playerImage = player_warp;  
                     //출현 사운드
                     appear_sound.play();
-                    gameStart(13);
+                    gameStart(13); 
 
                     isKeyDown = [];
                     isKeyCode = null;
                     wayBefore = null;
                     pmovex = 0;
-                    pmovey = 0;
+                    pmovey = 0;                    
 
-                //게임 재시작 or 종료
-                }else {
+                //게임 재시작 or 종료  
+                }else { 
 
-                    gameRetryExitButton();
-
-
-                }
+                    gameRetryExitButton(); 
+                    
+                    
+                } 
 
                 return;
 
@@ -3021,7 +2903,7 @@ function player_collision(){
             }
         }
     }
-}
+} 
 
 
 ////////////////// 화면 로드(게임 프래임 수 만큼)
@@ -3042,24 +2924,24 @@ function drawScreen(){
     Context2.font = '100px Arial';
 
     //console.log("gameScore/1000",parseInt(gameScore/1000))
-    //플레이어 갯수(보너스)(10000점마다 1개씩 증가)
+    //플레이어 갯수(보너스)(10000점마다 1개씩 증가) 
     //bonus_cnt = Math.floor(gameScore/1000);
-    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){
-
+    if (gameScore >= 10000 &&  bonus_cnt == Math.floor(gameScore/10000)){    
+        
         //if (gameScore%1000 == 0){
-
+            
             if (player_cnt > 0){
                 bonus_sound.play();
-
+                 
                 bonus_cnt = bonus_cnt + 1;
                 //alert(bonus_cnt)
-
+               
             }
 
-            player_cnt =  player_cnt + 1;
+            player_cnt =  player_cnt + 1;             
+           
 
-
-       // }
+       // }  
     }
 
     //게임상태정보표시
@@ -3069,54 +2951,25 @@ function drawScreen(){
     gameControl();
 
     //전함01 이동
-    ship01_move();
-
-
+    ship01_move();   
+    
+    
     //게임 배경 화면
 	//if (gameTime % 2 === 0){
 		game_background();
-	//}
+	//} 
 
-
+        
     //플레이어 경계
     player_border();
 
     //플레이어 거리
     player_didtance();
 
-    //레이져 충전시간이 10보다 크면 레이져 증폭상태로 이미지로 변경
-    //마우스 누르고 있는 시간.
-    //if (gameTime > 100){
-        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
-        //laser_charge_total_time = gameTime - laser_charge_start_time;
+    //레이져발사
+    //if (strKeyEventValue == "Control"  || isKeyCode == 32){
+    laser_move();
     //}
-
-    //레이져 필살기 충전
-    //console.log("laser_charge_total_time:",laser_charge_total_time);
-    if (laser_charge_yn == 'Y' && laser_charge_total_time > 60){
-        //laser_init();
-        //Context.drawImage(laserImage,0,0,0,0);
-        // l_size = 0;
-        // Context.drawImage(laserImag,lmovex,lmovey,2,l_size);
-        // Context.drawImage(player_warp,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3))
-        engin01_sound.currentTime  = 3;
-        engin01_sound.play();   //충전사운드
-        //레이져 충전(와프)) 이미지
-        //playerImage = player_warp;
-        //충전 사운드
-        Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
-
-    }else {
-        // laser_charge_total_time = 0;
-        // laser_charge_yn = 'N';
-        //레이져발사
-        //if (strKeyEventValue == "Control"  || isKeyCode == 32){
-        Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-        laser_move();
-        //}
-    }
-
-
 
     //적 이동
      for (var i=0;i<=enemy_array.length - 1;i++){
@@ -3189,7 +3042,7 @@ function onkeyDown(e, as_strKeyEventValue){
     //게임 진행 상태
     if (strKeyEventValue == "Enter" || isKeyCode == 13){
 
-        //alert(status+","+Pspeed)
+        //alert(status+","+Pspeed) 
         //상태별 상태값 설정
         if(status == 1){        //시작
 

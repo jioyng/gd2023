@@ -297,7 +297,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 1;         //플레이어 초기 스피드
+var ini_Pspeed = 2;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명

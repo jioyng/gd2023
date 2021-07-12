@@ -1093,14 +1093,14 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10);
 
 
-        if (laser_charge_yn == 'Y' && laser_charge_total_time > 60){ 
+        if (laser_charge_yn == 'Y' && laser_charge_total_time > 40){ 
             
             
-            for (var i=0;i<200;i++){
+            for (var i=0;i<1000;i++){
                 
                 
                 //laser_charge_yn = 'Y';
-                l_width = laser_charge_total_time/4;
+                l_width = laser_charge_total_time;
                 l_size = 1;
                 l_size = l_size*(Pdistance/300); 
 

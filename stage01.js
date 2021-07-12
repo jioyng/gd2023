@@ -968,10 +968,15 @@ function player_move(){
             }
 
             //playerY = playerY - i;
+
+            isKeyDown = [];
+            isKeyCode = null;            
         }
 
-        isKeyDown = [];
-        isKeyCode = null;
+       // isKeyDown = [];
+       // isKeyCode = null;
+
+
         //wayBefore = null;
         //pmovex = 0;
         //pmovey = 0;
@@ -993,6 +998,9 @@ function player_move(){
         laser_move();
 		laser_sound.currentTime  = 0;
         laser_sound.play();
+
+        isKeyDown = [];
+        isKeyCode = null;   
 	}
 
     //브래이크
@@ -1084,8 +1092,8 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10);
 
-        //for (i=0;i<=150;i++){
-        for (i=0;i<=100;i++){
+        for (i=0;i<=200;i++){
+        //for (i=0;i<=100;i++){
 
             //플레이어 거리에 따른 레이져 크기 변경
             l_size = 1;
@@ -1393,7 +1401,7 @@ function enemy_collision(){
              //적 에너지 차감
              //필살기일때는 10씩 차감
              console.log(laser_charge_yn,laser_charge_total_time)
-             if (laser_charge_total_time > 30){
+             if (laser_charge_total_time > 40){
                 //alert("t")
                 this.enemy_life = this.enemy_life - 10;                 
 
@@ -2365,7 +2373,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //모바일에서는 mouseup 이벤트가 없으므로 레이져 터치후 일정시간이
         //지나면 필살기가 자동 실행되도록 한다.
         /*
-        if (laser_charge_total_time > 30){ 
+        if (laser_charge_total_time > 40){ 
 
             appear_sound.play(); 
 
@@ -3083,7 +3091,7 @@ function drawScreen(){
 
     //레이져 필살기 충전
     //console.log("laser_charge_total_time:",laser_charge_total_time);
-    // if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){
+    // if (laser_charge_yn == 'Y' && laser_charge_total_time > 40){
  
     //     engin01_sound.currentTime  = 3;
     //     engin01_sound.play();   //충전사운드
@@ -3103,7 +3111,7 @@ function drawScreen(){
 
 
         //레이져 충전 시작    
-        if (laser_charge_total_time > 10){
+        if (laser_charge_total_time > 20){
 
 
             engin01_sound.currentTime  = 3;
@@ -3114,7 +3122,7 @@ function drawScreen(){
         }
 
         //레이져 발사
-        if (laser_charge_total_time > 30){
+        if (laser_charge_total_time > 40){
 
             //playerImage = player; 
             l_width = laser_charge_total_time/2;

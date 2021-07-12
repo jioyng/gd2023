@@ -92,7 +92,8 @@ $(function(){
 	var ls_current_time = localStorage.getItem('current_time');          
 	var ls_best_time = localStorage.getItem('best_time');	
 
-	$("#score").html("현재 점수 : " + ls_current_score + "<br>소요 시간 : " + ls_current_time + "<br><br>최고 점수 : " + ls_best_score + "<br>소요 시간 : " + ls_best_time);
+	//$("#score").html("현재 점수 : " + ls_current_score + "<br>소요 시간 : " + ls_current_time + "<br><br>최고 점수 : " + ls_best_score + "<br>소요 시간 : " + ls_best_time);
+	$("#score").html("<div  style='text-align:center; z-index:10; width:96%;'><b>현재 점수 : " + ls_current_score + "<br><br>최고 점수 : " + ls_best_score + "</b></div>");
 		
 	
 

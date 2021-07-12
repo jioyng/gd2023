@@ -1092,63 +1092,89 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10);
 
-        for (i=0;i<=200;i++){
-        //for (i=0;i<=100;i++){
 
-            //플레이어 거리에 따른 레이져 크기 변경
-            l_size = 1;
-            l_size = l_size*(Pdistance/300);
+        if (laser_charge_yn == 'Y' && laser_charge_total_time > 60){ 
+            
+            
+            for (var i=0;i<200;i++){
+                
+                
+                //laser_charge_yn = 'Y';
+                l_width = laser_charge_total_time/4;
+                l_size = 1;
+                l_size = l_size*(Pdistance/300); 
 
-            /*
-            //플레이어 위치에 따른 미사일 방향 변경
-            //타켓이 플레이어보다 상단에 있으면 미사일은 상단으로
-            if (playerY >= ty + th/2 + theCanvas.clientHeight / 20){
-                //l_size = 30;
+                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
 
-                //playerImage.src = "player.png";
-                playerImage = player;
-                //lmovey = lmovey - 1;
-
-            //타켓이 플레이어보다 하단에 있으면 미사일은 상단으로
+                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+                //laser_move();
             }
-            if (playerY < ty - th/2 - theCanvas.clientHeight / 15){
-                //playerImage.src = "player_180.png";
-                playerImage = player_180;
-                //l_size = 30;
-                //lmovey = lmovey + 1;
 
-            //타켓이 플레이어 우측
+            laser_charge_yn = 'N';
+
+        }else { 
+        
+            for (i=0;i<=200;i++){
+            //for (i=0;i<=100;i++){
+
+                //플레이어 거리에 따른 레이져 크기 변경
+                l_size = 1;
+                l_size = l_size*(Pdistance/300);
+
+                /*
+                //플레이어 위치에 따른 미사일 방향 변경
+                //타켓이 플레이어보다 상단에 있으면 미사일은 상단으로
+                if (playerY >= ty + th/2 + theCanvas.clientHeight / 20){
+                    //l_size = 30;
+
+                    //playerImage.src = "player.png";
+                    playerImage = player;
+                    //lmovey = lmovey - 1;
+
+                //타켓이 플레이어보다 하단에 있으면 미사일은 상단으로
+                }
+                if (playerY < ty - th/2 - theCanvas.clientHeight / 15){
+                    //playerImage.src = "player_180.png";
+                    playerImage = player_180;
+                    //l_size = 30;
+                    //lmovey = lmovey + 1;
+
+                //타켓이 플레이어 우측
+                }
+                if(playerX >= tx  + tw/2  + theCanvas.clientWidth / 3)
+                {
+                    //playerImage.src = "player_90.png";
+                    playerImage = player_90;
+                    //l_size = 5;
+                    //lmovex = lmovex - 1.5;
+                //타켓이 플레이어 좌측
+                }
+                if (playerX < tx - tw/2 - theCanvas.clientWidth / 3){
+                    //l_size = 5;
+
+
+                    //playerImage.src = "player_360.png";
+                    playerImage = player_360;
+                    //lmovex = lmovex + 1.5;
+                }
+                */
+
+                //레이저 버튼 각도에 따라 방향 전환
+                //lmovex = lmovex + 1; //(코사인 * 루트(x제곱 + y제곱)
+                //lmovey = lmovey + 1; //(사인 * 루트(x제곱 + y제곱)
+                //lmovex = 100;
+                //lmovey = 100;
+
+                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+
+                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
             }
-            if(playerX >= tx  + tw/2  + theCanvas.clientWidth / 3)
-            {
-                //playerImage.src = "player_90.png";
-                playerImage = player_90;
-                //l_size = 5;
-                //lmovex = lmovex - 1.5;
-            //타켓이 플레이어 좌측
-            }
-            if (playerX < tx - tw/2 - theCanvas.clientWidth / 3){
-                //l_size = 5;
-
-
-                //playerImage.src = "player_360.png";
-                playerImage = player_360;
-                //lmovex = lmovex + 1.5;
-            }
-			*/
-
-            //레이저 버튼 각도에 따라 방향 전환
-            //lmovex = lmovex + 1; //(코사인 * 루트(x제곱 + y제곱)
-            //lmovey = lmovey + 1; //(사인 * 루트(x제곱 + y제곱)
-            //lmovex = 100;
-            //lmovey = 100;
-
-            //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-            lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-            lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-
-            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
         }
+        
     }
 }
 
@@ -2258,7 +2284,7 @@ function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
-        return;
+        //return;
     }
 
     Context.globalAlpha = 0.5;
@@ -2566,6 +2592,8 @@ function clickCanvas(event, as_gb) {
 
     //레이져 버튼 터치
     //레이져 발사
+    //var laser_touch_time = 0;
+
 	if(Context.isPointInPath(button01, x,  y)) {
 
 		Context.stroke(button01);    //키 입력 반입체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
@@ -2590,7 +2618,7 @@ function clickCanvas(event, as_gb) {
 
  
         //레이져 충전 토글
-        //충전 시작
+        //충전 시작 => 터치를 최소 2초이상 해야지 인식되도록 한다.
         if (laser_charge_yn == 'N'){ 
 
             //충전 시작
@@ -2606,9 +2634,9 @@ function clickCanvas(event, as_gb) {
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
 		//레이져 변수 초기화
-		laser_init();
-		laser_yn = 'Y';
-		laser_move();
+		 laser_init();
+		 laser_yn = 'Y';
+		 laser_move();
 		laser_sound.currentTime  = 0;
 		laser_sound.play();
 
@@ -3114,36 +3142,37 @@ function drawScreen(){
         if (laser_charge_total_time > 20){
 
 
-            engin01_sound.currentTime  = 3;
+            engin01_sound.currentTime  = 2;
             engin01_sound.play();   //충전사운드
 
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
 
         }
 
-        //레이져 발사
+        //레이져 필살기 발사
         if (laser_charge_total_time > 40){
 
+            appear_sound.play();
             //playerImage = player; 
             l_width = laser_charge_total_time/2;
             l_size = 10;  
         
-            for (var i=0;i<1000;i++){
-                laser_charge_yn = 'Y';
-                l_size = 1;
-                l_size = l_size*(Pdistance/300); 
+            // for (var i=0;i<1000;i++){
+            //     laser_charge_yn = 'Y';
+            //     l_size = 1;
+            //     l_size = l_size*(Pdistance/300); 
     
-                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+            //     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+            //     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+            //     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
 
-                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-                //laser_move();
-            }
+            //     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+            //     //laser_move();
+            // }
             
-            appear_sound.play();
+  
             laser_move();
-            laser_charge_yn = 'N';
+            //laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();
 
@@ -3153,7 +3182,7 @@ function drawScreen(){
     }else {
 
         //if (strKeyEventValue == "Control"  || isKeyCode == 32){
-        Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
+        //Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
         laser_move();
         //}
     }  

@@ -1096,7 +1096,7 @@ function laser_move(){
         if (laser_charge_yn == 'Y' && laser_charge_total_time > 40){ 
             
             
-            for (var i=0;i<1000;i++){
+            for (var i=0;i<200;i++){
                 
                 
                 //laser_charge_yn = 'Y';

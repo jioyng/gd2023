@@ -1093,26 +1093,27 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10);
 
 
-        if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){ 
-            
-            
-            for (var i=0;i<200;i++){
-                
-                
-                //laser_charge_yn = 'Y';
-                l_width = laser_charge_total_time;
-                l_size = 1;
-                l_size = l_size*(Pdistance/300); 
+        if (laser_charge_yn == 'Y'){  
 
-                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+            if (laser_charge_total_time > 30){             
+                for (var i=0;i<200;i++){
+                    
+                    
+                    //laser_charge_yn = 'Y';
+                    l_width = laser_charge_total_time;
+                    l_size = 1;
+                    l_size = l_size*(Pdistance/300); 
 
-                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-                //laser_move();
+                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+                    //laser_move();
+                }
+
+                laser_charge_yn = 'N';
             }
-
-            laser_charge_yn = 'N';
 
         }else { 
         
@@ -2420,7 +2421,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     }
 
     // laser_charge_total_time = 0;
-    laser_charge_yn = 'N';
+    //laser_charge_yn = 'N';
     // laser_charge_start_time = gameTime;
 
   });
@@ -3163,7 +3164,7 @@ function drawScreen(){
         //레이져 필살기 발사
         if (laser_charge_total_time > 30){
 
-            appear_sound.play();
+
             //playerImage = player; 
             l_width = laser_charge_total_time/2;
             l_size = 10;  
@@ -3179,10 +3180,10 @@ function drawScreen(){
 
             //     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
             //     //laser_move();
-            // }
-            
+            // } 
   
             laser_move();
+            appear_sound.play();
             //laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();

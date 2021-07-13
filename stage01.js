@@ -996,8 +996,6 @@ function player_move(){
         laser_init();
         laser_yn = 'Y';
         laser_move();
-
-        
 		laser_sound.currentTime  = 0;
         laser_sound.play();
 
@@ -1098,7 +1096,7 @@ function laser_move(){
         if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){ 
             
             
-            for (var i=0;i<1000;i++){
+            for (var i=0;i<200;i++){
                 
                 
                 //laser_charge_yn = 'Y';
@@ -1118,7 +1116,7 @@ function laser_move(){
 
         }else { 
         
-            for (i=0;i<=500;i++){
+            for (i=0;i<=100;i++){
             //for (i=0;i<=100;i++){
 
                 //플레이어 거리에 따른 레이져 크기 변경
@@ -2631,18 +2629,16 @@ function clickCanvas(event, as_gb) {
         //충전 시작 상태에서 다시 누르면 충전 해제
         }else {
             laser_charge_yn = 'N';  
-
-
-            //레이져 변수 초기화
-            laser_init();
-            laser_yn = 'Y';
-            laser_move();
-            laser_sound.currentTime  = 0;
-            laser_sound.play();
-
         }
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
+
+		//레이져 변수 초기화
+		 laser_init();
+		 laser_yn = 'Y';
+		 laser_move();
+		laser_sound.currentTime  = 0;
+		laser_sound.play();
 
 	}
 
@@ -3159,7 +3155,7 @@ function drawScreen(){
             appear_sound.play();
             //playerImage = player; 
             l_width = laser_charge_total_time/2;
-            l_size = 1;  
+            l_size = 10;  
         
             // for (var i=0;i<1000;i++){
             //     laser_charge_yn = 'Y';
@@ -3187,7 +3183,7 @@ function drawScreen(){
 
         //if (strKeyEventValue == "Control"  || isKeyCode == 32){
         //Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-        //laser_move();
+        laser_move();
         //}
     }  
 

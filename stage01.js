@@ -2636,9 +2636,9 @@ function clickCanvas(event, as_gb) {
 		//레이져 변수 초기화
 		 laser_init();
 		 laser_yn = 'Y';
-		 laser_move();
-		laser_sound.currentTime  = 0;
-		laser_sound.play();
+		 //laser_move();
+		 laser_sound.currentTime  = 0;
+		 laser_sound.play();
 
 	}
 

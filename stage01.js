@@ -1428,7 +1428,7 @@ function enemy_collision(){
 
              //적 에너지 차감
              //필살기일때는 10씩 차감
-             console.log(laser_charge_yn,laser_charge_total_time)
+             //console.log(laser_charge_yn,laser_charge_total_time)
              if (laser_charge_total_time > 30){
                 //alert("t")
                 this.enemy_life = this.enemy_life - 10;                 
@@ -2349,16 +2349,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             //충전 시작
             laser_charge_yn = 'Y';  
-         
+            laser_charge_total_time = 0;
+            laser_charge_start_time = gameTime;            
     
         //충전 시작 상태에서 다시 누르면 충전 해제
         }else {
             laser_charge_yn = 'N';  
         }        
 
-
-        laser_charge_total_time = 0;
-        laser_charge_start_time = gameTime;   
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -3190,7 +3188,8 @@ function drawScreen(){
             //laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();
-
+            isKeyDown = [];
+            isKeyCode = null;
         }
  
 

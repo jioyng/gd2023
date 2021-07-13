@@ -1090,30 +1090,34 @@ function laser_move(){
 
     if (laser_yn == 'Y'){
 
-        //ld = Math.floor(Pdistance/10);
+        //ld = Math.floor(Pdistance/10); 
 
+        if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){  
+            
+            //레이져 필살기 사운드
+            appear_sound.play();
 
-        if (laser_charge_yn == 'Y'){  
+            //레이져 필살기 이미지 이동
+            for (var i=0;i<200;i++){ 
+                
+                //laser_charge_yn = 'Y';
+                l_width = laser_charge_total_time;
+                l_size = 1;
+                l_size = l_size*(Pdistance/300); 
 
-            if (laser_charge_total_time > 30){             
-                for (var i=0;i<200;i++){
-                    
-                    
-                    //laser_charge_yn = 'Y';
-                    l_width = laser_charge_total_time;
-                    l_size = 1;
-                    l_size = l_size*(Pdistance/300); 
+                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
 
-                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-
-                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-                    //laser_move();
-                }
-
-                laser_charge_yn = 'N';
+                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+                //laser_move();
             }
+
+            //발사되면 초기화
+            laser_charge_yn = 'N';
+            laser_charge_total_time = 0;
+            l_width = 2;
+          
 
         }else { 
         
@@ -3139,60 +3143,31 @@ function drawScreen(){
     // }
 
     //레이져 충전이 완료되면 레이져 자동 필살기 발사
-    if (laser_charge_yn == 'Y'){ 
-
+    if (laser_charge_yn == 'Y'){  
 
         //레이져 충전 시작    
-        if (laser_charge_total_time > 15){
-
+        if (laser_charge_total_time > 10){ 
 
             engin01_sound.currentTime  = 2;
             engin01_sound.play();   //충전사운드
 
-            //Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
-
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-
             Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25 + 10,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
-
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
         }
 
-        //레이져 필살기 발사
-        if (laser_charge_total_time > 30){
-
-
-            //playerImage = player; 
-            l_width = laser_charge_total_time/2;
-            l_size = 10;  
-        
-            // for (var i=0;i<1000;i++){
-            //     laser_charge_yn = 'Y';
-            //     l_size = 1;
-            //     l_size = l_size*(Pdistance/300); 
-    
-            //     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-            //     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-            //     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-
-            //     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-            //     //laser_move();
-            // } 
-  
+        //췅전시간이 다차면 레이져 필살기 발사
+        if (laser_charge_total_time > 30){  
+ 
             laser_move();
-            appear_sound.play();
+
             //laser_charge_yn = 'N';
             //laser_yn = 'N';
-            //laser_init();
-
-        }
- 
+            //laser_init(); 
+        } 
 
     }else {
 

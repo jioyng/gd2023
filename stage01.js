@@ -1117,7 +1117,7 @@ function laser_move(){
 
         }else { 
         
-            for (i=0;i<=100;i++){
+            for (i=0;i<=150;i++){
             //for (i=0;i<=100;i++){
 
                 //플레이어 거리에 따른 레이져 크기 변경

@@ -1113,6 +1113,7 @@ function laser_move(){
                 }
 
                 laser_charge_yn = 'N';
+               
             //}
         
         }else { 
@@ -2348,14 +2349,16 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             //충전 시작
             laser_charge_yn = 'Y';  
-            laser_charge_total_time = 0;
-            laser_charge_start_time = gameTime;            
+         
     
         //충전 시작 상태에서 다시 누르면 충전 해제
         }else {
             laser_charge_yn = 'N';  
         }        
 
+
+        laser_charge_total_time = 0;
+        laser_charge_start_time = gameTime;   
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -2640,10 +2643,6 @@ function clickCanvas(event, as_gb) {
 		 //laser_move();
 		 laser_sound.currentTime  = 0;
 		 laser_sound.play();
-
-         playerX = playerX;
-         playerY = playerY;
-         wayBefore = "";
 
 	}
 

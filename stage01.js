@@ -3121,7 +3121,7 @@ function drawScreen(){
     //레이져 충전시간이 10보다 크면 레이져 증폭상태로 이미지로 변경
     //마우스 누르고 있는 시간.
     //if (gameTime > 100){
-        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
+        //laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
         //laser_charge_total_time = gameTime - laser_charge_start_time;
     //}
 
@@ -3145,6 +3145,10 @@ function drawScreen(){
     //레이져 충전이 완료되면 레이져 자동 필살기 발사
     if (laser_charge_yn == 'Y'){  
 
+
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
+
+        
         //레이져 충전 시작    
         if (laser_charge_total_time > 10){ 
 

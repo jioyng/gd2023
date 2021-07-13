@@ -1093,9 +1093,9 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10);
 
 
-        if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){  
+        if (laser_charge_yn == 'Y'){  
 
-            //if (laser_charge_total_time > 30){             
+            if (laser_charge_total_time > 30){             
                 for (var i=0;i<200;i++){
                     
                     
@@ -1113,9 +1113,8 @@ function laser_move(){
                 }
 
                 laser_charge_yn = 'N';
-               
-            //}
-        
+            }
+
         }else { 
         
             for (i=0;i<=200;i++){
@@ -1428,7 +1427,7 @@ function enemy_collision(){
 
              //적 에너지 차감
              //필살기일때는 10씩 차감
-             //console.log(laser_charge_yn,laser_charge_total_time)
+             console.log(laser_charge_yn,laser_charge_total_time)
              if (laser_charge_total_time > 30){
                 //alert("t")
                 this.enemy_life = this.enemy_life - 10;                 
@@ -2620,7 +2619,7 @@ function clickCanvas(event, as_gb) {
 
  
         //레이져 충전 토글
-        //충전 시작 => 터치를 최소 2초이상 해야지 인식되도록 한다.
+        //충전 시작 => 터치를 최소 2초이상 해야지 인식되도록 한다. 
         if (laser_charge_yn == 'N'){ 
 
             //충전 시작
@@ -2631,7 +2630,7 @@ function clickCanvas(event, as_gb) {
         //충전 시작 상태에서 다시 누르면 충전 해제
         }else {
             laser_charge_yn = 'N';  
-        }
+        }     
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
@@ -2646,6 +2645,9 @@ function clickCanvas(event, as_gb) {
 
     //warp(공간 이동)
 	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) {
+
+        laser_yn = 'N';
+        laser_charge_yn = 'N';  
 
 		Context.stroke(button02);   //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 
@@ -3137,7 +3139,7 @@ function drawScreen(){
     // }
 
     //레이져 충전이 완료되면 레이져 자동 필살기 발사
-    if (laser_yn == 'Y' && laser_charge_yn == 'Y'){ 
+    if (laser_charge_yn == 'Y'){ 
 
 
         //레이져 충전 시작    
@@ -3148,12 +3150,18 @@ function drawScreen(){
             engin01_sound.play();   //충전사운드
 
             //Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
-            Context.drawImage(laserImage,playerX + Math.random() * 110,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 10 - 45,laser_charge_total_time/3 + Math.random() * 10 - 55);
-            Context.drawImage(laserImage,playerX + Math.random() * 60,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 55,laser_charge_total_time/3 + Math.random() * 20 - 45);
-            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 30 - 35,laser_charge_total_time/3 + Math.random() * 30 - 45);
-            Context.drawImage(laserImage,playerX + Math.random() * 80,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 25,laser_charge_total_time/3 + Math.random() * 20 - 35);
-            Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 30 - 55,laser_charge_total_time/3 + Math.random() * 10 - 45);
-            Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 65,laser_charge_total_time/3 + Math.random() * 20 - 35); 
+
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+
+            Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25 + 10,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
+
+            Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+
+            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+
+            Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
         }
 
         //레이져 필살기 발사
@@ -3161,8 +3169,8 @@ function drawScreen(){
 
 
             //playerImage = player; 
-            l_width = laser_charge_total_time;
-            //l_size = 10;  
+            l_width = laser_charge_total_time/2;
+            l_size = 10;  
         
             // for (var i=0;i<1000;i++){
             //     laser_charge_yn = 'Y';
@@ -3179,11 +3187,10 @@ function drawScreen(){
   
             laser_move();
             appear_sound.play();
-            laser_charge_yn = 'N';
+            //laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();
-            //isKeyDown = [];
-            //isKeyCode = null;
+
         }
  
 

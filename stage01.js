@@ -2626,8 +2626,7 @@ function clickCanvas(event, as_gb) {
             laser_charge_yn = 'Y';  
             laser_charge_total_time = 0;
             laser_charge_start_time = gameTime;            
-            
-            return;
+    
         //충전 시작 상태에서 다시 누르면 충전 해제
         }else {
             laser_charge_yn = 'N';  
@@ -2635,22 +2634,16 @@ function clickCanvas(event, as_gb) {
 
         //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
 
-		// //레이져 변수 초기화
-		//  laser_init();
-		//  laser_yn = 'Y';
-		//  //laser_move();
-		//  laser_sound.currentTime  = 0;
-		//  laser_sound.play();
+		//레이져 변수 초기화
+		 laser_init();
+		 laser_yn = 'Y';
+		 //laser_move();
+		 laser_sound.currentTime  = 0;
+		 laser_sound.play();
 
-        //레이져 변수 초기화
-        laser_init();
-        laser_yn = 'Y';
-        laser_move();
-		laser_sound.currentTime  = 0;
-        laser_sound.play();
-
-        isKeyDown = [];
-        isKeyCode = null;          
+         playerX = playerX;
+         playerY = playerY;
+         wayBefore = "";
 
 	}
 

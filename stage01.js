@@ -1093,9 +1093,9 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10);
 
 
-        if (laser_charge_yn == 'Y'){  
+        if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){  
 
-            if (laser_charge_total_time > 30){             
+            //if (laser_charge_total_time > 30){             
                 for (var i=0;i<200;i++){
                     
                     
@@ -1113,8 +1113,8 @@ function laser_move(){
                 }
 
                 laser_charge_yn = 'N';
-            }
-
+            //}
+        
         }else { 
         
             for (i=0;i<=200;i++){

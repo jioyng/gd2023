@@ -3148,18 +3148,12 @@ function drawScreen(){
             engin01_sound.play();   //충전사운드
 
             //Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25 + 10,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-
-            Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
+            Context.drawImage(laserImage,playerX + Math.random() * 110,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 10 - 45,laser_charge_total_time/3 + Math.random() * 10 - 55);
+            Context.drawImage(laserImage,playerX + Math.random() * 60,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 55,laser_charge_total_time/3 + Math.random() * 20 - 45);
+            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 30 - 35,laser_charge_total_time/3 + Math.random() * 30 - 45);
+            Context.drawImage(laserImage,playerX + Math.random() * 80,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 25,laser_charge_total_time/3 + Math.random() * 20 - 35);
+            Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 30 - 55,laser_charge_total_time/3 + Math.random() * 10 - 45);
+            Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 30,playerWidth/6 + Math.random() * 20 - 65,laser_charge_total_time/3 + Math.random() * 20 - 35); 
         }
 
         //레이져 필살기 발사
@@ -3167,8 +3161,8 @@ function drawScreen(){
 
 
             //playerImage = player; 
-            l_width = laser_charge_total_time/2;
-            l_size = 10;  
+            l_width = laser_charge_total_time;
+            //l_size = 10;  
         
             // for (var i=0;i<1000;i++){
             //     laser_charge_yn = 'Y';
@@ -3185,11 +3179,11 @@ function drawScreen(){
   
             laser_move();
             appear_sound.play();
-            laser_charge_yn = 'N';
+            //laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();
-            isKeyDown = [];
-            isKeyCode = null;
+            //isKeyDown = [];
+            //isKeyCode = null;
         }
  
 

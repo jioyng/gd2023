@@ -1113,6 +1113,8 @@ function laser_move(){
                 }
 
                 laser_charge_yn = 'N';
+                isKeyDown = [];
+                isKeyCode = null;                
             //}
         
         }else { 

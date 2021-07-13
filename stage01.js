@@ -131,7 +131,7 @@ button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radi
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 30;  //60프레임
+var ini_gameFrame = 40;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;

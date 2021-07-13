@@ -3185,7 +3185,7 @@ function drawScreen(){
   
             laser_move();
             appear_sound.play();
-            //laser_charge_yn = 'N';
+            laser_charge_yn = 'N';
             //laser_yn = 'N';
             //laser_init();
             isKeyDown = [];

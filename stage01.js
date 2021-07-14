@@ -316,7 +316,7 @@ var ini_player_cnt = 0;    //초기 플레이어 갯수(보너스)
 var player_cnt = ini_player_cnt;
 
 //플레이어 공간이동(warp) 거리
-var ini_warp_distance = 15;
+var ini_warp_distance = 10;
 var warp_distance = ini_warp_distance;
 
 //플레이어 미사일 충돌 여부

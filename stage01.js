@@ -305,7 +305,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 2;         //플레이어 초기 스피드
+var ini_Pspeed = 1;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명
@@ -360,7 +360,9 @@ var laser_d = 0;
 //레이져 필살기 충전 : 마우스(버튼클릭) 유지시간.
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
-var skill = 1;
+//초기 공격 스킬
+var ini_skill = 1;
+var skill = ini_skill;
 
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
@@ -694,6 +696,9 @@ function game_init(){
 
     //보너스 발생 여부
     bonus_cnt = 1;
+
+    //공격스킬
+    skill = ini_skill;
 
     //적 생명
     ini_enemy_life = 5;

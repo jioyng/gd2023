@@ -1169,8 +1169,8 @@ function laser_move(){
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
-                appear_sound.play();
-
+                appear_sound.play(); 
+                
                 //레이져 필살기 이미지 이동
                 for (var i=0;i<200;i++){ 
                      
@@ -1186,9 +1186,7 @@ function laser_move(){
                 }   
 
             } 
-        }  
-
-        
+        }   
         
     }
 }
@@ -2335,12 +2333,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //마우스 왼쪽 버튼 클릭(down)
     if (event.button == 0){
 
-        isKeyCode = 32;
-
-        x = event.clientX;
-        y = event.clientY;
-
-        laser_radian(x,y);
+        isKeyCode = 32; 
  
         //공격 스킬구분에 따른 공격 레이져 초기변수
         if (skill == 1){            
@@ -2350,6 +2343,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
             laser_charge_start_time  = gameTime;            
             l_width = 2;      
         } 
+
+        x = event.clientX;
+        y = event.clientY;
+
+        laser_radian(x,y);        
  
     }
 
@@ -2582,6 +2580,21 @@ function clickCanvas(event, as_gb) {
 	if(Context.isPointInPath(button01, x,  y)) {
 
 		Context.stroke(button01);    //키 입력 반입체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+
+
+        //공격 스킬구분에 따른 공격 레이져 초기변수
+        if (skill == 1){            
+            l_width = 1;    
+            
+            laser_sound.currentTime  = 0;
+            laser_sound.play();            
+        }else { 
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;            
+            l_width = 2;      
+        }   
+
+
         //Context.fillText(Math.round(laser_r),maxX - 250, maxY - 180);
 		Context.fillText("*",x, y);
 		//Context.fillText((maxX - 250 - x) * -1 ,theCanvas.clientWidth - 250,100);
@@ -2598,17 +2611,6 @@ function clickCanvas(event, as_gb) {
 
         laser_radian(x,y);
 
-        //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 1){            
-            l_width = 1;    
-            
-            laser_sound.currentTime  = 0;
-            laser_sound.play();            
-        }else { 
-            laser_charge_total_time = 0;
-            laser_charge_start_time  = gameTime;            
-            l_width = 2;      
-        }   
 
 		//레이져 변수 초기화
 		 laser_init();
@@ -2675,8 +2677,8 @@ function clickCanvas(event, as_gb) {
 
         if (skill >= 3){
             skill = 1;
-        }
-        alert(skill);        
+        } 
+
     }
 
     if(status != 2){

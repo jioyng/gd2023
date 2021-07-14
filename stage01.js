@@ -2347,6 +2347,10 @@ GameCanvas.addEventListener('mousedown', function(event) {
             laser_charge_total_time = 0;
             laser_charge_start_time  = gameTime;            
             l_width = 2;      
+
+
+            warp_sound.currentTime  = 0;
+            warp_sound.play();         
         } 
 
         x = event.clientX;
@@ -2360,13 +2364,16 @@ GameCanvas.addEventListener('mousedown', function(event) {
     if (event.button == 1){
 
         //레이져 필살기 사운드
+        appear_sound.currentTime;
         appear_sound.play(); 
 
-        ++skill;
+        // ++skill;
+        
+        // if (skill >= 3){
+        //     skill = 1;
+        // } 
 
-        if (skill >= 3){
-            skill = 1;
-        }
+        (skill == 1)?skill=2:skill=1;
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -2601,6 +2608,10 @@ function clickCanvas(event, as_gb) {
             laser_charge_total_time = 0;
             laser_charge_start_time  = gameTime;            
             l_width = 2;      
+
+
+            warp_sound.currentTime  = 0;
+            warp_sound.play();       
         }   
 
 
@@ -2682,14 +2693,19 @@ function clickCanvas(event, as_gb) {
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) {
 
+
         //레이져 필살기 사운드
+        appear_sound.currentTime;
         appear_sound.play(); 
 
-        ++skill;
+        // ++skill;
         
-        if (skill >= 3){
-            skill = 1;
-        } 
+        // if (skill >= 3){
+        //     skill = 1;
+        // } 
+
+        (skill == 1)?skill=2:skill=1;
+
 
     }
 
@@ -3339,14 +3355,18 @@ function onkeyDown(e, as_strKeyEventValue){
     //스킬체인지
     if (strKeyEventValue == "alt"  || isKeyCode == 18){ 
    
+
         //레이져 필살기 사운드
+        appear_sound.currentTime;
         appear_sound.play(); 
 
-        ++skill;
+        // ++skill;
 
-        if (skill >= 3){
-            skill = 1;
-        }
+        // if (skill >= 3){
+        //     skill = 1;
+        // } 
+ 
+        (skill == 1)?skill=2:skill=1;        
 
     }
     

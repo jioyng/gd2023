@@ -2367,13 +2367,13 @@ GameCanvas.addEventListener('mousedown', function(event) {
         appear_sound.currentTime;
         appear_sound.play(); 
 
-        // ++skill;
+         ++skill;
         
         // if (skill >= 3){
         //     skill = 1;
         // } 
 
-        (skill == 1)?skill=2:skill=1;
+        //(skill == 1)?skill=2:skill=1;
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -2698,13 +2698,13 @@ function clickCanvas(event, as_gb) {
         appear_sound.currentTime;
         appear_sound.play(); 
 
-        // ++skill;
+        ++skill;
         
         // if (skill >= 3){
         //     skill = 1;
         // } 
 
-        (skill == 1)?skill=2:skill=1;
+        //(skill == 1)?skill=2:skill=1;
 
 
     }
@@ -3127,6 +3127,10 @@ function drawScreen(){
     //플레이어 거리
     player_didtance(); 
 
+    //스킬 변경
+    if (skill >= 3){
+        skill = 1;
+    } 
 
     //레이져 방향
     if (skill == 1){
@@ -3360,13 +3364,13 @@ function onkeyDown(e, as_strKeyEventValue){
         appear_sound.currentTime;
         appear_sound.play(); 
 
-        // ++skill;
+        ++skill;
 
         // if (skill >= 3){
         //     skill = 1;
         // } 
  
-        (skill == 1)?skill=2:skill=1;        
+        //(skill == 1)?skill=2:skill=1;        
 
     }
     

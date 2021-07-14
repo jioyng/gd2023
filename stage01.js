@@ -2358,7 +2358,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
     //스킬체이지
     if (event.button == 1){
-        skill = skill + 1;
+
+        //레이져 필살기 사운드
+        appear_sound.play(); 
+
+        ++skill;
 
         if (skill >= 3){
             skill = 1;
@@ -2678,8 +2682,11 @@ function clickCanvas(event, as_gb) {
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) {
 
-        skill++;
+        //레이져 필살기 사운드
+        appear_sound.play(); 
 
+        ++skill;
+        
         if (skill >= 3){
             skill = 1;
         } 
@@ -3117,7 +3124,7 @@ function drawScreen(){
 
         if (10 <= laser_charge_total_time && laser_charge_total_time < 40){  
 
-            engin01_sound.currentTime  = 2;
+            engin01_sound.currentTime  = 0;
             engin01_sound.play();   //충전사운드
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
@@ -3332,7 +3339,10 @@ function onkeyDown(e, as_strKeyEventValue){
     //스킬체인지
     if (strKeyEventValue == "alt"  || isKeyCode == 18){ 
    
-        skill = skill + 1;
+        //레이져 필살기 사운드
+        appear_sound.play(); 
+
+        ++skill;
 
         if (skill >= 3){
             skill = 1;

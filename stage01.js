@@ -698,7 +698,7 @@ function game_init(){
     bonus_cnt = 1;
 
     //공격스킬
-    skill = ini_skill;
+    skill = 1;
 
     //적 생명
     ini_enemy_life = 5;

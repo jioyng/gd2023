@@ -68,6 +68,7 @@ var directonMiddle = null;
 
 var button01 = null;
 var button02 = null;
+var button03 = null;
 
 //컨트롤 색상
 var ls_CColor = localStorage.getItem('control_color');
@@ -82,50 +83,57 @@ var ls_DColor = localStorage.getItem('dev_color');
 // }
 
 directonUp = new Path2D();
-directonUp.fillStyle = "rgb(242, 255, 0)";;
+directonUp.fillStyle = "rgb(242, 255, 0)";
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
 
 directonLeft = new Path2D();
-directonLeft.fillStyle = "rgb(242, 255, 0)";;
+directonLeft.fillStyle = "rgb(242, 255, 0)";
 directonLeft.rect(minX + 10, maxY - 220, 140, 100);
 
 directonRight = new Path2D();
-directonRight.fillStyle = "rgb(242, 255, 0)";;
+directonRight.fillStyle = "rgb(242, 255, 0)";
 directonRight.rect(minX + 190, maxY - 220, 140, 100);
 
 directonDown = new Path2D();
-directonDown.fillStyle = "rgb(242, 255, 0)";;
+directonDown.fillStyle = "rgb(242, 255, 0)";
 directonDown.rect(minX + 120, maxY - 150, 100, 140);
 
 directonUpLeft = new Path2D();
-directonUpLeft.fillStyle = "rgb(242, 255, 0)";;
+directonUpLeft.fillStyle = "rgb(242, 255, 0)";
 directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
 
 directonUpRight = new Path2D();
-directonUpRight.fillStyle = "rgb(242, 255, 0)";;
+directonUpRight.fillStyle = "rgb(242, 255, 0)";
 directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
 
 directonDownLeft = new Path2D();
-directonDownLeft.fillStyle = "rgb(242, 255, 0)";;
+directonDownLeft.fillStyle = "rgb(242, 255, 0)";
 directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
 
 directonDownRight = new Path2D();
-directonDownRight.fillStyle = "rgb(242, 255, 0)";;
+directonDownRight.fillStyle = "rgb(242, 255, 0)";
 directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
 
 directonMiddle = new Path2D();
-directonMiddle.fillStyle = "rgb(242, 255, 0)";;
+directonMiddle.fillStyle = "rgb(242, 255, 0)";
 directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button01 = new Path2D();
-button01.fillStyle = "rgb(242, 255, 0)";;
+button01.fillStyle = "rgb(242, 255, 0)";
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button02 = new Path2D();
-button02.fillStyle = "rgb(242, 255, 0)";;
+button02.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+
+button03 = new Path2D();
+button03.fillStyle = "rgb(242, 255, 0)";
+//button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
 
 /////////////////////////////////////////게임 관련 상태 설정 시작////////////////////////////////////////
 //초기 게임 상태
@@ -350,7 +358,9 @@ var laser_d = 0;
 
 
 //레이져 필살기 충전 : 마우스(버튼클릭) 유지시간.
-var laser_charge_start_time = 0,  laser_charge_total_time = 0, laser_charge_yn = 'N';
+var laser_charge_start_time = 0,  laser_charge_total_time = 0;
+
+var skill = 1;
 
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
@@ -675,12 +685,8 @@ function game_init(){
     player_cnt = ini_player_cnt;
 
     //enemyx = parseInt(theCanvas.clientWidth / 2); //시작  x
-    //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y
-
-    // //레이져 필살기관련
-    // laser_charge_start_time = 0;
-    // laser_charge_yn = 0;
-    // laser_charge_total_time = 0;
+    //enemyy = parseInt(theCanvas.clientHeight / 4); //시작 y 
+ 
 
     //전함01 초기화
     ship01x = ini_ship01x;
@@ -809,9 +815,10 @@ function player_init(){
     player_warp = warp;
 
     //레이져 필살기 변수 초기화
-    laser_charge_total_time = 0;
-    laser_charge_yn = 'N';
-    laser_charge_start_time = gameTime;
+    laser_charge_total_time = 0; 
+    //l_width = 2;  
+    //skill = 1;
+    //laser_charge_start_time = gameTime;
     //player_cnt = ini_player_cnt;
 }
 
@@ -1083,6 +1090,12 @@ function laser_init(){
     lspeed = 1;
     //레이져 발사 여부
     laser_yn = 'N';
+
+             
+    //레이져 초기화
+    laser_charge_total_time = 0;      
+    laser_charge_start_time  = gameTime;
+    l_width = 2;    
 }
 
 ////////////////// 플레이어 레이져 경로
@@ -1092,93 +1105,90 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
 
-        if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){  
-            
-            //레이져 필살기 사운드
-            appear_sound.play();
+        if (skill == 1){
 
-            //레이져 필살기 이미지 이동
-            for (var i=0;i<200;i++){ 
-                
-                //laser_charge_yn = 'Y';
-                l_width = laser_charge_total_time;
-                l_size = 1;
-                l_size = l_size*(Pdistance/300); 
-
-                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-
-                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-                //laser_move();
+            for (i=0;i<=200;i++){ 
+    
+                    //플레이어 거리에 따른 레이져 크기 변경
+                    l_size = 1;
+                    l_size = l_size*(Pdistance/300);
+    
+                    /*
+                    //플레이어 위치에 따른 미사일 방향 변경
+                    //타켓이 플레이어보다 상단에 있으면 미사일은 상단으로
+                    if (playerY >= ty + th/2 + theCanvas.clientHeight / 20){
+                        //l_size = 30;
+    
+                        //playerImage.src = "player.png";
+                        playerImage = player;
+                        //lmovey = lmovey - 1;
+    
+                    //타켓이 플레이어보다 하단에 있으면 미사일은 상단으로
+                    }
+                    if (playerY < ty - th/2 - theCanvas.clientHeight / 15){
+                        //playerImage.src = "player_180.png";
+                        playerImage = player_180;
+                        //l_size = 30;
+                        //lmovey = lmovey + 1;
+    
+                    //타켓이 플레이어 우측
+                    }
+                    if(playerX >= tx  + tw/2  + theCanvas.clientWidth / 3)
+                    {
+                        //playerImage.src = "player_90.png";
+                        playerImage = player_90;
+                        //l_size = 5;
+                        //lmovex = lmovex - 1.5;
+                    //타켓이 플레이어 좌측
+                    }
+                    if (playerX < tx - tw/2 - theCanvas.clientWidth / 3){
+                        //l_size = 5;
+    
+    
+                        //playerImage.src = "player_360.png";
+                        playerImage = player_360;
+                        //lmovex = lmovex + 1.5;
+                    }
+                    */
+    
+                    //레이저 버튼 각도에 따라 방향 전환
+                    //lmovex = lmovex + 1; //(코사인 * 루트(x제곱 + y제곱)
+                    //lmovey = lmovey + 1; //(사인 * 루트(x제곱 + y제곱)
+                    //lmovex = 100;
+                    //lmovey = 100;
+    
+                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+    
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
             }
 
-            //발사되면 초기화
-            laser_charge_yn = 'N';
-            laser_charge_total_time = 0;
-            l_width = 2;
-          
+        }else {   
 
-        }else { 
+            if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
+
+                //레이져 필살기 사운드
+                appear_sound.play();
+
+                //레이져 필살기 이미지 이동
+                for (var i=0;i<200;i++){ 
+                     
+                    l_width = laser_charge_total_time;
+                    l_size = 1;
+                    l_size = l_size*(Pdistance/300); 
+
+                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);  
+                }   
+
+            } 
+        }  
+
         
-            for (i=0;i<=200;i++){
-            //for (i=0;i<=100;i++){
-
-                //플레이어 거리에 따른 레이져 크기 변경
-                l_size = 1;
-                l_size = l_size*(Pdistance/300);
-
-                /*
-                //플레이어 위치에 따른 미사일 방향 변경
-                //타켓이 플레이어보다 상단에 있으면 미사일은 상단으로
-                if (playerY >= ty + th/2 + theCanvas.clientHeight / 20){
-                    //l_size = 30;
-
-                    //playerImage.src = "player.png";
-                    playerImage = player;
-                    //lmovey = lmovey - 1;
-
-                //타켓이 플레이어보다 하단에 있으면 미사일은 상단으로
-                }
-                if (playerY < ty - th/2 - theCanvas.clientHeight / 15){
-                    //playerImage.src = "player_180.png";
-                    playerImage = player_180;
-                    //l_size = 30;
-                    //lmovey = lmovey + 1;
-
-                //타켓이 플레이어 우측
-                }
-                if(playerX >= tx  + tw/2  + theCanvas.clientWidth / 3)
-                {
-                    //playerImage.src = "player_90.png";
-                    playerImage = player_90;
-                    //l_size = 5;
-                    //lmovex = lmovex - 1.5;
-                //타켓이 플레이어 좌측
-                }
-                if (playerX < tx - tw/2 - theCanvas.clientWidth / 3){
-                    //l_size = 5;
-
-
-                    //playerImage.src = "player_360.png";
-                    playerImage = player_360;
-                    //lmovex = lmovex + 1.5;
-                }
-                */
-
-                //레이저 버튼 각도에 따라 방향 전환
-                //lmovex = lmovex + 1; //(코사인 * 루트(x제곱 + y제곱)
-                //lmovey = lmovey + 1; //(사인 * 루트(x제곱 + y제곱)
-                //lmovex = 100;
-                //lmovey = 100;
-
-                //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-
-                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-            }
-        }
         
     }
 }
@@ -1425,29 +1435,19 @@ function enemy_collision(){
 
              //적 총알 충돌 사운드는 좀 짧게
              crash01_sound.currentTime = 0;
-             crash01_sound.play();
-
-    
+             crash01_sound.play(); 
 
              //적 에너지 차감
-             //필살기일때는 10씩 차감
-             console.log(laser_charge_yn,laser_charge_total_time)
-             if (laser_charge_total_time > 30){
-                //alert("t")
-                this.enemy_life = this.enemy_life - 10;                 
-
+             //스킬 2일때는 10씩 차감
+             if (skill == 1){
+                this.enemy_life = this.enemy_life - 1;            
              }else {
-                this.enemy_life = this.enemy_life - 1;
-             }
-
-             laser_charge_total_time = 0;
-             laser_charge_start_time = gameTime;
-             laser_charge_yn = 'N';
-
+                this.enemy_life = this.enemy_life - 10;  
+             } 
+ 
              
              //적 에너지를 다시 그려준다.
-             this.enemy_energe();
-
+             this.enemy_energe(); 
 
              laser_init();
 
@@ -2289,7 +2289,7 @@ function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
-        return;
+        //return;
     }
 
     Context.globalAlpha = 0.5;
@@ -2314,16 +2314,13 @@ function gameControl() {
 
     Context.stroke(button01);
     Context.stroke(button02);
+    Context.stroke(button03);    
 
 }
 
 
 //////////////////마우스 클릭시 이벤트 메핑
-GameCanvas.addEventListener('mousedown', function(event) {
-
-    // laser_charge_total_time = 0;
-    // laser_charge_start_time = gameTime;
-    // laser_charge_yn = 'N';
+GameCanvas.addEventListener('mousedown', function(event) { 
 
     //event.preventDefault();
 
@@ -2334,6 +2331,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         }
     //}
 
+    
     //마우스 왼쪽 버튼 클릭(down)
     if (event.button == 0){
 
@@ -2343,23 +2341,25 @@ GameCanvas.addEventListener('mousedown', function(event) {
         y = event.clientY;
 
         laser_radian(x,y);
-
-        // laser_charge_total_time = 0;
-        // laser_charge_start_time = gameTime;
-        // laser_charge_yn = 'Y';
-
-        if (laser_charge_yn == 'N'){ 
-
-            //충전 시작
-            laser_charge_yn = 'Y';  
+ 
+        //공격 스킬구분에 따른 공격 레이져 초기변수
+        if (skill == 1){            
+            l_width = 1;              
+        }else { 
             laser_charge_total_time = 0;
-            laser_charge_start_time = gameTime;            
-    
-        //충전 시작 상태에서 다시 누르면 충전 해제
-        }else {
-            laser_charge_yn = 'N';  
-        }        
+            laser_charge_start_time  = gameTime;            
+            l_width = 2;      
+        } 
+ 
+    }
 
+    //스킬체이지
+    if (event.button == 1){
+        skill = skill + 1;
+
+        if (skill >= 3){
+            skill = 1;
+        }
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -2399,34 +2399,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
         x = event.clientX;
         y = event.clientY;
 
-        laser_radian(x,y);
- 
-        //모바일에서는 mouseup 이벤트가 없으므로 레이져 터치후 일정시간이
-        //지나면 필살기가 자동 실행되도록 한다.
-        /*
-        if (laser_charge_total_time > 30){ 
-
-            appear_sound.play(); 
-
-            l_width = laser_charge_total_time/4;
-            l_size = 10;  
-
-            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-
-            laser_charge_yn = 'N'; 
-        }
-        */
+        laser_radian(x,y); 
 
     }
 
     //마우스 오른쪽 버튼 떼기
     if (event.button == 2){
         isKeyCode = null;
-    }
-
-    // laser_charge_total_time = 0;
-    //laser_charge_yn = 'N';
-    // laser_charge_start_time = gameTime;
+    } 
 
   });
 
@@ -2618,40 +2598,28 @@ function clickCanvas(event, as_gb) {
 
         laser_radian(x,y);
 
-        //동일한곳을 지속적으로 누르고 있으면 필살기 발생
-        //레이져 필살기
-
- 
-        //레이져 충전 토글
-        //충전 시작 => 터치를 최소 2초이상 해야지 인식되도록 한다. 
-        if (laser_charge_yn == 'N'){ 
-
-            //충전 시작
-            laser_charge_yn = 'Y';  
+        //공격 스킬구분에 따른 공격 레이져 초기변수
+        if (skill == 1){            
+            l_width = 1;    
+            
+            laser_sound.currentTime  = 0;
+            laser_sound.play();            
+        }else { 
             laser_charge_total_time = 0;
-            laser_charge_start_time = gameTime;            
-    
-        //충전 시작 상태에서 다시 누르면 충전 해제
-        }else {
-            laser_charge_yn = 'N';  
-        }     
-
-        //alert("현재 좌표는 " + event.offsetX + "/" + event.offsetY)
+            laser_charge_start_time  = gameTime;            
+            l_width = 2;      
+        }   
 
 		//레이져 변수 초기화
 		 laser_init();
 		 laser_yn = 'Y';
-		 //laser_move();
-		 laser_sound.currentTime  = 0;
-		 laser_sound.play();
+		 //laser_move(); 
 
 	}
 
     //warp(공간 이동)
 	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) {
-
-        laser_yn = 'N';
-        laser_charge_yn = 'N';  
+ 
 
 		Context.stroke(button02);   //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 
@@ -2699,6 +2667,17 @@ function clickCanvas(event, as_gb) {
 
     }
 
+
+    //스킬체인지
+    if(Context.isPointInPath(button03, x,  y)) {
+
+        skill++;
+
+        if (skill >= 3){
+            skill = 1;
+        }
+        alert(skill);        
+    }
 
     if(status != 2){
         //게임 계속
@@ -3116,41 +3095,20 @@ function drawScreen(){
     player_border();
 
     //플레이어 거리
-    player_didtance();
+    player_didtance(); 
 
-    //레이져 충전시간이 10보다 크면 레이져 증폭상태로 이미지로 변경
-    //마우스 누르고 있는 시간.
-    //if (gameTime > 100){
-        //laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
-        //laser_charge_total_time = gameTime - laser_charge_start_time;
-    //}
 
-    //레이져 필살기 충전
-    //console.log("laser_charge_total_time:",laser_charge_total_time);
-    // if (laser_charge_yn == 'Y' && laser_charge_total_time > 30){
+    //레이져 방향
+    if (skill == 1){
+
+        laser_move();
+
+    }else {
  
-    //     engin01_sound.currentTime  = 3;
-    //     engin01_sound.play();   //충전사운드
- 
-    //     Context.drawImage(laserImage,playerX + Math.random() * 25,playerY,playerWidth/3 + Math.random() * 50,laser_charge_total_time/2 + Math.random() * 50 - 60);
+        //레이져 충전 시작
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
 
-    // }else {
- 
-    //     //if (strKeyEventValue == "Control"  || isKeyCode == 32){
-    //     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
-    //     laser_move();
-    //     //}
-    // }
-
-    //레이져 충전이 완료되면 레이져 자동 필살기 발사
-    if (laser_charge_yn == 'Y'){  
-
-
-        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);
-
-        
-        //레이져 충전 시작    
-        if (laser_charge_total_time > 10){ 
+        if (10 <= laser_charge_total_time && laser_charge_total_time < 40){  
 
             engin01_sound.currentTime  = 2;
             engin01_sound.play();   //충전사운드
@@ -3161,27 +3119,13 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-        }
 
-        //췅전시간이 다차면 레이져 필살기 발사
-        if (laser_charge_total_time > 30){  
- 
-            laser_move();
-
-            //laser_charge_yn = 'N';
-            //laser_yn = 'N';
-            //laser_init(); 
         } 
 
-    }else {
-
-        //if (strKeyEventValue == "Control"  || isKeyCode == 32){
-        //Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
         laser_move();
-        //}
-    }  
+    } 
 
-
+ 
     //적 이동
      for (var i=0;i<=enemy_array.length - 1;i++){
         if (enemy_array[i].enemy_index == i){
@@ -3235,7 +3179,10 @@ function drawScreen(){
     Context.fillText("Score : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
     Context.fillText("Bonus: " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
     //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
+    //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
+    Context.fillText("AtSkill: " + skill,10,150);
 
+    
     if(gameTime<=50){
         Context2.font = '100px Arial';
         Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
@@ -3373,6 +3320,20 @@ function onkeyDown(e, as_strKeyEventValue){
         laser_move();
 
     }
+
+
+    //스킬체인지
+    if (strKeyEventValue == "alt"  || isKeyCode == 18){ 
+   
+        skill = skill + 1;
+
+        if (skill >= 3){
+            skill = 1;
+        }
+
+    }
+    
+    
 }
 
 ////////////////// 키 업 이벤트 처리(데스크 탑 이용시)

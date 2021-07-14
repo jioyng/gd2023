@@ -363,6 +363,7 @@ var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 //초기 공격 스킬
 var ini_skill = 1;
 var skill = ini_skill;
+var tmp_skill = skill;
 
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
@@ -2367,6 +2368,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         appear_sound.currentTime;
         appear_sound.play(); 
 
+        tmp_skill = skill;
         ++skill;
         skill_chanage();
 
@@ -2483,9 +2485,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
 ////////////////////공격 스킬 체이지 함수
 function skill_chanage(){ 
 
-    if (skill >= 3){
-        skill = 1;
-    }         
+    if(tmp_skill != skill){
+        if (skill >= 3){
+            skill = 1;
+        }   
+    }      
 }
 
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
@@ -2705,6 +2709,7 @@ function clickCanvas(event, as_gb) {
         appear_sound.currentTime;
         appear_sound.play(); 
 
+        tmp_skill = skill;
         ++skill;
         skill_chanage();
 
@@ -3364,6 +3369,7 @@ function onkeyDown(e, as_strKeyEventValue){
         appear_sound.currentTime;
         appear_sound.play(); 
 
+        tmp_skill = skill;
         ++skill;
         skill_chanage();
  

@@ -2367,11 +2367,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
         appear_sound.currentTime;
         appear_sound.play(); 
 
-         ++skill;
-        
-        // if (skill >= 3){
-        //     skill = 1;
-        // } 
+        ++skill;
+        skill_chanage();
 
         //(skill == 1)?skill=2:skill=1;
     }
@@ -2481,6 +2478,16 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
     return;
  }
+
+
+////////////////////공격 스킬 체이지 함수
+function skill_chanage(){ 
+
+    if (skill >= 3){
+        skill = 1;
+    }         
+}
+
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
 
@@ -2688,7 +2695,7 @@ function clickCanvas(event, as_gb) {
         isKeyCode = null;
 
     }
-
+ 
 
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) {
@@ -2699,12 +2706,7 @@ function clickCanvas(event, as_gb) {
         appear_sound.play(); 
 
         ++skill;
-        
-        // if (skill >= 3){
-        //     skill = 1;
-        // } 
-
-        //(skill == 1)?skill=2:skill=1;
+        skill_chanage();
 
 
     }
@@ -3128,9 +3130,7 @@ function drawScreen(){
     player_didtance(); 
 
     //스킬 변경
-    if (skill >= 3){
-        skill = 1;
-    } 
+    skill_chanage();
 
     //레이져 방향
     if (skill == 1){
@@ -3365,10 +3365,7 @@ function onkeyDown(e, as_strKeyEventValue){
         appear_sound.play(); 
 
         ++skill;
-
-        // if (skill >= 3){
-        //     skill = 1;
-        // } 
+        skill_chanage();
  
         //(skill == 1)?skill=2:skill=1;        
 

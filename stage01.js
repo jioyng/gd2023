@@ -2493,16 +2493,19 @@ function skill_chanage(){
     //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
     //setTimeout(skill_chanage2,500); 
 
-    skill = skill_chanage2();
+    if (skill_chanage2() == "Y"){
+        if(tmp_skill != skill){
+            if (skill >= 3){
+                skill = 1;
+            }   
+         
+        }  
+        tmp_skill = null;
+        //skill_chanage2() = "N";
+    };
 
-    if(tmp_skill != skill){
-        if (skill >= 3){
-            skill = 1;
-        }   
-        tmp_skill = skill;
-    }  
 
-    ;
+ 
  
 }
 
@@ -2520,7 +2523,7 @@ function skill_chanage2(){
     //     }   
     // }  
     
-    return skill;
+    return "Y";
 }
 
 

@@ -2720,6 +2720,7 @@ function clickCanvas(event, as_gb) {
 
         // tmp_skill = skill;
         // ++skill;
+        alert("test")
         skill_chanage();
 
 

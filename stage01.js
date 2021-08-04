@@ -2365,8 +2365,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
     if (event.button == 1){
 
         //레이져 필살기 사운드
-        // appear_sound.currentTime;
-        // appear_sound.play(); 
+
+        appear_sound.currentTime = 2;
+        appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;
@@ -2713,8 +2714,9 @@ function clickCanvas(event, as_gb) {
 
 
         //레이져 필살기 사운드
-        // appear_sound.currentTime;
-        // appear_sound.play(); 
+
+        appear_sound.currentTime = 2;
+        appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;
@@ -3373,8 +3375,9 @@ function onkeyDown(e, as_strKeyEventValue){
    
 
         //레이져 필살기 사운드
-        // appear_sound.currentTime;
-        // appear_sound.play(); 
+
+        appear_sound.currentTime = 2;
+        appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;

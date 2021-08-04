@@ -1175,6 +1175,7 @@ function laser_move(){
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
+                appear_sound.currentTime = 0.5;
                 appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
@@ -2366,8 +2367,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         //레이져 필살기 사운드
 
-        appear_sound.currentTime = 2;
-        appear_sound.play(); 
+        //appear_sound.currentTime = 2;
+        //appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;
@@ -2486,10 +2487,17 @@ GameCanvas.addEventListener('mousedown', function(event) {
 ////////////////////공격 스킬 체이지 함수
 function skill_chanage(){ 
 
-    appear_sound.currentTime;
-    appear_sound.play(); 
-
+    
     tmp_skill = skill;
+
+    mount_sound.currentTime;
+    mount_sound.play(); 
+
+    skill_chanage2();
+ 
+}
+
+function skill_chanage2(){  
 
     ++skill;
  
@@ -2499,6 +2507,7 @@ function skill_chanage(){
         }   
     }      
 }
+
 
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
@@ -2715,12 +2724,12 @@ function clickCanvas(event, as_gb) {
 
         //레이져 필살기 사운드
 
-        appear_sound.currentTime = 2;
-        appear_sound.play(); 
+        //appear_sound.currentTime = 2;
+        //appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;
-        alert("test")
+        //alert("test")
         skill_chanage();
 
 
@@ -3377,8 +3386,8 @@ function onkeyDown(e, as_strKeyEventValue){
 
         //레이져 필살기 사운드
 
-        appear_sound.currentTime = 2;
-        appear_sound.play(); 
+        //appear_sound.currentTime = 2;
+        //appear_sound.play(); 
 
         // tmp_skill = skill;
         // ++skill;

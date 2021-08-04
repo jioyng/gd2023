@@ -2748,6 +2748,10 @@ function clickCanvas(event, as_gb) {
         // tmp_skill = skill;
         // ++skill;
         //alert("test")
+        //alert(as_gb);
+
+        //캔버스를 클릭했을때만 호출한다. 자꾸 움직이거나 하니깐 찰나에 또 바뀜
+        if(as_gb == 1)
         skill_chanage();
 
 

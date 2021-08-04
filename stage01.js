@@ -1175,7 +1175,7 @@ function laser_move(){
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
-                appear_sound.currentTime = 0.6;
+                appear_sound.currentTime = 0.8;
                 appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
@@ -2490,10 +2490,13 @@ function skill_chanage(){
     
     tmp_skill = skill;
 
-    mount_sound.currentTime;
+    //mount_sound.currentTime;
     mount_sound.play(); 
 
-    skill_chanage2();
+    //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
+    setTimeout(skill_chanage2,500); 
+
+    //skill_chanage2();
  
 }
 
@@ -3046,7 +3049,7 @@ function player_collision(){
                     //잠시만 와프 이미지
                     playerImage = player_warp;
                     //출현 사운드
-                    appear_sound.play();
+                    mount_sound.play();
                     gameStart(13);
 
                     isKeyDown = [];

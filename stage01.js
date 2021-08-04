@@ -1176,7 +1176,7 @@ function laser_move(){
 
                 //레이져 필살기 사운드
                 //appear_sound.currentTime = 0.6;
-                appear_sound.play(); 
+                //appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
                 for (var i=0;i<200;i++){ 
@@ -3190,8 +3190,9 @@ function drawScreen(){
 
         if (10 <= laser_charge_total_time && laser_charge_total_time < 40){  
 
-            engin01_sound.currentTime  = 0;
-            engin01_sound.play();   //충전사운드
+            //engin01_sound.currentTime  = 0;
+            //engin01_sound.play();   //충전사운드
+            appear_sound.play(); 
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);

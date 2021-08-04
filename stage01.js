@@ -2365,11 +2365,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     if (event.button == 1){
 
         //레이져 필살기 사운드
-        appear_sound.currentTime;
-        appear_sound.play(); 
+        // appear_sound.currentTime;
+        // appear_sound.play(); 
 
-        tmp_skill = skill;
-        ++skill;
+        // tmp_skill = skill;
+        // ++skill;
         skill_chanage();
 
         //(skill == 1)?skill=2:skill=1;
@@ -2485,6 +2485,13 @@ GameCanvas.addEventListener('mousedown', function(event) {
 ////////////////////공격 스킬 체이지 함수
 function skill_chanage(){ 
 
+    appear_sound.currentTime;
+    appear_sound.play(); 
+
+    tmp_skill = skill;
+
+    ++skill;
+ 
     if(tmp_skill != skill){
         if (skill >= 3){
             skill = 1;
@@ -2706,11 +2713,11 @@ function clickCanvas(event, as_gb) {
 
 
         //레이져 필살기 사운드
-        appear_sound.currentTime;
-        appear_sound.play(); 
+        // appear_sound.currentTime;
+        // appear_sound.play(); 
 
-        tmp_skill = skill;
-        ++skill;
+        // tmp_skill = skill;
+        // ++skill;
         skill_chanage();
 
 
@@ -3135,7 +3142,7 @@ function drawScreen(){
     player_didtance(); 
 
     //스킬 변경
-    skill_chanage();
+    //skill_chanage();
 
     //레이져 방향
     if (skill == 1){
@@ -3366,11 +3373,11 @@ function onkeyDown(e, as_strKeyEventValue){
    
 
         //레이져 필살기 사운드
-        appear_sound.currentTime;
-        appear_sound.play(); 
+        // appear_sound.currentTime;
+        // appear_sound.play(); 
 
-        tmp_skill = skill;
-        ++skill;
+        // tmp_skill = skill;
+        // ++skill;
         skill_chanage();
  
         //(skill == 1)?skill=2:skill=1;        

@@ -1175,7 +1175,7 @@ function laser_move(){
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
-                appear_sound.currentTime = 0.5;
+                appear_sound.currentTime = 0.6;
                 appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동

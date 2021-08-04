@@ -2484,7 +2484,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
  }
 
 
-////////////////////공격 스킬 체이지 함수
+////////////////////공격 스킬 체인지 함수
 function skill_chanage(){ 
 
     
@@ -2499,6 +2499,7 @@ function skill_chanage(){
         if (skill >= 3){
             skill = 1;
         }   
+        tmp_skill = skill;
     }  
 
     ;

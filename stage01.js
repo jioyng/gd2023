@@ -1175,7 +1175,7 @@ function laser_move(){
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
-                appear_sound.currentTime = 0.8;
+                appear_sound.currentTime = 0.2;
                 appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
@@ -2494,9 +2494,17 @@ function skill_chanage(){
     mount_sound.play(); 
 
     //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
-    setTimeout(skill_chanage2,500); 
+    //setTimeout(skill_chanage2,500); 
 
-    //skill_chanage2();
+    skill = skill_chanage2();
+
+    if(tmp_skill != skill){
+        if (skill >= 3){
+            skill = 1;
+        }   
+    }  
+
+    ;
  
 }
 
@@ -2504,11 +2512,13 @@ function skill_chanage2(){
 
     ++skill;
  
-    if(tmp_skill != skill){
-        if (skill >= 3){
-            skill = 1;
-        }   
-    }      
+    // if(tmp_skill != skill){
+    //     if (skill >= 3){
+    //         skill = 1;
+    //     }   
+    // }  
+    
+    return skill;
 }
 
 

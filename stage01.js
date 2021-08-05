@@ -1470,8 +1470,11 @@ function enemy_collision(){
                 Context.save();
 
                 Context.globalAlpha = 0.8;
-
+                
+                //적폭파시 배경 잠깐 번쩍이게..
                 //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
+                Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20,theCanvas.clientHeight + gameTime/20);
+                
                 //적이 강할수록 i를 높게한다.(i = 점수)
                 for (var i=0;i<=ini_enemy_life*10*(this.enemyh/20);i++){
 

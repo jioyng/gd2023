@@ -1471,7 +1471,7 @@ function enemy_collision(){
 
                 Context.globalAlpha = 0.8;
 
-                Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
+                //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
                 //적이 강할수록 i를 높게한다.(i = 점수)
                 for (var i=0;i<=ini_enemy_life*10*(this.enemyh/20);i++){
 
@@ -1691,11 +1691,11 @@ function ship01_move(){
             ship01x = ship01x - 0.1;
             //ship01x = ship01x/10;
 
-            Context.drawImage(ship01_Image,ship01x - 10,ship01y,60,20)
-            Context.drawImage(ship01_Image,ship01x,ship01y + 50,30,10)
-            Context.drawImage(ship01_Image,ship01x + 20,ship01y + 20,65,15)
-            Context.drawImage(ship01_Image,ship01x + 10,ship01y + 30,15,5)
-            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 35,24,8)
+            Context.drawImage(ship01_Image,ship01x - 20,ship01y,60+gameTime/100,20+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x,ship01y + 50,30+gameTime/100,10+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65+gameTime/100,15+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15+gameTime/100,5+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24+gameTime/100,8+gameTime/51000)
 
         }
 }
@@ -1758,8 +1758,12 @@ function game_background(){
         Context.globalAlpha = 0.2;
     }
 
-    Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
+    //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
+    //시간이 지남에 따라 이미지도 좀좀 키워준다.
+    Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20,theCanvas.clientHeight + gameTime/20);
 
+
+    
     //콜로니끝
     //콜로니 끝 근처는 어둡다.
     Context3.beginPath();

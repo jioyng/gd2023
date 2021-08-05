@@ -2157,7 +2157,8 @@ function game_background(){
         //k = 0; //조명 간격
 
         for (var j = 0; j < 800; j++){
-
+           
+         
             var random01 = Math.floor(Math.random() * 2) + 1;
             var random02 = Math.floor(Math.random() * 5) + 1;
             var random03 = Math.floor(Math.random() * 10) + 1;
@@ -2248,8 +2249,11 @@ function game_background(){
             //좌측 중단 조명
             //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
+            //플레이어와 중심좌표의 위치에따라 배경 속도 변경
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-            //j = j + 10;
+            //console.log("playerY/100",playerY/100)
+            //j = j + playerY/20;
+            j = j + Pdistance/20;   
             if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
                  j = j + (12*random03);     //건물 상하 조밀도
             }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
@@ -2257,6 +2261,7 @@ function game_background(){
             }else {
                 j = j + (10*random03);     //건물 상하 조밀도
             }
+ 
         }
     //}
 

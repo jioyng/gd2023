@@ -1010,6 +1010,9 @@ function player_move(){
         laser_yn = 'Y';
         laser_move();
 		laser_sound.currentTime  = 0;
+
+        //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
+        if (skill == 1)   
         laser_sound.play();
 
         isKeyDown = [];
@@ -1179,11 +1182,11 @@ function laser_move(){
                 //appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
-                for (var i=0;i<200;i++){ 
+                for (var i=0;i<100;i++){ 
                      
-                    l_width = laser_charge_total_time;
-                    l_size = 1;
-                    l_size = l_size*(Pdistance/300); 
+                     //레이져필살기의 크기는 플레이어의 1/3 크기만큼
+                    l_width = playerWidth/3;   
+                    l_size = playerHeight/3; 
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
@@ -2363,8 +2366,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
             l_width = 2;      
 
 
-            warp_sound.currentTime  = 0;
-            warp_sound.play();         
+            //warp_sound.currentTime  = 0;
+            //warp_sound.play();         
         } 
 
         x = event.clientX;
@@ -2657,16 +2660,15 @@ function clickCanvas(event, as_gb) {
 
 
         //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 1){            
-            l_width = 1;    
+        if (skill == 1){      
             
             laser_sound.currentTime  = 0;
-            laser_sound.play();            
-        }else { 
-            laser_charge_total_time = 0;
-            laser_charge_start_time  = gameTime;            
-            l_width = 2;      
+            laser_sound.play();    
 
+        }else { 
+
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;         
 
             warp_sound.currentTime  = 0;
             warp_sound.play();       
@@ -3200,11 +3202,14 @@ function drawScreen(){
         //레이져 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
 
-        if (10 <= laser_charge_total_time && laser_charge_total_time < 40){  
+        if (10 <= laser_charge_total_time && laser_charge_total_time < 20){  
 
             //engin01_sound.currentTime  = 0;
             //engin01_sound.play();   //충전사운드
+            //appear_sound.currentTime  = 0;  
+            //appear_sound.pause()          
             appear_sound.play(); 
+          
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
@@ -3212,7 +3217,7 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-
+    
         } 
 
         laser_move();
@@ -3405,6 +3410,8 @@ function onkeyDown(e, as_strKeyEventValue){
     if (strKeyEventValue == "Space"  || isKeyCode == 32){
 
 		laser_sound.currentTime  = 0;
+        //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
+        if (skill == 1)   
         laser_sound.play();
 
         //레이져 변수 초기화

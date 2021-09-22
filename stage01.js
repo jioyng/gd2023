@@ -305,7 +305,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 1;         //플레이어 초기 스피드
+var ini_Pspeed = 2;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명
@@ -2919,7 +2919,10 @@ function weappon_move(){
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
             //this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
             //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
-            Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);
+            
+            for (z=0;z<5;z++){
+                Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+            }
 
         }else {
 
@@ -2961,8 +2964,11 @@ function weappon_move(){
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
             this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
             //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
-            Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);
-
+           
+            for (z=0;z<10;z++){
+                 
+                Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*2,this.weapponArray[i].bmy + z*2,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);
+            }
         }
 
 

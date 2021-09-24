@@ -2920,8 +2920,15 @@ function weappon_move(){
             //this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
             //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
             
-            for (z=0;z<5;z++){
-                Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+
+            if (this.enemyxx > this.weapponArray[i].bmx){
+                for (z=0;z<5;z++){ 
+                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+                }
+            }else {
+                for (z=0;z<5;z++){ 
+                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+                } 
             }
 
         }else {

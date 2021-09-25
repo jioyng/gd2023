@@ -2940,14 +2940,13 @@ function weappon_move(){
             //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
             //this.weappon_size = this.weappon_size + this.enemy_size/20;
             //this.weappon_size = this.weappon_size + 1;
- 
             this.weappon_size = this.weappon_size + 0.1;
  
 
             //미사일 화면 이탈시 또는 미사일이 너무 커지면
             if (this.weapponArray[i].bsize >= 50){
                 this.weapponArray[i].bsize = 50;
-                this.weappon_size = 0.1;
+                this.weappon_size = 0.5;
             }
 
 
@@ -2970,12 +2969,54 @@ function weappon_move(){
             this.weapponArray[i].bsize = this.weappon_size;
             this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
             this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
-            //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
-           
-            for (z=0;z<10;z++){
+            
+            // for (z=0;z<10;z++){
                  
-                Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*2,this.weapponArray[i].bmy + z*2,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);
+            //     Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*2,this.weapponArray[i].bmy + z*2,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);
+            // }
+
+            //총알이 적보다 아래로 향할때
+            if (this.enemyy   < this.weapponArray[i].bmy){
+                //우측방향
+                if (this.enemyx < this.weapponArray[i].bmx){ 
+                    for (z=0;z<10;z++){
+                        Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*2,this.weapponArray[i].bmy + z*2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 - this.weapponArray[i].bmy / 100);
+                    }  
+                
+                }
+                
+                //좌측방향
+                if (this.enemyx  > this.weapponArray[i].bmx){ 
+                //총알이 적보다 좌측 아래로 향할때                 
+                    for (z=0;z<10;z++){
+                        Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*2,this.weapponArray[i].bmy + z*2,this.weapponArray[i].bsize/2  + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 - this.weapponArray[i].bmy / 100);
+                    }
+                }
             }
+            //총알이 적보다 위 향할때
+            else if (this.enemyy + this.enemyh > this.weapponArray[i].bmy){
+                //우측방향
+                if (this.enemyx  + this.enemyw < this.weapponArray[i].bmx){ 
+                 for (z=0;z<5;z++){
+                     Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*2,this.weapponArray[i].bmy - z*2,this.weapponArray[i].bsize/2  + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 200);
+                 }
+
+                }
+                //좌측방향
+                if (this.enemyx  + this.enemyw > this.weapponArray[i].bmx){ 
+                //총알이 적보다 좌측 아래로 향할때                 
+                 for (z=0;z<5;z++){
+                     Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*2,this.weapponArray[i].bmy - z*2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 - this.weapponArray[i].bmy / 200);
+                 }
+                }
+            }else {
+                //그외  
+                for (z=0;z<5;z++){
+                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/4 + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);      
+                }
+            } 
+
+             
         }
 
 

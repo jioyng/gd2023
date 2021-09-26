@@ -1032,9 +1032,11 @@ function player_move(){
 
     // playerWidth = ini_player_width * player_size/100000*Pdistance*0.8
     // playerHeight = ini_player_height * player_size/100000*Pdistance*0.8
-    playerWidth = ini_player_width * player_size/100000*Pdistance*0.6;
-    playerHeight = ini_player_height * player_size/100000*Pdistance*0.6;
-
+    // playerWidth = ini_player_width * player_size/100000*Pdistance*0.6;
+    // playerHeight = ini_player_height * player_size/100000*Pdistance*0.6;
+    playerWidth = ini_player_width * player_size/100000*Pdistance*0.4;
+    playerHeight = ini_player_height * player_size/100000*Pdistance*0.4;
+    
     //멀리 가도 플레이어 최소크기는 유지
     if (parseInt(playerWidth) <= parseInt(ini_player_width/3)){
         playerWidth = parseInt(ini_player_width/3);

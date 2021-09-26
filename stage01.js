@@ -1722,35 +1722,35 @@ function game_background(){
     }
 
     if (parseInt(gameTime/800 % 9) == 0){
-        cityEnd_x = cityEnd_x + 0.2;
-        cityEnd_y = cityEnd_y + 0.1;
+        cityEnd_x = cityEnd_x + 0.2*4;
+        cityEnd_y = cityEnd_y + 0.1*4
     }else if (parseInt(gameTime/500 % 9) == 1){
-        cityEnd_x = cityEnd_x - 0.5;
-        cityEnd_y = cityEnd_y - 0.2;
+        cityEnd_x = cityEnd_x - 0.5*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
     }else if (parseInt(gameTime/500 % 9) == 2){
-        cityEnd_x = cityEnd_x + 0.5;
-        cityEnd_y = cityEnd_y + 0.3;
+        cityEnd_x = cityEnd_x + 0.5*4;
+        cityEnd_y = cityEnd_y + 0.3*4;
     }else if (parseInt(gameTime/500 % 9) == 3){
-        cityEnd_x = cityEnd_x + 0.1
-        cityEnd_y = cityEnd_y - 0.2
+        cityEnd_x = cityEnd_x + 0.1*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
     }else if (parseInt(gameTime/500 % 9) == 4){
-        cityEnd_x = cityEnd_x - 0.6;
-        cityEnd_y = cityEnd_y - 0.4;
+        cityEnd_x = cityEnd_x - 0.6*4;
+        cityEnd_y = cityEnd_y - 0.4*4;
     }else if (parseInt(gameTime/500 % 9) == 5){
-        cityEnd_x = cityEnd_x + 0.7;
-        cityEnd_y = cityEnd_y + 0.4;
+        cityEnd_x = cityEnd_x + 0.7*4;
+        cityEnd_y = cityEnd_y + 0.4*4;
     }else if (parseInt(gameTime/500 % 9) == 6){
-        cityEnd_x = cityEnd_x - 0.4;
-        cityEnd_y = cityEnd_y - 0.2;
+        cityEnd_x = cityEnd_x - 0.4*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
     }else if (parseInt(gameTime/500 % 9) == 7){
-        cityEnd_x = cityEnd_x + 0.3;
-        cityEnd_y = cityEnd_y + 0.3;
+        cityEnd_x = cityEnd_x + 0.3*4;
+        cityEnd_y = cityEnd_y + 0.3*4;
     }else if (parseInt(gameTime/500 % 9) == 8){
-        cityEnd_x = cityEnd_x - 0.2;
-        cityEnd_y = cityEnd_y - 0.1;
+        cityEnd_x = cityEnd_x - 0.2*4;
+        cityEnd_y = cityEnd_y - 0.1*4;
     }else {
-        cityEnd_x = cityEnd_x + 0.1
-        cityEnd_y = cityEnd_y + 0.2
+        cityEnd_x = cityEnd_x + 0.1*4;
+        cityEnd_y = cityEnd_y + 0.2*4;
     }
 
     //Context.globalAlpha = 0.5;

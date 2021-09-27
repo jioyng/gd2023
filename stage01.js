@@ -1723,37 +1723,42 @@ function game_background(){
         back_distance = 0;
     }
 
-    if (parseInt(gameTime/800 % 9) == 0){
-        cityEnd_x = cityEnd_x + 0.2*4;
-        cityEnd_y = cityEnd_y + 0.1*4
-    }else if (parseInt(gameTime/500 % 9) == 1){
-        cityEnd_x = cityEnd_x - 0.5*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
-    }else if (parseInt(gameTime/500 % 9) == 2){
-        cityEnd_x = cityEnd_x + 0.5*4;
-        cityEnd_y = cityEnd_y + 0.3*4;
-    }else if (parseInt(gameTime/500 % 9) == 3){
-        cityEnd_x = cityEnd_x + 0.1*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
-    }else if (parseInt(gameTime/500 % 9) == 4){
-        cityEnd_x = cityEnd_x - 0.6*4;
-        cityEnd_y = cityEnd_y - 0.4*4;
-    }else if (parseInt(gameTime/500 % 9) == 5){
-        cityEnd_x = cityEnd_x + 0.7*4;
-        cityEnd_y = cityEnd_y + 0.4*4;
-    }else if (parseInt(gameTime/500 % 9) == 6){
-        cityEnd_x = cityEnd_x - 0.4*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
-    }else if (parseInt(gameTime/500 % 9) == 7){
-        cityEnd_x = cityEnd_x + 0.3*4;
-        cityEnd_y = cityEnd_y + 0.3*4;
-    }else if (parseInt(gameTime/500 % 9) == 8){
-        cityEnd_x = cityEnd_x - 0.2*4;
-        cityEnd_y = cityEnd_y - 0.1*4;
-    }else {
-        cityEnd_x = cityEnd_x + 0.1*4;
-        cityEnd_y = cityEnd_y + 0.2*4;
-    }
+    // if (parseInt(gameTime/800 % 9) == 0){
+    //     cityEnd_x = cityEnd_x + 0.2*4;
+    //     cityEnd_y = cityEnd_y + 0.1*4
+    // }else if (parseInt(gameTime/500 % 9) == 1){
+    //     cityEnd_x = cityEnd_x - 0.5*4;
+    //     cityEnd_y = cityEnd_y - 0.2*4;
+    // }else if (parseInt(gameTime/500 % 9) == 2){
+    //     cityEnd_x = cityEnd_x + 0.5*4;
+    //     cityEnd_y = cityEnd_y + 0.3*4;
+    // }else if (parseInt(gameTime/500 % 9) == 3){
+    //     cityEnd_x = cityEnd_x + 0.1*4;
+    //     cityEnd_y = cityEnd_y - 0.2*4;
+    // }else if (parseInt(gameTime/500 % 9) == 4){
+    //     cityEnd_x = cityEnd_x - 0.6*4;
+    //     cityEnd_y = cityEnd_y - 0.4*4;
+    // }else if (parseInt(gameTime/500 % 9) == 5){
+    //     cityEnd_x = cityEnd_x + 0.7*4;
+    //     cityEnd_y = cityEnd_y + 0.4*4;
+    // }else if (parseInt(gameTime/500 % 9) == 6){
+    //     cityEnd_x = cityEnd_x - 0.4*4;
+    //     cityEnd_y = cityEnd_y - 0.2*4;
+    // }else if (parseInt(gameTime/500 % 9) == 7){
+    //     cityEnd_x = cityEnd_x + 0.3*4;
+    //     cityEnd_y = cityEnd_y + 0.3*4;
+    // }else if (parseInt(gameTime/500 % 9) == 8){
+    //     cityEnd_x = cityEnd_x - 0.2*4;
+    //     cityEnd_y = cityEnd_y - 0.1*4;
+    // }else {
+    //     cityEnd_x = cityEnd_x + 0.1*4;
+    //     cityEnd_y = cityEnd_y + 0.2*4;
+    // }
+
+
+     
+    cityEnd_x = cityEnd_x - pmovex/2;
+    cityEnd_y = cityEnd_y - pmovey/2; 
 
     //Context.globalAlpha = 0.5;
 
@@ -1972,12 +1977,14 @@ function game_background(){
         for(var i=0;i<=4;i++){
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance   - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance   - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance2, 0, Math.PI * 2);
             Context3.stroke();
 
             Context3.beginPath();
             //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1 - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1 - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y,  55 + 5 * i + back_distance2, 0, Math.PI * 2);
             Context3.lineWidth = i;
             //Context3.lineWidth = 2;
             Context3.stroke();
@@ -2073,7 +2080,7 @@ function game_background(){
         // Context3.lineTo( theCanvas.clientWidth - 360 , 0);
 
         if (parseInt(gameTime/1000) % 5 == 0){
-            // cityImage = city01Image;
+             cityImage = city01Image;
 
              Context3.closePath();
              Context3.fillStyle="#40608E";
@@ -2081,7 +2088,7 @@ function game_background(){
              Context3.fill();
 
          }else if (parseInt(gameTime/1000) % 5 == 1){
-             // cityImage = city02Image;
+              cityImage = city02Image;
 
               Context3.closePath();
               Context3.fillStyle="#408E8C";
@@ -2089,7 +2096,7 @@ function game_background(){
               Context3.fill();
 
          }else if (parseInt(gameTime/1000) % 5 == 2){
-            // cityImage = city02Image;
+             cityImage = city02Image;
 
              Context3.closePath();
              Context3.fillStyle="#9EA46B";
@@ -2097,7 +2104,7 @@ function game_background(){
              Context3.fill();
 
          }else if (parseInt(gameTime/1000) % 5 == 3){
-             // cityImage = city02Image;
+              cityImage = city02Image;
 
               Context3.closePath();
               Context3.fillStyle="#091413";
@@ -2105,7 +2112,7 @@ function game_background(){
               Context3.fill();
 
           }else {
-            // cityImage = city02Image;
+             cityImage = city02Image;
 
              Context3.closePath();
              Context3.fillStyle="#8E9695";
@@ -2118,10 +2125,10 @@ function game_background(){
 
         //삼각형(지면 안개 효과)
         Context3.beginPath();
-        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4 + 20 + cityEnd_y);
+        Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4+ 20 + cityEnd_y);
         Context3.lineTo(-200 - cityEnd_x, theCanvas.clientHeight - theCanvas.clientHeight/30);
         Context3.lineWidth = 1;
-        Context3.lineTo( theCanvas.clientWidth + 200 + cityEnd_x - cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/30 + cityEnd_x - cityEnd_y);
+        Context3.lineTo( theCanvas.clientWidth + 200 + cityEnd_x + cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/50 + cityEnd_x + cityEnd_y);
 
 
         //console.log("t",parseInt(gameTime/200) % 3);
@@ -2167,6 +2174,10 @@ function game_background(){
             // Context3.fill();
 
         }
+        
+        //사각형 
+        Context3.fillRect(0,theCanvas.clientHeight - cityEnd_y,theCanvas.clientWidth * 2,cityEnd_y * 2);
+
 
         //k = 0; //조명 간격
 
@@ -2186,7 +2197,7 @@ function game_background(){
 
             //지면 땅
             //Context3.globalAlpha = 0.2;
-            Context3.globalAlpha = 0.4;
+            Context3.globalAlpha = 0.5;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 5  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){

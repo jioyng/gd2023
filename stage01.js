@@ -1834,7 +1834,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 4)
+    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 4) + 0.2;
 
     //for (var i=1;i<=5;i++){
 
@@ -2166,12 +2166,12 @@ function game_background(){
              Context3.fill();
 
          }else {
-           // cityImage = city02Image;
+             //cityImage = city02Image;
 
-            // Context3.closePath();
-            // Context3.fillStyle="#8E9695";
-            // Context3.globalAlpha = 0.5;
-            // Context3.fill();
+             Context3.closePath();
+             Context3.fillStyle="#40608E";
+             Context3.globalAlpha = 0.5;
+             Context3.fill();
 
         }
         
@@ -2259,7 +2259,7 @@ function game_background(){
 
             //콜로니 끝 근처 원
 			Context3.beginPath();
-			Context3.globalAlpha = 0.08 * Math.floor(Math.random() * 3)
+			Context3.globalAlpha = 0.08 * Math.floor(Math.random() * 3) + 0.1;
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
             Context3.lineWidth = 1;
 			Context3.stroke();
@@ -2278,7 +2278,7 @@ function game_background(){
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
             //console.log("playerY/100",playerY/100)
             //j = j + playerY/20;
-            j = j + Pdistance/20;   
+            j = j + Pdistance/10;   
             if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
                  j = j + (12*random03);     //건물 상하 조밀도
             }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){

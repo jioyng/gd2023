@@ -1756,7 +1756,7 @@ function game_background(){
     //     cityEnd_y = cityEnd_y + 0.2*4;
     // }
 
-    //cityEnd_size =  cityEnd_size - pmovey/40;
+    cityEnd_size =  cityEnd_size - pmovey/20;
      
     cityEnd_x = cityEnd_x - pmovex/2;
     cityEnd_y = cityEnd_y - pmovey/2; 
@@ -2286,7 +2286,7 @@ function game_background(){
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
             //console.log("playerY/100",playerY/100)
             //j = j + playerY/20;
-            j = j + Pdistance/10 - playerY/50;   
+            j = j + Pdistance/10 - playerY/60;   
             if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
                  j = j + (12*random03);     //건물 상하 조밀도
             }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){

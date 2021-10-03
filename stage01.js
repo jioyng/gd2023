@@ -149,6 +149,7 @@ var gameScore = 0;
 var init_Timer_Id = 0;  //var Timer_Id = setInterval(drawScreen, 1000/gameFrame); <= 재일 처음 시작시에는 움지기지 않는다.
 var Timer_Id = 0;
 //게임 배경의 진행 시점(목적지)
+//var init_cityEnd_size = 100;       //게임 진행 방향 타겟 사이즈
 var init_cityEnd_size = 100;       //게임 진행 방향 타겟 사이즈
 var init_cityEnd_x = 0;            //게임 진행 방향 타겟 x좌표
 var init_cityEnd_y = 0;            //게임 진행 방향 타겟 y좌표
@@ -1755,7 +1756,7 @@ function game_background(){
     //     cityEnd_y = cityEnd_y + 0.2*4;
     // }
 
-
+    //cityEnd_size =  cityEnd_size - pmovey/40;
      
     cityEnd_x = cityEnd_x - pmovex/2;
     cityEnd_y = cityEnd_y - pmovey/2; 
@@ -1828,13 +1829,16 @@ function game_background(){
 
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 , theCanvas.clientHeight / 4 + cityEnd_y - 40 +  Math.floor(Math.random() * 3) ,  60 ,40 );
-    Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  25 ,30 );
+    //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  25 ,30 );
+    Context3.drawImage(noneImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  200 ,100 );
+
 
     Context.restore();
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 4) + 0.2;
+    Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 4) + parseInt(playerY/1000);
+    //console.log("playerY/100",playerY/100);
 
     //for (var i=1;i<=5;i++){
 
@@ -1854,18 +1858,18 @@ function game_background(){
         Context3.beginPath();
         //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 ,  theCanvas.clientHeight / 4 - 50 + cityEnd_y - i * 100);
-        Context3.lineTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 - i * 100 , theCanvas.clientHeight / 4 - 50 - i*10 + cityEnd_y);
+        Context3.lineTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 - i * 100 , theCanvas.clientHeight / 4 - 50 - i*10 + cityEnd_y + playerY/100);
         Context3.strokeStyle = "grey";; //선 색상
-        Context3.lineWidth = 2;
+        Context3.lineWidth = 1;
         Context3.stroke();
 
         //중앙상단에서 우측 상단선 까지
         Context3.beginPath();
         //Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x +  Math.floor(Math.random() * 5) , theCanvas.clientHeight / 4 - 100);
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30 + ((theCanvas.clientWidth / 2  + cityEnd_x + 30) - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x - 30))/2 ,  theCanvas.clientHeight / 4 - 50 + cityEnd_y - i * 100);
-        Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x + i - 20  + i * 100, theCanvas.clientHeight / 4 - 50 - i*10  + cityEnd_y);
+        Context3.lineTo(theCanvas.clientWidth / 2  + cityEnd_x + i - 20  + i * 100, theCanvas.clientHeight / 4 - 50 - i*10  + cityEnd_y + playerY/100);
         Context3.strokeStyle = "grey";; //선 색상
-        Context3.lineWidth = 2;
+        Context3.lineWidth = 1;
         Context3.stroke();
 
     }
@@ -1974,20 +1978,23 @@ function game_background(){
         //Context3.strokeStyle = "balck";
 
         //메인원1
-        for(var i=0;i<=4;i++){
-            Context3.beginPath();
-            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance   - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance2, 0, Math.PI * 2);
-            Context3.stroke();
+        //for(var i=0;i<=4;i++){
+        for(var i=0;i<=10 - playerY/100;i++){
 
-            Context3.beginPath();
-            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
-            //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1 - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y,  55 + 5 * i + back_distance2, 0, Math.PI * 2);
-            Context3.lineWidth = i;
-            //Context3.lineWidth = 2;
-            Context3.stroke();
+
+            // Context3.beginPath();
+            // //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
+            // //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance   - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5   + cityEnd_y, 70 + back_distance2, 0, Math.PI * 2);
+            // Context3.stroke();
+
+            // Context3.beginPath();
+            // //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 10 , back_distance2, 0, Math.PI * 2);
+            // //Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y, 55 + 5 * i + back_distance + Math.floor(Math.random() * 2) + 1 - cityEnd_size + cityEnd_x, 0, Math.PI * 2);
+            // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 5 + 1 * i  + cityEnd_y,  55 + 5 * i + back_distance2, 0, Math.PI * 2);
+            // Context3.lineWidth = i;
+            // //Context3.lineWidth = 2;
+            // Context3.stroke();
 
 
             // //중앙상단에서 좌측하단 기둥
@@ -2123,6 +2130,8 @@ function game_background(){
 
 
 
+
+
         //삼각형(지면 안개 효과)
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2 , theCanvas.clientHeight / 4+ 20 + cityEnd_y);
@@ -2130,6 +2139,7 @@ function game_background(){
         Context3.lineWidth = 1;
         Context3.lineTo( theCanvas.clientWidth + 200 + cityEnd_x + cityEnd_y, theCanvas.clientHeight - theCanvas.clientHeight/50 + cityEnd_x + cityEnd_y);
 
+        
 
         //console.log("t",parseInt(gameTime/200) % 3);
 
@@ -2175,13 +2185,11 @@ function game_background(){
 
         }
         
-        //사각형 
-        Context3.fillRect(0,theCanvas.clientHeight - cityEnd_y,theCanvas.clientWidth * 2,cityEnd_y * 2);
-
 
         //k = 0; //조명 간격
 
-        for (var j = 50; j < 800; j++){
+        //for (var j = 50; j < 800; j++){
+        for (var j = 40; j < 800; j){
            
          
             var random01 = Math.floor(Math.random() * 2) + 1;
@@ -2210,7 +2218,7 @@ function game_background(){
 
             //지면 건물
             if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,20 * random03)
+                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
             }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
                 Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 3  + j + random05 + cityEnd_y , 1 * random01 + j*4 - (cityEnd_x/200*j) ,20 * random03)
             }else {
@@ -2259,7 +2267,7 @@ function game_background(){
 
             //콜로니 끝 근처 원
 			Context3.beginPath();
-			Context3.globalAlpha = 0.08 * Math.floor(Math.random() * 3) + 0.1;
+			Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 2) + 0.1;
             Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
             Context3.lineWidth = 1;
 			Context3.stroke();
@@ -2278,7 +2286,7 @@ function game_background(){
             //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
             //console.log("playerY/100",playerY/100)
             //j = j + playerY/20;
-            j = j + Pdistance/10;   
+            j = j + Pdistance/10 - playerY/50;   
             if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
                  j = j + (12*random03);     //건물 상하 조밀도
             }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
@@ -2286,6 +2294,7 @@ function game_background(){
             }else {
                 j = j + (10*random03);     //건물 상하 조밀도
             }
+            
  
         }
     //}

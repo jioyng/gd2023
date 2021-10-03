@@ -2205,7 +2205,7 @@ function game_background(){
 
             //지면 땅
             //Context3.globalAlpha = 0.2;
-            Context3.globalAlpha = 0.5;
+            Context3.globalAlpha = 0.8;
             if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
                 Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 5  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
             }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){

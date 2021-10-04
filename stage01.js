@@ -2126,10 +2126,7 @@ function game_background(){
              Context3.globalAlpha = 0.1;
              Context3.fill();
 
-         }
-
-
-
+         } 
 
 
         // //삼각형(지면 안개 효과)
@@ -2203,114 +2200,190 @@ function game_background(){
         //k = 0; //조명 간격
 
         //for (var j = 50; j < 800; j++){
-        for (var j = playerY/100 + 40; j < 800; j){
+        // for (var j = playerY/100 + 40; j < 800; j){
            
          
-            var random01 = Math.floor(Math.random() * 2) + 1;
-            var random02 = Math.floor(Math.random() * 5) + 1;
-            var random03 = Math.floor(Math.random() * 10) + 1;
-            var random04 = Math.floor(Math.random() * 15) + 1;
-            var random05 = Math.floor(Math.random() * 20) + 1;
-            var random06 = Math.floor(Math.random() * 30) + 1;
+        //     var random01 = Math.floor(Math.random() * 2) + 1;
+        //     var random02 = Math.floor(Math.random() * 5) + 1;
+        //     var random03 = Math.floor(Math.random() * 10) + 1;
+        //     var random04 = Math.floor(Math.random() * 15) + 1;
+        //     var random05 = Math.floor(Math.random() * 20) + 1;
+        //     var random06 = Math.floor(Math.random() * 30) + 1;
 
-            //Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
-            //Context3.globalAlpha = 1
-            //Context3.strokeStyle = "balck";
+        //     //Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
+        //     //Context3.globalAlpha = 1
+        //     //Context3.strokeStyle = "balck";
 
-            //지면 땅
-            Context3.globalAlpha = 0.5;
-            //Context3.globalAlpha = 0.8;
-            if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }else {
-                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
-            }
+        //     //지면 땅
+        //     Context3.globalAlpha = 0.5;
+        //     //Context3.globalAlpha = 0.8;
+        //     if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
+        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
+        //         Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }else {
+        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
+        //     }
 
-            Context3.globalAlpha = 0.8;
+        //     Context3.globalAlpha = 0.8;
 
-            //지면 건물
-            if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
-            }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-                Context3.drawImage(city02Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*4 - (cityEnd_x/200*j) ,10 * random03)
-            }else {
-                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 4  + j + random01 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
-            }
+        //     //지면 건물
+        //     if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
+        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
+        //     }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
+        //         Context3.drawImage(city02Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*4 - (cityEnd_x/200*j) ,10 * random03)
+        //     }else {
+        //         Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 4  + j + random01 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
+        //     }
 
-            //지붕 건물 반사
-            Context3.globalAlpha = 0.04;
-            if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
-            }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-                Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }else {
-                Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
-            }
+        //     //지붕 건물 반사
+        //     Context3.globalAlpha = 0.04;
+        //     if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
+        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+        //     }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
+        //         Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }else {
+        //         Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+        //     }
 
-            //지붕 땅 반사
-            Context3.globalAlpha = 0.06;
-            if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }else {
-                Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-            }
+        //     //지붕 땅 반사
+        //     Context3.globalAlpha = 0.06;
+        //     if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
+        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
+        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }else {
+        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+        //     }
 
 
 
-            // //상단 선 및 좌우 측 벽 조명
-            // Context3.fillStyle = 'yellow'; // 채우기 색 지정
-            // Context3.globalAlpha = "0.01"
-            // Context3.strokeStyle = "balck";
+        //     // //상단 선 및 좌우 측 벽 조명
+        //     // Context3.fillStyle = 'yellow'; // 채우기 색 지정
+        //     // Context3.globalAlpha = "0.01"
+        //     // Context3.strokeStyle = "balck";
 
-            // Context3.beginPath();
-            // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 25  - Math.floor(Math.random() * 5)  + cityEnd_y, 40 - random01, 0, Math.PI * 2);
-            // Context3.stroke();
+        //     // Context3.beginPath();
+        //     // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 25  - Math.floor(Math.random() * 5)  + cityEnd_y, 40 - random01, 0, Math.PI * 2);
+        //     // Context3.stroke();
 
-            // Context3.fillStyle = 'black'; // 채우기 색 지정
-            // Context3.globalAlpha = "0.03"
-            // Context3.strokeStyle = "balck";
+        //     // Context3.fillStyle = 'black'; // 채우기 색 지정
+        //     // Context3.globalAlpha = "0.03"
+        //     // Context3.strokeStyle = "balck";
 
-			// Context3.beginPath();
-			// Context3.globalAlpha = "0.01"
-			// Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 2 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
-			// Context3.stroke();
+		// 	// Context3.beginPath();
+		// 	// Context3.globalAlpha = "0.01"
+		// 	// Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 2 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
+		// 	// Context3.stroke();
 
-            //콜로니 끝 근처 원
-			Context3.beginPath();
-			Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 1) + 0.1;
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
-            Context3.lineWidth = 1;
-			Context3.stroke();
+        //     //콜로니 끝 근처 원
+		// 	Context3.beginPath();
+		// 	Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 1) + 0.1;
+        //     Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
+        //     Context3.lineWidth = 1;
+		// 	Context3.stroke();
 
-            //k = k + 50;  //조명 간격
-            //우측중단선 조명
-            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x + k , theCanvas.clientHeight / 4 - 30 + cityEnd_y  , 5 + k/100 , 10  + k/20);
+        //     //k = k + 50;  //조명 간격
+        //     //우측중단선 조명
+        //     //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x + k , theCanvas.clientHeight / 4 - 30 + cityEnd_y  , 5 + k/100 , 10  + k/20);
 
-            //중앙 통로 끝
-            //Context3.fillRect(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x  - 40  , theCanvas.clientHeight / 4 - 50 + cityEnd_y  , 40 + k/20   , 60  );
+        //     //중앙 통로 끝
+        //     //Context3.fillRect(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x  - 40  , theCanvas.clientHeight / 4 - 50 + cityEnd_y  , 40 + k/20   , 60  );
 
-            //좌측 중단 조명
-            //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
+        //     //좌측 중단 조명
+        //     //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
 
-            //플레이어와 중심좌표의 위치에따라 배경 속도 변경
-            //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-            //console.log("playerY/100",playerY/100)
-            //j = j + playerY/20;
-            j = j + Pdistance/10 - playerY/60;   
-            if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
-                 j = j + (12*random03);     //건물 상하 조밀도
-            }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
-                j = j + (11*random03);     //건물 상하 조밀도
-            }else {
-                j = j + (10*random03);     //건물 상하 조밀도
-            }
+        //     //플레이어와 중심좌표의 위치에따라 배경 속도 변경
+        //     //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
+        //     //console.log("playerY/100",playerY/100)
+        //     //j = j + playerY/20;
+        //     j = j + Pdistance/10 - playerY/60;   
+        //     if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
+        //          j = j + (12*random03);     //건물 상하 조밀도
+        //     }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
+        //         j = j + (11*random03);     //건물 상하 조밀도
+        //     }else {
+        //         j = j + (10*random03);     //건물 상하 조밀도
+        //     }
             
  
+        // }
+
+        var random01 = Math.floor(Math.random() * 2) + 1;
+        var random02 = Math.floor(Math.random() * 5) + 1;
+        var random03 = Math.floor(Math.random() * 10) + 1;
+        var random04 = Math.floor(Math.random() * 15) + 1;
+        var random05 = Math.floor(Math.random() * 20) + 1;
+        var random06 = Math.floor(Math.random() * 30) + 1;  
+        
+        var cityImage = city01Image;
+
+        if (parseInt(gameTime/(600-Pspeed*100)) % 5 == 0){
+            cityImage = city01Image;
+        }else if(parseInt(gameTime/(600-Pspeed*100)) % 5 == 1){
+            cityImage = city02Image;
+        }else if(parseInt(gameTime/(600-Pspeed*100)) % 5 == 2){
+            cityImage = city03Image;
+        }else if(parseInt(gameTime/(600-Pspeed*100)) % 6 == 3){
+            cityImage = groundImage;
+        }else {            
+            cityImage = riverImage; 
         }
+
+        for (var j = playerY/100; j < 10; j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 0.4; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y, j*4 ,50* random01)
+            
+            j = j + (6*random01);     //건물 상하 조밀도
+        }         
+
+        for (var j = 10 ; j < 100;j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 0.6; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random02)
+  
+            j = j + (6*random02);     //건물 상하 조밀도
+        }     
+        
+        for (var j = 100 ; j < 200;j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 0.7; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+  
+            j = j + (6*random03);     //건물 상하 조밀도
+        }       
+        
+
+        for (var j = 200 ; j < 320;j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 0.8; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random04)
+  
+            j = j + (6*random04);     //건물 상하 조밀도
+        }   
+        
+        for (var j = 300 ; j < 460;j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 0.9; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random05)
+  
+            j = j + (8*random05);     //건물 상하 조밀도
+        }    
+        
+        for (var j = 400 ; j < 600;j){  
+    
+            //지면 땅
+            Context3.globalAlpha = 1; 
+            Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random06)
+  
+            j = j + (10*random06);     //건물 상하 조밀도
+        }          
     //}
 
     //투명도 원상태로

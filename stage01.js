@@ -2366,6 +2366,8 @@ function game_background(){
                 cityImage = city03Image;
             }
 
+
+            //if (gameTime%2 == 0) return;
             for (var j = playerY/100; j < 10; j){  
         
                 //지면 땅
@@ -2434,7 +2436,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 1; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random02 + j*4 ,600 )
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random02 + j*4 ,800 )
     
                 j = j + (10*random06);     //건물 상하 조밀도 
 

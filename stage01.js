@@ -292,7 +292,7 @@ var ini_player_height = 200;
 //var ini_player_height = 250;  //503
 var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
-var ini_player_size = 100;    //플레이어 초기 크기 배율
+var ini_player_size = 200;    //플레이어 초기 크기 배율
 
 //플레이어크기
 var playerWidth = ini_player_width;
@@ -2343,7 +2343,7 @@ function game_background(){
             }else if (gameTime % 12 == 4){ 
                 cityImage = city01Image;
             }else if (gameTime % 12 == 5){ 
-                cityImage = city01Image;
+                cityImage = city02Image;
             }else if (gameTime % 12 == 6){ 
                 cityImage = city02Image;
             }else if (gameTime % 12 == 7){ 
@@ -2351,7 +2351,7 @@ function game_background(){
             }else if (gameTime % 12 == 8){ 
                 cityImage = city02Image;
             }else if (gameTime % 12 == 9){ 
-                cityImage = city03Image;
+                cityImage = city02Image;
             }else if (gameTime % 12 == 10){ 
                 cityImage = city03Image;
             }else if (gameTime % 12 == 11){ 
@@ -2425,16 +2425,16 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,100)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,200)
     
                 j = j + (8*random05);     //건물 상하 조밀도
             }    
             
-            for (var j = 400 ; j < 800;j){  
+            for (var j = 400 ; j < 400;j){  
         
                 //지면 땅
                 Context3.globalAlpha = 1; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,200 )
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random02 + j*4 ,600 )
     
                 j = j + (10*random06);     //건물 상하 조밀도 
 

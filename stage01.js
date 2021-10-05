@@ -2170,6 +2170,10 @@ function game_background(){
              Context3.fill();
 
         }
+
+  
+        Context3.globalAlpha = 1; 
+
         //else if (parseInt(gameTime/2000) % 5 == 2){
         //    // cityImage = city02Image;
 

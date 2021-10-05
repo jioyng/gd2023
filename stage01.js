@@ -2432,7 +2432,7 @@ function game_background(){
                 j = j + (8*random05);     //건물 상하 조밀도
             }    
             
-            for (var j = 400 ; j < 400;j){  
+            for (var j = 400 ; j < 800;j){  
         
                 //지면 땅
                 Context3.globalAlpha = 1; 

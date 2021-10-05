@@ -2372,7 +2372,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.4; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y, j*4 ,50* random01)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/5, j*4 - playerX/200 ,50* random01)
                 
                 j = j + (6*random01);     //건물 상하 조밀도
             }         
@@ -2381,7 +2381,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random02)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 - playerX/100,20 * random02)
     
                 j = j + (6*random02);     //건물 상하 조밀도 
             }     
@@ -2390,7 +2390,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.7; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 - playerX/100,20 * random03)
     
                 j = j + (6*random03);     //건물 상하 조밀도
 
@@ -2409,7 +2409,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,100)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 - playerX/100 ,100)
     
                 j = j + (6*random04);     //건물 상하 조밀도
 
@@ -2427,7 +2427,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,200)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 - playerX/100,200)
     
                 j = j + (8*random05);     //건물 상하 조밀도
             }    
@@ -2436,7 +2436,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 1; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random02 + j*4 ,800 )
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random02 + j*4 - playerX/100,800 )
     
                 j = j + (10*random06);     //건물 상하 조밀도 
 
@@ -2453,8 +2453,10 @@ function game_background(){
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = 0.8;
-    Context3.strokeStyle = "ffffff";
+    Context3.globalAlpha = 1;
+    Context3.strokeStyle = "ffffff"; 
+ 
+    
 }
 
 
@@ -3428,7 +3430,7 @@ function drawScreen(){
 
 
     //게임 배경 화면
-	//if (gameTime % 2 === 0){
+	//if (gameTime%2 === 0){
 		game_background();
 	//}
 

@@ -1720,7 +1720,7 @@ function game_background(){
 
 	//back_distance = back_distance + 0.1;
 
-    if (back_distance >= 800){
+    if (back_distance >= 1000){
         back_distance = 0;
     }
 
@@ -1758,8 +1758,8 @@ function game_background(){
 
     cityEnd_size =  cityEnd_size - pmovey/20;
      
-    cityEnd_x = cityEnd_x - pmovex/2;
-    cityEnd_y = cityEnd_y - pmovey/2; 
+    cityEnd_x = cityEnd_x - pmovex/4;
+    cityEnd_y = cityEnd_y - pmovey/4; 
 
     //Context.globalAlpha = 0.5;
 
@@ -2171,8 +2171,7 @@ function game_background(){
 
         }
 
-  
-        Context3.globalAlpha = 1; 
+   
 
         //else if (parseInt(gameTime/2000) % 5 == 2){
         //    // cityImage = city02Image;
@@ -2457,7 +2456,7 @@ function game_background(){
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = 1;
+    Context3.globalAlpha = 0.9;
     Context3.strokeStyle = "ffffff"; 
  
     

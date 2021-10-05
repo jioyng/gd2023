@@ -2486,7 +2486,7 @@ function game_background(){
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = 0.8;
+    Context3.globalAlpha = 0.6;
     Context3.strokeStyle = "ffffff"; 
  
     

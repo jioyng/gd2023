@@ -1758,9 +1758,32 @@ function game_background(){
 
     cityEnd_size =  cityEnd_size - pmovey/20;
      
-    cityEnd_x = cityEnd_x - pmovex/4;
-    cityEnd_y = cityEnd_y - pmovey/4; 
+    //플레이어 이동에 따른 게임 중심 좌표 이동
+    if (cityEnd_x > -500){ 
+        
+        cityEnd_x = cityEnd_x - pmovex/2;
+        //cityEnd_y = cityEnd_y - pmovey/3; 
 
+    }else {
+        if (cityEnd_x < init_cityEnd_x){
+            ++cityEnd_x;
+        }
+    }
+ 
+    if (cityEnd_y > -500){ 
+        
+        //cityEnd_x = cityEnd_x - pmovex/3;
+        cityEnd_y = cityEnd_y - pmovey/2; 
+
+    }else {
+    
+        if (cityEnd_y < init_cityEnd_y){
+            ++cityEnd_y;
+        }
+    }
+
+
+    //console.log(cityEnd_x,cityEnd_y);
     //Context.globalAlpha = 0.5;
 
     //콜로니 밖 우주 배경그려주기(투명도 적용)
@@ -2063,13 +2086,20 @@ function game_background(){
 
         }
 
+        
         //메인원2
-        if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
-            Context3.beginPath();
-            Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
-            Context3.lineWidth = i - 2;
-            Context3.stroke();
+        //플레이어의 x,y좌표가 -200이하가 되면 에러가 발생되는 이상현상 해결.
+        try {
+            if (String(gameTime).substr(String(gameTime).length-3,1) <= 5){
+                Context3.beginPath();
+                Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 5 , 80 +  back_distance2 + cityEnd_y + Math.floor(Math.random() * 2) + 1, 0, Math.PI * 2);
+                Context3.lineWidth = i - 2;
+                Context3.stroke();
+            } 
+        } catch (error) {
+            
         }
+
 
         // Context3.beginPath();
         // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + Math.floor(Math.random() * 1) + 1 ,85 + back_distance2 + cityEnd_y, 0, Math.PI * 2);
@@ -2456,7 +2486,7 @@ function game_background(){
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = 0.9;
+    Context3.globalAlpha = 0.8;
     Context3.strokeStyle = "ffffff"; 
  
     

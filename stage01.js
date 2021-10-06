@@ -1798,10 +1798,10 @@ function game_background(){
         //cityEnd_y = cityEnd_y - pmovey/3; 
 
     }else {
-        ++cityEnd_x;
-        if (cityEnd_x < init_cityEnd_x){
-            cityEnd_x = cityEnd_x - pmovex/2;
-        }
+        cityEnd_x = cityEnd_x + pmovex/2;
+        // if (cityEnd_x < init_cityEnd_x){
+        //     cityEnd_x = cityEnd_x - pmovex/2;
+        // }
     }
  
     if (cityEnd_y > -500){ 
@@ -1810,10 +1810,10 @@ function game_background(){
         cityEnd_y = cityEnd_y - pmovey/2; 
 
     }else {
-        ++cityEnd_y;
-        if (cityEnd_y < init_cityEnd_y){
-            cityEnd_y = cityEnd_y - pmovey/2; 
-        }
+        cityEnd_y = cityEnd_y + pmovey/2;
+        // if (cityEnd_y < init_cityEnd_y){
+        //     cityEnd_y = cityEnd_y - pmovey/2; 
+        // }
     }
 
 
@@ -2434,7 +2434,7 @@ function game_background(){
             // }
  
            // if (gameTime > 100){
-                cityImage = eval("city0" + parseInt(String(gameTime/100).substr(0,1) % (Math.random()*9 + 1))  + "Image"); 
+                cityImage = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
             //}
 
             //if (gameTime%2 == 0) return;

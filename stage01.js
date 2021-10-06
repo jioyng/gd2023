@@ -200,6 +200,11 @@ var cityImage = new Image();
 cityImage.src = "./img/city01.png";
 cityImage.addEventListener("load",drawScreen, false);
 
+var city00Image = new Image();
+city00Image.src = "./img/city01.png";
+city00Image.addEventListener("load",drawScreen, false);
+
+
 var city01Image = new Image();
 city01Image.src = "./img/city01.png";
 city01Image.addEventListener("load",drawScreen, false);
@@ -211,6 +216,34 @@ city02Image.addEventListener("load",drawScreen, false);
 var city03Image = new Image();
 city03Image.src = "./img/city03.png";
 city03Image.addEventListener("load",drawScreen, false);
+
+var city04Image = new Image();
+city04Image.src = "./img/city04.png";
+city04Image.addEventListener("load",drawScreen, false);
+
+var city05Image = new Image();
+city05Image.src = "./img/city05.png";
+city05Image.addEventListener("load",drawScreen, false);
+
+var city06Image = new Image();
+city06Image.src = "./img/city06.png";
+city06Image.addEventListener("load",drawScreen, false);
+
+var city07Image = new Image();
+city07Image.src = "./img/city07.png";
+city07Image.addEventListener("load",drawScreen, false);
+
+var city08Image = new Image();
+city08Image.src = "./img/city08.png";
+city08Image.addEventListener("load",drawScreen, false);
+
+var city09Image = new Image();
+city09Image.src = "./img/city09.png";
+city09Image.addEventListener("load",drawScreen, false);
+
+var city10Image = new Image();
+city10Image.src = "./img/city10.png";
+city10Image.addEventListener("load",drawScreen, false);
 
 var cityEndImage = new Image();
 cityEndImage.src = "./img/cityEnd.png";
@@ -2365,40 +2398,43 @@ function game_background(){
 
             //console.log("k",k);
             //alert(k);
-            if (gameTime % 12 == 0){
-                cityImage = city01Image;
-            }else if (gameTime % 12 == 1){  
-                cityImage = city01Image;
-            }else if (gameTime % 12 == 2){ 
-                cityImage = city01Image;
-            }else if (gameTime % 12 == 3){ 
-                cityImage = city01Image;
-            }else if (gameTime % 12 == 4){ 
-                cityImage = city01Image;
-            }else if (gameTime % 12 == 5){ 
-                cityImage = city02Image;
-            }else if (gameTime % 12 == 6){ 
-                cityImage = city02Image;
-            }else if (gameTime % 12 == 7){ 
-                cityImage = city02Image;
-            }else if (gameTime % 12 == 8){ 
-                cityImage = city02Image;
-            }else if (gameTime % 12 == 9){ 
-                cityImage = city02Image;
-            }else if (gameTime % 12 == 10){ 
-                cityImage = city03Image;
-            }else if (gameTime % 12 == 11){ 
-                cityImage = city03Image;
-            }else if (gameTime % 12 == 12){ 
-                cityImage = city03Image;
-            }else if (gameTime % 12 == 13){ 
-                cityImage = city03Image;
-            }else if (gameTime % 12 == 14){ 
-                cityImage = city03Image;                                                
-            }else{
-                cityImage = city03Image;
-            }
-
+            // if (gameTime % 9 == 0){
+            //     cityImage = city01Image;
+            // }else if (gameTime % 9 == 1){  
+            //     cityImage = city02Image;
+            // }else if (gameTime % 9 == 2){ 
+            //     cityImage = city03Image;
+            // }else if (gameTime % 9 == 3){ 
+            //     cityImage = city04Image;
+            // }else if (gameTime % 9 == 4){ 
+            //     cityImage = city05Image;
+            // }else if (gameTime % 9 == 5){ 
+            //     cityImage = city06Image;
+            // }else if (gameTime % 9 == 6){ 
+            //     cityImage = city07Image;
+            // }else if (gameTime % 9 == 7){ 
+            //     cityImage = city08Image;
+            // }else if (gameTime % 9 == 8){ 
+            //     cityImage = city09Image;
+            // }else if (gameTime % 9 == 9){ 
+            //     cityImage = city10Image;
+            // }else if (gameTime % 9 == 10){ 
+            //     cityImage = city01Image;
+            // }else if (gameTime % 9 == 11){ 
+            //     cityImage = city02Image;
+            // }else if (gameTime % 9 == 12){ 
+            //     cityImage = city03Image;
+            // }else if (gameTime % 9 == 13){ 
+            //     cityImage = city04Image;
+            // }else if (gameTime % 9 == 14){ 
+            //     cityImage = city05Image;                                                
+            // }else{
+            //     cityImage = city01Image;
+            // }
+ 
+           // if (gameTime > 100){
+                cityImage = eval("city0" + parseInt(gameTime/100 % (Math.random()*9 + 1))  + "Image"); 
+            //}
 
             //if (gameTime%2 == 0) return;
             for (var j = playerY/100; j < 10; j){  

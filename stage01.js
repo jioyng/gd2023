@@ -201,7 +201,7 @@ cityImage.src = "./img/city01.png";
 cityImage.addEventListener("load",drawScreen, false);
 
 var city00Image = new Image();
-city00Image.src = "./img/city01.png";
+city00Image.src = "./img/city10.png";
 city00Image.addEventListener("load",drawScreen, false);
 
 
@@ -1798,8 +1798,9 @@ function game_background(){
         //cityEnd_y = cityEnd_y - pmovey/3; 
 
     }else {
+        ++cityEnd_x;
         if (cityEnd_x < init_cityEnd_x){
-            ++cityEnd_x;
+            cityEnd_x = cityEnd_x - pmovex/2;
         }
     }
  
@@ -1809,9 +1810,9 @@ function game_background(){
         cityEnd_y = cityEnd_y - pmovey/2; 
 
     }else {
-    
+        ++cityEnd_y;
         if (cityEnd_y < init_cityEnd_y){
-            ++cityEnd_y;
+            cityEnd_y = cityEnd_y - pmovey/2; 
         }
     }
 
@@ -2213,7 +2214,7 @@ function game_background(){
 
             Context3.closePath();
             Context3.fillStyle="#40608E";
-            Context3.globalAlpha = 0.4;
+            Context3.globalAlpha = 0.2;
             Context3.fill();
 
         }else if (parseInt(gameTime/2000) % 3 == 1){
@@ -2229,7 +2230,7 @@ function game_background(){
 
              Context3.closePath();
              Context3.fillStyle="#40608E";
-             Context3.globalAlpha = 0.5;
+             Context3.globalAlpha = 0.4;
              Context3.fill();
 
         }
@@ -2433,14 +2434,14 @@ function game_background(){
             // }
  
            // if (gameTime > 100){
-                cityImage = eval("city0" + parseInt(gameTime/100 % (Math.random()*9 + 1))  + "Image"); 
+                cityImage = eval("city0" + parseInt(String(gameTime/100).substr(0,1) % (Math.random()*9 + 1))  + "Image"); 
             //}
 
             //if (gameTime%2 == 0) return;
             for (var j = playerY/100; j < 10; j){  
         
                 //지면 땅
-                Context3.globalAlpha = 0.4; 
+                Context3.globalAlpha = 0.6; 
                 Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/5, j*4 - playerX/200 ,50* random01)
                 
                 j = j + (6*random01);     //건물 상하 조밀도
@@ -2495,7 +2496,7 @@ function game_background(){
             for (var j = 300 ; j < 460;j){  
         
                 //지면 땅
-                Context3.globalAlpha = 0.9; 
+                Context3.globalAlpha = 0.8; 
                 Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - playerX/200,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 - playerX/100,200)
     
                 j = j + (8*random05);     //건물 상하 조밀도

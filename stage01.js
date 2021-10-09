@@ -201,7 +201,9 @@ cityImage.src = "./img/city01.png";
 cityImage.addEventListener("load",drawScreen, false);
 
 var city00Image = new Image();
-city00Image.src = "./img/city10.png";
+//city00Image.src = "./img/city10.png";
+city00Image.src = "./img/city0" + String(parseInt(Math.random()*9)) + ".png";
+
 city00Image.addEventListener("load",drawScreen, false);
 
 
@@ -2469,7 +2471,7 @@ function game_background(){
        
            // if (gameTime > 100){
                 cityImage = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
-                cityImage2 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
+                cityImage2 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image");  
                 cityImage3 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
             //}
 
@@ -2489,7 +2491,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.4; 
-                Context3.drawImage(eval("cityImage2"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.2  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.2  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
     
                 //j = j + (6*random02);     //건물 상하 조밀도 
                 
@@ -2576,7 +2578,11 @@ function game_background(){
                 j = j + (40*random02);     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
+ 
             }  
+
+
+   
 
         //}
         
@@ -2587,7 +2593,7 @@ function game_background(){
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    Context3.globalAlpha = 0.6;
+    //Context3.globalAlpha = 0.6;
     Context3.strokeStyle = "ffffff"; 
  
     

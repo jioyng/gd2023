@@ -1815,7 +1815,7 @@ function game_background(){
     //플레이어 이동에 따른 배경 중심 이동
     if (wayBefore == 'R'){
         if (cityEnd_x > -500){
-            cityEnd_x = cityEnd_x - 5;
+            cityEnd_x = cityEnd_x - 1;
             }else {
             cityEnd_x = cityEnd_x;
             } 
@@ -1823,14 +1823,14 @@ function game_background(){
     
     if (wayBefore == 'L'){ 
         if (cityEnd_x < 500){
-            cityEnd_x = cityEnd_x + 5;
+            cityEnd_x = cityEnd_x + 1;
             }else {
             cityEnd_x = cityEnd_x;
             } 
     }
 
     if (wayBefore == 'D'){
-        if (cityEnd_y < -400){
+        if (cityEnd_y < -700){
             cityEnd_y = cityEnd_y;
             }else {
             cityEnd_y = cityEnd_y - 5;
@@ -1838,8 +1838,8 @@ function game_background(){
     }
     
     if (wayBefore == 'U'){        
-        if (cityEnd_y < ls_height + 500) {
-            cityEnd_y = cityEnd_y + 5;
+        if (cityEnd_y < ls_height + 600) {
+            cityEnd_y = cityEnd_y + 2;
         }else {
             cityEnd_y = cityEnd_y;
         } 

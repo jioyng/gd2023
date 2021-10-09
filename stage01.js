@@ -1812,7 +1812,7 @@ function game_background(){
  
               
         
-    //플레이어 이동에 따른 배경 중심 이동
+    //플레이어 이동에 따른 배경 중심좌표 이동
     if (wayBefore == 'R'){
         if (cityEnd_x > -500){
             cityEnd_x = cityEnd_x - 1;
@@ -2473,12 +2473,13 @@ function game_background(){
                 cityImage3 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
             //}
 
+            //중심 마지막쪽은 플레이어의 좌표에따라 약간씩 변형된다. 
             //if (gameTime%2 == 0) return;
             for (var j = playerY/100; j < 10; j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY, j*4 ,60* random01 + 100);
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/2, j*4,60* random01 + 100 );
                 
                 j = j + (6*random01);     //건물 상하 조밀도
                 //j = j + 60;

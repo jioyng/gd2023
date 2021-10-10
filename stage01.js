@@ -2687,7 +2687,7 @@ function gameControl() {
     if (ls_CColor == 'red'){
         //Context.globalAlpha = 1;
         Context.globalAlpha = 0.8;
-        Context.lineWidth = "2";
+        Context.lineWidth = "1";
         //Context.strokeStyle = ls_CColor;
         //Context.fillStyle = ls_CColor;
         Context.strokeStyle = "#ffffff";
@@ -2991,21 +2991,24 @@ function clickCanvas(event, as_gb) {
     //방향 UpRight
 	if(Context.isPointInPath(directonUpRight, x,  y)) {
 		isKeyCode = 33;
-		strKeyEventValue = "RU";
+		//strKeyEventValue = "RU";
+        wayBefore = 'RU';
 		Context.stroke(directonUpRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
     }
 
     //방향 downLeft
 	if(Context.isPointInPath(directonDownLeft, x,  y)) {
 		isKeyCode = 35;
-		strKeyEventValue = "LD";
+		//strKeyEventValue = "LD";
+        wayBefore = 'LD';
 		Context.stroke(directonDownLeft); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 downRight
 	if(Context.isPointInPath(directonDownRight, x,  y)) {
 		isKeyCode = 34;
-		strKeyEventValue = "RD";
+		//strKeyEventValue = "RD";
+        wayBefore = 'RD';
 		Context.stroke(directonDownRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 

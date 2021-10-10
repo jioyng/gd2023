@@ -3716,7 +3716,7 @@ function drawScreen(){
     //게임상태정보표시
     game_status();
 
-	//게임 컨트롤
+    //게임 컨트롤
     gameControl();
 
     Context.font  = "30px Arial";
@@ -3731,6 +3731,9 @@ function drawScreen(){
     //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50);
 
+
+
+    Context.fillStyle = '#ffffff';
     Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
     Context.fillText("Bonus : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
     //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);

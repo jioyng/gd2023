@@ -2316,148 +2316,8 @@ function game_background(){
              Context3.globalAlpha = 0.4;
              Context3.fill();
 
-        }
-
-   
-
-        //else if (parseInt(gameTime/2000) % 5 == 2){
-        //    // cityImage = city02Image;
-
-        //     Context3.closePath();
-        //     Context3.fillStyle="#9EA46B";
-        //     Context3.globalAlpha = 0.4;
-        //     Context3.fill();
-
-        // }else if (parseInt(gameTime/2000) % 5 == 3){
-        //     // cityImage = city02Image;
-
-        //      Context3.closePath();
-        //      Context3.fillStyle="#091413";
-        //      Context3.globalAlpha = 0.6;
-        //      Context3.fill();
-
-        //  }else {
-        //      //cityImage = city02Image;
-
-        //      Context3.closePath();
-        //      Context3.fillStyle="#40608E";
-        //      Context3.globalAlpha = 0.5;
-        //      Context3.fill();
-
-        // }
-        
-
-        //k = 0; //조명 간격
-
-        //for (var j = 50; j < 800; j++){
-        // for (var j = playerY/100 + 40; j < 800; j){
-           
-         
-        //     var random01 = Math.floor(Math.random() * 2) + 1;
-        //     var random02 = Math.floor(Math.random() * 5) + 1;
-        //     var random03 = Math.floor(Math.random() * 10) + 1;
-        //     var random04 = Math.floor(Math.random() * 15) + 1;
-        //     var random05 = Math.floor(Math.random() * 20) + 1;
-        //     var random06 = Math.floor(Math.random() * 30) + 1;
-
-        //     //Context3.fillStyle = 'fdf5e6'; // 채우기 색 지정
-        //     //Context3.globalAlpha = 1
-        //     //Context3.strokeStyle = "balck";
-
-        //     //지면 땅
-        //     Context3.globalAlpha = 0.5;
-        //     //Context3.globalAlpha = 0.8;
-        //     if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-        //         Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }else {
-        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05 + cityEnd_y , 1 * random01 + j*4 ,20 * random03)
-        //     }
-
-        //     Context3.globalAlpha = 0.8;
-
-        //     //지면 건물
-        //     if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
-        //     }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-        //         Context3.drawImage(city02Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,  20 + theCanvas.clientHeight / 4  + j + random05 + cityEnd_y , 1 * random01 + j*4 - (cityEnd_x/200*j) ,10 * random03)
-        //     }else {
-        //         Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,  20 + theCanvas.clientHeight / 4  + j + random01 + cityEnd_y , 1 * random01 + j*3 - (cityEnd_x/200*j) ,10 * random03)
-        //     }
-
-        //     //지붕 건물 반사
-        //     Context3.globalAlpha = 0.04;
-        //     if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-        //         Context3.drawImage(groundImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
-        //     }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-        //         Context3.drawImage(riverImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }else {
-        //         Context3.drawImage(city03Image,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
-        //     }
-
-        //     //지붕 땅 반사
-        //     Context3.globalAlpha = 0.06;
-        //     if (parseInt(gameTime/(800-Pspeed*100)) % 3 == 0){
-        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }else if(parseInt(gameTime/(800-Pspeed*100)) % 2 == 0){
-        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }else {
-        //         Context3.drawImage(cityImage,theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
-        //     }
-
-
-
-        //     // //상단 선 및 좌우 측 벽 조명
-        //     // Context3.fillStyle = 'yellow'; // 채우기 색 지정
-        //     // Context3.globalAlpha = "0.01"
-        //     // Context3.strokeStyle = "balck";
-
-        //     // Context3.beginPath();
-        //     // Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - 25  - Math.floor(Math.random() * 5)  + cityEnd_y, 40 - random01, 0, Math.PI * 2);
-        //     // Context3.stroke();
-
-        //     // Context3.fillStyle = 'black'; // 채우기 색 지정
-        //     // Context3.globalAlpha = "0.03"
-        //     // Context3.strokeStyle = "balck";
-
-		// 	// Context3.beginPath();
-		// 	// Context3.globalAlpha = "0.01"
-		// 	// Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 + 2 - random05 + cityEnd_y , 100 - Math.floor(Math.random() * 5) , 0, Math.PI * 2);
-		// 	// Context3.stroke();
-
-        //     //콜로니 끝 근처 원
-		// 	Context3.beginPath();
-		// 	Context3.globalAlpha = 0.1 * Math.floor(Math.random() * 1) + 0.1;
-        //     Context3.arc(theCanvas.clientWidth / 2  + cityEnd_x - cityEnd_size/2   , theCanvas.clientHeight / 4 - random05 + cityEnd_y + 20 , 60 - Math.floor(Math.random() * 50) , 0, Math.PI * 2);
-        //     Context3.lineWidth = 1;
-		// 	Context3.stroke();
-
-        //     //k = k + 50;  //조명 간격
-        //     //우측중단선 조명
-        //     //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x + k , theCanvas.clientHeight / 4 - 30 + cityEnd_y  , 5 + k/100 , 10  + k/20);
-
-        //     //중앙 통로 끝
-        //     //Context3.fillRect(theCanvas.clientWidth / 2  - cityEnd_size/2 + cityEnd_x  - 40  , theCanvas.clientHeight / 4 - 50 + cityEnd_y  , 40 + k/20   , 60  );
-
-        //     //좌측 중단 조명
-        //     //Context3.fillRect(theCanvas.clientWidth / 2  + cityEnd_x - k , theCanvas.clientHeight / 4 - 30 , 5 + k/100 + cityEnd_y , 5  + k/20);
-
-        //     //플레이어와 중심좌표의 위치에따라 배경 속도 변경
-        //     //j의 크기를 줄여주면 속도감이 더 빠르고 늘려주면 느려진다.
-        //     //console.log("playerY/100",playerY/100)
-        //     //j = j + playerY/20;
-        //     j = j + Pdistance/10 - playerY/60;   
-        //     if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 0){
-        //          j = j + (12*random03);     //건물 상하 조밀도
-        //     }else if (parseInt(gameTime/(600-Pspeed*500)) % 3 == 1){
-        //         j = j + (11*random03);     //건물 상하 조밀도
-        //     }else {
-        //         j = j + (10*random03);     //건물 상하 조밀도
-        //     }
-            
- 
-        // }
+        } 
+    
 
         var random01 = Math.floor(Math.random() * 2) + 1;
         var random02 = Math.floor(Math.random() * 5) + 1;
@@ -2466,73 +2326,139 @@ function game_background(){
         var random05 = Math.floor(Math.random() * 20) + 1;
         var random06 = Math.floor(Math.random() * 30) + 1;  
         
-        var cityImage = city01Image;
-        var cityImage2 = city02Image;
-        var cityImage3 = city03Image;
 
-        // if (parseInt(gameTime/(600-Pspeed*100)) % 3 == 0){
-        //     cityImage = city01Image;
-        // }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 1){
-        //     cityImage = city02Image;
-        // }else if(parseInt(gameTime/(600-Pspeed*100)) % 3 == 2){
-        //     cityImage = city03Image;
-        // }
+        //지면 전체 맵
+        // var cityImage1 = city01Image;
+        // var cityImage2 = city02Image;
+        // var cityImage3 = city03Image;
+        // var cityImage4 = city04Image;
+        // var cityImage5 = city05Image;
+        // var cityImage6 = city06Image;
+        // var cityImage7 = city07Image;
+        // var cityImage8 = city08Image;
+        // var cityImage9 = city09Image;
 
-        //cityImage = city01Image;
- 
-        //for (var k = 1; k <= 3; k++){ 
+        var tmp_str = String(parseInt(gameTime/10));
+        var tmp_num = tmp_str.substr(tmp_str.length-1);
+        //console.log("tesT",str2);
+        
+        //시간에 따른 지면 맵 변경(1초마다 한단계씩 밀리도록 한다.)
+        if(tmp_num == 8){
+            cityImage1 = city01Image;
+            cityImage2 = city02Image;
+            cityImage3 = city03Image;
+            cityImage4 = city04Image;
+            cityImage5 = city05Image;
+            cityImage6 = city06Image;
+            cityImage7 = city07Image;
+            cityImage8 = city08Image;
+            cityImage9 = city09Image; 
+        }
 
-            //console.log("k",k);
-            //alert(k);
-            // if (gameTime % 9 == 0){
-            //     cityImage = city01Image;
-            // }else if (gameTime % 9 == 1){  
-            //     cityImage = city02Image;
-            // }else if (gameTime % 9 == 2){ 
-            //     cityImage = city03Image;
-            // }else if (gameTime % 9 == 3){ 
-            //     cityImage = city04Image;
-            // }else if (gameTime % 9 == 4){ 
-            //     cityImage = city05Image;
-            // }else if (gameTime % 9 == 5){ 
-            //     cityImage = city06Image;
-            // }else if (gameTime % 9 == 6){ 
-            //     cityImage = city07Image;
-            // }else if (gameTime % 9 == 7){ 
-            //     cityImage = city08Image;
-            // }else if (gameTime % 9 == 8){ 
-            //     cityImage = city09Image;
-            // }else if (gameTime % 9 == 9){ 
-            //     cityImage = city10Image;
-            // }else if (gameTime % 9 == 10){ 
-            //     cityImage = city01Image;
-            // }else if (gameTime % 9 == 11){ 
-            //     cityImage = city02Image;
-            // }else if (gameTime % 9 == 12){ 
-            //     cityImage = city03Image;
-            // }else if (gameTime % 9 == 13){ 
-            //     cityImage = city04Image;
-            // }else if (gameTime % 9 == 14){ 
-            //     cityImage = city05Image;                                                
-            // }else{
-            //     cityImage = city01Image;
-            // }
- 
-       
-           // if (gameTime > 100){
-                cityImage = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
-                cityImage2 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image");  
-                cityImage3 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
-            //}
+        if(tmp_num == 7){
+            cityImage1 = city02Image;
+            cityImage2 = city03Image;
+            cityImage3 = city04Image;
+            cityImage4 = city05Image;
+            cityImage5 = city06Image;
+            cityImage6 = city07Image;
+            cityImage7 = city08Image;
+            cityImage8 = city09Image;
+            cityImage9 = city01Image; 
+        }
+        
+        if(tmp_num == 6){
+            cityImage1 = city03Image;
+            cityImage2 = city04Image;
+            cityImage3 = city05Image;
+            cityImage4 = city06Image;
+            cityImage5 = city07Image;
+            cityImage6 = city08Image;
+            cityImage7 = city09Image;
+            cityImage8 = city01Image;
+            cityImage9 = city02Image; 
+        }
+        
+        if(tmp_num == 5){
+            cityImage1 = city04Image;
+            cityImage2 = city05Image;
+            cityImage3 = city06Image;
+            cityImage4 = city07Image;
+            cityImage5 = city08Image;
+            cityImage6 = city09Image;
+            cityImage7 = city01Image;
+            cityImage8 = city02Image;
+            cityImage9 = city03Image; 
+        }
+        
+        if(tmp_num == 4){
+            cityImage1 = city05Image;
+            cityImage2 = city06Image;
+            cityImage3 = city07Image;
+            cityImage4 = city08Image;
+            cityImage5 = city09Image;
+            cityImage6 = city01Image;
+            cityImage7 = city02Image;
+            cityImage8 = city03Image;
+            cityImage9 = city04Image; 
+        }
+        
+        if(tmp_num == 3){
+            cityImage1 = city06Image;
+            cityImage2 = city07Image;
+            cityImage3 = city08Image;
+            cityImage4 = city09Image;
+            cityImage5 = city01Image;
+            cityImage6 = city02Image;
+            cityImage7 = city03Image;
+            cityImage8 = city04Image;
+            cityImage9 = city05Image; 
+        }
+
+        if(tmp_num == 2){
+            cityImage1 = city07Image;
+            cityImage2 = city08Image;
+            cityImage3 = city09Image;
+            cityImage4 = city01Image;
+            cityImage5 = city02Image;
+            cityImage6 = city03Image;
+            cityImage7 = city04Image;
+            cityImage8 = city05Image;
+            cityImage9 = city06Image; 
+        }
+     
+        if(tmp_num == 1){
+            cityImage1 = city08Image;
+            cityImage2 = city09Image;
+            cityImage3 = city01Image;
+            cityImage4 = city02Image;
+            cityImage5 = city03Image;
+            cityImage6 = city04Image;
+            cityImage7 = city05Image;
+            cityImage8 = city06Image;
+            cityImage9 = city07Image; 
+        }
+
+        if(tmp_num == 0){
+            cityImage1 = city09Image;
+            cityImage2 = city01Image;
+            cityImage3 = city02Image;
+            cityImage4 = city03Image;
+            cityImage5 = city04Image;
+            cityImage6 = city05Image;
+            cityImage7 = city06Image;
+            cityImage8 = city07Image;
+            cityImage9 = city08Image; 
+        }
+
 
             //지면 건물
-            //중심 마지막쪽은 플레이어의 좌표에따라 약간씩 변형된다. 
-            //if (gameTime%2 == 0) return;
+            //중심 마지막쪽은 플레이어의 좌표에따라 약간씩 변형된다.   
             for (var j = playerY/10; j < 10; j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 ,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/2, j*4,60* random01 + 100 );
+                Context3.drawImage(eval("cityImage1"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 ,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/2, j*4,60* random01 + 100 );
                 
                 j = j + (6*random01);     //건물 상하 조밀도
                 //j = j + 60;
@@ -2542,7 +2468,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.4; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.2  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(eval("cityImage2"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.2  + j  + cityEnd_y, random01 + j*4 ,10 * random02 + 80)
     
                 //j = j + (6*random02);     //건물 상하 조밀도 
                 
@@ -2553,18 +2479,18 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.4 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 5.6  + j   + cityEnd_y, random01 + j*4 ,100)
     
                 //j = j + (6*random03);     //건물 상하 조밀도
                 j = j + 20;     //건물 상하 조밀도
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.02; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*3 ,10 * random03 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.04; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,100)
+                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*3 ,100)
 
             }       
             
@@ -2573,17 +2499,17 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,100)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 ,10 * random01 + 80)
     
                 j = j + (20*random01);     //건물 상하 조밀도
               
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.02; 
-                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*3 ,20 * random03)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.04; 
-                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y, 1 * random01 + j*4 ,20 * random03)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*4 ,10 * random02 + 80)
                 
             }   
             
@@ -2591,7 +2517,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y, 1 * random01 + j*4 ,200)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 ,10 * random02 + 100)
     
                 //j = j + (10*random05);     //건물 상하 조밀도
                 j = j + 20*random02;     //건물 상하 조밀도
@@ -2601,9 +2527,9 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 4  + j + random05  + cityEnd_y , 1 * random02 + j*4 ,300 )
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random02 + j*4 ,10  + 140 )
     
-                j = j + (40*random02);     //건물 상하 조밀도 
+                j = j + (30*random02);     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
             }  
@@ -2612,7 +2538,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random05  + cityEnd_y , 1 * random02 + j*4 ,400 )
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y ,   j*4 ,15  + 150 )
     
                 j = j + (40*random02);     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
@@ -2624,7 +2550,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + random05  + cityEnd_y , 1 * random01 + j*4 ,500 )
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,   200 )
     
                 j = j + (40*random02);     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
@@ -2633,7 +2559,18 @@ function game_background(){
             }  
 
 
-   
+            for (var j = 1000 ; j < 1200;j){  
+        
+                //지면 땅
+                Context3.globalAlpha = 0.9; 
+                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,20 * random01 + 300 )
+    
+                j = j + (40*random02);     //건물 상하 조밀도 
+                //j = j + 40*random01;     //건물 상하 조밀도
+
+ 
+            }  
+
 
         //}
         
@@ -2650,6 +2587,8 @@ function game_background(){
     
 }
 
+var k = 0;
+var ls_next_yn = 'N';
 
 ////////////////// 게임 상태 표시
 function game_status(){

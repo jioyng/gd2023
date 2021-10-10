@@ -1818,37 +1818,87 @@ function game_background(){
     if (wayBefore == 'R'){
         if (cityEnd_x > -500){
             cityEnd_x = cityEnd_x - 1;
-            }else {
+        }else {
             cityEnd_x = cityEnd_x;
-            } 
-    }
-    
+        }  
+    } 
+
     if (wayBefore == 'L'){ 
         if (cityEnd_x < 500){
             cityEnd_x = cityEnd_x + 1;
-            }else {
+        }else {
             cityEnd_x = cityEnd_x;
-            } 
+        } 
     }
+    
 
     if (wayBefore == 'D'){
         if (cityEnd_y < -700){
             cityEnd_y = cityEnd_y;
-            }else {
-            cityEnd_y = cityEnd_y - 5;
-            } 
+        }else {
+            cityEnd_y = cityEnd_y - 1;
+        } 
     }
     
     if (wayBefore == 'U'){        
         if (cityEnd_y < ls_height + 600) {
-            cityEnd_y = cityEnd_y + 2;
+            cityEnd_y = cityEnd_y + 1;
         }else {
             cityEnd_y = cityEnd_y;
         } 
     }
         
- 
+    if (wayBefore == 'RU'){
+        if (cityEnd_x > -500){
+            cityEnd_x = cityEnd_x - 1;
+        }else {
+            cityEnd_x = cityEnd_x;
+        } 
+        if (cityEnd_y < ls_height + 600) {
+            cityEnd_y = cityEnd_y + 1;
+        }else {
+            cityEnd_y = cityEnd_y;
+        }         
+    } 
 
+    if (wayBefore == 'LU'){ 
+        if (cityEnd_x < 500){
+            cityEnd_x = cityEnd_x + 1;
+        }else {
+            cityEnd_x = cityEnd_x;
+        } 
+        if (cityEnd_y < ls_height + 600) {
+            cityEnd_y = cityEnd_y + 1;
+        }else {
+            cityEnd_y = cityEnd_y;
+        }              
+    }
+
+    if (wayBefore == 'RU'){
+        if (cityEnd_x > -500){
+            cityEnd_x = cityEnd_x - 1;
+        }else {
+            cityEnd_x = cityEnd_x;
+        } 
+        if (cityEnd_y < -700){
+            cityEnd_y = cityEnd_y;
+        }else {
+            cityEnd_y = cityEnd_y - 1;
+        }       
+    } 
+
+    if (wayBefore == 'LU'){ 
+        if (cityEnd_x < 500){
+            cityEnd_x = cityEnd_x + 1;
+        }else {
+            cityEnd_x = cityEnd_x;
+        } 
+        if (cityEnd_y < -700){
+            cityEnd_y = cityEnd_y;
+        }else {
+            cityEnd_y = cityEnd_y - 1;
+        }             
+    }  
 
     //console.log(cityEnd_x,cityEnd_y);
     //Context.globalAlpha = 0.5;
@@ -1861,7 +1911,7 @@ function game_background(){
     }else if (parseInt(gameTime/(1000*Pspeed)) % 3 == 1){
         Context.globalAlpha = 0.3;
     }else {
-        Context.globalAlpha = 0.2;
+        Context.globalAlpha = 0.5;
     }
 
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
@@ -2475,13 +2525,14 @@ function game_background(){
                 cityImage3 = eval("city0" + parseInt(String(gameTime/40).substr(1,2) % (Math.random()*9 + 1))  + "Image"); 
             //}
 
+            //지면 건물
             //중심 마지막쪽은 플레이어의 좌표에따라 약간씩 변형된다. 
             //if (gameTime%2 == 0) return;
-            for (var j = playerY/100; j < 10; j){  
+            for (var j = playerY/10; j < 10; j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/2, j*4,60* random01 + 100 );
+                Context3.drawImage(eval("cityImage"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 ,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y  + playerY/2, j*4,60* random01 + 100 );
                 
                 j = j + (6*random01);     //건물 상하 조밀도
                 //j = j + 60;
@@ -3568,10 +3619,10 @@ function drawScreen(){
     }
 
     //게임상태정보표시
-    game_status();
+    //game_status();
 
 	//게임 컨트롤
-    gameControl();
+    //gameControl();
 
     //전함01 이동
     ship01_move();
@@ -3662,6 +3713,12 @@ function drawScreen(){
     }
 
     //게임 진행 정보(맨마지막에 그려줘야 게임내 이미지가 덮지않는다.)
+    //게임상태정보표시
+    game_status();
+
+	//게임 컨트롤
+    gameControl();
+
     Context.font  = "30px Arial";
     //Context.fillText("입력된 키값 :" + strKeyEventValue,5,15);
     //Context.fillText("캔버스 면적 :" + maxX + "," + maxY,5,30);

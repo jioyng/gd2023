@@ -2685,10 +2685,13 @@ function gameControl() {
 
     //색상값이 white가 아닌경우 테두리랑 투명도, 색상 변경.
     if (ls_CColor == 'red'){
-        Context.globalAlpha = 1;
+        //Context.globalAlpha = 1;
+        Context.globalAlpha = 0.8;
         Context.lineWidth = "2";
-        Context.strokeStyle = ls_CColor;
-        Context.fillStyle = ls_CColor;
+        //Context.strokeStyle = ls_CColor;
+        //Context.fillStyle = ls_CColor;
+        Context.strokeStyle = "#ffffff";
+        Context.fillStyle = "#ffffff";
     }
 
     Context.stroke(directonUp);

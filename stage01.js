@@ -204,8 +204,7 @@ var city00Image = new Image();
 //city00Image.src = "./img/city10.png";
 city00Image.src = "./img/city0" + String(parseInt(Math.random()*9)) + ".png";
 
-city00Image.addEventListener("load",drawScreen, false);
-
+city00Image.addEventListener("load",drawScreen, false); 
 
 var city01Image = new Image();
 city01Image.src = "./img/city01.png";
@@ -247,10 +246,98 @@ var city10Image = new Image();
 city10Image.src = "./img/city10.png";
 city10Image.addEventListener("load",drawScreen, false);
 
+
+//추가1
+var city11Image = new Image();
+city11Image.src = "./img/city01.png";
+city11Image.addEventListener("load",drawScreen, false);
+
+var city12Image = new Image();
+city12Image.src = "./img/city02.png";
+city12Image.addEventListener("load",drawScreen, false);
+
+var city13Image = new Image();
+city13Image.src = "./img/city03.png";
+city13Image.addEventListener("load",drawScreen, false);
+
+var city14Image = new Image();
+city14Image.src = "./img/city04.png";
+city14Image.addEventListener("load",drawScreen, false);
+
+var city15Image = new Image();
+city15Image.src = "./img/city05.png";
+city15Image.addEventListener("load",drawScreen, false);
+
+var city16Image = new Image();
+city16Image.src = "./img/city06.png";
+city16Image.addEventListener("load",drawScreen, false);
+
+var city17Image = new Image();
+city17Image.src = "./img/city07.png";
+city17Image.addEventListener("load",drawScreen, false);
+
+var city18Image = new Image();
+city18Image.src = "./img/city08.png";
+city18Image.addEventListener("load",drawScreen, false);
+
+var city19Image = new Image();
+city19Image.src = "./img/city09.png";
+city19Image.addEventListener("load",drawScreen, false);
+
+var city20Image = new Image();
+city20Image.src = "./img/city10.png";
+city20Image.addEventListener("load",drawScreen, false); 
+
+
+//추가2
+var city21Image = new Image();
+city21Image.src = "./img/city08.png";
+city21Image.addEventListener("load",drawScreen, false);
+
+var city22Image = new Image();
+city22Image.src = "./img/city08.png";
+city22Image.addEventListener("load",drawScreen, false);
+
+var city23Image = new Image();
+city23Image.src = "./img/city04.png";
+city23Image.addEventListener("load",drawScreen, false);
+
+var city24Image = new Image();
+city24Image.src = "./img/city04.png";
+city24Image.addEventListener("load",drawScreen, false);
+
+var city25Image = new Image();
+city25Image.src = "./img/city07.png";
+city25Image.addEventListener("load",drawScreen, false);
+
+var city26Image = new Image();
+city26Image.src = "./img/city05.png";
+city26Image.addEventListener("load",drawScreen, false);
+
+var city27Image = new Image();
+city27Image.src = "./img/city06.png";
+city27Image.addEventListener("load",drawScreen, false);
+
+var city28Image = new Image();
+city28Image.src = "./img/city10.png";
+city28Image.addEventListener("load",drawScreen, false);
+
+var city29Image = new Image();
+city29Image.src = "./img/city09.png";
+city29Image.addEventListener("load",drawScreen, false);
+
+var city30Image = new Image();
+city30Image.src = "./img/city10.png";
+city30Image.addEventListener("load",drawScreen, false);
+
+///////////////// 추가끝
+
+
+
 var cityEndImage = new Image();
 cityEndImage.src = "./img/cityEnd.png";
 cityEndImage.addEventListener("load",drawScreen, false);
-
+ 
 //땅
 var groundImage = new Image();
 groundImage.src = "./img/ground.png";
@@ -2343,102 +2430,6 @@ function game_background(){
         //console.log("tesT",str2);
         
         //시간에 따른 지면 맵 변경(1초마다 한단계씩 밀리도록 한다.)
-        if(tmp_num == 8){
-            cityImage1 = city01Image;
-            cityImage2 = city02Image;
-            cityImage3 = city03Image;
-            cityImage4 = city04Image;
-            cityImage5 = city05Image;
-            cityImage6 = city06Image;
-            cityImage7 = city07Image;
-            cityImage8 = city08Image;
-            cityImage9 = city09Image; 
-        }
-
-        if(tmp_num == 7){
-            cityImage1 = city02Image;
-            cityImage2 = city03Image;
-            cityImage3 = city04Image;
-            cityImage4 = city05Image;
-            cityImage5 = city06Image;
-            cityImage6 = city07Image;
-            cityImage7 = city08Image;
-            cityImage8 = city09Image;
-            cityImage9 = city01Image; 
-        }
-        
-        if(tmp_num == 6){
-            cityImage1 = city03Image;
-            cityImage2 = city04Image;
-            cityImage3 = city05Image;
-            cityImage4 = city06Image;
-            cityImage5 = city07Image;
-            cityImage6 = city08Image;
-            cityImage7 = city09Image;
-            cityImage8 = city01Image;
-            cityImage9 = city02Image; 
-        }
-        
-        if(tmp_num == 5){
-            cityImage1 = city04Image;
-            cityImage2 = city05Image;
-            cityImage3 = city06Image;
-            cityImage4 = city07Image;
-            cityImage5 = city08Image;
-            cityImage6 = city09Image;
-            cityImage7 = city01Image;
-            cityImage8 = city02Image;
-            cityImage9 = city03Image; 
-        }
-        
-        if(tmp_num == 4){
-            cityImage1 = city05Image;
-            cityImage2 = city06Image;
-            cityImage3 = city07Image;
-            cityImage4 = city08Image;
-            cityImage5 = city09Image;
-            cityImage6 = city01Image;
-            cityImage7 = city02Image;
-            cityImage8 = city03Image;
-            cityImage9 = city04Image; 
-        }
-        
-        if(tmp_num == 3){
-            cityImage1 = city06Image;
-            cityImage2 = city07Image;
-            cityImage3 = city08Image;
-            cityImage4 = city09Image;
-            cityImage5 = city01Image;
-            cityImage6 = city02Image;
-            cityImage7 = city03Image;
-            cityImage8 = city04Image;
-            cityImage9 = city05Image; 
-        }
-
-        if(tmp_num == 2){
-            cityImage1 = city07Image;
-            cityImage2 = city08Image;
-            cityImage3 = city09Image;
-            cityImage4 = city01Image;
-            cityImage5 = city02Image;
-            cityImage6 = city03Image;
-            cityImage7 = city04Image;
-            cityImage8 = city05Image;
-            cityImage9 = city06Image; 
-        }
-     
-        if(tmp_num == 1){
-            cityImage1 = city08Image;
-            cityImage2 = city09Image;
-            cityImage3 = city01Image;
-            cityImage4 = city02Image;
-            cityImage5 = city03Image;
-            cityImage6 = city04Image;
-            cityImage7 = city05Image;
-            cityImage8 = city06Image;
-            cityImage9 = city07Image; 
-        }
-
         if(tmp_num == 0){
             cityImage1 = city09Image;
             cityImage2 = city01Image;
@@ -2451,7 +2442,135 @@ function game_background(){
             cityImage9 = city08Image; 
         }
 
+        if(tmp_num == 1){
+            cityImage1 = city08Image;
+            cityImage2 = city09Image;
+            cityImage3 = city01Image;
+            cityImage4 = city02Image;
+            cityImage5 = city03Image;
+            cityImage6 = city04Image;
+            cityImage7 = city05Image;
+            cityImage8 = city06Image;
+            cityImage9 = city07Image; 
+        }    
+        
+        if(tmp_num == 2){
+            cityImage1 = city07Image;
+            cityImage2 = city08Image;
+            cityImage3 = city09Image;
+            cityImage4 = city01Image;
+            cityImage5 = city02Image;
+            cityImage6 = city03Image;
+            cityImage7 = city04Image;
+            cityImage8 = city05Image;
+            cityImage9 = city06Image; 
+        }        
 
+        if(tmp_num == 3){
+            cityImage1 = city06Image;
+            cityImage2 = city07Image;
+            cityImage3 = city08Image;
+            cityImage4 = city09Image;
+            cityImage5 = city01Image;
+            cityImage6 = city02Image;
+            cityImage7 = city03Image;
+            cityImage8 = city04Image;
+            cityImage9 = city05Image; 
+        }
+
+        if(tmp_num == 4){
+            cityImage1 = city05Image;
+            cityImage2 = city06Image;
+            cityImage3 = city07Image;
+            cityImage4 = city08Image;
+            cityImage5 = city09Image;
+            cityImage6 = city01Image;
+            cityImage7 = city02Image;
+            cityImage8 = city03Image;
+            cityImage9 = city04Image; 
+        }        
+
+        if(tmp_num == 5){
+            cityImage1 = city04Image;
+            cityImage2 = city05Image;
+            cityImage3 = city06Image;
+            cityImage4 = city07Image;
+            cityImage5 = city08Image;
+            cityImage6 = city09Image;
+            cityImage7 = city01Image;
+            cityImage8 = city02Image;
+            cityImage9 = city03Image; 
+        }
+
+        if(tmp_num == 6){
+            cityImage1 = city03Image;
+            cityImage2 = city04Image;
+            cityImage3 = city05Image;
+            cityImage4 = city06Image;
+            cityImage5 = city07Image;
+            cityImage6 = city08Image;
+            cityImage7 = city09Image;
+            cityImage8 = city01Image;
+            cityImage9 = city02Image; 
+        }        
+
+        if(tmp_num == 7){
+            cityImage1 = city02Image;
+            cityImage2 = city03Image;
+            cityImage3 = city04Image;
+            cityImage4 = city05Image;
+            cityImage5 = city06Image;
+            cityImage6 = city07Image;
+            cityImage7 = city08Image;
+            cityImage8 = city09Image;
+            cityImage9 = city01Image; 
+        }
+
+        if(tmp_num == 8){
+            cityImage1 = city01Image;
+            cityImage2 = city02Image;
+            cityImage3 = city03Image;
+            cityImage4 = city04Image;
+            cityImage5 = city05Image;
+            cityImage6 = city06Image;
+            cityImage7 = city07Image;
+            cityImage8 = city08Image;
+            cityImage9 = city09Image; 
+        }  
+     
+
+
+        //주기적으로 건물 위치도 변경해준다. 
+        if (parseInt(gameTime/200) % 2 == 0){
+            city01Image = city11Image;
+            city02Image = city12Image;
+            city03Image = city13Image;
+            city04Image = city14Image;
+            city05Image = city15Image;
+            city06Image = city16Image;
+            city07Image = city17Image;
+            city08Image = city18Image;
+            city09Image = city19Image;
+            city09Image = city20Image;
+        }else {
+ 
+            city01Image = city21Image;
+            city02Image = city22Image;
+            city03Image = city23Image;
+            city04Image = city24Image;
+            city05Image = city25Image;
+            city06Image = city26Image;
+            city07Image = city27Image;
+            city08Image = city28Image;
+            city09Image = city29Image;
+            city09Image = city30Image;
+
+            //console.log("t")
+        }
+
+        
+
+        
             //지면 건물
             //중심 마지막쪽은 플레이어의 좌표에따라 약간씩 변형된다.   
             for (var j = playerY/10; j < 10; j){  
@@ -2505,11 +2624,11 @@ function game_background(){
               
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.02; 
-                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.04; 
-                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random05  + cityEnd_y,  random01 + j*4 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*4 ,10 * random01 + 80)
                 
             }   
             
@@ -2517,19 +2636,19 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 ,10 * random02 + 100)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 ,10 * random01 + 100)
     
                 //j = j + (10*random05);     //건물 상하 조밀도
-                j = j + 20*random02;     //건물 상하 조밀도
+                j = j + 20*random01;     //건물 상하 조밀도
             }    
             
             for (var j = 400 ; j < 600;j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random02 + j*4 ,10  + 140 )
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4 ,150 )
     
-                j = j + (30*random02);     //건물 상하 조밀도 
+                j = j + 30*random01;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
             }  
@@ -2537,10 +2656,10 @@ function game_background(){
             for (var j = 600 ; j < 800;j){  
         
                 //지면 땅
-                Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y ,   j*4 ,15  + 150 )
+                Context3.globalAlpha = 0.7; 
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y , j*4 ,180 )
     
-                j = j + (40*random02);     //건물 상하 조밀도 
+                j = j + 40*random03;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
             }  
@@ -2550,9 +2669,9 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,   200 )
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,200 )
     
-                j = j + (40*random02);     //건물 상하 조밀도 
+                j = j + 45*random02;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
  
@@ -2563,9 +2682,9 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,20 * random01 + 300 )
+                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,300 )
     
-                j = j + (40*random02);     //건물 상하 조밀도 
+                j = j + 50*random02;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
  

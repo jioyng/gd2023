@@ -3399,7 +3399,7 @@ function weappon_move(){
                 this.weappon_size = 0;
                 
             } 
-
+  
 
             //미사일이 플레이어보다 커지면
             if (this.weapponArray[i].bsize >= playerHeight/3){

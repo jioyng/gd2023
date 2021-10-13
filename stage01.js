@@ -3398,7 +3398,7 @@ function weappon_move(){
                 this.weapponArray[i].bsize = 0;
                 this.weappon_size = 0;
                 
-            }
+            } 
 
 
             //미사일이 플레이어보다 커지면

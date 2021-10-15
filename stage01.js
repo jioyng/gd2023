@@ -330,10 +330,7 @@ var city30Image = new Image();
 city30Image.src = "./img/city10.png";
 city30Image.addEventListener("load",drawScreen, false);
 
-///////////////// 추가끝
-
-
-
+///////////////// 추가끝 
 var cityEndImage = new Image();
 cityEndImage.src = "./img/cityEnd.png";
 cityEndImage.addEventListener("load",drawScreen, false);

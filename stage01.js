@@ -2134,7 +2134,7 @@ function game_background(){
     // Context3.stroke();
 
 
-    for (var i=0;i<10;i++){
+    for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + 50 + cityEnd_y);
         Context3.lineTo(-300 -  i * 40, theCanvas.clientHeight - 40 * i);
@@ -2174,7 +2174,7 @@ function game_background(){
     // Context3.strokeStyle = "grey";; //선 색상
     // Context3.stroke();
 
-    for (var i=0;i<10;i++){
+    for (var i=0;i<5;i++){
         Context3.beginPath();
         Context3.moveTo(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);   //타겟 시작 좌표
         Context3.lineTo(theCanvas.clientWidth, theCanvas.clientHeight - i * 40 - theCanvas.clientHeight/10);  //배경 선(타겟으로부터 화면우측하단끝)
@@ -2645,8 +2645,16 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2 - playerX)/18 ,10 * random01 + 100 - playerX/60)
-    
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2 - playerX)/18 ,10 * random01 + 100 - playerX/60)    
+
+                //지붕 건물 반사
+                Context3.globalAlpha = 0.01; 
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                        
+                //지붕 땅 반사
+                Context3.globalAlpha = 0.03; 
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*4 ,10 * random01 + 80)
+                
                 //j = j + (10*random05);     //건물 상하 조밀도
                 j = j + 20*random01;     //건물 상하 조밀도
             }    
@@ -2657,6 +2665,14 @@ function game_background(){
                 Context3.globalAlpha = 0.9; 
                 Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/12,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4  - parseInt(ls_width/2 - playerX)/12 ,150 )
     
+                //지붕 건물 반사
+                Context3.globalAlpha = 0.01; 
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                        
+                //지붕 땅 반사
+                Context3.globalAlpha = 0.02; 
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*4 ,10 * random01 + 80)
+                                
                 j = j + 30*random01;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
@@ -2668,7 +2684,15 @@ function game_background(){
                 Context3.globalAlpha = 0.7; 
                 Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 6  + j   + cityEnd_y , j*4 ,180 )
     
-                j = j + 40*random03;     //건물 상하 조밀도 
+                //지붕 건물 반사
+                Context3.globalAlpha = 0.01; 
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                        
+                //지붕 땅 반사
+                Context3.globalAlpha = 0.01; 
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.5 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*4 ,10 * random01 + 80)
+                                
+                j = j + 35*random03;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
             }  
@@ -2680,7 +2704,7 @@ function game_background(){
                 Context3.globalAlpha = 0.8; 
                 Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,200 )
     
-                j = j + 45*random02;     //건물 상하 조밀도 
+                j = j + 40*random02;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
  
@@ -2693,7 +2717,7 @@ function game_background(){
                 Context3.globalAlpha = 0.9; 
                 Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  20 + theCanvas.clientHeight / 8  + j + cityEnd_y ,  j*4 ,300 )
     
-                j = j + 50*random02;     //건물 상하 조밀도 
+                j = j + 45*random02;     //건물 상하 조밀도 
                 //j = j + 40*random01;     //건물 상하 조밀도
 
  
@@ -3325,15 +3349,15 @@ function weappon_move(){
 
             //미사일 화면 이탈시 또는 미사일이 너무 커지면
             if (this.weapponArray[i].bsize >= 100){
-                this.weapponArray[i].bsize = 0;
-                this.weappon_size = 0;
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
             }
 
 
             //미사일이 플레이어보다 커지면
             if (this.weapponArray[i].bsize >= playerHeight/2){
-                this.weapponArray[i].bsize = 0;
-                this.weappon_size = 0;
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
             }     
             
             //2.좌우로 흔들린다.
@@ -3392,8 +3416,8 @@ function weappon_move(){
             //미사일 화면 이탈시 또는 미사일이 너무 커지면
             if (this.weapponArray[i].bsize >= 50){
                
-                this.weapponArray[i].bsize = 0;
-                this.weappon_size = 0;
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
                 
             } 
   
@@ -3401,8 +3425,8 @@ function weappon_move(){
             //미사일이 플레이어보다 커지면
             if (this.weapponArray[i].bsize >= playerHeight/3){
               
-                this.weapponArray[i].bsize = 0;
-                this.weappon_size = 0;
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
             }            
 
             //총알 반은 위로 반은 아래로향한다.

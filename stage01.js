@@ -2808,11 +2808,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //event.preventDefault();
 
     //모바일인경우 게임진행시에는 리턴
-    //if (status == 2){
+    if (status == 2){
         if (navigator.platform.substr(0,3) != "Win" ){
             return;
         }
-    //}
+    }
 
     
     //마우스 왼쪽 버튼 클릭(down)
@@ -2878,11 +2878,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //event.preventDefault();
 
     //모바일인경우 게임진행시에는 리턴
-    //if (status == 2){
+    if (status == 2){
         if (navigator.platform.substr(0,3) != "Win" ){
             return;
         }
-    //}
+    }
 
 
     //마우스 왼쪽 버튼 떼기(up)
@@ -3255,10 +3255,13 @@ function clickCanvas(event, as_gb) {
             isKeyCode = null;
         }
 
-        //게임 계속
-        if(Context.isPointInPath(button_continue, x,  y)) {
-            player_cnt = 1;
-            gameStart(13);
+        //개발모드일경우만 이어서 플레이 가능
+        if (ls_DColor == "green"){
+        //게임 계속 
+            if(Context.isPointInPath(button_continue, x,  y)) { 
+                player_cnt = 1;
+                gameStart(13);
+            }
         }
     }
 

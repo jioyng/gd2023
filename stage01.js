@@ -432,7 +432,7 @@ var ini_player_life = 5;    //플레이어 생명
 var player_life = ini_player_life;
 var penerge_bar = ini_energe_bar;
 
-var ini_player_cnt = 0;    //초기 플레이어 갯수(보너스)
+var ini_player_cnt = 3;    //초기 플레이어 갯수(보너스)
 var player_cnt = ini_player_cnt;
 
 //플레이어 공간이동(warp) 거리
@@ -658,7 +658,7 @@ function addJavascript(jsname) {
 
 ////////////////// 게임 시작
 function gameStart(as_keycode) {
-
+ 
     //최초 페이지 로드 여부
     //first_load_yn = "N";
 
@@ -923,7 +923,9 @@ function game_init(){
 
 ////////////////// 플레이어 변수 초기화
 function player_init(){
+ 
 
+     
     //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
     wayBefore = 'None;'
     playerWidth = ini_player_width;
@@ -3024,6 +3026,7 @@ function skill_chanage2(){
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
 
+    
 	//if (status != 2)
 	//{
 		//gameStart(13);
@@ -3037,10 +3040,14 @@ function clickCanvas(event, as_gb) {
         //alert("touch")
         gameRetryExitButton();
     }
+ 
+ 
 
 	//as_gb 1: mouseClick, 2: onMouseMove
 	var x = event.pageX;
 	var y = event.pageY;
+ 
+
 
     //윈도우의 경우 캔버스 컨트롤을 사용하지 않는다.(게임 진행일때만) => 재시도/종료 버튼클릭 가능하기 위해
 	if (navigator.platform.substr(0,3) == "Win" && status == 2){
@@ -3131,7 +3138,7 @@ function clickCanvas(event, as_gb) {
 		Context.stroke(directonMiddle);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
     }
 
-
+ 
     //레이져 버튼 터치
     //레이져 발사
     //var laser_touch_time = 0;
@@ -3278,7 +3285,7 @@ function clickCanvas(event, as_gb) {
         if (ls_DColor == "green"){
         //게임 계속 
             if(Context.isPointInPath(button_continue, x,  y)) { 
-                player_cnt = 1;
+                if(player_cnt <= 1) player_cnt = 1;
                 gameStart(13);
             }
         }
@@ -3854,10 +3861,10 @@ function drawScreen(){
 
     Context.fillStyle = '#ffffff';
     Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
-    Context.fillText("Bonus : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
+    Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
     //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
-    Context.fillText("Skill N : " + skill,10,150);
+    Context.fillText("Skill    : " + skill,10,150);
 
     
     if(gameTime<=50){

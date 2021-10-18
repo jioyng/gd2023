@@ -1313,8 +1313,8 @@ function laser_move(){
                 for (var i=0;i<100;i++){ 
                      
                      //레이져필살기의 크기는 플레이어의 1/3 크기만큼
-                    l_width = playerWidth/2;   
-                    l_size = playerHeight/2; 
+                    l_width = playerWidth/10 + Pdistance/20;   
+                    l_size = playerHeight/10 + Pdistance/20; 
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)

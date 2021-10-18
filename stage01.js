@@ -425,7 +425,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 2;         //플레이어 초기 스피드
+var ini_Pspeed = 1;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명
@@ -481,9 +481,9 @@ var laser_d = 0;
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
-var ini_skill = 1;
-var skill = ini_skill;
-var tmp_skill = skill;
+var ini_weapon = 1;
+var weapon = ini_weapon;
+var tmp_weapon = weapon;
 
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
@@ -778,6 +778,8 @@ canvas.height = canvas.offsetHeight;
 ////////////////// 게임 변수 초기화
 function game_init(){
 
+    first_load_yn = "N";  //머지? 이러게하니 잘되네...
+
     //플레이어 초기화
     player_init();
 
@@ -819,7 +821,7 @@ function game_init(){
     bonus_cnt = 1;
 
     //공격스킬
-    skill = 1;
+    weapon = 1;
 
     //적 생명
     ini_enemy_life = 5;
@@ -945,7 +947,7 @@ function player_init(){
     //레이져 필살기 변수 초기화
     laser_charge_total_time = 0; 
     //l_width = 2;  
-    //skill = 1;
+    //weapon = 1;
     //laser_charge_start_time = gameTime;
     //player_cnt = ini_player_cnt;
 }
@@ -1134,7 +1136,7 @@ function player_move(){
 		laser_sound.currentTime  = 0;
 
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
-        if (skill == 1)   
+        if (weapon == 1)   
         laser_sound.play();
 
         isKeyDown = [];
@@ -1240,7 +1242,7 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
 
-        if (skill == 1){
+        if (weapon == 1){
 
             for (i=0;i<=200;i++){ 
     
@@ -1573,7 +1575,7 @@ function enemy_collision(){
 
              //적 에너지 차감
              //스킬 2일때는 10씩 차감
-             if (skill == 1){
+             if (weapon == 1){
                 this.enemy_life = this.enemy_life - 1;            
              }else {
                 this.enemy_life = this.enemy_life - 10;  
@@ -2842,7 +2844,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         isKeyCode = 32; 
  
         //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 1){            
+        if (weapon == 1){            
             l_width = 1;              
         }else { 
             laser_charge_total_time = 0;
@@ -2869,11 +2871,11 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
-        // tmp_skill = skill;
-        // ++skill;
-        skill_chanage();
+        // tmp_weapon = weapon;
+        // ++weapon;
+        weapon_chanage();
 
-        //(skill == 1)?skill=2:skill=1;
+        //(weapon == 1)?weapon=2:weapon=1;
     }
 
     //마우스 오른쪽 버튼 클릭
@@ -2984,38 +2986,38 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
 
 ////////////////////공격 스킬 체인지 함수
-function skill_chanage(){ 
+function weapon_chanage(){ 
 
     
-    tmp_skill = skill;
+    tmp_weapon = weapon;
 
-    //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
-    //setTimeout(skill_chanage2,500); 
+    //스킬변경시 약간의 텀(tmp_weapon에 weapon이 먼저 완전히 저장되고 나중에 비교되기위해서)
+    //setTimeout(weapon_chanage2,500); 
 
-    if (skill_chanage2() == "Y"){
-        if(tmp_skill != skill){
-            if (skill >= 3){
-                skill = 1;
+    if (weapon_chanage2() == "Y"){
+        if(tmp_weapon != weapon){
+            if (weapon >= 3){
+                weapon = 1;
             }   
          
         }  
-        tmp_skill = null;
-        //skill_chanage2() = "N";
+        tmp_weapon = null;
+        //weapon_chanage2() = "N";
     }; 
  
 }
 
-function skill_chanage2(){  
+function weapon_chanage2(){  
 
     
     //mount_sound.currentTime;
     mount_sound.play(); 
 
-    ++skill;
+    ++weapon;
  
-    // if(tmp_skill != skill){
-    //     if (skill >= 3){
-    //         skill = 1;
+    // if(tmp_weapon != weapon){
+    //     if (weapon >= 3){
+    //         weapon = 1;
     //     }   
     // }  
     
@@ -3149,7 +3151,7 @@ function clickCanvas(event, as_gb) {
 
 
         //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 1){      
+        if (weapon == 1){      
             
             laser_sound.currentTime  = 0;
             laser_sound.play();    
@@ -3248,14 +3250,14 @@ function clickCanvas(event, as_gb) {
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
-        // tmp_skill = skill;
-        // ++skill;
+        // tmp_weapon = weapon;
+        // ++weapon;
         //alert("test")
         //alert(as_gb);
 
         //캔버스를 클릭했을때만 호출한다. 자꾸 움직이거나 하니깐 찰나에 또 바뀜
         if(as_gb == 1)
-        skill_chanage();
+        weapon_chanage();
 
 
     }
@@ -3738,7 +3740,8 @@ function drawScreen(){
 
             }
 
-            player_cnt =  player_cnt + 1;
+            //player_cnt =  player_cnt + 1;
+            player_cnt =  player_cnt + bonus_cnt;
 
 
        // }
@@ -3767,10 +3770,10 @@ function drawScreen(){
     player_didtance(); 
 
     //스킬 변경
-    //skill_chanage();
+    //weapon_chanage();
 
     //레이져 방향
-    if (skill == 1){
+    if (weapon == 1){
 
         laser_move();
 
@@ -3864,7 +3867,7 @@ function drawScreen(){
     Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
     //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
-    Context.fillText("Skill    : " + skill,10,150);
+    Context.fillText("Weapon  : " + weapon,10,150);
 
     
     if(gameTime<=50){
@@ -3997,7 +4000,7 @@ function onkeyDown(e, as_strKeyEventValue){
 
 		laser_sound.currentTime  = 0;
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
-        if (skill == 1)   
+        if (weapon == 1)   
         laser_sound.play();
 
         //레이져 변수 초기화
@@ -4017,11 +4020,11 @@ function onkeyDown(e, as_strKeyEventValue){
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
-        // tmp_skill = skill;
-        // ++skill;
-        skill_chanage();
+        // tmp_weapon = weapon;
+        // ++weapon;
+        weapon_chanage();
  
-        //(skill == 1)?skill=2:skill=1;        
+        //(weapon == 1)?weapon=2:weapon=1;        
 
     }
     

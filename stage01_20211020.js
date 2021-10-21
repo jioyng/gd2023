@@ -550,28 +550,6 @@ var engin02Image = new Image();
 engin02Image.src = "./img/engin01.png";
 engin02Image.addEventListener("load",drawScreen, false);
 
-
-//적03 이미지
-var enemy03Image = new Image();
-enemy03Image.src = "./img/enemy03.png";
-enemy03Image.addEventListener("load",drawScreen, false);
-
-//적03 건 이미지
-var enemy03GunImage = new Image();
-enemy03GunImage.src = "./img/missile03.png";
-enemy03GunImage.addEventListener("load",drawScreen, false);
-
-//적03 미시일 이미지 및 로드
-var weappon03Image = new Image();
-weappon03Image.src = "./img/missile03.png";
-weappon03Image.addEventListener("load",drawScreen, false);
-
-//적03 엔진 이미지
-var engin03Image = new Image();
-engin03Image.src = "./img/engin01.png";
-engin03Image.addEventListener("load",drawScreen, false);
-
-
 //적 크기
 var enemy_size = 1;
 
@@ -593,7 +571,6 @@ var enemyyy = 0;
 // var ini_enemyh = 25;
 var ini_enemyw = 42;
 var ini_enemyh = 55;
-
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;
 var enemyw = ini_enemyw;
@@ -653,8 +630,6 @@ create_enemy();
 var weappon_upDown = 1;
 var weappon_leftRight = 1;
 var weappon_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
- 
-var enemy_boss_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
 
 // ////////////////// 윈도우 os의 경우 둠 터치버튼 숨기기
 // if (navigator.platform.substr(0,3) != "Win" ){
@@ -909,7 +884,6 @@ function game_init(){
 
     //적 타입
     enemy_type = 1;
- 
 
     //적 크기
     enemyw = ini_enemyw;
@@ -1358,9 +1332,6 @@ function laser_move(){
 ////////////////// 적 객체 생성
 ////////////////// 적 1th
 function create_enemy(index){
-//alert(enemy_boss_status);
-    //보스 출몰중에는 또 보스가 죽기전에는 또 나타나지 않는다.
-    if (enemy_boss_status == 1)  return;
 
     //this.enemy_index = index;
     //적의 인덱스가 없는경우 전체 새로 생성.
@@ -1401,37 +1372,86 @@ function enemy_init(index){
 
     //적 고유 index
     this.enemy_index = index;
- 
+
     //적 고유 index에 따른 적 타입 변경
     if ((this.enemy_index + 1) <= 2){
         this.enemy_type = 1;
 
-    }else { 
-        //1000이 넘으면 보스 출현
-        if(gameTime > 8000 && enemy_boss_status == 0){
+    }else {
 
-            enemy_boss_status = 1; 
-
-            this.enemy_type = 3; 
-            
-            
+        if (this.enemy_index % 2 == 0){
+            this.enemy_type = 2;
         }else {
-
-            //보스가 한번 폭파된경우는 바꿔주지 않느다.
-            if(enemy_boss_status > 2){ 
-                enemy_boss_status = 0; 
-            }
-
-            if (this.enemy_index % 2 == 0){
-                this.enemy_type = 2;
-            }else {
-                this.enemy_type = 1;
-            }
+            this.enemy_type = 1;
         }
     }
 
- 
+    //적 타입에 따른 특성(모양,속도,무기등 변경)
+    if (this.enemy_type == 1){
+        //적 이미지
+        this.enemyImage = enemy01Image;
+        this.enemyImage.src = enemy01Image.src;
 
+        //적 무기 이미지
+        this.enemyGunImage = enemy01GunImage;
+        this.enemyGunImage.src = enemy01GunImage.src
+
+        //적 엔진 이미지
+        this.enginImage = engin01Image;
+        this.enginImage.src = enginImage.src;
+
+        //적 미시일 이미지 및 로드
+        this.weapponImage = weappon01Image;
+        this.weapponImage.src = weappon01Image.src;
+
+        //적 초기 크기
+        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
+        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
+
+        //적 미사일 크기
+        this.weappon_size = weappon_size;
+
+        //적 미사일 속도
+        this.weappon_speed = weappon_speed;
+
+        //적 동시  발사수는 랜덤하게
+        this.weappon_cnt = Math.floor(Math.random() * 4) + 4;
+        this.max_weappon_cnt = 8;
+
+
+    }else {
+
+        //적 이미지
+        this.enemyImage = enemy02Image;
+        this.enemyImage.src = enemy02Image.src;
+
+        //적 무기 이미지
+        this.enemyGunImage = enemy02GunImage;
+        this.enemyGunImage.src = enemy02GunImage.src
+
+        //적 엔진 이미지
+        this.enginImage = engin02Image;
+        this.enginImage.src = enginImage.src;
+
+        //적 미시일 이미지 및 로드
+        this.weapponImage = weappon02Image;
+        this.weapponImage.src = weappon02Image.src;
+
+        //적 초기 크기
+        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
+        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
+
+        //적 미사일 크기
+        this.weappon_size = weappon_size;
+
+        //적 미사일 속도
+        this.weappon_speed = weappon_speed;
+
+        //적 동시 미사일 발사수는 랜덤하게
+        this.weappon_cnt = Math.floor(Math.random() * 4) + 2;
+        this.max_weappon_cnt = 6;
+
+    }
 
 
     //무(없음)이미지
@@ -1516,115 +1536,7 @@ function enemy_init(index){
     this.player_collision = player_collision;
 
     //배경종점에서 적까지 거리
-    this.enemy_didtance = enemy_didtance; 
-
-
-    //적 타입에 따른 특성(모양,속도,무기등 변경)
-    //보스 특징
-    if (this.enemy_type == 3){
-
-        //적 이미지
-        this.enemyImage = enemy03Image;
-        this.enemyImage.src = enemy03Image.src;
-
-        //적 무기 이미지
-        this.enemyGunImage = enemy03GunImage;
-        this.enemyGunImage.src = enemy03GunImage.src
-
-        //적 엔진 이미지
-        this.enginImage = engin03Image;
-        this.enginImage.src = enginImage.src;
-
-        //적 미시일 이미지 및 로드
-        this.weapponImage = weappon03Image;
-        this.weapponImage.src = weappon03Image.src;
-
-        //적 초기 크기
-        //ini_enemyw = 200/2;
-        //ini_enemyh = 150/2;
-        this.enemyw = ini_enemyw + Math.floor(Math.random() * 4);
-        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
-  
-        //적 미사일 크기
-        this.weappon_size = weappon_size;
-
-        //적 미사일 속도
-        this.weappon_speed = weappon_speed + 0.2;
-
-        //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 6) + 4;
-        this.max_weappon_cnt = 10; 
-
-        this.enemy_life = 100;
-        this.energe_bar = ini_energe_bar;
-        this.enemy_energe = enemy_energe;
-        this.enemy_move = enemy_move;
-    }else if (this.enemy_type == 2){
-
-        //적 이미지
-        this.enemyImage = enemy02Image;
-        this.enemyImage.src = enemy02Image.src;
-
-        //적 무기 이미지
-        this.enemyGunImage = enemy02GunImage;
-        this.enemyGunImage.src = enemy02GunImage.src
-
-        //적 엔진 이미지
-        this.enginImage = engin02Image;
-        this.enginImage.src = enginImage.src;
-
-        //적 미시일 이미지 및 로드
-        this.weapponImage = weappon02Image;
-        this.weapponImage.src = weappon02Image.src;
-
-        //적 초기 크기
-        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
-        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
-
-        //적 미사일 크기
-        this.weappon_size = weappon_size;
-
-        //적 미사일 속도
-        this.weappon_speed = weappon_speed;
-
-        //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
-        this.max_weappon_cnt = 6;
-
-    }else { 
-
-         
-        //적 이미지
-        this.enemyImage = enemy01Image;
-        this.enemyImage.src = enemy01Image.src;
-
-        //적 무기 이미지
-        this.enemyGunImage = enemy01GunImage;
-        this.enemyGunImage.src = enemy01GunImage.src
-
-        //적 엔진 이미지
-        this.enginImage = engin01Image;
-        this.enginImage.src = enginImage.src;
-
-        //적 미시일 이미지 및 로드
-        this.weapponImage = weappon01Image;
-        this.weapponImage.src = weappon01Image.src;
-
-        //적 초기 크기
-        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
-        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
-
-        //적 미사일 크기
-        this.weappon_size = weappon_size;
-
-        //적 미사일 속도
-        this.weappon_speed = weappon_speed;
-
-        //적 동시  발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 4) + 4;
-        this.max_weappon_cnt = 8;
-    }
-
+    this.enemy_didtance = enemy_didtance;
 
 }
 
@@ -1635,10 +1547,9 @@ function enemy_collision(){
     //this.enemyx = this.weapponX;
     //this.enemyy = this.weapponY;
 
+    //적 크기
     this.enemyw = ini_enemyw;
     this.enemyh = ini_enemyh;
-
- 
 
     //레이져 크기
     //l_size = 1;
@@ -1678,7 +1589,6 @@ function enemy_collision(){
 
              //적 파괴되면 새로운 타겟 등장
              if (this.enemy_life <= 0){
-
 
                 //타겟 새로 생성
                 //enemy_init();
@@ -1727,18 +1637,8 @@ function enemy_collision(){
                 //적 레이져 폭파중 여부
                 this.enemy_collision_yn = 'Y';
 
-                //적 보스가 파괴되면 계속해서 알번 적들 추가 생성
-                //if (this.enemy_boss_yn == 'Y'){
-                if (this.enemy_type == 3){
-                    enemy_boss_status = 2;          
-                }
-
-                //보스가 출현했을 경우 보스를 물리치기 전까지는 생성하지 않는다.
-                //if (this.enemy_boss_yn == 'N'){
-                    //폭파후 적 출현
-                    setTimeout(this.create_enemy,this.enemy_dealy_time,this.enemy_index);   //넘겨줄 인수는 지연시간 뒤에다가 넘겨준다.
-                //}
-
+                //폭파후 적 출현
+                setTimeout(this.create_enemy,this.enemy_dealy_time,this.enemy_index);   //넘겨줄 인수는 지연시간 뒤에다가 넘겨준다.
 
              }
 
@@ -1752,7 +1652,6 @@ function enemy_collision(){
 function player_energe(){
 
     Context.font = '10px Arial';
-    Context.fillStyle = 'white';
 
     penerge_bar = '';
 
@@ -1766,26 +1665,12 @@ function player_energe(){
 ////////////////// 적 에너지 표시
 function enemy_energe(){
 
-    //보스의 경우
-    if (this.enemy_type == 3){
-        Context.font = '10px Arial';
-        Context.fillStyle = 'orange';
+    Context.font = '10px Arial';
 
-        this.energe_bar = '';
+    this.energe_bar = '';
 
-        for (var i=1;i<=this.enemy_life;i=i+10){
-            this.energe_bar += '■';
-        } 
-
-    }else {
-        Context.font = '10px Arial';
-        Context.fillStyle = 'white';
-
-        this.energe_bar = '';
-
-        for (var i=1;i<=this.enemy_life;i++){
-            this.energe_bar += '■';
-        }
+    for (var i=1;i<=this.enemy_life;i++){
+        this.energe_bar += '■';
     }
 
     return this.energe_bar;
@@ -1799,72 +1684,36 @@ function enemy_move(){
 //console.log(String(gameTime).substr(String(gameTime).length-3,1))
 
     //적(enemy) 왔다같다 이동
-    if (enemy_type != 3){
-        if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-            this.enemyx = this.enemyx + this.enemyxx - 1;
-            this.enemyy = this.enemyy + this.enemyyy;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-            this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-            this.enemyx = this.enemyx + this.enemyxx;
-            this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-            this.enemyy = this.enemyy - this.enemyyy;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
-            this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);    
-            this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-            this.enemyx = this.enemyx - this.enemyxx;
-            this.enemyy = this.enemyy + this.enemyyy;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-            this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-            this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-            this.enemyy = this.enemyy + this.enemyyy;
-        }else {
-            this.enemyx = this.enemyx + this.enemyxx + 1;
-            this.enemyy = this.enemyy + this.enemyyy - 1;
-        }
-    //보스의 움직임, 보스는 빠르다
+    if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
+        this.enemyx = this.enemyx + this.enemyxx - 1;
+        this.enemyy = this.enemyy + this.enemyyy;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
+        this.enemyx = this.enemyx + this.enemyxx;
+        this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy - this.enemyyy;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
+        this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);   ;
+        this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
+        this.enemyx = this.enemyx - this.enemyxx;
+        this.enemyy = this.enemyy + this.enemyyy;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
+    }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
+        this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
+        this.enemyy = this.enemyy + this.enemyyy;
     }else {
-        if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-            this.enemyx = this.enemyx + this.enemyxx - 4;
-            this.enemyy = this.enemyy + this.enemyyy + 5;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*4;
-            this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed*4;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-            this.enemyx = this.enemyx + this.enemyxx*3;
-            this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed*4;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*6;
-            this.enemyy = this.enemyy - this.enemyyy*5;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
-            this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1)*2;    
-            this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1)*2;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-            this.enemyx = this.enemyx - this.enemyxx*3;
-            this.enemyy = this.enemyy + this.enemyyy*4;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*5;
-            this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed*4;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*2;
-            this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed*4;
-        }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*6;
-            this.enemyy = this.enemyy + this.enemyyy*3;
-        }else {
-            this.enemyx = this.enemyx + this.enemyxx + 5;
-            this.enemyy = this.enemyy + this.enemyyy - 4;
-        }
-
+        this.enemyx = this.enemyx + this.enemyxx + 1;
+        this.enemyy = this.enemyy + this.enemyyy - 1;
     }
 
     this.enemy_didtance();
@@ -1919,35 +1768,18 @@ function enemy_move(){
     // };
 
     //적의 크기는 적의 초기 크기 * 0.8 보다 커질수는 없다.
-    if(this.enemy_type != 3){
-        if (this.enemyw > ini_enemyw * 1){
-            this.enemyw =  ini_enemyw * 1;
-            //this.enemy_size = this.enemy_size - 1;
-            //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
-        };
+    if (this.enemyw > ini_enemyw * 1){
+        this.enemyw =  ini_enemyw * 1;
+        //this.enemy_size = this.enemy_size - 1;
+        //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
+    };
 
-        if (this.enemyh > ini_enemyh * 1){
-            this.enemyh =  ini_enemyh * 1;
-            //this.enemy_size = this.enemy_size - 1;
-            //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
-        };
+    if (this.enemyh > ini_enemyh * 1){
+        this.enemyh =  ini_enemyh * 1;
+        //this.enemy_size = this.enemy_size - 1;
+        //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
+    };
 
-    //보스의 경우
-    }else {
-
-        if (this.enemyw > ini_enemyw * 2){
-            this.enemyw =  ini_enemyw * 2;
-            //this.enemy_size = this.enemy_size - 1;
-            //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
-        };
-
-        if (this.enemyh > ini_enemyh * 1.5){
-            this.enemyh =  ini_enemyh * 1.5;
-            //this.enemy_size = this.enemy_size - 1;
-            //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
-        };
-
-    }
 
     //적이 너무 작은경우(멀리있는경우) 오른쪽 엔진은 그려주지 않는다.(엔지하나가 몸체박으로 삐져나와 이상함.)
     if ( this.enemyw >= ini_enemyw*0.8){
@@ -2938,7 +2770,6 @@ function game_status(){
 
     Context2.font = '30px Arial';
     Context2.font = '100px Arial';
-    Context.fillStyle = 'white';
 
     if (status == 1){
         //Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
@@ -3539,69 +3370,7 @@ function weappon_move(){
 
         //console.log(this.enemy_size,enemy_size)
         //미사일 이동 좌표
-        if (this.enemy_type == 3){     //적 타입이 2인경우만 유도탄
-
-            //유도 미사일 특징
-            //1.크기가 크다. 느리다
-            //this.weappon_size = this.weappon_size + this.enemy_size/10;
-            this.weappon_size = this.weappon_size + 0.2;
-
-
-            //미사일 화면 이탈시 또는 미사일이 너무 커지면
-            if (this.weapponArray[i].bsize >= 100){
-                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
-                this.weappon_size = this.weappon_size - 0.1;
-            }
-
-
-            //미사일이 플레이어보다 커지면
-            if (this.weapponArray[i].bsize >= playerHeight/2){
-                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
-                this.weappon_size = this.weappon_size - 0.1;
-            }     
-            
-            //2.좌우로 흔들린다.
-            this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*15);
-            this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*8);
-            //3.속도가 느리다.
-            this.weappon_speed = 1/1.5;
-
-            //4.플레이어 위치에 따른 미사일 방향 변경된다.
-            if (playerY >= this.enemyy + this.enemyh/2 + theCanvas.clientHeight / 6){
-                this.weappon_upDown = 1;
-                //console.log('1')
-            }else if (playerY <=  this.enemyy - this.enemyh/2 - theCanvas.clientHeight / 6){
-                this.weappon_upDown = -1;
-                //console.log('2')
-            }else if (playerX <=  this.enemyx + this.enemyw/2 - theCanvas.clientWidth / 3){
-                this.weappon_leftRight = -1;
-                this.weappon_upDown = this.weappon_tmp_random;
-                //console.log('3')
-            }else if (playerX >=  this.enemyx - this.enemyw/2 - theCanvas.clientWidth / 3){
-                this.weappon_leftRight = 1;
-                this.weappon_upDown = this.weappon_tmp_random;
-                //console.log('4')
-            }
-
-
-            this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight;
-            this.weapponArray[i].bsize = this.weappon_size;
-            this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
-            //this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
-            //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
-            
-
-            if (this.enemyxx > this.weapponArray[i].bmx){
-                for (z=0;z<5;z++){ 
-                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
-                }
-            }else {
-                for (z=0;z<5;z++){ 
-                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
-                } 
-            }
-
-        }else if (this.enemy_type == 2){     //적 타입이 2인경우만 유도탄
+        if (this.enemy_type == 2){     //적 타입이 2인경우만 유도탄
 
             //유도 미사일 특징
             //1.크기가 크다. 느리다
@@ -4063,22 +3832,13 @@ function drawScreen(){
     //10초마다 적 추가생성 => 5초
     //if(gameTime % 500 === 0){
     //랜덤하게
+    if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){
 
+        //적 추가 생성
+        enemy_cnt = enemy_cnt + 1;
+        create_enemy(enemy_cnt);
 
-        // //보스 출현중일경우는 생성하지 않는다.
-        // for (var i=0;i<=enemy_array.length - 1;i++){
-        //     if (enemy_array[i].enemy_boss_yn == 'Y'){
-        //         enemy_boss_status = 1;
-        //     }
-        // }  
-
-        if (enemy_boss_status == 0){
-            if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){ 
-                enemy_cnt = enemy_cnt + 1;
-                create_enemy(enemy_cnt); 
-            }
-        }
-
+    }
 
     //게임 진행 정보(맨마지막에 그려줘야 게임내 이미지가 덮지않는다.)
     //게임상태정보표시

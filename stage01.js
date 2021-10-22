@@ -1562,7 +1562,7 @@ function enemy_init(index){
         this.weappon_speed = weappon_speed + 0.2;
 
         //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 20) + 10;
+        this.weappon_cnt = Math.floor(Math.random() * 10) + 20;
         this.max_weappon_cnt = 30; 
 
         this.enemy_life = 100;
@@ -1873,7 +1873,7 @@ function enemy_move(){
             this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1)*2;    
             this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1)*2;
         }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-            this.enemyx = this.enemyx + this.enemyxx*6*2;
+            this.enemyx = this.enemyx - this.enemyxx*6*2;
             this.enemyy = this.enemyy + this.enemyyy*6;
             this.enemy_size--;
         }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
@@ -1881,7 +1881,7 @@ function enemy_move(){
             this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed*4;
             this.enemy_size++;
         }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-            this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*2;
+            this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed*2;
             this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed*4;
             this.enemy_size--;
         }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
@@ -1891,7 +1891,7 @@ function enemy_move(){
         }else {
             this.enemyx = this.enemyx + this.enemyxx + 5*2;
             this.enemyy = this.enemyy + this.enemyyy - 4;
-            //this.enemy_size++;
+            this.enemy_size--;
         }
 
     }
@@ -3572,7 +3572,7 @@ function weappon_move(){
         //보스 총알 : 보스의 무기는 미사일과 레이져
         if (this.enemy_type == 3){     //적 타입이 2인경우만 유도탄
             //console.log("this.enemy_life",this.enemy_life)
-            if (this.enemy_life >= 50){
+            if (this.enemy_life >= 0){
 
                 this.weapponImage = weappon03Image;
                 //유도 미사일 특징
@@ -3699,7 +3699,7 @@ function weappon_move(){
                             Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
                         } 
                     }
-                    }else {                
+                }else {                
                     this.weapponImage = weappon01Image;
                     //레이져
                     add_borderX = theCanvas.clientWidth;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)

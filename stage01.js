@@ -657,6 +657,9 @@ var weappon_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위
 var enemy_boss_01_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
 var enemy_boss_01_index = 0;   //적 보스 고유번호
 
+//적 경계 진입 여부
+var enemy_border_over_yn = 'N';
+
 // ////////////////// 윈도우 os의 경우 둠 터치버튼 숨기기
 // if (navigator.platform.substr(0,3) != "Win" ){
 
@@ -949,6 +952,9 @@ function game_init(){
     max_weappon_cnt = ini_max_weappon_cnt;
     enemy_collision_yn = "N";
     enemy_index = null;
+
+    //적 경계 진입 여부
+    enemy_border_over_yn = 'N';
 
 }
 
@@ -1830,7 +1836,6 @@ function enemy_energe(){
 }
 
 
-var over_border_yn = 'N';
 ////////////////// 적 이동
 function enemy_move(){
 //alert(String(gameTime*100).substr(0,2));
@@ -1854,46 +1859,12 @@ function enemy_move(){
 
     //적 크기 배율은 1 ~ 3를 넘지 못한다.
     //if (this.enemy_size >= 3){this.enemy_size = 3};
-    if (this.enemy_size <= 1){this.enemy_size = 1};  
+    if (this.enemy_size <= 1){this.enemy_size = 1};    
 
-    over_border_yn = 'N'
-
-    //적 경계 이탈 방지 
-    if (this.enemyx >= maxX - 30){ 
-        this.enemyxx = 0;
-        this.enemyx = this.enemyx - Math.floor(Math.random() * 10); 
-        this.enemyy = this.enemyy + Math.floor(Math.random() * 10);
-        //this.enemy_size = this.enemy_size - 0.1; 
-        over_border_yn = 'Y';
-    }
-
-    if (this.enemyx <= minX + 50){ 
-        this.enemyxx = 0;
-        this.enemyx = this.enemyx + Math.floor(Math.random() * 10);
-        this.enemyy = this.enemyy - Math.floor(Math.random() * 10);
-        //this.enemy_size = this.enemy_size - 0.1; 
-        over_border_yn = 'Y';
-    }
-
-    if (this.enemyy >= maxY - 50){ 
-        this.enemyyy = 0;
-        this.enemyx = this.enemyx + Math.floor(Math.random() * 10); 
-        this.enemyy = this.enemyy - Math.floor(Math.random() * 10);
-        //this.enemy_size = this.enemy_size - 0.1; 
-        over_border_yn = 'Y';
-    }
-
-    if (this.enemyy < minY + 30){ 
-        this.enemyyy = 0;
-        this.enemyx = this.enemyx - Math.floor(Math.random() * 10); 
-        this.enemyy = this.enemyy + Math.floor(Math.random() * 10);
-        //this.enemy_size = this.enemy_size - 0.1; 
-        over_border_yn = 'Y';
-    } 
 
     //적(enemy) 왔다같다 이동 
     //적 1은 빠르다
-    //if (over_border_yn == 'N'){
+    if (enemy_border_over_yn != '1N'){
         //if (enemy_type == 1){
             if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
                 this.enemyx = this.enemyx + this.enemyxx * 1;
@@ -1904,7 +1875,7 @@ function enemy_move(){
                 this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed * 1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
                 this.enemyx = this.enemyx + this.enemyxx * 2; 
-                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 2;
+                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
                 this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
                 this.enemyy = this.enemyy - this.enemyyy * 2 * 2;
@@ -1916,6 +1887,7 @@ function enemy_move(){
                 this.enemyx = this.enemyx - this.enemyxx * 1;
                 this.enemyy = this.enemyy + this.enemyyy * 1;
                 this.enemy_size = this.enemy_size + 0.2;
+                this.enemy_size = this.enemy_size - 0.1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
                 this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
                 this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
@@ -1925,10 +1897,12 @@ function enemy_move(){
                 this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
                 this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 1;
-                this.enemyy = this.enemyy + this.enemyyy + 1 * 1;
+                this.enemyy = this.enemyy + this.enemyyy + 1;
+                this.enemy_size = this.enemy_size - 0.1;
             }else {
                 this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 1;
-                this.enemyy = this.enemyy + this.enemyyy + 1;
+                this.enemyy = this.enemyy - this.enemyyy - 1;
+                this.enemy_size = this.enemy_size*(this.Edistance * 0.5); - 0.1;
             }
         // //적 2는 느리다.   
         // }else if (enemy_type == 2){
@@ -2007,9 +1981,8 @@ function enemy_move(){
         //         this.enemyy = this.enemyy + this.enemyyy - 4;
         //         this.enemy_size--;
         //     }  
-
-        //}      
-    //}  
+        // }      
+    }  
 
     //보스의 경우
     if(this.enemy_type == 3){
@@ -2079,6 +2052,71 @@ function enemy_move(){
 
     //적 충돌 함수 => 충돌함수는 drawScreen()이 아닌 enemy_move 안에서 호출한다.(this가 계속 따라가도록)
     this.enemy_collision();
+
+
+    //적 경계 이탈 방지 
+    //적이 우측 경계에 붙으면
+    if (this.enemyx >= maxX - 50){ 
+        this.enemyxx = 0;
+        this.enemyx = this.enemyx - Math.floor(Math.random() * 10); 
+        //this.enemyy = this.enemyy + Math.floor(Math.random() * 2);
+        //this.enemy_size = this.enemy_size - 0.1; 
+        enemy_border_over_yn = 'Y'; 
+            
+        //적이 경계안으로 들어 오면 다시 테크를 update 한다. 
+        if (this.enemyx <= maxX/4 ){ 
+            enemy_border_over_yn = 'N';
+            this.enemyx--;
+        } 
+        
+    }
+
+    //적이 좌측 경계에 붙으면
+    if (this.enemyx <= minX + 50){ 
+        this.enemyxx = 0;
+        this.enemyx = this.enemyx + Math.floor(Math.random() * 10);
+        //this.enemyy = this.enemyy - Math.floor(Math.random() * 2);
+        //this.enemy_size = this.enemy_size - 0.1; 
+        enemy_border_over_yn = 'Y';
+
+        //적이 경계안으로 들어 오면 다시 테크를 update 한다. 
+        if (this.enemyx >= (maxX - maxX/4)){ 
+            enemy_border_over_yn = 'N';
+            this.enemyx++;
+        }         
+    }
+
+    //적이 하단 경계에 붙으면
+    if (this.enemyy >= maxY - 50){ 
+        this.enemyyy = 0;
+        //this.enemyx = this.enemyx + Math.floor(Math.random() * 2); 
+        this.enemyy = this.enemyy - Math.floor(Math.random() * 10);
+        //this.enemy_size = this.enemy_size - 0.1; 
+        enemy_border_over_yn = 'Y';
+
+        //적이 경계안으로 들어 오면 다시 테크를 update 한다. 
+        if (this.enemyy <= maxY/4 ){ 
+            enemy_border_over_yn = 'N';
+            this.enemyy++;
+        }            
+    }
+
+    //적이 상단 경계에 붙으면
+    if (this.enemyy < minY + 50){ 
+        this.enemyyy = 0;
+        //this.enemyx = this.enemyx - Math.floor(Math.random() * 2); 
+        this.enemyy = this.enemyy + Math.floor(Math.random() * 10);
+        //this.enemy_size = this.enemy_size - 0.1; 
+        enemy_border_over_yn = 'Y';
+
+        //적이 경계안으로 들어 오면 다시 테크를 update 한다. 
+        if (this.enemyy >= (maxY - maxY/4) ){ 
+            enemy_border_over_yn = 'N';
+            this.enemyy--;
+            
+        }                    
+    }  
+
 
 }
 

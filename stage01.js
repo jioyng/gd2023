@@ -1896,15 +1896,15 @@ function enemy_move(){
     //if (over_border_yn == 'N'){
         //if (enemy_type == 1){
             if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-                this.enemyx = this.enemyx + this.enemyxx * 2 - 1;
-                this.enemyy = this.enemyy + this.enemyyy * 2;
+                this.enemyx = this.enemyx + this.enemyxx * 1;
+                this.enemyy = this.enemyy + this.enemyyy * 1;
                 this.enemy_size = this.enemy_size + 0.1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-                this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
-                this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed* 2;
+                this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 1;
+                this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed * 1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-                this.enemyx = this.enemyx + this.enemyxx * 2 + 1; 
-                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed* 2;
+                this.enemyx = this.enemyx + this.enemyxx * 2; 
+                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 2;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
                 this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
                 this.enemyy = this.enemyy - this.enemyyy * 2 * 2;
@@ -1913,22 +1913,22 @@ function enemy_move(){
                 this.enemyx = this.enemyx + this.enemyxx * 2 * (Math.floor(Math.random() * 1)==0?1:-1);    
                 this.enemyy = this.enemyy - this.enemyyy * 2 * (Math.floor(Math.random() * 1)==0?1:-1);
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-                this.enemyx = this.enemyx - this.enemyxx * 2 * 2;
-                this.enemyy = this.enemyy + this.enemyyy * 2 * 2;
+                this.enemyx = this.enemyx - this.enemyxx * 1;
+                this.enemyy = this.enemyy + this.enemyyy * 1;
                 this.enemy_size = this.enemy_size + 0.2;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
                 this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-                this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed * 2;
+                this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
                 this.enemy_size = this.enemy_size - 0.2;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-                this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 2;
-                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 2;
+                this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 1;
+                this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 1;
             }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-                this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
-                this.enemyy = this.enemyy + this.enemyyy + 1 * 2;
+                this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 1;
+                this.enemyy = this.enemyy + this.enemyyy + 1 * 1;
             }else {
-                this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 2;
-                this.enemyy = this.enemyy + this.enemyyy + 1 * 2;
+                this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 1;
+                this.enemyy = this.enemyy + this.enemyyy + 1;
             }
         // //적 2는 느리다.   
         // }else if (enemy_type == 2){

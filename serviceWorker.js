@@ -15,7 +15,16 @@ const staticAssets=[
     './sound/end.ogg',
     './sound/bonus.ogg',
     './sound/start.ogg',
-    './sound/appear.ogg'   
+    './sound/appear.ogg', 
+    './sound/autogun.ogg',
+    './sound/autogun02.ogg',
+    './sound/shootgun.ogg',
+    './sound/shootgun02.ogg',
+    './sound/threegun.ogg',
+    './sound/beam.ogg',
+    './sound/alam.ogg'  
+ 
+
 ];
  
 self.addEventListener('install', async event=>{

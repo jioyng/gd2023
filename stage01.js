@@ -5117,7 +5117,7 @@ function drawScreen(){
         // }  
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_array.length == 0){
+        if (enemy_array.length == 0 && parseInt(gameTime) > 100){
             if (ls_VColor == "yellow") vsafe_sound.play();
         }
 

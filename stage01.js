@@ -5122,12 +5122,12 @@ function drawScreen(){
         }
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 10){
+        if (enemy_cnt == 5){
             if (ls_VColor == "yellow") vbee_sound.play();
         }
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 15){
+        if (enemy_cnt == 10){
             if (ls_VColor == "yellow") vangry_sound.play();
         }                
 

@@ -1432,16 +1432,16 @@ function enemy_init(index){
  
         //1000이 넘으면 보스 출현(한번만 수행되도록 상태값을 준다.)
         if(gameTime > 4000 && enemy_boss_01_status == 0){
-
+            //목소리 재생모드일경우만 실행  
+            if (ls_VColor == "yellow") {
+                crash01_sound.currentTime = 1;
+                vboss_sound.play(); 
+            }
+            
             enemy_boss_01_status = 1; 
             enemy_boss_01_index = index;
             this.enemy_type = 3;   
             
-            //목소리 재생모드일경우만 실행  
-            if (ls_VColor == "yellow") {
-                crash01_sound.currentTime = 2;
-                vboss_sound.play(); 
-            }
 
         }else { 
             

@@ -3691,6 +3691,8 @@ function skill_chanage2(){
     //         skill = 1;
     //     }   
     // }  
+    //목소리 재생모드일경우만 실행 
+    if (ls_VColor == "yellow") vskill_sound.play();
     
     return "Y";
 }
@@ -5115,7 +5117,7 @@ function drawScreen(){
         // }  
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 0){
+        if (enemy_array.length == 0){
             if (ls_VColor == "yellow") vsafe_sound.play();
         }
 

@@ -46,7 +46,7 @@ background-position: 50% -5%; */
 	background:-o-linear-gradient(90deg, #a2b8b8, #5f7a8a);
 	background:-moz-linear-gradient( center top, #a2b8b8 5%, #5f7a8a 100% );
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a2b8b8), color-stop(1, #5f7a8a) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a2b8b8', endColorstr='#5f7a8a');
+	filter:progid:DXImageTransform.Microsoft.gradient(starVColorstr='#a2b8b8', endColorstr='#5f7a8a');
 	background:-webkit-linear-gradient(#a2b8b8, #5f7a8a);
 	background:-ms-linear-gradient(#a2b8b8, #5f7a8a);
 	background:linear-gradient(#a2b8b8, #5f7a8a);
@@ -83,7 +83,7 @@ background-position: 50% -5%; */
 	background:-o-linear-gradient(90deg, #5f7a8a, #a2b8b8);
 	background:-moz-linear-gradient( center top, #5f7a8a 5%, #a2b8b8 100% );
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5f7a8a), color-stop(1, #a2b8b8) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f7a8a', endColorstr='#a2b8b8');
+	filter:progid:DXImageTransform.Microsoft.gradient(starVColorstr='#5f7a8a', endColorstr='#a2b8b8');
 	background:-webkit-linear-gradient(#5f7a8a, #a2b8b8);
 	background:-ms-linear-gradient(#5f7a8a, #a2b8b8);
 	background:linear-gradient(#5f7a8a, #a2b8b8);
@@ -107,8 +107,8 @@ background-position: 50% -5%; */
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg" >
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
-				우주력 2020년, 평화롭던 화성의 콜로니 연합에 정체를 모르는 외계 바이러스가 침투한다.<br>
-				바이러스는 콜로니의 산업 및 군사 방위 시설에 까지 침투하였고, 이상 반응을 일으키며<br>급속도로 퍼져나가기 시작했다.
+				<b>우주력 2019년, 지구 은하 식민지중 가장 거대한 스페이스14의 내부에 정체를 모르는 우주 바이러스가 침투했다.<br>
+				바이러스는 뉴스페이스14의 산업 및 군사, 방위 시설에 까지 침투하였고, 이 감염 반응은 예상치 못한 결과를 초래했다.</b>
 			</div>
 		</div>
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -128,12 +128,12 @@ background-position: 50% -5%; */
 		 <audio id='stsound' src='./sound/laser.ogg'></audio>
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
 		<div style="position: absolute; top: 0px; left: 10px; z-index:200;">
-		    <button id="DColor" class="circle" style="opacity:0.2" ></button>			
-			<button id="CColor" class="circle" style="opacity:0.2" ></button>
-		    <button id="TColor" class="circle" style="opacity:0.2" ></button>			
+		    <button id="DColor" class="circle" style="opacity:0.3" ></button>			
+			<button id="CColor" class="circle" style="opacity:0.3" ></button>
+		    <button id="VColor" class="circle" style="opacity:0.3" ></button>			
 		</div>
 		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
-		Gun Dodge 2020
+		Gun Dodge 2019
 		</div>
 		<div id="mark" style="position: absolute; top:calc(60% - 200px); left:calc(50% - 200px); width:500px;">
 		<svg  width="100%" height="335">
@@ -380,7 +380,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg");
 
-						$("#infoText").html("마침내 바이러스는 콜로니의 핵심시설인 마더 인공지능시스템 M.A.I까지 침투 했고<br>M.A.I에 의해 제어되는 기기들은 시민들을 공격하기 시작한다.");
+						$("#infoText").html("<b>바이러스는 뉴스페이스14의 핵심 제어시설 M.A.I(마더 인공지능 시스템)에까지 침투했고<br>이로인해 내부의 모든 기기들은 더이상 인간의 통제를 거부하기 상황이 발생됬다.</b>");
 
 					})
 				}, 5000);
@@ -388,15 +388,14 @@ $(function(){
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg");
-						$("#infoText").html("얼마의 시간이 지나고... 우주 연방 정보국은 바이러스의 원인이 수만 광년 떨어진<br>행성 코로나19 로부터 발생된 이상 전자기파에 의한 것임을 밝혀냈고,<br>   \
-						                     확산을 막기위한 작전으로 GD2020을 펼친다.");
+						$("#infoText").html("<b>우주연합 사령부는 사건의 확산을 막기위해 위해 연합 최정예 에이스인 JohnRed 요원을 선발하였고<br>비밀리에 M.A.I의 파괴를 명하며, 작전명 GD2019라 칭했다.</b>");
 					})
 				}, 10000);
 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg");
-						$("#infoText").html("이에 우주 연방군 최고 에이스인 코맨더 LeeKey는 비밀리에 작적 성공의 핵심인 M.A.I의<br>파괴를 명받는다.");
+						$("#infoText").html("<b>JohnRed는 즉시 최신 비밀 전투기 화이자에 팁승하고 뉴스페이스14 잠입에 성공하지만...</b>");
 					})
 				}, 15000);
 
@@ -404,7 +403,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro05.jpg");
 						//화이자, 모더나, 아스트라제네카
-						$("#infoText").html("LeeKey는 즉각 연방군 최신 전투 병기 화이자에 탑승하고 출격을 시작하지만...<br>이를 가로막는 드론들의 거센 공격을 받기 시작한다.");
+						$("#infoText").html("<b>얼마되지않아 이를 가로막는 A.I 병기들의 공격을 받기 시작한다.</b>");
 					})
 				}, 20000);
 
@@ -474,7 +473,7 @@ $(function(){
 	$("#CColor").css("background-color",ls_CColor);	
 
 	$("#CColor").click(function(){  
-		
+
 		(ls_CColor == "red"?ls_CColor = "white":ls_CColor = "red"); 
 
 		$("#CColor").css("background-color",ls_CColor);
@@ -483,25 +482,18 @@ $(function(){
 
 
 
-	//전체화면모드
-	var ls_TColor = localStorage.getItem('total_color');        
+	//음성모드
+	var ls_VColor = localStorage.getItem('voice_color');        
 		
-	$("#TColor").css("background-color",ls_TColor);
+	$("#VColor").css("background-color",ls_VColor);
 	
-	$("#TColor").click(function(){  
+	$("#VColor").click(function(){  
 		
-		// if (ls_TColor == "yellow"){ 
-		// 	ls_TColor = "white";
-		// 	$("#TColor").css("background-color",ls_TColor);
-		// 	localStorage.setItem('total_color',ls_TColor);		
-		// 	toggleFullScreen();
-			
-		// }else {
-		// 	ls_TColor = "yellow";
-		// 	$("#TColor").css("background-color",ls_TColor);
-		// 	localStorage.setItem('total_color',ls_TColor);
-		// 	toggleFullScreen();	
-		// }
+
+		(ls_VColor == "yellow"?ls_VColor = "white":ls_VColor = "yellow"); 
+
+		$("#VColor").css("background-color",ls_VColor);
+		localStorage.setItem('voice_color',ls_VColor);	
 	 	
 	})
 

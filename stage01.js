@@ -82,6 +82,10 @@ var ls_DColor = localStorage.getItem('dev_color');
 //     toggleFullScreen();
 // }
 
+//목소리 색상
+var ls_VColor = localStorage.getItem('voice_color');
+
+
 directonUp = new Path2D();
 directonUp.fillStyle = "rgb(242, 255, 0)";
 directonUp.rect(minX + 120, maxY - 330, 100, 140);
@@ -695,7 +699,7 @@ function gameStart(as_keycode) {
     isKeyDown[as_keycode] = false;
 
     //게임시작사운드
-    //start_sound.play();
+    //start_sound.play(); 
 
     //게임 변수 초기화
     game_init();
@@ -718,6 +722,12 @@ function gameStart(as_keycode) {
 
     Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
 
+    //목소리 재생모드일경우만 실행
+    if (parseInt(gameTime) <= 100){ 
+        if (ls_VColor == "yellow") vstart_sound.play();
+    }
+
+    
 }
 
 
@@ -1427,6 +1437,12 @@ function enemy_init(index){
             enemy_boss_01_index = index;
             this.enemy_type = 3;   
             
+            //목소리 재생모드일경우만 실행  
+            if (ls_VColor == "yellow") {
+                crash01_sound.currentTime = 2;
+                vboss_sound.play(); 
+            }
+
         }else { 
             
             //적 고유 index에 따른 적 타입 변경
@@ -1613,8 +1629,8 @@ function enemy_init(index){
         this.weapponImage.src = weappon02Image.src;
 
         //적 초기 크기
-        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
-        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
+        this.enemyw = ini_enemyw/6 + Math.floor(Math.random() * 3);
+        this.enemyh = ini_enemyh/6 + Math.floor(Math.random() * 4);
 
         //적 미사일 크기
         this.weappon_size = weappon_size;
@@ -1646,8 +1662,8 @@ function enemy_init(index){
         this.weapponImage.src = weappon01Image.src;
 
         //적 초기 크기
-        this.enemyw = ini_enemyw + Math.floor(Math.random() * 3);
-        this.enemyh = ini_enemyh + Math.floor(Math.random() * 4);
+        this.enemyw = ini_enemyw/8 + Math.floor(Math.random() * 3);
+        this.enemyh = ini_enemyh/8 + Math.floor(Math.random() * 4);
 
         //적 미사일 크기
         this.weappon_size = weappon_size;
@@ -3655,6 +3671,10 @@ function skill_chanage(){
         tmp_skill = null;
         //skill_chanage2() = "N";
     }; 
+
+    //목소리 재생모드일경우만 실행 
+    if (ls_VColor == "yellow") vskill_sound.play();
+ 
  
 }
 
@@ -4899,9 +4919,18 @@ function player_collision(){
                     pmovex = 0;
                     pmovey = 0;
 
+
+                    //목소리 재생모드일경우만 실행  
+                    if (ls_VColor == "yellow") vregret_sound.play();
+         
+
                 //게임 재시작 or 종료
                 }else {
 
+                    //목소리 재생모드일경우만 실행  
+                    if (ls_VColor == "yellow") vfinish_sound.play();
+         
+                    
                     gameRetryExitButton();
 
 
@@ -4930,6 +4959,11 @@ function player_collision(){
                     this.weapponArray[i].bmx = 0;
                     this.weapponArray[i].bmy = 0;
                     this.weapponArray[i].bsize = 0;
+
+                    if (player_life == 1){
+                           //목소리 재생모드일경우만 실행  
+                           if (ls_VColor == "yellow") vdanger_sound.play(); 
+                    }
                 }
             }
         }
@@ -5080,9 +5114,25 @@ function drawScreen(){
         //     }
         // }  
 
+        //목소리 재생모드일경우만 실행 
+        if (enemy_cnt == 0){
+            if (ls_VColor == "yellow") vsafe_sound.play();
+        }
+
+        //목소리 재생모드일경우만 실행 
+        if (enemy_cnt == 10){
+            if (ls_VColor == "yellow") vbee_sound.play();
+        }
+
+        //목소리 재생모드일경우만 실행 
+        if (enemy_cnt == 15){
+            if (ls_VColor == "yellow") vangry_sound.play();
+        }                
+
+
         //if (enemy_boss_01_status == 0){
             if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){ 
-                enemy_cnt = enemy_cnt + 1;
+                enemy_cnt = enemy_cnt + 1; 
                 create_enemy(enemy_cnt); 
             }
         //}

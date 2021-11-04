@@ -576,6 +576,29 @@ engin03Image.src = "./img/engin01.png";
 engin03Image.addEventListener("load",drawScreen, false);
 
 
+//적04 이미지
+var enemy04Image = new Image();
+enemy04Image.src = "./img/enemy04.png";
+enemy04Image.addEventListener("load",drawScreen, false);
+
+
+//적04 건 이미지
+var enemy04GunImage = new Image();
+enemy04GunImage.src = "./img/missile01.png";
+enemy04GunImage.addEventListener("load",drawScreen, false);
+
+//적04 미시일 이미지 및 로드
+var weappon04Image = new Image();
+weappon04Image.src = "./img/missile01.png";
+weappon04Image.addEventListener("load",drawScreen, false);
+
+//적04 엔진 이미지
+var engin04Image = new Image();
+engin04Image.src = "./img/engin01.png";
+engin04Image.addEventListener("load",drawScreen, false);
+
+
+
 //적 크기
 var enemy_size = 1;
 
@@ -1432,17 +1455,17 @@ function enemy_init(index){
  
         //1000이 넘으면 보스 출현(한번만 수행되도록 상태값을 준다.)
         if(gameTime > 4000 && enemy_boss_01_status == 0){
-            //목소리 재생모드일경우만 실행  
-            if (ls_VColor == "yellow") {
-                crash01_sound.currentTime = 1;
-                vboss_sound.play(); 
-            }
+
             
             enemy_boss_01_status = 1; 
             enemy_boss_01_index = index;
             this.enemy_type = 3;   
             
-
+            //목소리 재생모드일경우만 실행  
+            if (ls_VColor == "yellow") {
+                crash01_sound.currentTime = 4;
+                vboss_sound.play(); 
+            }
         }else { 
             
             //적 고유 index에 따른 적 타입 변경
@@ -1471,6 +1494,8 @@ function enemy_init(index){
         if(enemy_boss_01_status >= 2){ 
             enemy_boss_01_status = 2; 
             enemy_boss_01_index = 0; 
+
+            this.enemy_type = 4;
         } 
 
 
@@ -1560,9 +1585,66 @@ function enemy_init(index){
     this.enemy_didtance = enemy_didtance; 
 
 
-    //적 타입에 따른 특성(모양,속도,무기등 변경)
+    //적 타입에 따른 특성(모양,속도,무기등 변경) 
+    if (this.enemy_type == 4){
+
+        // this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+        // this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+
+
+        //this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+        //this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+        //this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+        //this.enemyy = parseInt(theCanvas.clientHeight - 100);
+
+        //this.enemyx = parseInt(playerX) + Math.floor(Math.random() * 500) - Math.floor(Math.random() * 500); //시작  x
+        this.enemyx = Math.floor(Math.random() * theCanvas.clientWidth) - 10; //시작  x
+        this.enemyy = theCanvas.clientHeight + 40;
+
+        //적 이미지
+        this.enemyImage = enemy04Image;
+        this.enemyImage.src = enemy04Image.src;
+
+        //적 무기 이미지
+        this.enemyGunImage = enemy04GunImage;
+        this.enemyGunImage.src = enemy04GunImage.src
+
+        //적 엔진 이미지
+        this.enginImage = engin04Image;
+        this.enginImage.src = enginImage.src;
+
+        //적 미시일 이미지 및 로드
+        this.weapponImage = weappon04Image;
+        this.weapponImage.src = weappon04Image.src;
+ 
+        // ini_enemyw = 200/2;
+        // ini_enemyh = 150/2;
+        // this.enemyw = ini_enemyw * 4 + Math.floor(Math.random() * 6);
+        // this.enemyh = ini_enemyh * 2 + Math.floor(Math.random() * 3);
+        this.enemyw = playerHeight*1.6 + Math.floor(Math.random() * 2);
+        this.enemyh = playerWidth*1.4 + Math.floor(Math.random() * 1);
+
+        //적 미사일 크기
+        this.weappon_size = weappon_size;
+
+        //적 미사일 속도
+        this.weappon_speed = weappon_speed + 0.1;
+
+        //적 동시 미사일 발사수는 랜덤하게
+        this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
+        this.max_weappon_cnt = 10; 
+
+        this.enemy_life = 0;
+        this.energe_bar = ini_energe_bar;
+        this.enemy_energe = enemy_energe;
+        this.enemy_move = enemy_move;
+
+        this.weapponX = this.enemyx;
+        this.weapponY = this.enemyy;    
+
+
     //보스 특징
-    if (this.enemy_type == 3){
+    }else if (this.enemy_type == 3){
 
     //this.Edistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - this.enemyx))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - this.enemyy)),2));
  
@@ -1610,6 +1692,7 @@ function enemy_init(index){
         this.energe_bar = ini_energe_bar;
         this.enemy_energe = enemy_energe;
         this.enemy_move = enemy_move;
+        
     }else if (this.enemy_type == 2){
 
         //적 이미지
@@ -1686,9 +1769,17 @@ function enemy_collision(){
     //this.enemyx = this.weapponX;
     //this.enemyy = this.weapponY;
 
-    this.enemyw = ini_enemyw; 
-    this.enemyh = ini_enemyh;
-
+    if (this.enemy_type == 4){
+        if (this.enemyh >= playerHeight){
+            this.enemy_collision_yn = 'Y';
+        }else {
+            this.enemy_collision_yn = 'N';
+        }        
+        
+    }else {
+        this.enemyw = ini_enemyw; 
+        this.enemyh = ini_enemyh;
+    }
  
 
     //레이져 크기
@@ -1878,17 +1969,25 @@ function enemy_move(){
 
     //적 다가옴에 따라 크기도 커진다.(원근효과)
     //this.enemy_size = this.enemy_size * this.Edistance * 0.8;
-    this.enemy_size = this.enemy_size * this.Edistance;
-    //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정
-    this.enemyw = this.enemyw * this.enemy_size;
-    this.enemyh = this.enemyh * this.enemy_size;
+    if(this.enemy_type == 4){
+        //this.enemy_size = this.enemy_size * this.Edistance;
+        //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정
+        //this.enemyw = this.enemyw * 0.8;
+        //this.enemyh = this.enemyh * 0.4;
+    }else {
+        this.enemy_size = this.enemy_size * this.Edistance;
+        //배경종점(목적지) 이동좌표에 따른 적 사이즈 조정
+        this.enemyw = this.enemyw * this.enemy_size;
+        this.enemyh = this.enemyh * this.enemy_size;
 
-    //console.log(this.enemyw,this.enemyh)
+        //console.log(this.enemyw,this.enemyh)
 
-    //적 크기 배율은 1 ~ 3를 넘지 못한다.
-    //if (this.enemy_size >= 3){this.enemy_size = 3};
-    if (this.enemy_size <= 1){this.enemy_size = 1};    
+        //적 크기 배율은 1 ~ 3를 넘지 못한다.
+        //if (this.enemy_size >= 3){this.enemy_size = 3};
+        if (this.enemy_size <= 1){this.enemy_size = 1};    
+    }
 
+    
     //보스의 경우
     if(this.enemy_type == 3){ 
         if (this.enemyw > ini_enemyw * 2){
@@ -1901,8 +2000,20 @@ function enemy_move(){
             //this.enemy_size = this.enemy_size - 1;
             //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
         }
+
+    }else if(this.enemy_type == 4){ 
+            // if (this.enemyw < ini_enemyw / 1.5){
+            //     this.enemyw =  ini_enemyw / 1.5;
+            //     //this.enemy_size = this.enemy_size - 1;
+            //     //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
+            // } 
+            // if (this.enemyh < ini_enemyh / 1.5){
+            //     this.enemyh =  ini_enemyh / 1.5;
+            //     //this.enemy_size = this.enemy_size - 1;
+            //     //this.enemy_size = this.enemy_size - (this.Edistance * 0.5);
+            // }        
     //일반 적의 경우
-    }else if(this.enemy_type != 3){
+    }else {
         if (this.enemyw > ini_enemyw * 1){
             this.enemyw =  ini_enemyw * 1;
             //this.enemy_size = this.enemy_size - 1;
@@ -1919,46 +2030,30 @@ function enemy_move(){
     //적(enemy) 왔다같다 이동 
     //적 1은 빠르다
     //if (enemy_border_over_yn != '1N'){
-        // if (enemy_type == 3 && this.enemy_boss_01_yn == 'N'){
-  
-        //     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-        //         this.enemyx = this.enemyx - this.enemyxx * 2;
-        //         this.enemyy = this.enemyy + this.enemyyy * 2;
-        //         this.enemy_size = this.enemy_size + 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed * 1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-        //         this.enemyx = this.enemyx + this.enemyxx * 2; 
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
-        //         this.enemyy = this.enemyy - this.enemyyy * 2 * 2;
-        //         this.enemy_size = this.enemy_size - 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
-        //          this.enemyx = this.enemyx + this.enemyxx * 2 * (Math.floor(Math.random() * 1)==0?1:-1);    
-        //          this.enemyy = this.enemyy - this.enemyyy * 2 * (Math.floor(Math.random() * 1)==0?1:-1);             
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-        //         this.enemyx = this.enemyx - this.enemyxx * 4;
-        //         this.enemyy = this.enemyy + this.enemyyy * 2; 
-        //         this.enemy_size = this.enemy_size + 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-        //         this.enemy_size = this.enemy_size - 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-        //         this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 1;
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed * 1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 1;
-        //         this.enemyy = this.enemyy + this.enemyyy + 1;
-        //         this.enemy_size = this.enemy_size + 0.05;
-        //     }else {
-        //         this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed * 2;
-        //         this.enemyy = this.enemyy - this.enemyyy - 2;
-        //         this.enemy_size = this.enemy_size*(this.Edistance * 0.5); - 0.1;
-        //     }
-        // }else { 
+        if (this.enemy_type == 4){ 
+
+                //this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed * 2;
+                this.enemyy = this.enemyy - 4;
+                this.enemy_size = this.enemy_size - 1;
+                //alert(this.enemy_size)
+                 this.enemyw = this.enemyw - 1;
+                 this.enemyh = this.enemyh - 1;
+                 //alert(this.enemyw + "," + this.enemyh)
+
+                 
+                //  this.weapponX = this.enemyx;
+                //  this.weapponY = 100 +  Math.floor(Math.random() * 100);     
+                 
+                 if (this.enemyy <= 20){
+                    this.weappon_create();
+                    this.weapponArray = [];
+                    this.enemyy = null;
+
+                 } 
+
+            
+    
+        }else { 
             if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
                     this.enemyy = this.enemyy - 1;
                     this.enemy_size = this.enemy_size - 0.1;
@@ -1988,95 +2083,19 @@ function enemy_move(){
                 this.enemyx = this.enemyx + 0.1;
                 this.enemyy = this.enemyy - 0.1; 
             }
+
+                    
+                //적(enemy)) 이미지
+            //적 미사일 초기 위치
+            this.weapponX = this.enemyx;
+            this.weapponY = this.enemyy;
+
+            
                   
 
-        //}
-        // //적 2는 느리다.   
-        // }else if (enemy_type == 2){
-        //     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-        //         this.enemyx = this.enemyx + this.enemyxx - 1;
-        //         this.enemyy = this.enemyy + this.enemyyy;
-        //         this.enemy_size = this.enemy_size + 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-        //         this.enemyx = this.enemyx + this.enemyxx; 
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy - this.enemyyy;
-        //         this.enemy_size = this.enemy_size - 0.1;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
-        //         this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1);    
-        //         this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1);
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-        //         this.enemyx = this.enemyx - this.enemyxx;
-        //         this.enemyy = this.enemyy + this.enemyyy;
-        //         this.enemy_size = this.enemy_size + 0.2;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed;
-        //         this.enemy_size = this.enemy_size - 0.2;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed;
-        //         this.enemyy = this.enemyy + this.enemyyy;
-        //     }else {
-        //         this.enemyx = this.enemyx + this.enemyxx + 1;
-        //         this.enemyy = this.enemyy + this.enemyyy - 1;
-        //     }        
-        // //보스의 움직임, 보스는 빠르다
-        // }else {
-        //     if (String(gameTime).substr(String(gameTime).length-3,1) == 1){
-        //         this.enemyx = this.enemyx + this.enemyxx + 4*2;
-        //         this.enemyy = this.enemyy - this.enemyyy + 5;
-        //         this.enemy_size = this.enemy_size + 0.2;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 2){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*4*2;
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed*4;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 3){
-        //         this.enemyx = this.enemyx + this.enemyxx*6;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed*8;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 4){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*6;
-        //         this.enemyy = this.enemyy - this.enemyyy*5;
-        //         this.enemy_size = this.enemy_size - 0.2;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 5){
-        //         this.enemyx = this.enemyx + this.enemyxx * (Math.floor(Math.random() * 1)==0?1:-1)*2;    
-        //         this.enemyy = this.enemyy - this.enemyyy * (Math.floor(Math.random() * 1)==0?1:-1)*2;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 6){
-        //         this.enemyx = this.enemyx - this.enemyxx*6*2;
-        //         this.enemyy = this.enemyy + this.enemyyy*6;
-        //         this.enemy_size--;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 7){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*5;
-        //         this.enemyy = this.enemyy - this.enemyyy * this.enemy_speed*4;
-        //         this.enemy_size++;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 8){
-        //         this.enemyx = this.enemyx + this.enemyxx * this.enemy_speed*2;
-        //         this.enemyy = this.enemyy + this.enemyyy * this.enemy_speed*4;
-        //         this.enemy_size--;
-        //     }else if (String(gameTime).substr(String(gameTime).length-3,1) == 9){
-        //         this.enemyx = this.enemyx - this.enemyxx * this.enemy_speed*6;
-        //         this.enemyy = this.enemyy - this.enemyyy*3*2;
-        //         this.enemy_size++;
-        //     }else {
-        //         this.enemyx = this.enemyx + this.enemyxx + 5*2;
-        //         this.enemyy = this.enemyy + this.enemyyy - 4;
-        //         this.enemy_size--;
-        //     }  
-        // }      
-    //}  
+        } 
 
 
-
-        //적(enemy)) 이미지
-    //적 미사일 초기 위치
-    this.weapponX = this.enemyx;
-    this.weapponY = this.enemyy;
 
 
     
@@ -2088,21 +2107,40 @@ function enemy_move(){
 
     
     //적이 너무 작은경우(멀리있는경우) 오른쪽 엔진은 그려주지 않는다.(엔지하나가 몸체박으로 삐져나와 이상함.)
-    if ( this.enemyw >= ini_enemyw*0.8){
-        Context.drawImage(this.enginImage,this.enemyx - this.enemyw/4 + Math.floor(Math.random() * 6),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 3) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
+    if ( this.enemy_type == 4){
+
+
+        // this.weapponX = this.enemyx;
+        // this.weapponY = 100 +  Math.floor(Math.random() * 100);
+
+        Context.drawImage(this.enemyImage,this.enemyx - 40, this.enemyy ,this.enemyw,this.enemyh);
+        
+        if ( this.enemyw >= ini_enemyw*0.8){
+            Context.drawImage(this.enginImage,this.enemyx + this.enemyw/22 - Math.floor(Math.random() * 7),this.enemyy + this.enemyh - this.enemyh/3,Math.floor(Math.random() * 3) +  this.enemyw/4,Math.floor(Math.random() * 4) +  this.enemyh/3);
+        }
+        if ( this.enemyw >= ini_enemyw*0.5){
+            Context.drawImage(this.enginImage,this.enemyx + 6 + this.enemyw/4 - Math.floor(Math.random() * 7),this.enemyy + this.enemyh - this.enemyh/3,Math.floor(Math.random() * 4) +  this.enemyw/4,Math.floor(Math.random() * 4) +  this.enemyh/3);
+        }
+        
+    }else {
+        if ( this.enemyw >= ini_enemyw*0.8){
+            Context.drawImage(this.enginImage,this.enemyx - this.enemyw/4 + Math.floor(Math.random() * 6),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 3) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
+        }
+        if ( this.enemyw >= ini_enemyw*0.5){
+            Context.drawImage(this.enginImage,this.enemyx - 10 - this.enemyw/4 - Math.floor(Math.random() * 8),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 4) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
+        }
+
+        Context.drawImage(this.enemyImage,this.enemyx - 40, this.enemyy ,this.enemyw,this.enemyh);
+        //적이 너무 작은경우(멀리있는경우) 총은 그려주지 않는다.(총이 몸체박으로 삐져나와 이상함.)
+        if ( this.enemyw >= ini_enemyw*0.5){
+            Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/30, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/40,Math.floor(Math.random() * 5 + this.enemyw/40));
+            Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/37 - 2, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
+            Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/40 - 5, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
+            Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/42 - 7, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
+            Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/42 - 10, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
+        }        
     }
-    if ( this.enemyw >= ini_enemyw*0.5){
-        Context.drawImage(this.enginImage,this.enemyx - 10 - this.enemyw/4 - Math.floor(Math.random() * 8),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 4) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
-    }
-    Context.drawImage(this.enemyImage,this.enemyx - 40, this.enemyy ,this.enemyw,this.enemyh);
-    //적이 너무 작은경우(멀리있는경우) 총은 그려주지 않는다.(총이 몸체박으로 삐져나와 이상함.)
-    if ( this.enemyw >= ini_enemyw*0.5){
-        Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/30, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/40,Math.floor(Math.random() * 5 + this.enemyw/40));
-        Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/37 - 2, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
-        Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/40 - 5, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
-        Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/42 - 7, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
-        Context.drawImage(this.enemyGunImage,this.enemyx + this.enemyw/42 - 10, this.enemyy + this.enemyh/10 ,Math.floor(Math.random() * 5) + this.enemyw/30,Math.floor(Math.random() * 5 + this.enemyw/30));
-    }
+
 
     //적 에너지 표시
     this.enemy_energe();
@@ -4071,6 +4109,70 @@ function weappon_move(){
 
         this.weappon_index = i;
 
+        if (this.enemy_type == 4){     //적 타입이 2인경우만 유도탄
+
+            //유도 미사일 특징
+            //1.크기가 크다. 느리다
+            //this.weappon_size = this.weappon_size + this.enemy_size/10;
+            this.weappon_size = this.weappon_size + 0.2;
+
+
+            //미사일 화면 이탈시 또는 미사일이 너무 커지면
+            if (this.weapponArray[i].bsize >= 100){
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
+            }
+
+
+            //미사일이 플레이어보다 커지면
+            if (this.weapponArray[i].bsize >= playerHeight/2){
+                this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
+                this.weappon_size = this.weappon_size - 0.1;
+            }     
+            
+            //2.좌우로 흔들린다.
+            this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*20);
+            this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*6);
+            //3.속도가 느리다.
+            this.weappon_speed = 1;
+
+            //4.플레이어 위치에 따른 미사일 방향 변경된다.
+            if (playerY >= this.enemyy + this.enemyh/2){
+                this.weappon_upDown = 1;
+                //console.log('1')
+            }else if (playerY <=  this.enemyy - this.enemyh/2){
+                this.weappon_upDown = -1;
+                //console.log('2')
+            }else if (playerX <=  this.enemyx + this.enemyw/2 - theCanvas.clientWidth / 3){
+                this.weappon_leftRight = -1;
+                this.weappon_upDown = this.weappon_tmp_random;
+                //console.log('3')
+            }else if (playerX >=  this.enemyx - this.enemyw/2 - theCanvas.clientWidth / 3){
+                this.weappon_leftRight = 1;
+                this.weappon_upDown = this.weappon_tmp_random;
+                //console.log('4')
+            }
+
+
+            this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight;
+            this.weapponArray[i].bsize = this.weappon_size;
+            this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
+            //this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
+            //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
+            
+
+            if (this.enemyxx > this.weapponArray[i].bmx){
+                for (z=0;z<5;z++){ 
+                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx + z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+                }
+            }else {
+                for (z=0;z<5;z++){ 
+                    Context.drawImage(this.weapponImage,this.weapponArray[i].bmx - z*(Math.floor(Math.random()*2) + 2),this.weapponArray[i].bmy,this.weapponArray[i].bsize/5  + this.weapponArray[i].bmy / 200 + z/2,this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100 + z/2);
+                } 
+            }
+
+        }
+
         //console.log(this.enemy_size,enemy_size)
         //보스 총알 : 보스의 무기는 미사일과 레이져
         //if (this.enemy_type == 3){     //적 타입이 2인경우만 유도탄
@@ -4790,33 +4892,35 @@ function weappon_move(){
        //미사일 화면 이탈시 또는 미사일이 너무 커지면
        //if (weapponArray[i].bmx >= theCanvas.clientWidth  || weapponArray[i].bmx <= 0 ){
        //if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0 || this.weapponArray[i].bsize >= 150){
-        if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0){
+        if(this.enemy_type != 4){
+            if ( this.weapponArray[i].bmy >= theCanvas.clientHeight + add_borderX || this.weapponArray[i].bmy + add_borderX <= 0){
 
-            //최대 max_weappon_cnt 개까지만 생성
-            if (1 == Math.floor(Math.random()*2)){
+                //최대 max_weappon_cnt 개까지만 생성
+                if (1 == Math.floor(Math.random()*2)){
 
-                //this.weappon_cnt = Math.floor(Math.random()*5) + 1;
+                    //this.weappon_cnt = Math.floor(Math.random()*5) + 1;
 
-                //미사일 객체(배열) 초기화
-                this.weappon_init();
-                //this.weappon_size = 3 * parseInt(Math.floor(gameTime/1500));
+                    //미사일 객체(배열) 초기화
+                    this.weappon_init();
+                    //this.weappon_size = 3 * parseInt(Math.floor(gameTime/1500));
 
-            }else {
-                //5초마다 미사일 증가
-                //if (gameTime % 500 == 0){
-                    this.weappon_cnt++;
+                }else {
+                    //5초마다 미사일 증가
+                    //if (gameTime % 500 == 0){
+                        this.weappon_cnt++;
 
-                    if (this.weappon_cnt >= this.max_weappon_cnt){
-                        this.weappon_cnt = this.max_weappon_cnt;
-                    }
+                        if (this.weappon_cnt >= this.max_weappon_cnt){
+                            this.weappon_cnt = this.max_weappon_cnt;
+                        }
 
-                    this.weappon_create();
-                //}
+                        this.weappon_create();
+                    //}
 
-                //미사일 객체(배열) 초기화
-                this.weappon_init();
+                    //미사일 객체(배열) 초기화
+                    this.weappon_init();
+                }
+
             }
-
         }
       }
 }
@@ -4962,7 +5066,7 @@ function player_collision(){
                     this.weapponArray[i].bmy = 0;
                     this.weapponArray[i].bsize = 0;
 
-                    if (player_life == 1){
+                    if (player_life == 2){
                            //목소리 재생모드일경우만 실행  
                            if (ls_VColor == "yellow") vdanger_sound.play(); 
                     }
@@ -5122,7 +5226,7 @@ function drawScreen(){
         }
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 5){
+        if (enemy_cnt == 6){
             if (ls_VColor == "yellow") vbee_sound.play();
         }
 

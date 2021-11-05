@@ -1621,8 +1621,8 @@ function enemy_init(index){
         // ini_enemyh = 150/2;
         // this.enemyw = ini_enemyw * 4 + Math.floor(Math.random() * 6);
         // this.enemyh = ini_enemyh * 2 + Math.floor(Math.random() * 3);
-        this.enemyw = playerHeight*1.6 + Math.floor(Math.random() * 2);
-        this.enemyh = playerWidth*1.4 + Math.floor(Math.random() * 1);
+        this.enemyw = playerHeight*2 + Math.floor(Math.random() * 2);
+        this.enemyh = playerWidth*1.6 + Math.floor(Math.random() * 1);
 
         //적 미사일 크기
         this.weappon_size = weappon_size;

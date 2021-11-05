@@ -599,6 +599,27 @@ engin04Image.addEventListener("load",drawScreen, false);
 
 
 
+//적05 이미지
+var enemy05Image = new Image();
+enemy05Image.src = "./img/enemy05.png";
+enemy05Image.addEventListener("load",drawScreen, false);
+
+
+//적05 건 이미지
+var enemy05GunImage = new Image();
+enemy05GunImage.src = "./img/missile01.png";
+enemy05GunImage.addEventListener("load",drawScreen, false);
+
+//적05 미시일 이미지 및 로드
+var weappon05Image = new Image();
+weappon05Image.src = "./img/missile01.png";
+weappon05Image.addEventListener("load",drawScreen, false);
+
+//적05 엔진 이미지
+var engin05Image = new Image();
+engin05Image.src = "./img/engin01.png";
+engin05Image.addEventListener("load",drawScreen, false);
+
 //적 크기
 var enemy_size = 1;
 
@@ -1453,7 +1474,21 @@ function enemy_init(index){
     //적 고유 index
     this.enemy_index = index;
  
-        //1000이 넘으면 보스 출현(한번만 수행되도록 상태값을 준다.)
+        // //1000이 넘고 첫번째 보스가 폭파된경우 두번째 보스 출현
+        // if(gameTime > 1500 && enemy_boss_01_status == 2){
+
+        //     //딱 한번만 수행
+        //     enemy_boss_01_status = 1; 
+        //     enemy_boss_01_index = index;
+        //     this.enemy_type = 5;    
+            
+        //     //목소리 재생모드일경우만 실행  
+        //     if (ls_VColor == "yellow") {
+        //         crash01_sound.currentTime = 4;
+        //         vboss_sound.play(); 
+        //     }
+        // }else 
+        
         if(gameTime > 4000 && enemy_boss_01_status == 0){
 
             
@@ -1483,6 +1518,8 @@ function enemy_init(index){
             
         }
 
+ 
+
         if (this.enemy_type == 3){
             this.enemy_boss_01_yn = 'Y';    //보스 여부
         }else {
@@ -1492,10 +1529,16 @@ function enemy_init(index){
  
         //이미 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
         if(enemy_boss_01_status >= 2){ 
-            enemy_boss_01_status = 2; 
+            enemy_boss_01_status = 2;
+            //enemy_boss_01_status = 0; 
             enemy_boss_01_index = 0; 
 
             this.enemy_type = 4;
+
+
+            //밑에 전함도 나타난다.
+
+            
         } 
 
 
@@ -1584,9 +1627,66 @@ function enemy_init(index){
     //배경종점에서 적까지 거리
     this.enemy_didtance = enemy_didtance; 
 
-
     //적 타입에 따른 특성(모양,속도,무기등 변경) 
-    if (this.enemy_type == 4){
+    if (this.enemy_type == 5){
+
+        // this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+        // this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+
+
+        //this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+        //this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+        //this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+        //this.enemyy = parseInt(theCanvas.clientHeight - 100);
+
+        //this.enemyx = parseInt(playerX) + Math.floor(Math.random() * 500) - Math.floor(Math.random() * 500); //시작  x
+        this.enemyx = theCanvas.clientWidth/2 - 200; //시작  x
+        this.enemyy = theCanvas.clientHeight + 40;
+
+        //적 이미지
+        this.enemyImage = enemy05Image;
+        this.enemyImage.src = enemy05Image.src;
+
+        //적 무기 이미지
+        this.enemyGunImage = enemy05GunImage;
+        this.enemyGunImage.src = enemy05GunImage.src
+
+        //적 엔진 이미지
+        this.enginImage = engin05Image;
+        this.enginImage.src = enginImage.src;
+
+        //적 미시일 이미지 및 로드
+        this.weapponImage = weappon05Image;
+        this.weapponImage.src = weappon05Image.src;
+ 
+        // ini_enemyw = 200/2;
+        // ini_enemyh = 150/2;
+        // this.enemyw = ini_enemyw * 4 + Math.floor(Math.random() * 6);
+        // this.enemyh = ini_enemyh * 2 + Math.floor(Math.random() * 3);
+        this.enemyw = playerWidth*20 + Math.floor(Math.random() * 2);
+        this.enemyh = playerHeight*20 + Math.floor(Math.random() * 1);
+
+        //적 미사일 크기
+        this.weappon_size = weappon_size;
+
+        //적 미사일 속도
+        this.weappon_speed = weappon_speed + 0.1;
+
+        //적 동시 미사일 발사수는 랜덤하게
+        this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
+        this.max_weappon_cnt = 10; 
+
+        this.enemy_life = 200;
+        this.energe_bar = ini_energe_bar;
+        this.enemy_energe = enemy_energe;
+        this.enemy_move = enemy_move;
+
+        this.weapponX = this.enemyx;
+        this.weapponY = this.enemyy;    
+ 
+     
+    //적 타입에 따른 특성(모양,속도,무기등 변경) 
+    }else if (this.enemy_type == 4){
 
         // this.enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
         // this.enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
@@ -3458,14 +3558,35 @@ function game_background(){
 
  
             }   
+
+
+    //첫번째 보스가 파괴되고 나면 아래에서 전함이 나온다.
+    if (enemy_boss_01_status == 2){
+
+        Context3.globalAlpha = 1;
+
+
+        if (l <= 400){
+
+            l = l + 0.4;
+        }else if (l <= 450){
+            l = l - 0.1;
+        }else {
+            l = l + 0.2;
+        }
+            Context3.drawImage(enemy05Image,400,(theCanvas.clientHeight + 20) -l,  1200*(Pdistance/400) - l ,500*(Pdistance/400) - l )
+ 
+        
+    }
+            
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
-    //Context3.globalAlpha = 0.6;
+    Context3.globalAlpha = 0.8;
     Context3.strokeStyle = "ffffff"; 
  
     
 }
-
+var l = 0;
 var k = 0;
 var ls_next_yn = 'N';
 

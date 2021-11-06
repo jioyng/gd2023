@@ -648,7 +648,7 @@ var enemyw = ini_enemyw;
 var enemyh = ini_enemyh;
 
 //적 생명
-var ini_enemy_life = 5;
+var ini_enemy_life = 0;
 var enemy_life = ini_enemy_life;
 var ini_energe_bar = ''  // '■□';   //에너지 바
 var energe_bar = ''  // '■□';   //에너지 바
@@ -1584,7 +1584,8 @@ function enemy_init(index){
     this.enemyyy = Math.floor(Math.random() * 2);
 
     //적 생명
-    this.enemy_life = ini_enemy_life;
+    this.ini_enemy_life = ini_enemy_life;   //초기값
+    //this.enemy_life = this.ini_enemy_life;
     this.energe_bar = ini_energe_bar;
     this.enemy_energe = enemy_energe;
     this.enemy_move = enemy_move;
@@ -1676,7 +1677,9 @@ function enemy_init(index){
         this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
         this.max_weappon_cnt = 10; 
 
-        this.enemy_life = 200;
+        this.ini_enemy_life = 200;
+        this.enemy_life = this.ini_enemy_life;
+
         this.energe_bar = ini_energe_bar;
         this.enemy_energe = enemy_energe;
         this.enemy_move = enemy_move;
@@ -1734,7 +1737,9 @@ function enemy_init(index){
         this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
         this.max_weappon_cnt = 10; 
 
-        this.enemy_life = 0;
+        this.ini_enemy_life = 1;
+        this.enemy_life = this.ini_enemy_life;
+
         this.energe_bar = ini_energe_bar;
         this.enemy_energe = enemy_energe;
         this.enemy_move = enemy_move;
@@ -1788,7 +1793,9 @@ function enemy_init(index){
         this.weappon_cnt = Math.floor(Math.random() * 10) + 20;
         this.max_weappon_cnt = 30; 
 
-        this.enemy_life = 100;
+        this.ini_enemy_life = 100;
+        this.enemy_life = this.ini_enemy_life;
+
         this.energe_bar = ini_energe_bar;
         this.enemy_energe = enemy_energe;
         this.enemy_move = enemy_move;
@@ -1825,6 +1832,9 @@ function enemy_init(index){
         this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
         this.max_weappon_cnt = 6;
 
+        this.ini_enemy_life = 10;
+        this.enemy_life = this.ini_enemy_life;        
+
     }else { 
 
          
@@ -1857,6 +1867,9 @@ function enemy_init(index){
         //적 동시  발사수는 랜덤하게
         this.weappon_cnt = Math.floor(Math.random() * 4) + 4;
         this.max_weappon_cnt = 8;
+
+        this.ini_enemy_life = 5;
+        this.enemy_life = this.ini_enemy_life;        
     }
 
 
@@ -1940,7 +1953,7 @@ function enemy_collision(){
                 //Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20,theCanvas.clientHeight + gameTime/20);
                 
                 //적이 강할수록 i를 높게한다.(i = 점수)
-                for (var i=0;i<=ini_enemy_life*10*(this.enemyh/20);i++){
+                for (var i=0;i<=this.ini_enemy_life*10*(this.enemyh/20);i++){
             
                     Context.drawImage(this.explosionImage01,this.enemyx-Math.floor(Math.random()*30),this.enemyy+Math.floor(Math.random()*40),100 - i,100 - i);
                     Context.drawImage(this.explosionImage01,this.enemyx+Math.floor(Math.random()*60),this.enemyy+Math.floor(Math.random()*50),20 - i,20 - i);
@@ -1966,9 +1979,9 @@ function enemy_collision(){
 
                 //적의 생명 * 10 만큼 보너스 스코어
                 Context.font = '100px Arial';
-                Context.fillText( " + " + ini_enemy_life * 10,this.enemyx,this.enemyy-10);
+                Context.fillText( " + " + this.ini_enemy_life * 10,this.enemyx,this.enemyy-10);
                 //alert(this.enemyx + "," +  this.enemyy)
-                gameScore = parseInt(gameScore) + ini_enemy_life*10;
+                gameScore = parseInt(gameScore) + this.ini_enemy_life*10;
 
                 //타겟 새로 출현 시간. 
                 //보스가 츨현중에는 적출현시간이 지연된다.
@@ -3566,15 +3579,22 @@ function game_background(){
         Context3.globalAlpha = 1;
 
 
-        if (l <= 400){
+        if (l >= 500){
+            m = m + 0.2;
+         
 
-            l = l + 0.4;
-        }else if (l <= 450){
-            l = l - 0.1;
+            if (m<=300){
+                Context3.drawImage(enemy05Image,600 - l + m,(theCanvas.clientHeight + 20) -l  + m,  1600 - l  + m ,800 - l  + m)
+            }else {
+                m = 0;
+                l = -200;
+            };
+
         }else {
-            l = l + 0.2;
+            l = l + 0.6;
+            Context3.drawImage(enemy05Image,600 - l,(theCanvas.clientHeight + 20) -l,  1600 - l ,800 - l );
         }
-            Context3.drawImage(enemy05Image,400,(theCanvas.clientHeight + 20) -l,  1200*(Pdistance/400) - l ,500*(Pdistance/400) - l )
+
  
         
     }
@@ -3587,6 +3607,9 @@ function game_background(){
     
 }
 var l = 0;
+var m = 0;
+
+
 var k = 0;
 var ls_next_yn = 'N';
 

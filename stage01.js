@@ -409,13 +409,13 @@ var wayBefore = 'None;'
 //플레이어 초기값( 크기, 위치 및 기본 이동거리, 스피트)
 //var ini_player_width = 70;
 //var ini_player_height = 45;
-var ini_player_width = 130;
+var ini_player_width = 140;
 var ini_player_height = 200;
 //var ini_player_width = 160;   //319
 //var ini_player_height = 250;  //503
 var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
-var ini_player_size = 100;    //플레이어 초기 크기 배율
+var ini_player_size = 140;    //플레이어 초기 크기 배율
 
 //플레이어크기
 var playerWidth = ini_player_width;
@@ -1016,7 +1016,6 @@ function game_init(){
 ////////////////// 플레이어 변수 초기화
 function player_init(){
  
-
      
     //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
     wayBefore = 'None;'
@@ -1040,6 +1039,7 @@ function player_init(){
     //skill = 1;
     //laser_charge_start_time = gameTime;
     //player_cnt = ini_player_cnt;
+
 }
 
 ////////////////// 플레이어 경계 이탈 방지

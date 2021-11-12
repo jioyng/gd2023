@@ -415,7 +415,7 @@ var ini_player_height = 200;
 //var ini_player_height = 250;  //503
 var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
-var ini_player_size = 140;    //플레이어 초기 크기 배율
+var ini_player_size = 5000;    //플레이어 초기 크기 배율
 
 //플레이어크기
 var playerWidth = ini_player_width;
@@ -766,10 +766,10 @@ function gameStart(as_keycode) {
 
     Timer_Id = setInterval(drawScreen, 1000/gameFrame);   //게임 프레임(gameFrame은  초기 ini_gameFram 설정값)
 
-    //목소리 재생모드일경우만 실행
-    if (parseInt(gameTime) <= 100){ 
-        if (ls_VColor == "yellow") vstart_sound.play();
-    }
+    // //목소리 재생모드일경우만 실행
+    // if (parseInt(gameTime) <= 100){ 
+    //     if (ls_VColor == "yellow") vstart_sound.play();
+    // }
 
     
 }
@@ -1499,23 +1499,29 @@ function enemy_init(index){
             //목소리 재생모드일경우만 실행  
             if (ls_VColor == "yellow") {
                 crash01_sound.currentTime = 4;
-                vboss_sound.play(); 
+                vboss_sound.play();
             }
         }else { 
             
-            //적 고유 index에 따른 적 타입 변경
-            if ((this.enemy_index + 1) <= 2){
-                this.enemy_type = 1;
-
-            }else {   
-
-                if (this.enemy_index % 2 == 0){
-                    this.enemy_type = 2;
-                }else {
+            if(gameTime < 2000){
+                //ini_player_size--;
+                 //player_size = 200;
+                this.enemy_type = 4;
+            }else {
+                //적 고유 index에 따른 적 타입 변경
+                if ((this.enemy_index + 1) <= 2){
                     this.enemy_type = 1;
-                }
-            } 
-            
+
+                }else {   
+
+                    if (this.enemy_index % 2 == 0){
+                        this.enemy_type = 2;
+                    }else {
+                        this.enemy_type = 1;
+                    }
+                } 
+            }
+                
         }
 
  
@@ -2364,6 +2370,26 @@ function game_background(){
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
 	//back_distance = back_distance + 0.1;
+
+    if(gameTime > 200 && gameTime < 2000){
+        if (player_size > 140){
+            
+                //목소리 재생모드일경우만 실행
+            if (parseInt(gameTime) <= 205){ 
+                
+                if (ls_VColor == "yellow") vstart_sound.play();
+            }
+
+            ini_player_size = ini_player_size - 120;
+            player_size = ini_player_size;
+            playerImage = player_warp;
+        }else {
+            playerImage = player;
+        }
+    }else {
+        playerImage = noneImage;
+    }
+
 
     if (back_distance >= 1000){
         back_distance = 0;

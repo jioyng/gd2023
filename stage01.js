@@ -413,14 +413,18 @@ var ini_player_width = 140;
 var ini_player_height = 200;
 //var ini_player_width = 160;   //319
 //var ini_player_height = 250;  //503
-var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
-var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
+// var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
+// var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
 var ini_player_size = 5000;    //플레이어 초기 크기 배율
 
 //플레이어크기
 var playerWidth = ini_player_width;
 var playerHeight = ini_player_height;
 var player_size = ini_player_size;
+
+//var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
+var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2; //X좌표
+var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
 
 //플레이어 시작 위치
 var playerX = ini_playerX;
@@ -2369,25 +2373,33 @@ function game_background(){
     gameScore++;
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
-	//back_distance = back_distance + 0.1;
+	//back_distance = back_distance + 0.1; 
+    if(gameTime > 100 && gameTime < 2000){
 
-    if(gameTime > 200 && gameTime < 2000){
         if (player_size > 140){
             
                 //목소리 재생모드일경우만 실행
-            if (parseInt(gameTime) <= 205){ 
+            if (parseInt(gameTime) <= 200){ 
                 
                 if (ls_VColor == "yellow") vstart_sound.play();
             }
 
-            ini_player_size = ini_player_size - 120;
+            ini_player_size = ini_player_size - 100;
             player_size = ini_player_size;
+            
+            playerX = playerX + parseInt(ls_width)/500;;
+            playerY = playerY + parseInt(ls_height)/60;
+             
             playerImage = player_warp;
+       
         }else {
-            playerImage = player;
+            playerImage = player_90;
+            player_size = 140;
         }
+    }else if(gameTime <= 100){    
+        playerImage = noneImage;        
     }else {
-        playerImage = noneImage;
+        playerImage = player;
     }
 
 

@@ -2396,7 +2396,7 @@ function game_background(){
             ini_player_size = ini_player_size - 60;
             player_size = ini_player_size;
             
-            playerX = playerX + parseInt(ls_width)/1600;
+            playerX = playerX + parseInt(ls_width)/1800;
             playerY = playerY + parseInt(ls_height)/100;
              
             //enemy_cnt = 8;

@@ -1711,7 +1711,7 @@ function enemy_init(index){
         //this.enemyy = parseInt(theCanvas.clientHeight - 100);
 
         //this.enemyx = parseInt(playerX) + Math.floor(Math.random() * 500) - Math.floor(Math.random() * 500); //시작  x
-        this.enemyx = Math.floor(Math.random() * theCanvas.clientWidth) - 10; //시작  x
+        this.enemyx = Math.floor(Math.random() * theCanvas.clientWidth) - 40; //시작  x
         this.enemyy = theCanvas.clientHeight + 40;
 
         //적 이미지
@@ -1744,7 +1744,7 @@ function enemy_init(index){
         this.weappon_speed = weappon_speed + 0.1;
 
         //적 동시 미사일 발사수는 랜덤하게
-        this.weappon_cnt = Math.floor(Math.random() * 5) + 5;
+        this.weappon_cnt = Math.floor(Math.random() * 6) + 6;
         this.max_weappon_cnt = 12; 
 
         this.ini_enemy_life = 1;
@@ -2167,7 +2167,8 @@ function enemy_move(){
                 //  this.weapponX = this.enemyx;
                 //  this.weapponY = 100 +  Math.floor(Math.random() * 100);     
                  
-                 if (this.enemyy <= 20){
+                 //if (this.enemyy <= 20){
+                if (this.enemyy <= Math.floor(Math.random() * 20) + 10){
                     this.weappon_create();
                     this.weapponArray = [];
                     this.enemyy = null;
@@ -2381,7 +2382,7 @@ function game_background(){
             
             //시작 사운드
             if (parseInt(gameTime) <= 120){
-                raygun_sound.currentTime  = 2; 
+                raygun_sound.currentTime  = 1; 
                 raygun_sound.play();
                 playerImage = player_warp;
             //목소리 재생모드일경우만 실행                               
@@ -2392,14 +2393,14 @@ function game_background(){
                 
             }
 
-            ini_player_size = ini_player_size - 100;
+            ini_player_size = ini_player_size - 60;
             player_size = ini_player_size;
             
-            playerX = playerX + parseInt(ls_width)/700;
-            playerY = playerY + parseInt(ls_height)/60;
+            playerX = playerX + parseInt(ls_width)/1200;
+            playerY = playerY + parseInt(ls_height)/100;
              
-
-            strKeyEventValue = "ArrowUp";
+            //enemy_cnt = 8;
+            //strKeyEventValue = "ArrowUp";
        
         }else {
             playerImage = player_90;
@@ -2408,6 +2409,7 @@ function game_background(){
             //strKeyEventValue = "";
             pmovex = 0;
             pmovey = 0;
+            
         }
     }else if(gameTime <= 100){    
         playerImage = noneImage;        
@@ -4304,7 +4306,7 @@ function weappon_move(){
 
         this.weappon_index = i;
 
-        if (this.enemy_type == 4){     //적 타입이 2인경우만 유도탄
+        if (this.enemy_type == 4){   
 
             //if (this.weappon_index%4==0){ 
             if (gameTime <= 2000){ 
@@ -5439,24 +5441,26 @@ function drawScreen(){
         // }  
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_array.length == 0 && parseInt(gameTime) > 100){
+        if (enemy_array.length == 0 && parseInt(gameTime) > 1000){
             if (ls_VColor == "yellow") vsafe_sound.play();
         }
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 6){
+        if (enemy_cnt == 10){
             if (ls_VColor == "yellow") vbee_sound.play();
         }
 
         //목소리 재생모드일경우만 실행 
-        if (enemy_cnt == 10){
+        if (enemy_cnt == 14){
             if (ls_VColor == "yellow") vangry_sound.play();
         }                
 
 
         //if (enemy_boss_01_status == 0){
             if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){ 
+
                 enemy_cnt = enemy_cnt + 1; 
+            
                 create_enemy(enemy_cnt); 
             }
         //}

@@ -1127,24 +1127,24 @@ function player_move(){
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.1 * Pspeed/2;
-        pmovey = pmovey - 0.1 * Pspeed/2;
+		pmovex = pmovex - 0.2 * Pspeed/2;
+        pmovey = pmovey - 0.2 * Pspeed/2;
         playerImage = player_135;
 	}
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.1 * Pspeed/2;
-        pmovey = pmovey - 0.1 * Pspeed/2;
+		pmovex = pmovex + 0.2 * Pspeed/2;
+        pmovey = pmovey - 0.2 * Pspeed/2;
         playerImage = player_45;
 	}
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.1 * Pspeed/2;
-        pmovey = pmovey + 0.1 * Pspeed/2;
+		pmovex = pmovex - 0.2 * Pspeed/2;
+        pmovey = pmovey + 0.2 * Pspeed/2;
         //playerImage = player;
         playerImage = player_135;
 	}
@@ -1152,8 +1152,8 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.1 * Pspeed/2;
-        pmovey = pmovey + 0.1 * Pspeed/2;
+		pmovex = pmovex + 0.2 * Pspeed/2;
+        pmovey = pmovey + 0.2 * Pspeed/2;
         //playerImage = player;
         playerImage = player_45;
 	}
@@ -3973,7 +3973,7 @@ function clickCanvas(event, as_gb) {
         strKeyEventValue = "ArrowUp";
         wayBefore = 'U';
 		Context.stroke(directonUp);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-    }else 
+	}
 
     //방향 down
 	if(Context.isPointInPath(directonDown, x,  y)) {
@@ -3984,7 +3984,7 @@ function clickCanvas(event, as_gb) {
         strKeyEventValue = "ArrowDown";
         wayBefore = 'D';
 		Context.stroke(directonDown); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 left
 	if(Context.isPointInPath(directonLeft, x,  y)) {
@@ -3995,7 +3995,7 @@ function clickCanvas(event, as_gb) {
         strKeyEventValue = "ArrowLeft";
         wayBefore = 'L';
 		Context.stroke(directonLeft);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 right
 	if(Context.isPointInPath(directonRight, x,  y)) {
@@ -4006,14 +4006,14 @@ function clickCanvas(event, as_gb) {
         strKeyEventValue = "ArrowRight";
         wayBefore = 'R';
 		Context.stroke(directonRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 upLeft
 	if(Context.isPointInPath(directonUpLeft, x,  y)) {
 		isKeyCode = 36;
         wayBefore = 'LU';
 		Context.stroke(directonUpLeft);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 UpRight
 	if(Context.isPointInPath(directonUpRight, x,  y)) {
@@ -4021,7 +4021,7 @@ function clickCanvas(event, as_gb) {
 		//strKeyEventValue = "RU";
         wayBefore = 'RU';
 		Context.stroke(directonUpRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-    }else 
+    }
 
     //방향 downLeft
 	if(Context.isPointInPath(directonDownLeft, x,  y)) {
@@ -4029,7 +4029,7 @@ function clickCanvas(event, as_gb) {
 		//strKeyEventValue = "LD";
         wayBefore = 'LD';
 		Context.stroke(directonDownLeft); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 downRight
 	if(Context.isPointInPath(directonDownRight, x,  y)) {
@@ -4037,7 +4037,7 @@ function clickCanvas(event, as_gb) {
 		//strKeyEventValue = "RD";
         wayBefore = 'RD';
 		Context.stroke(directonDownRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
-	}else 
+	}
 
     //방향 중앙 정지
 	if(Context.isPointInPath(directonMiddle, x,  y)) {

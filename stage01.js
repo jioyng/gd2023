@@ -1092,71 +1092,74 @@ function player_move(){
     //laser_charge_start_time = gameTime;
 
     //방향이동(키이벤트보다는 프레임에 설정하는게 더 부드러움.)
-    //좌
-    if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
-        //--pmovex;
-        wayBefore = 'L'; 
-        pmovex = pmovex - 0.1 * Pspeed / 2;
-        playerImage = player_180;
-
-    }
-
-	//우
-    if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
-        //++pmovex;
-        wayBefore = 'R';
-        pmovex = pmovex + 0.1 * Pspeed / 2;
-        playerImage = player_360;
-    }
-
-	//상
-    if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
-        wayBefore = 'U';
-        pmovey = pmovey - 0.1 * Pspeed / 2;
-        playerImage = player_90;
-    }
-
-	//하
-    if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
-        wayBefore = 'D';
-        pmovey = pmovey + 0.1 * Pspeed / 2;
-        playerImage = player_270;
-    }
-
 	//대각선방향 => 상하좌우키 동시 누른것과 같음.
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.2 * Pspeed/2;
-        pmovey = pmovey - 0.2 * Pspeed/2;
+		pmovex = pmovex - 0.1 * Pspeed/2;
+        pmovey = pmovey - 0.1 * Pspeed/2;
         playerImage = player_135;
-	}
+	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.2 * Pspeed/2;
-        pmovey = pmovey - 0.2 * Pspeed/2;
+		pmovex = pmovex + 0.1 * Pspeed/2;
+        pmovey = pmovey - 0.1 * Pspeed/2;
         playerImage = player_45;
-	}
+	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.2 * Pspeed/2;
-        pmovey = pmovey + 0.2 * Pspeed/2;
+		pmovex = pmovex - 0.1 * Pspeed/2;
+        pmovey = pmovey + 0.1 * Pspeed/2;
         //playerImage = player;
         playerImage = player_135;
-	}
+	}else
 
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.2 * Pspeed/2;
-        pmovey = pmovey + 0.2 * Pspeed/2;
+		pmovex = pmovex + 0.1 * Pspeed/2;
+        pmovey = pmovey + 0.1 * Pspeed/2;
         //playerImage = player;
         playerImage = player_45;
-	}
+	}else {
+        
+        
+        //좌
+        if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
+            //--pmovex;
+            wayBefore = 'L'; 
+            pmovex = pmovex - 0.1 * Pspeed / 2;
+            playerImage = player_180;
+
+        }
+
+        //우
+        if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
+            //++pmovex;
+            wayBefore = 'R';
+            pmovex = pmovex + 0.1 * Pspeed / 2;
+            playerImage = player_360;
+        }
+
+        //상
+        if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
+            wayBefore = 'U';
+            pmovey = pmovey - 0.1 * Pspeed / 2;
+            playerImage = player_90;
+        }
+
+        //하
+        if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
+            wayBefore = 'D';
+            pmovey = pmovey + 0.1 * Pspeed / 2;
+            playerImage = player_270;
+        }
+
+    }
 
 	//와프(공간 이동)
 	if (isKeyDown[17] || isKeyCode == 17) {

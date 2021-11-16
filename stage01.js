@@ -2382,7 +2382,7 @@ function game_background(){
             
             //시작 사운드
             if (parseInt(gameTime) <= 120){
-                raygun_sound.currentTime  = 1; 
+                raygun_sound.currentTime  = 2; 
                 raygun_sound.play();
                 playerImage = player_warp;
             //목소리 재생모드일경우만 실행                               
@@ -2396,7 +2396,7 @@ function game_background(){
             ini_player_size = ini_player_size - 60;
             player_size = ini_player_size;
             
-            playerX = playerX + parseInt(ls_width)/1200;
+            playerX = playerX + parseInt(ls_width)/1400;
             playerY = playerY + parseInt(ls_height)/100;
              
             //enemy_cnt = 8;

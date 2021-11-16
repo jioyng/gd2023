@@ -2379,9 +2379,13 @@ function game_background(){
 
         if (player_size > 140){
             
-
+            //시작 사운드
+            if (parseInt(gameTime) <= 120){
+                raygun_sound.currentTime  = 1; 
+                raygun_sound.play();
+                playerImage = player_warp;
             //목소리 재생모드일경우만 실행                               
-           if (parseInt(gameTime) <= 200){ 
+            }else if (parseInt(gameTime) <= 200){ 
                 raygun_sound.play(); 
 
                 if (ls_VColor == "yellow") vstart_sound.play();
@@ -2406,8 +2410,6 @@ function game_background(){
             pmovey = 0;
         }
     }else if(gameTime <= 100){    
-            //시작 사운드 
-            raygun_sound.play(); 
         playerImage = noneImage;        
     }else {
         playerImage = player;

@@ -2381,7 +2381,7 @@ function game_background(){
             
             //시작 사운드
             if (parseInt(gameTime) <= 120){
-                raygun_sound.currentTime  = 1; 
+                raygun_sound.currentTime  = 2; 
                 raygun_sound.play();
                 playerImage = player_warp;
             //목소리 재생모드일경우만 실행                               

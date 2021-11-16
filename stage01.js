@@ -2379,14 +2379,13 @@ function game_background(){
 
         if (player_size > 140){
             
-            //시작 사운드
-            if (parseInt(gameTime) <= 150){ 
-                raygun_sound.play();
+
             //목소리 재생모드일경우만 실행                               
-            }else if (parseInt(gameTime) <= 200){ 
+           if (parseInt(gameTime) <= 200){ 
                 raygun_sound.play(); 
 
                 if (ls_VColor == "yellow") vstart_sound.play();
+                
             }
 
             ini_player_size = ini_player_size - 100;
@@ -2395,7 +2394,7 @@ function game_background(){
             playerX = playerX + parseInt(ls_width)/700;
             playerY = playerY + parseInt(ls_height)/60;
              
-            playerImage = player_warp;
+
             strKeyEventValue = "ArrowUp";
        
         }else {
@@ -2407,6 +2406,8 @@ function game_background(){
             pmovey = 0;
         }
     }else if(gameTime <= 100){    
+            //시작 사운드 
+            raygun_sound.play(); 
         playerImage = noneImage;        
     }else {
         playerImage = player;

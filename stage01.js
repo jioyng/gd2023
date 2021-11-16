@@ -2379,9 +2379,13 @@ function game_background(){
 
         if (player_size > 140){
             
-                //목소리 재생모드일경우만 실행
-            if (parseInt(gameTime) <= 200){ 
-                
+            //시작 사운드
+            if (parseInt(gameTime) <= 150){ 
+                raygun_sound.play();
+            //목소리 재생모드일경우만 실행                               
+            }else if (parseInt(gameTime) <= 200){ 
+                raygun_sound.play(); 
+
                 if (ls_VColor == "yellow") vstart_sound.play();
             }
 

@@ -2127,7 +2127,7 @@ function enemy_collision(){
                 if (this.enemy_type == 4){
                    power++;        
                    //스피드증가
-                   Pspeed = Pspeed + power/20;
+                   Pspeed = Pspeed + power/100;
                 } 
 
                 //타겟 새로 생성
@@ -5502,12 +5502,16 @@ function player_collision(){
                     pmovey = 0; 
 
 
-                    for(var n=0;n<=100;n++){
+                    for(var n=0;n<=200;n++){
                         //잠시만 와프 이미지
                         if(n%2 == 0){
                             playerImage = player_warp;
+                            Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+
                         }else {
                             playerImage = player;
+                            Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+
                         }
                         //잠시만 무적
           

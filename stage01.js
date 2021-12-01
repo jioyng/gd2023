@@ -495,6 +495,11 @@ var ini_skill = 1;
 var skill = ini_skill;
 var tmp_skill = skill;
 
+//초기 웨폰 파워 => enemy_type == 4
+var ini_power = 1;
+var power = ini_power;
+var tmp_power = power;
+
 ///////////////////////////////////전함01 초기 설정////////////////////////////////////////////////////////////////
 //전함01 이미지
 var ship01_Image = new Image();
@@ -1109,6 +1114,7 @@ function player_init(){
     //player_cnt = ini_player_cnt;
     //enginImage = enginImage;
     //enginImage.src = enginImage.src;
+    power = 1;
 
 }
 
@@ -2116,6 +2122,13 @@ function enemy_collision(){
 
              //적 파괴되면 새로운 타겟 등장
              if (this.enemy_life <= 0){
+
+                //enemy_type == 4 인 적이 10개씩 파괴 될때마다 무기 레벨up!
+                if (this.enemy_type == 4){
+                   power++;        
+                   //스피드증가
+                   Pspeed = Pspeed + power/20;
+                } 
 
                 //타겟 새로 생성
                 //enemy_init();
@@ -5475,10 +5488,9 @@ function player_collision(){
                 //플레이어가 남아있는경우 자동으로 시작
                 player_cnt = parseInt(player_cnt) - 1;
 
-                if (parseInt(player_cnt) > 0){
+                if (parseInt(player_cnt) > 0){ 
 
-                    //잠시만 와프 이미지
-                    playerImage = player_warp;
+                    
                     //출현 사운드
                     mount_sound.play();
                     gameStart(13);
@@ -5488,6 +5500,24 @@ function player_collision(){
                     wayBefore = null;
                     pmovex = 0;
                     pmovey = 0; 
+
+
+                    for(var n=0;n<=100;n++){
+                        //잠시만 와프 이미지
+                        if(n%2 == 0){
+                            playerImage = player_warp;
+                        }else {
+                            playerImage = player;
+                        }
+                        //잠시만 무적
+          
+                        player_collision_yn = 'Y'; 
+                    } 
+                        player_collision_yn = 'N'; 
+                        playerImage = player;
+                    
+
+
 
                     //목소리 재생모드일경우만 실행  
                     if (ls_VColor == "yellow") vregret_sound.play(); 
@@ -5721,7 +5751,8 @@ function drawScreen(){
     //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
     Context.fillText("Skill     : " + skill,10,150); 
-    
+    Context.fillText("Power : " + power,10,200); 
+
     if(gameTime<=50){
         Context2.font = '100px Arial';
         Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);

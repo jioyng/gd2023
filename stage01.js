@@ -1168,24 +1168,24 @@ function player_move(){
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.1 * Pspeed/2;
-        pmovey = pmovey - 0.1 * Pspeed/2;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/100;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/100;
         playerImage = player_135;
 	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.1 * Pspeed/2;
-        pmovey = pmovey - 0.1 * Pspeed/2;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/100;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/100;
         playerImage = player_45;
 	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.1 * Pspeed/2;
-        pmovey = pmovey + 0.1 * Pspeed/2;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/100;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/100;
         //playerImage = player;
         playerImage = player_135;
 	}else
@@ -1193,8 +1193,8 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.1 * Pspeed/2;
-        pmovey = pmovey + 0.1 * Pspeed/2;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/100;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/100;
         //playerImage = player;
         playerImage = player_45;
 	}else {
@@ -1204,7 +1204,7 @@ function player_move(){
         if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
             //--pmovex;
             wayBefore = 'L'; 
-            pmovex = pmovex - 0.1 * Pspeed / 2;
+            pmovex = pmovex - 0.1 * Pspeed / 2 - power/100;
             playerImage = player_180;
 
         }
@@ -1213,21 +1213,21 @@ function player_move(){
         if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
             //++pmovex;
             wayBefore = 'R';
-            pmovex = pmovex + 0.1 * Pspeed / 2;
+            pmovex = pmovex + 0.1 * Pspeed / 2 + power/100;
             playerImage = player_360;
         }
 
         //상
         if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
             wayBefore = 'U';
-            pmovey = pmovey - 0.1 * Pspeed / 2;
+            pmovey = pmovey - 0.1 * Pspeed / 2 - power/100;
             playerImage = player_90;
         }
 
         //하
         if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
             wayBefore = 'D';
-            pmovey = pmovey + 0.1 * Pspeed / 2;
+            pmovey = pmovey + 0.1 * Pspeed / 2 + power/100;
             playerImage = player_270;
         }
 
@@ -1240,7 +1240,7 @@ function player_move(){
         warp_sound.play();
 
         //와프 이미지로 변경
-        for (var i=0;i<=warp_distance;i++){
+        for (var i=0;i<=warp_distance + power/100;i++){
 
             //공간이동 이미지
             Context.drawImage(player_warp,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3))
@@ -2127,7 +2127,7 @@ function enemy_collision(){
                 if (this.enemy_type == 4){
                    power++;        
                    //스피드증가
-                   Pspeed = Pspeed + power/100;
+                   //Pspeed = Pspeed + power/100;
                 } 
 
                 //타겟 새로 생성

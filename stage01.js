@@ -1169,10 +1169,10 @@ function player_move(){
     //플레이어 초기 시작시 잠시만 무적 모드
     imomtal_time--;
 
-    if (imomtal_time > 0 ){
-
+    if (imomtal_time > 0 ){ 
         playerImage = player_warp; 
         player_collision_yn = 'Y'; 
+        wayBefore = "";
     }else {
         playerImage = player;
         player_collision_yn = 'N'; 
@@ -1188,24 +1188,24 @@ function player_move(){
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/100;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/100;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/1000;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/1000;
         playerImage = player_135;
 	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/100;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/100;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/1000;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/1000;
         playerImage = player_45;
 	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/100;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/100;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/1000;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/1000;
         //playerImage = player;
         playerImage = player_135;
 	}else
@@ -1213,8 +1213,8 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/100;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/100;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/1000;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/1000;
         //playerImage = player;
         playerImage = player_45;
 	}else {
@@ -1224,7 +1224,7 @@ function player_move(){
         if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
             //--pmovex;
             wayBefore = 'L'; 
-            pmovex = pmovex - 0.1 * Pspeed / 2 - power/100;
+            pmovex = pmovex - 0.1 * Pspeed / 2 - power/1000;
             playerImage = player_180;
 
         }
@@ -1233,21 +1233,21 @@ function player_move(){
         if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
             //++pmovex;
             wayBefore = 'R';
-            pmovex = pmovex + 0.1 * Pspeed / 2 + power/100;
+            pmovex = pmovex + 0.1 * Pspeed / 2 + power/1000;
             playerImage = player_360;
         }
 
         //상
         if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
             wayBefore = 'U';
-            pmovey = pmovey - 0.1 * Pspeed / 2 - power/100;
+            pmovey = pmovey - 0.1 * Pspeed / 2 - power/1000;
             playerImage = player_90;
         }
 
         //하
         if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
             wayBefore = 'D';
-            pmovey = pmovey + 0.1 * Pspeed / 2 + power/100;
+            pmovey = pmovey + 0.1 * Pspeed / 2 + power/1000;
             playerImage = player_270;
         }
 

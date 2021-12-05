@@ -70,10 +70,10 @@ var button01 = null;
 var button02 = null;
 var button03 = null;
 
-//컨트롤 색상
+//컨트롤 진하게 옵션 색상
 var ls_CColor = localStorage.getItem('control_color');
 
-//DEV 색상
+//DEV 모드 옵션 색상
 var ls_DColor = localStorage.getItem('dev_color');
 
 // //전체화면
@@ -82,7 +82,7 @@ var ls_DColor = localStorage.getItem('dev_color');
 //     toggleFullScreen();
 // }
 
-//목소리 색상
+//목소리 재생 옵션 색상
 var ls_VColor = localStorage.getItem('voice_color');
 
 
@@ -454,6 +454,11 @@ var player_collision_yn = 'N';
 
 //보너스 발생 전후 여부
 var bonus_cnt = 1;
+
+
+//플레이어 무적시간
+var ini_imomtal_time = 100;
+var imomtal_time = ini_imomtal_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
 var laserImage = new Image();
@@ -1115,6 +1120,8 @@ function player_init(){
     //enginImage = enginImage;
     //enginImage.src = enginImage.src;
     power = 1;
+    //무적시간
+    imomtal_time = ini_imomtal_time;
 
 }
 
@@ -1157,7 +1164,20 @@ function enemy_didtance(){
 }
 
 ////////////////// 플레이어 이동
-function player_move(){
+function player_move(){ 
+
+    //플레이어 초기 시작시 잠시만 무적 모드
+    imomtal_time--;
+
+    if (imomtal_time > 0 ){
+
+        playerImage = player_warp; 
+        player_collision_yn = 'Y'; 
+    }else {
+        playerImage = player;
+        player_collision_yn = 'N'; 
+    }
+
 
     //플레이어가 움직이면 필살기 충전은 초기환된다.
     //laser_charge_total_time = 0;
@@ -1579,7 +1599,16 @@ function enemy_init(index){
         if (ls_VColor == "yellow") {
             crash01_sound.currentTime = 4;
             vboss_sound.play();
-        }
+            //대화
+            Context2.globalAlpha = 1;
+            Context2.font  = "30px Arial";  
+            Context2.fillStyle = '#ffffff';
+            Context2.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);
+            //Context2.fill(); 
+        }else {
+            // Context2.fillText("",ls_width/2 - ls_width/10,50);
+            // Context2.fill();      
+        }   
     }else { 
         
         if(gameTime < 2000){
@@ -2584,9 +2613,15 @@ function game_background(){
             }else if (parseInt(gameTime) <= 200){ 
                 raygun_sound.play(); 
 
-                if (ls_VColor == "yellow") vstart_sound.play();
-                
-            }
+                if (ls_VColor == "yellow") {
+                    vstart_sound.play();
+                    // //대화
+                    // Context2.globalAlpha = 1;
+                    // Context2.font  = "30px Arial";  
+                    // Context2.fillStyle = '#ffffff';
+                    // Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
+                }
+            }   
 
             ini_player_size = ini_player_size - 60;
             player_size = ini_player_size;
@@ -3804,10 +3839,11 @@ var ls_next_yn = 'N';
 
 ////////////////// 게임 상태 표시
 function game_status(){
-
+    
+    Context2.globalAlpha = 1;
     Context2.font = '30px Arial';
     Context2.font = '100px Arial';
-    Context.fillStyle = 'white';
+    Context2.fillStyle = "#ffffff";
 
     if (status == 1){
         //Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
@@ -4023,8 +4059,19 @@ function skill_chanage(){
     }; 
 
     //목소리 재생모드일경우만 실행 
-    if (ls_VColor == "yellow") vskill_sound.play(); 
- 
+    if (ls_VColor == "yellow"){
+        vskill_sound.play(); 
+        //대화
+        Context2.globalAlpha = 1;
+        Context2.font  = "30px Arial";  
+        Context2.fillStyle = '#ffffff';
+   
+        Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+        //Context2.fill();
+    }else {
+        // Context2.fillText("",ls_width/2 - ls_width/10,50);
+        // Context2.fill();      
+    }   
 }
 
 function skill_chanage2(){   
@@ -4040,8 +4087,18 @@ function skill_chanage2(){
     //     }   
     // }  
     //목소리 재생모드일경우만 실행 
-    if (ls_VColor == "yellow") vskill_sound.play();
-    
+    if (ls_VColor == "yellow"){
+        vskill_sound.play();
+        // //대화
+        // Context2.globalAlpha = 1;
+        // Context2.font  = "30px Arial";  
+        // Context2.fillStyle = '#ffffff';
+        // Context2.fillText("스킬변경 완료.",ls_width/2 - ls_width/10,50);
+        // //Context2.fill();
+    }else {
+        // Context2.fillText("",ls_width/2 - ls_width/10,50);
+        // Context2.fill();      
+    }    
     return "Y";
 }
 
@@ -5502,35 +5559,56 @@ function player_collision(){
                     pmovey = 0; 
 
 
-                    for(var n=0;n<=200;n++){
-                        //잠시만 와프 이미지
-                        if(n%2 == 0){
-                            playerImage = player_warp;
-                            Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+                    // for(var n=0;n<=200;n++){
+                    //     //잠시만 와프 이미지
+                    //     if(n%2 == 0){
+                    //         playerImage = player_warp;
+                    //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
 
-                        }else {
-                            playerImage = player;
-                            Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+                    //     }else {
+                    //         playerImage = player;
+                    //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
 
-                        }
-                        //잠시만 무적
+                    //     }
+                    //     //잠시만 무적
           
-                        player_collision_yn = 'Y'; 
-                    } 
+                    //     player_collision_yn = 'Y'; 
+                    // } 
                         player_collision_yn = 'N'; 
                         playerImage = player;
-                    
-
+                     
 
 
                     //목소리 재생모드일경우만 실행  
-                    if (ls_VColor == "yellow") vregret_sound.play(); 
+                    if (ls_VColor == "yellow"){
+                        vregret_sound.play();
+                        //대화
+                        Context2.globalAlpha = 1;
+                        Context2.font  = "30px Arial";  
+                        Context2.fillStyle = '#ffffff';
+                        Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
+                        //Context2.fill();
+                    }else {
+                        // Context2.fillText("",ls_width/2 - ls_width/10,50);
+                        // Context2.fill();      
+                    }                    
 
                 //게임 재시작 or 종료
                 }else {
 
                     //목소리 재생모드일경우만 실행  
-                    if (ls_VColor == "yellow") vfinish_sound.play(); 
+                    if (ls_VColor == "yellow") {
+                        vfinish_sound.play(); 
+                        //대화
+                        Context.globalAlpha = 1;
+                        Context.font  = "30px Arial";  
+                        Context.fillStyle = '#ffffff';
+                        Context.fillText("이제 다 끝난건가...?",ls_width/2 - ls_width/10,50);
+                        //Context.fill();
+                    }else {
+                        //Context.fillText("",ls_width/2 - ls_width/10,50);
+                        //Context.fill();      
+                    }                          
                     
                     gameRetryExitButton(); 
 
@@ -5561,7 +5639,19 @@ function player_collision(){
 
                     if (player_life == 2){
                            //목소리 재생모드일경우만 실행  
-                           if (ls_VColor == "yellow") vdanger_sound.play(); 
+                           if (ls_VColor == "yellow") {
+                               vdanger_sound.play();
+                                //대화
+                                Context2.globalAlpha = 1;
+                                Context2.font  = "30px Arial";  
+                                Context2.fillStyle = '#ffffff';
+                                Context2.fillText("앗! 위험해.",ls_width/2 - ls_width/10,50);
+                                //Context2.fill();
+                            }else {
+                                // Context2.fillText("",ls_width/2 - ls_width/10,50);
+                                // Context2.fill();      
+                            }                        
+
                     }
                 }
             }
@@ -5619,6 +5709,26 @@ function drawScreen(){
 	//if (gameTime%2 === 0){
 		game_background();
 	//} 
+
+
+    //시작 사운드
+    if (parseInt(gameTime) <= 120){
+        // raygun_sound.currentTime  = 2; 
+        // raygun_sound.play();
+        // playerImage = player_warp;
+    //목소리 재생모드일경우만 실행                               
+    }else if (parseInt(gameTime) <= 200){ 
+    //    raygun_sound.play(); 
+
+        if (ls_VColor == "yellow") {
+    //        vstart_sound.play();
+            //대화
+            Context2.globalAlpha = 1;
+            Context2.font  = "30px Arial";  
+            Context2.fillStyle = '#ffffff';
+            Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
+        }
+    }   
 
     //플레이어 경계
     player_border();
@@ -5708,17 +5818,53 @@ function drawScreen(){
 
         //목소리 재생모드일경우만 실행 
         if (enemy_array.length == 0 && parseInt(gameTime) > 1000){
-            if (ls_VColor == "yellow") vsafe_sound.play();
+            if (ls_VColor == "yellow"){
+                vsafe_sound.play();
+                //대화
+                Context2.globalAlpha = 1;
+                Context2.font  = "30px Arial";  
+                Context2.fillStyle = '#ffffff';
+                Context2.fillText("여긴 아무이상도 없는것같아...",ls_width/2 - ls_width/10,50);
+                //Context2.fill();
+            }else {
+                // Context2.fillText("",ls_width/2 - ls_width/10,50);
+                // Context2.fill();      
+            }                         
+
         }
 
         //목소리 재생모드일경우만 실행 
         if (enemy_cnt == 10){
-            if (ls_VColor == "yellow") vbee_sound.play();
+            if (ls_VColor == "yellow"){
+                vbee_sound.play();
+                //대화
+                Context2.globalAlpha = 1;
+                Context2.font  = "30px Arial";  
+                Context2.fillStyle = '#ffffff';
+                Context2.fillText("벌때같은 녀석들!",ls_width/2 - ls_width/10,50);
+                //Context2.fill();
+            }else {
+                // Context2.fillText("",ls_width/2 - ls_width/10,50);
+                // Context2.fill();      
+            }                         
+                
         }
 
         //목소리 재생모드일경우만 실행 
         if (enemy_cnt == 14){
-            if (ls_VColor == "yellow") vangry_sound.play();
+            if (ls_VColor == "yellow"){
+                vangry_sound.play();
+                //대화
+                Context2.globalAlpha = 1;
+                Context2.font  = "30px Arial";  
+                Context2.fillStyle = '#ffffff';
+                Context2.fillText("죽어랏! 괴물들...",ls_width/2 - ls_width/10,50);
+                //Context2.fill();
+            }else {
+                // Context2.fillText("",ls_width/2 - ls_width/10,50);
+                // Context2.fill();      
+            }                        
+
         }        
 
         //if (enemy_boss_01_status == 0){
@@ -5756,6 +5902,9 @@ function drawScreen(){
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
     Context.fillText("Skill     : " + skill,10,150); 
     Context.fillText("Power : " + power,10,200); 
+
+
+
 
     if(gameTime<=50){
         Context2.font = '100px Arial';

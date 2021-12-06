@@ -1170,9 +1170,13 @@ function player_move(){
     imomtal_time--;
 
     if (imomtal_time > 0 ){ 
+        warp_sound.currentTime  = 0;
+        warp_sound.play();
         playerImage = player_warp; 
         player_collision_yn = 'Y'; 
         wayBefore = "";
+        isKeyDown = [];
+        isKeyCode = null;    
     }else {
         playerImage = player;
         player_collision_yn = 'N'; 

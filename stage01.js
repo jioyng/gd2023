@@ -4096,9 +4096,11 @@ function skill_chanage2(){
         Context2.font  = "30px Arial";  
         Context2.fillStyle = '#ffffff';
         //for (var m=0;m<=500;m++){
-            if(gameTime <= tmp_game_time)
-            Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+            //if(gameTime <= tmp_game_time){
+            while (gameTime <= tmp_game_time){
+              Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
             //Context2.fill();
+            }
         //}
         //Context2.fill();
     }else {

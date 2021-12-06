@@ -4061,13 +4061,14 @@ function skill_chanage(){
     //목소리 재생모드일경우만 실행 
     if (ls_VColor == "yellow"){
         vskill_sound.play(); 
-        //대화
-        Context2.globalAlpha = 1;
-        Context2.font  = "30px Arial";  
-        Context2.fillStyle = '#ffffff';
-   
-        Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
-        //Context2.fill();
+        // //대화
+        // Context2.globalAlpha = 1;
+        // Context2.font  = "30px Arial";  
+        // Context2.fillStyle = '#ffffff';
+    
+        // Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+        // //Context2.fill();
+ 
     }else {
         // Context2.fillText("",ls_width/2 - ls_width/10,50);
         // Context2.fill();      
@@ -4076,6 +4077,7 @@ function skill_chanage(){
 
 function skill_chanage2(){   
     
+    var tmp_game_time = gameTime + 10;
     //mount_sound.currentTime;
     mount_sound.play(); 
 
@@ -4089,12 +4091,16 @@ function skill_chanage2(){
     //목소리 재생모드일경우만 실행 
     if (ls_VColor == "yellow"){
         vskill_sound.play();
-        // //대화
-        // Context2.globalAlpha = 1;
-        // Context2.font  = "30px Arial";  
-        // Context2.fillStyle = '#ffffff';
-        // Context2.fillText("스킬변경 완료.",ls_width/2 - ls_width/10,50);
-        // //Context2.fill();
+        //대화
+        Context2.globalAlpha = 1;
+        Context2.font  = "30px Arial";  
+        Context2.fillStyle = '#ffffff';
+        //for (var m=0;m<=500;m++){
+            if(gameTime <= tmp_game_time)
+            Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+            //Context2.fill();
+        //}
+        //Context2.fill();
     }else {
         // Context2.fillText("",ls_width/2 - ls_width/10,50);
         // Context2.fill();      
@@ -5841,7 +5847,7 @@ function drawScreen(){
                 Context2.globalAlpha = 1;
                 Context2.font  = "30px Arial";  
                 Context2.fillStyle = '#ffffff';
-                Context2.fillText("벌때같은 녀석들!",ls_width/2 - ls_width/10,50);
+                Context2.fillText("벌떼같은 녀석들!",ls_width/2 - ls_width/10,50);
                 //Context2.fill();
             }else {
                 // Context2.fillText("",ls_width/2 - ls_width/10,50);

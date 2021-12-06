@@ -1605,10 +1605,7 @@ function enemy_init(index){
             Context2.fillStyle = '#ffffff';
             Context2.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);
             //Context2.fill(); 
-        }else {
-            // Context2.fillText("",ls_width/2 - ls_width/10,50);
-            // Context2.fill();      
-        }   
+        }  
     }else { 
         
         if(gameTime < 2000){
@@ -4060,24 +4057,13 @@ function skill_chanage(){
 
     //목소리 재생모드일경우만 실행 
     if (ls_VColor == "yellow"){
-        vskill_sound.play(); 
-        // //대화
-        // Context2.globalAlpha = 1;
-        // Context2.font  = "30px Arial";  
-        // Context2.fillStyle = '#ffffff';
-    
-        // Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
-        // //Context2.fill();
- 
-    }else {
-        // Context2.fillText("",ls_width/2 - ls_width/10,50);
-        // Context2.fill();      
+        vskill_sound.play();  
     }   
 }
+ 
 
 function skill_chanage2(){   
-    
-    var tmp_game_time = gameTime + 10;
+     
     //mount_sound.currentTime;
     mount_sound.play(); 
 
@@ -4094,22 +4080,23 @@ function skill_chanage2(){
         //대화
         Context2.globalAlpha = 1;
         Context2.font  = "30px Arial";  
-        Context2.fillStyle = '#ffffff';
-        //for (var m=0;m<=500;m++){
-            //if(gameTime <= tmp_game_time){
-            while (gameTime <= tmp_game_time){
-              Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
-            //Context2.fill();
-            }
-        //}
-        //Context2.fill();
-    }else {
-        // Context2.fillText("",ls_width/2 - ls_width/10,50);
-        // Context2.fill();      
-    }    
+        Context2.fillStyle = '#ffffff'; 
+        //대화 내용 텀 길게 표시
+        tmp_time = gameTime + 10;
+        Tmp_Id = setInterval(tmp_text , 1/1000); 
+    } 
+
     return "Y";
 }
 
+var tmp_time = 0;
+function tmp_text(){ 
+    if(gameTime <= tmp_time){ 
+        Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+    }else {
+        clearInterval(Tmp_Id);
+    }
+}
 
 ////////////////// 돔(doom)의 이벤트에 매핑(전역 키코드를 변경하여 프래임 진행시 방향 전환)
 function clickCanvas(event, as_gb) {
@@ -5596,10 +5583,7 @@ function player_collision(){
                         Context2.fillStyle = '#ffffff';
                         Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
                         //Context2.fill();
-                    }else {
-                        // Context2.fillText("",ls_width/2 - ls_width/10,50);
-                        // Context2.fill();      
-                    }                    
+                    }                  
 
                 //게임 재시작 or 종료
                 }else {
@@ -5613,10 +5597,7 @@ function player_collision(){
                         Context.fillStyle = '#ffffff';
                         Context.fillText("이제 다 끝난건가...?",ls_width/2 - ls_width/10,50);
                         //Context.fill();
-                    }else {
-                        //Context.fillText("",ls_width/2 - ls_width/10,50);
-                        //Context.fill();      
-                    }                          
+                    }                         
                     
                     gameRetryExitButton(); 
 
@@ -5655,11 +5636,7 @@ function player_collision(){
                                 Context2.fillStyle = '#ffffff';
                                 Context2.fillText("앗! 위험해.",ls_width/2 - ls_width/10,50);
                                 //Context2.fill();
-                            }else {
-                                // Context2.fillText("",ls_width/2 - ls_width/10,50);
-                                // Context2.fill();      
-                            }                        
-
+                            } 
                     }
                 }
             }
@@ -5834,11 +5811,7 @@ function drawScreen(){
                 Context2.fillStyle = '#ffffff';
                 Context2.fillText("여긴 아무이상도 없는것같아...",ls_width/2 - ls_width/10,50);
                 //Context2.fill();
-            }else {
-                // Context2.fillText("",ls_width/2 - ls_width/10,50);
-                // Context2.fill();      
-            }                         
-
+            }   
         }
 
         //목소리 재생모드일경우만 실행 
@@ -5851,11 +5824,7 @@ function drawScreen(){
                 Context2.fillStyle = '#ffffff';
                 Context2.fillText("벌떼같은 녀석들!",ls_width/2 - ls_width/10,50);
                 //Context2.fill();
-            }else {
-                // Context2.fillText("",ls_width/2 - ls_width/10,50);
-                // Context2.fill();      
-            }                         
-                
+            }      
         }
 
         //목소리 재생모드일경우만 실행 

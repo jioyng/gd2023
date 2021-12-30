@@ -14,7 +14,7 @@ window.addEventListener("keyup",onkeyUp, false);
 //제일 처음 페이지 load 여부
 var first_load_yn = "Y";
 
-//필요한 이벤트 객체 선언
+//필요한 이벤트 객체 선언 
 var strKeyEventType = "None";
 var strKeyEventValue = "None";
 

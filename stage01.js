@@ -1486,12 +1486,27 @@ function laser_move(){
                     //lmovey = lmovey + 1; //(사인 * 루트(x제곱 + y제곱)
                     //lmovex = 100;
                     //lmovey = 100;
-    
+
+     
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
-    
-                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
+        
+                    if (i>150){
+                        if ((parseInt(i/15))==0){ 
+                            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);  
+                        }
+                    }else if (i>100){ 
+                        if ((parseInt(i/10))==0){ 
+                            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);  
+                        }
+                    }else if (i>50){ 
+                        if ((parseInt(i/5))==0){ 
+                            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);  
+                        }
+                    }else {
+                        Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+                    }                    
             }
 
         }else {   

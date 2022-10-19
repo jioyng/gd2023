@@ -250,6 +250,45 @@ var city10Image = new Image();
 city10Image.src = "./img/city10.png";
 city10Image.addEventListener("load",drawScreen, false);
 
+var city01Image_day = new Image();
+city01Image_day.src = "./img/city01_day.png";
+city01Image_day.addEventListener("load",drawScreen, false);
+
+var city02Image_day = new Image();
+city02Image_day.src = "./img/city02_day.png";
+city02Image_day.addEventListener("load",drawScreen, false);
+
+var city03Image_day = new Image();
+city03Image_day.src = "./img/city03_day.png";
+city03Image_day.addEventListener("load",drawScreen, false);
+
+var city04Image_day = new Image();
+city04Image_day.src = "./img/city04_day.png";
+city04Image_day.addEventListener("load",drawScreen, false);
+
+var city05Image_day = new Image();
+city05Image_day.src = "./img/city05_day.png";
+city05Image_day.addEventListener("load",drawScreen, false);
+
+var city06Image_day = new Image();
+city06Image_day.src = "./img/city06_day.png";
+city06Image_day.addEventListener("load",drawScreen, false);
+
+var city07Image_day = new Image();
+city07Image_day.src = "./img/city07_day.png";
+city07Image_day.addEventListener("load",drawScreen, false);
+
+var city08Image_day = new Image();
+city08Image_day.src = "./img/city08_day.png";
+city08Image_day.addEventListener("load",drawScreen, false);
+
+var city09Image_day = new Image();
+city09Image_day.src = "./img/city09_day.png";
+city09Image_day.addEventListener("load",drawScreen, false);
+
+var city10Image_day = new Image();
+city10Image_day.src = "./img/city10_day.png";
+city10Image_day.addEventListener("load",drawScreen, false);
 
 //추가1
 var city11Image = new Image();
@@ -3257,8 +3296,22 @@ function game_background(){
         var tmp_str = String(parseInt(gameTime/10));
         var tmp_num = tmp_str.substr(tmp_str.length-1);
         //console.log("tesT",str2);
-        
+         
         //시간에 따른 지면 맵 변경(1초마다 한단계씩 밀리도록 한다.)
+        //if (gameTime > 5000){
+        if (parseInt(gameTime/1000) % 2 != 0){
+            city01Image = city01Image_day;
+            city02Image = city02Image_day;
+            city03Image = city03Image_day;
+            city04Image = city04Image_day;
+            city05Image = city05Image_day;
+            city06Image = city06Image_day;
+            city07Image = city07Image_day;
+            city08Image = city08Image_day;
+            city09Image = city09Image_day;
+            city10Image = city10Image_day;
+        } 
+        
         if(tmp_num == 0){
             cityImage1 = city09Image;
             cityImage2 = city01Image;

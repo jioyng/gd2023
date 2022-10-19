@@ -474,9 +474,9 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 1;         //플레이어 초기 스피드
+var ini_Pspeed = 10;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
-var before_pspeed = 0;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
+var before_pspeed = 10;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명
 var player_life = ini_player_life;
 var penerge_bar = ini_energe_bar;
@@ -1144,7 +1144,7 @@ function player_init(){
     pmovex = 0;
     pmovey = 0;
     Pspeed = ini_Pspeed;
-    before_pspeed = 0;
+    before_pspeed = 10;
     player_life = ini_player_life;
     playerImage = player;
     laserImage = laser;
@@ -1231,24 +1231,24 @@ function player_move(){
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/1000;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/1000;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
         playerImage = player_135;
 	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/1000;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/1000;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
+        pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
         playerImage = player_45;
 	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/1000;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/1000;
+		pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
         //playerImage = player;
         playerImage = player_135;
 	}else
@@ -1256,8 +1256,8 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/1000;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/1000;
+		pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
+        pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
         //playerImage = player;
         playerImage = player_45;
 	}else {
@@ -1267,7 +1267,7 @@ function player_move(){
         if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
             //--pmovex;
             wayBefore = 'L'; 
-            pmovex = pmovex - 0.1 * Pspeed / 2 - power/1000;
+            pmovex = pmovex - 0.1 * Pspeed / 2 - power/50000;
             playerImage = player_180;
 
         }
@@ -1276,21 +1276,21 @@ function player_move(){
         if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
             //++pmovex;
             wayBefore = 'R';
-            pmovex = pmovex + 0.1 * Pspeed / 2 + power/1000;
+            pmovex = pmovex + 0.1 * Pspeed / 2 + power/50000;
             playerImage = player_360;
         }
 
         //상
         if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
             wayBefore = 'U';
-            pmovey = pmovey - 0.1 * Pspeed / 2 - power/1000;
+            pmovey = pmovey - 0.1 * Pspeed / 2 - power/50000;
             playerImage = player_90;
         }
 
         //하
         if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
             wayBefore = 'D';
-            pmovey = pmovey + 0.1 * Pspeed / 2 + power/1000;
+            pmovey = pmovey + 0.1 * Pspeed / 2 + power/50000;
             playerImage = player_270;
         }
 
@@ -1476,11 +1476,11 @@ function laser_move(){
 
         if (skill == 1){
 
-            for (i=0;i<=200;i++){ 
+            for (i=0;i<=100;i++){ 
     
                     //플레이어 거리에 따른 레이져 크기 변경
-                    l_size = 1;
-                    l_size = l_size*(Pdistance/300);
+                    l_size = 1 + power/1000;
+                    l_size = l_size*(Pdistance/200);
     
                     /*
                     //플레이어 위치에 따른 미사일 방향 변경
@@ -1531,6 +1531,7 @@ function laser_move(){
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
         
+                    /*
                     if (i>150){
                         if ((parseInt(i/15))==0){ 
                             Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);  
@@ -1545,7 +1546,9 @@ function laser_move(){
                         }
                     }else {
                         Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
-                    }                    
+                    }  
+                    */           
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);        
             }
 
         }else {   

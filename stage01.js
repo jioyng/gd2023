@@ -3299,7 +3299,7 @@ function game_background(){
          
         //시간에 따른 지면 맵 변경(1초마다 한단계씩 밀리도록 한다.)
         //if (gameTime > 5000){
-        if (parseInt(gameTime/4000) % 2 != 0){
+        if (parseInt(gameTime/4000) % 2 == 0){
             city01Image = city01Image_day;
             city02Image = city02Image_day;
             city03Image = city03Image_day;

@@ -2683,10 +2683,13 @@ function game_background(){
 
             ini_player_size = ini_player_size - 60;
             player_size = ini_player_size;
-            
-            playerX = playerX + parseInt(ls_width)/1800;
-            playerY = playerY + parseInt(ls_height)/100;
+            //alert(ls_width)
+            //playerX = playerX + parseInt(ls_width)/1800;
+            //playerY = playerY + parseInt(ls_height)/100;
              
+            playerX = playerX + parseInt(ls_width)*0.001;
+            playerY = playerY + parseInt(ls_height)*0.01;
+
             //enemy_cnt = 8;
             //strKeyEventValue = "ArrowUp";
        

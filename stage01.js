@@ -1464,24 +1464,23 @@ function laser_init(){
     //레이져 초기화
     laser_charge_total_time = 0;      
     laser_charge_start_time  = gameTime;
-    l_width = 2;    
+    l_width = 2;   
+      
 }
 
-////////////////// 플레이어 레이져 경로
+////////////////// 플레이어 레이져 경로  
 function laser_move(){
 
     if (laser_yn == 'Y'){
 
         //ld = Math.floor(Pdistance/10); 
-
-        if (skill == 1){
-
-            for (i=0;i<=100;i++){ 
-    
+        
+        if (skill == 1){  
+            for (i=0;i<=120;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
                     l_size = l_size*(Pdistance/200);
-    
+                  
                     /*
                     //플레이어 위치에 따른 미사일 방향 변경
                     //타켓이 플레이어보다 상단에 있으면 미사일은 상단으로
@@ -4557,7 +4556,7 @@ function weappon_move(){
  
 
             //미사일 화면 이탈시 또는 미사일이 너무 커지면
-            if (this.weapponArray[i].bsize >= 50){
+            if (this.weapponArray[i].bsize >= 60){
                
                 this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                 this.weappon_size = this.weappon_size - 0.1;

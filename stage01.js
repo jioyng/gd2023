@@ -79,7 +79,7 @@ var button03 = null;
 var ls_CColor = localStorage.getItem('control_color');
 
 //DEV 모드 옵션 색상
-var ls_DColor = localStorage.getItem('dev_color');
+var ls_DColor = localStorage.getItem('dev_color'); 
 
 // //전체화면
 // var ls_TColor = localStorage.getItem('total_color');
@@ -479,7 +479,7 @@ var playerY = ini_playerY;
 //플레이어 이동 거리
 var pmovex = 0;
 var pmovey = 0;
-var ini_Pspeed = 10;         //플레이어 초기 스피드
+var ini_Pspeed = 3;         //플레이어 초기 스피드
 var Pspeed = ini_Pspeed;
 var before_pspeed = 10;      //이전 스피트(스트드 업버튼 누르면 바로 속도 증가하도록 하기위해)
 var ini_player_life = 5;    //플레이어 생명
@@ -1696,7 +1696,7 @@ function enemy_init(index){
         }  
     }else { 
         
-        if(gameTime < 2000){
+        if(gameTime < 1000){
             //ini_player_size--;
                 //player_size = 200;
             this.enemy_type = 4;
@@ -2687,53 +2687,52 @@ function game_background(){
 	//back_distance = back_distance + 0.1; 
     //if(gameTime > 100 && gameTime < 666){
         if(gameTime > 100){
+            if (player_size > 140)
+            {
+                //시작 사운드
+                if (parseInt(gameTime) <= 120){
+                    raygun_sound.currentTime  = 2; 
+                    raygun_sound.play();
+                    playerImage = player_warp;
+                //목소리 재생모드일경우만 실행                               
+                }else if (parseInt(gameTime) <= 200){ 
+                    raygun_sound.play(); 
 
-        if (player_size > 140){
-            
-            //시작 사운드
-            if (parseInt(gameTime) <= 120){
-                raygun_sound.currentTime  = 2; 
-                raygun_sound.play();
-                playerImage = player_warp;
-            //목소리 재생모드일경우만 실행                               
-            }else if (parseInt(gameTime) <= 200){ 
-                raygun_sound.play(); 
+                    if (ls_VColor == "yellow") {
+                        vstart_sound.play();
+                        // //대화
+                        // Context2.globalAlpha = 1;
+                        // Context2.font  = "30px Arial";  
+                        // Context2.fillStyle = '#ffffff';
+                        // Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
+                    }
+                }   
 
-                if (ls_VColor == "yellow") {
-                    vstart_sound.play();
-                    // //대화
-                    // Context2.globalAlpha = 1;
-                    // Context2.font  = "30px Arial";  
-                    // Context2.fillStyle = '#ffffff';
-                    // Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
-                }
-            }   
+                ini_player_size = ini_player_size - 60;
+                player_size = ini_player_size;
+                //alert(ls_width)
+                //playerX = playerX + parseInt(ls_width)/1800;
+                //playerY = playerY + parseInt(ls_height)/100;
+                
+                playerX = playerX + parseInt(ls_width)*0.001;
+                playerY = playerY + parseInt(ls_height)*0.01;
 
-            ini_player_size = ini_player_size - 60;
-            player_size = ini_player_size;
-            //alert(ls_width)
-            //playerX = playerX + parseInt(ls_width)/1800;
-            //playerY = playerY + parseInt(ls_height)/100;
-             
-            playerX = playerX + parseInt(ls_width)*0.001;
-            playerY = playerY + parseInt(ls_height)*0.01;
-
-            //enemy_cnt = 8;
-            //strKeyEventValue = "ArrowUp";
-       
-        }else {
-            playerImage = player_90;
-            player_size = 140; 
-            //isKeyCode = "16";
-            //strKeyEventValue = "";
-            pmovex = 0;
-            pmovey = 0;
-            
-        }
-    }else if(gameTime <= 100){    
-        playerImage = noneImage;        
+                //enemy_cnt = 8;
+                //strKeyEventValue = "ArrowUp";
+        
+            }else {
+                playerImage = player_90;
+                player_size = 140; 
+                //isKeyCode = "16";
+                //strKeyEventValue = "";
+                pmovex = 0;
+                pmovey = 0;
+                
+            }
+    }else if(gameTime <= 100 && gameTime > 50){    
+        playerImage = player;        
     }else {
-        playerImage = player;
+        playerImage = noneImage;
     }
 
 
@@ -4107,7 +4106,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
          Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
          Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-         playerImage = explosionImage01;button
+         playerImage = explosionImage01;
          player_warp = explosionImage01;
 
         //alert(player_cnt);

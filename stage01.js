@@ -10,6 +10,9 @@
 window.addEventListener("load",drawScreen, false);
 window.addEventListener("keydown",onkeyDown, false);
 window.addEventListener("keyup",onkeyUp, false);
+//더블클릭시
+//window.addEventListener("dblclick",onDblkeyDown, false);
+
 
 //제일 처음 페이지 load 여부
 var first_load_yn = "Y";
@@ -65,6 +68,8 @@ var directonUpRight = null;
 var directonDownLeft = null;
 var directonDownRight = null;
 var directonMiddle = null;
+var directionDblTime = 0;
+var isBfKeycode = null;
 
 var button01 = null;
 var button02 = null;
@@ -1207,6 +1212,15 @@ function player_move(){
 
     //플레이어 초기 시작시 잠시만 무적 모드
     imomtal_time--;
+    directionDblTime++;
+
+    if (directionDblTime < 100 && isKeyCode == isBfKeycode && isBfKeycode != null){
+
+        alert(isKeyCode + ',' + isBfKeycode);
+        console.log("isBfKeycode + ',' + directionDblTime:", isBfKeycode + ',' + directionDblTime);
+        directionDblTime = 0;
+        isBfKeycode = null;
+    }
 
     if (imomtal_time > 0 ){ 
         warp_sound.currentTime  = 0;
@@ -1221,7 +1235,6 @@ function player_move(){
         player_collision_yn = 'N'; 
     }
 
-
     //플레이어가 움직이면 필살기 충전은 초기환된다.
     //laser_charge_total_time = 0;
     //laser_charge_start_time = gameTime;
@@ -1231,24 +1244,30 @@ function player_move(){
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
+		//pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
+        //pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
+        pmovex = pmovex - Pspeed - power/50000;
+        pmovey = pmovey - Pspeed - power/50000;        
         playerImage = player_135;
 	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
-        pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
+		//pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
+        //pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
+        pmovex = pmovex + Pspeed + power/50000;
+        pmovey = pmovey - Pspeed - power/50000;
         playerImage = player_45;
 	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
+		//pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
+        //pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
+        pmovex = pmovex - Pspeed - power/50000;
+        pmovey = pmovey + Pspeed + power/50000;
         //playerImage = player;
         playerImage = player_135;
 	}else
@@ -1256,8 +1275,10 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
-        pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
+		//pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
+        //pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
+		pmovex = pmovex + Pspeed + power/50000;
+        pmovey = pmovey + Pspeed + power/50000;        
         //playerImage = player;
         playerImage = player_45;
 	}else {
@@ -1267,7 +1288,8 @@ function player_move(){
         if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
             //--pmovex;
             wayBefore = 'L'; 
-            pmovex = pmovex - 0.1 * Pspeed / 2 - power/50000;
+            //pmovex = pmovex - 0.1 * Pspeed / 2 - power/50000;
+            pmovex = pmovex - Pspeed - power/50000;
             playerImage = player_180;
 
         }
@@ -1276,23 +1298,29 @@ function player_move(){
         if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
             //++pmovex;
             wayBefore = 'R';
-            pmovex = pmovex + 0.1 * Pspeed / 2 + power/50000;
+            //pmovex = pmovex + 0.1 * Pspeed / 2 + power/50000;
+            pmovex = pmovex + Pspeed + power/50000;
             playerImage = player_360;
         }
 
         //상
         if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
             wayBefore = 'U';
-            pmovey = pmovey - 0.1 * Pspeed / 2 - power/50000;
+            //pmovey = pmovey - 0.1 * Pspeed / 2 - power/50000;
+            pmovey = pmovey - Pspeed - power/50000;
             playerImage = player_90;
         }
 
         //하
         if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
             wayBefore = 'D';
-            pmovey = pmovey + 0.1 * Pspeed / 2 + power/50000;
+            //pmovey = pmovey + 0.1 * Pspeed / 2 + power/50000;
+            pmovey = pmovey + Pspeed + power/50000;
             playerImage = player_270;
         }
+        
+        //이전키코드
+        if(isKeyCode) isBfKeycode = isKeyCode;
 
     }
 
@@ -2657,7 +2685,8 @@ function game_background(){
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
 	//back_distance = back_distance + 0.1; 
-    if(gameTime > 100 && gameTime < 2000){
+    //if(gameTime > 100 && gameTime < 666){
+        if(gameTime > 100){
 
         if (player_size > 140){
             
@@ -3054,7 +3083,7 @@ function game_background(){
 				back_distance2 = 0;
         }
 
-        // if (parseInt(gameTime/2000) % 2 == 0){
+        // if (parseInt(gameTime/666) % 2 == 0){
         //     Context3.fillStyle = 'darkyellow'; // 채우기 색 지정
         // }else {
         //     Context3.fillStyle = 'skyblue'; // 채우기 색 지정
@@ -3257,14 +3286,14 @@ function game_background(){
 
         //console.log("t",parseInt(gameTime/200) % 3);
 
-         if (parseInt(gameTime/2000) % 3 == 0){
+         if (parseInt(gameTime/666) % 3 == 0){
         //    // cityImage = city01Image;
 
             Context3.closePath();
             Context3.fillStyle="#40608E";
             Context3.globalAlpha = 0.2;
             Context3.fill();
-        }else if (parseInt(gameTime/2000) % 3 == 1){
+        }else if (parseInt(gameTime/666) % 3 == 1){
             // cityImage = city02Image;
 
              Context3.closePath();
@@ -3304,7 +3333,7 @@ function game_background(){
          
         //시간에 따른 지면 맵 변경(1초마다 한단계씩 밀리도록 한다.)
         //if (gameTime > 5000){
-        if (parseInt(gameTime/2000) % 2 == 0){
+        if (parseInt(gameTime/666) % 2 == 0){
             city01Image = city01Image_day;
             city02Image = city02Image_day;
             city03Image = city03Image_day;
@@ -4078,7 +4107,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
          Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
          Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-         playerImage = explosionImage01;
+         playerImage = explosionImage01;button
          player_warp = explosionImage01;
 
         //alert(player_cnt);
@@ -4209,7 +4238,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 38;
         strKeyEventValue = "ArrowUp";
         wayBefore = 'U';
-		Context.stroke(directonUp);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonUp);    //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 down
@@ -4220,7 +4249,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 40;
         strKeyEventValue = "ArrowDown";
         wayBefore = 'D';
-		Context.stroke(directonDown); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonDown); //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 left
@@ -4231,7 +4260,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 37;
         strKeyEventValue = "ArrowLeft";
         wayBefore = 'L';
-		Context.stroke(directonLeft);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonLeft);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 right
@@ -4242,14 +4271,14 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 39;
         strKeyEventValue = "ArrowRight";
         wayBefore = 'R';
-		Context.stroke(directonRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonRight);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 upLeft
 	if(Context.isPointInPath(directonUpLeft, x,  y)) {
 		isKeyCode = 36;
         wayBefore = 'LU';
-		Context.stroke(directonUpLeft);    //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonUpLeft);    //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 UpRight
@@ -4257,7 +4286,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 33;
 		//strKeyEventValue = "RU";
         wayBefore = 'RU';
-		Context.stroke(directonUpRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonUpRight);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
     }
 
     //방향 downLeft
@@ -4265,7 +4294,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 35;
 		//strKeyEventValue = "LD";
         wayBefore = 'LD';
-		Context.stroke(directonDownLeft); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonDownLeft); //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 downRight
@@ -4273,7 +4302,7 @@ function clickCanvas(event, as_gb) {
 		isKeyCode = 34;
 		//strKeyEventValue = "RD";
         wayBefore = 'RD';
-		Context.stroke(directonDownRight);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonDownRight);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 	}
 
     //방향 중앙 정지
@@ -4282,7 +4311,7 @@ function clickCanvas(event, as_gb) {
         strKeyEventValue = "";
         pmovex = 0;
         pmovey = 0;
-		Context.stroke(directonMiddle);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(directonMiddle);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
     } 
  
     //레이져 버튼 터치
@@ -4332,7 +4361,7 @@ function clickCanvas(event, as_gb) {
     //warp(공간 이동)
 	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) { 
 
-		Context.stroke(button02);   //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+		Context.stroke(button02);   //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 
         warp_sound.currentTime  = 0;
         warp_sound.play();
@@ -4345,32 +4374,59 @@ function clickCanvas(event, as_gb) {
 
 			//warp_sound.play();
 
-			if (isKeyCode == 38 || wayBefore == "U"){
+			// if (isKeyCode == 38 || wayBefore == "U"){
+			// 	playerY = playerY - i;
+			// }else if (isKeyCode == 40 || wayBefore == "D"){
+			// 	playerY = playerY + i;
+			// }else if (isKeyCode == 39 || wayBefore == "R"){
+			// 	playerX = playerX + i;
+			// }else if(isKeyCode == 37 || wayBefore == "L"){
+			// 	playerX = playerX - i;
+            // }else if (isKeyCode == 36 || wayBefore == "LU"){
+            //     playerX = playerX - i;
+            //     playerY = playerY - i;
+            // }else if (isKeyCode == 33 || wayBefore == "RU"){
+            //     playerX = playerX + i;
+            //     playerY = playerY - i;
+            // }else if(isKeyCode == 35 || wayBefore == "LD"){
+            //     playerX = playerX - i;
+            //     playerY = playerY + i;
+            // }else if (isKeyCode == 34 || wayBefore == "RD"){
+            //     playerX = playerX + i;
+            //     playerY = playerY + i;
+            // }else {
+			// 	playerX = playerX;
+			// 	playerY = playerY;
+			// 	wayBefore = "";
+			// }
+            //playerY = playerY - i;
+
+
+			if (isKeyCode == 38){
 				playerY = playerY - i;
-			}else if (isKeyCode == 40 || wayBefore == "D"){
+			}else if (isKeyCode == 40){
 				playerY = playerY + i;
-			}else if (isKeyCode == 39 || wayBefore == "R"){
+			}else if (isKeyCode == 39){
 				playerX = playerX + i;
-			}else if(isKeyCode == 37 || wayBefore == "L"){
+			}else if(isKeyCode == 37){
 				playerX = playerX - i;
-            }else if (isKeyCode == 36 || wayBefore == "LU"){
+            }else if (isKeyCode == 36){
                 playerX = playerX - i;
                 playerY = playerY - i;
-            }else if (isKeyCode == 33 || wayBefore == "RU"){
+            }else if (isKeyCode == 33){
                 playerX = playerX + i;
                 playerY = playerY - i;
-            }else if(isKeyCode == 35 || wayBefore == "LD"){
+            }else if(isKeyCode == 35){
                 playerX = playerX - i;
                 playerY = playerY + i;
-            }else if (isKeyCode == 34 || wayBefore == "RD"){
+            }else if (isKeyCode == 34){
                 playerX = playerX + i;
                 playerY = playerY + i;
             }else {
 				playerX = playerX;
 				playerY = playerY;
 				wayBefore = "";
-			}
-            //playerY = playerY - i;
+			}            
 		}
 
 		isKeyDown = [];
@@ -4400,7 +4456,7 @@ function clickCanvas(event, as_gb) {
         if(Context.isPointInPath(button_play, x,  y)) {
             isKeyCode = 13;
             //strKeyEventValue = "LD";
-            Context.stroke(button_play); //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            Context.stroke(button_play); //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
             gameEnd(isKeyCode);
             isKeyDown = [];
             isKeyCode = null;
@@ -4410,7 +4466,7 @@ function clickCanvas(event, as_gb) {
         if(Context.isPointInPath(button_end, x,  y)) {
             isKeyCode = 27;
             //strKeyEventValue = "RD";
-            Context.stroke(button_end);  //키 입력 반을체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
+            Context.stroke(button_end);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
             gameEnd(isKeyCode);
             isKeyDown = [];
             isKeyCode = null;
@@ -6101,8 +6157,10 @@ function onkeyDown(e, as_strKeyEventValue){
     } 
 
     //스킬체인지
-    if (strKeyEventValue == "alt"  || isKeyCode == 18){  
-
+    //alert(strKeyEventValue + "," + isKeyCode)
+    //if (strKeyEventValue == "Alt"  || isKeyCode == 18){  
+    if (strKeyEventValue == "shift"  || isKeyCode == 16){  
+        // alert("t")
         //레이져 필살기 사운드
 
         //appear_sound.currentTime = 2;
@@ -6129,6 +6187,17 @@ function onkeyUp(e){
     strKeyEventValue = "None";
 
 }
+
+
+////////////////// 키 더블클릭 이벤트 처리(데스크 탑 이용시)
+// function onDblkeyDown(e){
+//     alert("dbl");
+//     isKeyCode == 17;
+
+//     strKeyEventValue = e.key;
+//     strKeyEventType = e.type;
+//     strKeyEventValue = "None";
+// }
 
 //마우스 우클릭, 드래그, 선택 방지
 $(document).on("contextmenu dragstart selectstart",function(e){

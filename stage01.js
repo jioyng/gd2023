@@ -817,10 +817,14 @@ var enemy_array = [];
 var weappon_upDown = 1;
 var weappon_leftRight = 1;
 var weappon_tmp_random = Math.floor(Math.random() * 7)/10;    //플레이어 위치에 따른 미사일 Y축 이동 좌표
- 
+//첫번째 보스 
 var enemy_boss_01_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
 var enemy_boss_01_index = 0;   //적 보스 고유번호
 var enemy_boss_01_yn = 'N';    //보스 여부
+//두번째 보스
+var enemy_boss_02_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
+var enemy_boss_02_index = 0;   //적 보스 고유번호
+var enemy_boss_02_yn = 'N';    //보스 여부
 //적 경계 진입 여부
 var enemy_border_over_yn = 'N';
 
@@ -1020,6 +1024,10 @@ function game_init(){
     enemy_boss_01_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
     enemy_boss_01_index = 0;   //적 보스 고유번호
     enemy_boss_01_yn = 'N';    //보스 여부
+
+    enemy_boss_02_status = 0;   //적 보스 상태(0:대기, 1:출몰, 2:파괴)
+    enemy_boss_02_index = 0;   //적 보스 고유번호
+    enemy_boss_02_yn = 'N';    //보스 여부
 
     //전함01 초기화
     ship01x = ini_ship01x;
@@ -1610,6 +1618,33 @@ function laser_move(){
 ////////////////// 적 1th
 function create_enemy(index){
     //보스 출현중에는 수행하지 않는다.
+    if (enemy_boss_02_status == 1) {
+        //alert("두번째 보스 생성(enemy_boss_02_status):"+enemy_boss_02_status)
+        enemy_cnt = 0; 
+    }else { 
+        //this.enemy_index = index;
+        //적의 인덱스가 없는경우 전체 새로 생성.
+        if (index == null || index == ""  || index == undefined){
+            //alert("1")
+            for (var i=0;i<=enemy_cnt;i++){
+
+                enemy_array[i] = new enemy_init(i);
+                //enemy.enemy_index = i;
+                enemy_array[i].weappon_create();
+                enemy_array[i].weappon_init();
+            }
+        //인덱스가 기존에 있는거나 추가된경우 해당 인덱스건에 대하여만 새로 생성.
+        }else {
+
+            enemy_array[index] = new enemy_init(index);
+            //enemy.enemy_index = i;
+            enemy_array[index].weappon_create();
+            enemy_array[index].weappon_init();
+
+        }
+    } 
+    
+    
     if (enemy_boss_01_status == 1) {
         
         //보스 출현시 총알의 시작위치는 보스 출현 위치
@@ -1661,22 +1696,29 @@ function enemy_init(index){
     //적 고유 index
     this.enemy_index = index;
  
-    // //1000이 넘고 첫번째 보스가 폭파된경우 두번째 보스 출현
-    // if(gameTime > 1500 && enemy_boss_01_status == 2){
-
-    //     //딱 한번만 수행
-    //     enemy_boss_01_status = 1; 
-    //     enemy_boss_01_index = index;
-    //     this.enemy_type = 5;    
+    //두번째 보스 출현시간  
+    //if(gameTime > 1000 && enemy_boss_01_status == 2 && enemy_boss_02_status == 0){
+    if(gameTime > 2600 && enemy_boss_02_status == 0){
+ 
+        //딱 한번만 수행
+        enemy_boss_02_status = 1; 
+        enemy_boss_02_index = index;
+        this.enemy_type = 3;    
         
-    //     //목소리 재생모드일경우만 실행  
-    //     if (ls_VColor == "yellow") {
-    //         crash01_sound.currentTime = 4;
-    //         vboss_sound.play(); 
-    //     }
-    // }else 
-    
-    if(gameTime > 4000 && enemy_boss_01_status == 0){
+        //목소리 재생모드일경우만 실행  
+        if (ls_VColor == "yellow") {
+            crash01_sound.currentTime = 4;
+            vboss_sound.play();
+            //대화
+            Context2.globalAlpha = 1;
+            Context2.font  = "30px Arial";  
+            Context2.fillStyle = '#ffffff';
+            Context2.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);             
+        } 
+        
+        //alert("두번째 보스 출현(enemy_boss_02_status):"+enemy_boss_02_status )
+    //첫번째 보스 출현시간    
+    }else if(gameTime > 2550 && enemy_boss_01_status == 0){
 
         
         enemy_boss_01_status = 1; 
@@ -1718,16 +1760,24 @@ function enemy_init(index){
     }
 
     if (this.enemy_type == 3){
-        this.enemy_boss_01_yn = 'Y';    //보스 여부
-    }else {
-        this.enemy_boss_01_yn = 'N';    //보스 여부   
+        enemy_boss_01_status==1?this.enemy_boss_01_yn ='Y':this.enemy_boss_01_yn='N';    //보스 여부
+        enemy_boss_02_status==1?this.enemy_boss_02_yn ='Y':this.enemy_boss_02_yn='N';    //보스 여부
+        //this.enemy_boss_01_yn = 'Y';    //보스 여부 
+        //this.enemy_boss_02_yn = 'Y';    //보스 여부   
     }
-
-    //이미 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
+    
+//     else { 
+//         this.enemy_boss_01_yn = 'N';    //보스 여부 
+//         this.enemy_boss_02_yn = 'N';    //보스 여부   
+//    }
+ 
+    
+    //이미 첫번째 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
     if(enemy_boss_01_status >= 2){ 
         enemy_boss_01_status = 2;
         //enemy_boss_01_status = 0; 
         enemy_boss_01_index = 0; 
+        //this.enemy_boss_01_yn = 'N';
 
         //this.enemy_type = Math.floor(Math.random() * 3) + 1;
         //적 04, 06출현
@@ -1743,6 +1793,28 @@ function enemy_init(index){
 
         //밑에 전함도 나타난다. 
     } 
+
+    //이미 두번째 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
+    if(enemy_boss_02_status >= 2){ 
+        enemy_boss_02_status = 2;
+        //enemy_boss_01_status = 0; 
+        enemy_boss_02_index = 0; 
+        //this.enemy_boss_02_yn = 'N';
+
+        //this.enemy_type = Math.floor(Math.random() * 3) + 1;
+        //적 04, 06출현
+        if (parseInt(gameTime/100 % 4) == 0){
+            this.enemy_type = 1;
+        }else if (parseInt(gameTime/100 % 4) == 1){
+            this.enemy_type = 2; 
+        }else if (parseInt(gameTime/100 % 4) == 2){
+            this.enemy_type = 7; 
+        }else {
+            this.enemy_type = 8; 
+        } 
+
+        //밑에 전함도 나타난다. 
+    }     
 
     //무(없음)이미지
     //this.noneImage = new Image();
@@ -2059,7 +2131,7 @@ function enemy_init(index){
 
     //보스 특징
     }else if (this.enemy_type == 3){
-
+ 
     //this.Edistance = Math.sqrt(Math.pow(Math.abs(parseInt(((theCanvas.clientWidth / 2  + cityEnd_x) - this.enemyx))),2) + Math.pow(Math.abs(parseInt(theCanvas.clientHeight / 4 - this.enemyy)),2));
  
         //보스 초기 출현 좌표
@@ -2308,20 +2380,29 @@ function enemy_collision(){
                 //적 레이져 폭파중 여부
                 this.enemy_collision_yn = 'Y';
 
-                //보스 폭파
+                //첫번째 ㄴ보스 폭파
                 //적 보스가 파괴되면 계속해서 일반 적들 추가 생성(한번은 초기화)
                 //if (this.enemy_boss_01_yn == 'Y'){
                 if (this.enemy_type == 3 && enemy_boss_01_status == 1){
                     enemy_boss_01_status = 2;          
                     enemy_boss_01_index = 0;
-                }
-
-                //보스 출현시에는 일반적들은 안나온다.
+                } 
+                //첫번째 보스 출현시에는 일반적들은 안나온다.
                 if (enemy_boss_01_status != 1){
                     //폭파후 적 출현
                     setTimeout(this.create_enemy,this.enemy_dealy_time,this.enemy_index);   //넘겨줄 인수는 지연시간 뒤에다가 넘겨준다.
                 }
-
+                //두번째 보스 폭파
+                //적 보스가 파괴되면 계속해서 일반 적들 추가 생성(한번은 초기화)
+                if (this.enemy_type == 3 && enemy_boss_02_status == 1){
+                    enemy_boss_02_status = 2;          
+                    enemy_boss_02_index = 0;
+                } 
+                //두번째 보스 출현시에는 일반적들은 안나온다.
+                //if (enemy_boss_02_status != 1){
+                    //폭파후 적 출현
+                //    setTimeout(this.create_enemy,this.enemy_dealy_time,this.enemy_index);   //넘겨줄 인수는 지연시간 뒤에다가 넘겨준다.
+                //}                
              }
 
         }
@@ -2956,6 +3037,10 @@ function game_background(){
     //console.log("playerY/100",playerY/100);
 
     if (enemy_boss_01_status == 1){
+        Context.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
+    }
+
+    if (enemy_boss_02_status == 1){
         Context.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
     }
     //for (var i=1;i<=5;i++){
@@ -3926,6 +4011,30 @@ function game_background(){
         } 
         
     }
+
+
+     //두번째 보스가 파괴되고 나면 아래에서 전함이 나온다.
+     if (enemy_boss_02_status == 2){
+
+        Context3.globalAlpha = 1;
+
+        if (l >= 500){
+
+            m = m + 0.2;
+
+            if (m<=300){
+                Context3.drawImage(enemy05Image,600 - l + m,(theCanvas.clientHeight + 20) -l  + m,  1600 - l  + m ,800 - l  + Math.random()*2);
+            }else {
+                m = 0;
+                l = -200;
+            };
+
+        }else {
+            l = l + 0.6;
+            Context3.drawImage(enemy05Image,600 - l,(theCanvas.clientHeight + 20) -l,  1600 - l ,800 - l   + Math.random()*2);
+        } 
+        
+    }   
             
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';
@@ -4525,7 +4634,7 @@ function weappon_init(){
      //weapponX = weapponX - 40;
 
     //적 총알 사운드
-    if (this.enemy_type == 3 && enemy_boss_01_status == 1){ 
+    if (this.enemy_type == 3 && (enemy_boss_01_status == 1 || enemy_boss_01_status == 2)){ 
 
         //audio.pause();
 

@@ -1598,8 +1598,10 @@ function laser_move(){
                 for (var i=0;i<100;i++){ 
                      
                      //레이져필살기의 크기는 플레이어의 1/3 크기만큼
-                    l_width = playerWidth/10 + Pdistance/20;   
-                    l_size = playerHeight/10 + Pdistance/20; 
+                    // l_width = playerWidth/10 + Pdistance/20;   
+                    // l_size = playerHeight/10 + Pdistance/20; 
+                    l_width = (playerWidth*playerHeight)/180;   
+                    l_size = (playerWidth*playerHeight)/180; 
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
@@ -1772,7 +1774,7 @@ function enemy_init(index){
 //    }
  
     
-    //이미 첫번째 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
+    //이미 첫번째 보스가 출현하여 한번 폭파된경우는 생성되지 않게 한다. 
     if(enemy_boss_01_status >= 2){ 
         enemy_boss_01_status = 2;
         //enemy_boss_01_status = 0; 
@@ -1794,7 +1796,7 @@ function enemy_init(index){
         //밑에 전함도 나타난다. 
     } 
 
-    //이미 두번째 보스가 출현하여 한번 폭파된경우는 또 보스가 생성되지 않게 한다. 
+    //이미 두번째 보스가 출현하여 한번 폭파된경우는 생성되지 않게 한다. 
     if(enemy_boss_02_status >= 2){ 
         enemy_boss_02_status = 2;
         //enemy_boss_01_status = 0; 
@@ -2380,12 +2382,13 @@ function enemy_collision(){
                 //적 레이져 폭파중 여부
                 this.enemy_collision_yn = 'Y';
 
-                //첫번째 ㄴ보스 폭파
+                //첫번째 보스 폭파
                 //적 보스가 파괴되면 계속해서 일반 적들 추가 생성(한번은 초기화)
                 //if (this.enemy_boss_01_yn == 'Y'){
                 if (this.enemy_type == 3 && enemy_boss_01_status == 1){
                     enemy_boss_01_status = 2;          
                     enemy_boss_01_index = 0;
+                    return;
                 } 
                 //첫번째 보스 출현시에는 일반적들은 안나온다.
                 if (enemy_boss_01_status != 1){
@@ -2397,6 +2400,7 @@ function enemy_collision(){
                 if (this.enemy_type == 3 && enemy_boss_02_status == 1){
                     enemy_boss_02_status = 2;          
                     enemy_boss_02_index = 0;
+                    return;
                 } 
                 //두번째 보스 출현시에는 일반적들은 안나온다.
                 //if (enemy_boss_02_status != 1){

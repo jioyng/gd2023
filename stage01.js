@@ -1660,7 +1660,8 @@ function create_enemy(index){
     }else { 
         //this.enemy_index = index;
         //적의 인덱스가 없는경우 전체 새로 생성.
-        if (index == null || index == ""  || index == undefined){
+        //if (index == null || index == ""  || index == undefined){
+        if (!(index)){    
             //alert("1")
             for (var i=0;i<=enemy_cnt;i++){
 
@@ -1703,8 +1704,15 @@ function enemy_init(index){
     if(gameTime > 2600 && enemy_boss_02_status == 0){
  
         //딱 한번만 수행
-        enemy_boss_02_status = 1; 
-        enemy_boss_02_index = index;
+        enemy_boss_02_status = 1;
+        
+        //보스 index 중복 방지
+        if (enemy_boss_01_index == enemy_boss_02_index){
+            enemy_boss_02_index = enemy_boss_01_index + 1;
+        }else {
+            enemy_boss_02_index = index;
+        }
+
         this.enemy_type = 3;    
         
         //목소리 재생모드일경우만 실행  

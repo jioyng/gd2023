@@ -148,7 +148,7 @@ button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 40;  //60프레임
+var ini_gameFrame = 60;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -1514,8 +1514,9 @@ function laser_move(){
              
             //ld = Math.floor(Pdistance/10);
             //l_size = 100;
-            l_width = 10;
-            for (i=0;i<=40;i++){
+            l_width = 6;
+            l_size = 6;
+            for (i=0;i<=20;i++){
                 //l_width = l_width - 0.1;
                 //플레이어 거리에 따른 레이져 크기 변경
                 //l_size = 10;
@@ -1523,7 +1524,9 @@ function laser_move(){
 
                 //플레이어 위치에 따른 총알 방향 변경
                 //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
-                if (playerY >=  cityEnd_y){ 
+                //if (playerY >=  cityEnd_y){
+                if (playerY >=  theCanvas.clientHeight / 2){    
+                
                     lmovey = lmovey - (playerY - cityEnd_y)/400; 
 
                 //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
@@ -1532,20 +1535,20 @@ function laser_move(){
                 } 
 
                 if(playerX >=  (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50)){ 
-                    lmovex = lmovex  + ((theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50) - playerX)/700;
+                    lmovex = lmovex  + ((theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50) - playerX)/400;
                 //타켓이 플레이어 좌측
                 }else { 
-                    lmovex = lmovex - (playerX - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50))/700;
+                    lmovex = lmovex - (playerX - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50))/400;
                 }
 
       
     
                 //alert(lmovex+","+lmovey+","+l_size) 
-                Context.drawImage(engin03Image,lmovex,lmovey,l_width,l_size);
+                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
             }    
                 
         }else if (skill == 2){  
-            for (i=0;i<=120;i++){   
+            for (i=0;i<=100;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
                     l_size = l_size*(Pdistance/200); 
@@ -1571,8 +1574,8 @@ function laser_move(){
                      //레이져필살기의 크기는 플레이어의 1/3 크기만큼
                     // l_width = playerWidth/10 + Pdistance/20;   
                     // l_size = playerHeight/10 + Pdistance/20; 
-                    l_width = (playerWidth*playerHeight)/180;   
-                    l_size = (playerWidth*playerHeight)/180; 
+                    l_width = (playerWidth*playerHeight)/150;   
+                    l_size = (playerWidth*playerHeight)/150; 
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
@@ -4685,7 +4688,7 @@ function weappon_move(){
                 // this.weapponImage.src = weappon01Image.src;
                 
                 this.weappon_size = this.weappon_size + 4;
-                this.weappon_speed = 4;
+                this.weappon_speed = 2;
 
                 this.weapponArray[i].bsize = this.weappon_size + 4;
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weappon_speed + 10; //<= 총알 속도의 핵심(his.weappon_upDown / 4).
@@ -4865,7 +4868,7 @@ function weappon_move(){
                 //this.weapponImage.src = weappon01Image.src;
                 
                 this.weappon_size = this.weappon_size - 4;
-                this.weappon_speed = 4;
+                this.weappon_speed = 2;
 
                 this.weapponArray[i].bsize = this.weappon_size - 4;
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy - this.weappon_speed - 10; //<= 총알 속도의 핵심(his.weappon_upDown / 4).
@@ -4972,7 +4975,7 @@ function weappon_move(){
                 this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*15);
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*8);
                 //3.속도가 느리다.
-                this.weappon_speed = 1/1.5;
+                this.weappon_speed = 1/3;
 
                 //4.플레이어 위치에 따른 미사일 방향 변경된다.
                 if (playerY >= this.enemyy + this.enemyh/2 + theCanvas.clientHeight / 6){
@@ -5151,7 +5154,7 @@ function weappon_move(){
                 this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*12) - Math.floor(Math.random()*18);
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*6) - Math.floor(Math.random()*14);
                 //3.속도가 느리다.
-                this.weappon_speed = 1/1.2;
+                this.weappon_speed = 1/2;
 
                 //4.플레이어 위치에 따른 미사일 방향 변경된다.
                 if (playerY >= this.enemyy + this.enemyh/2 + theCanvas.clientHeight / 6){
@@ -5224,7 +5227,7 @@ function weappon_move(){
                     this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*15);
                     this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*8);
                     //3.속도가 느리다.
-                    this.weappon_speed = 1/1.5;
+                    this.weappon_speed = 1/2;
     
                     //4.플레이어 위치에 따른 미사일 방향 변경된다.
                     if (playerY >= this.enemyy + this.enemyh/2 + theCanvas.clientHeight / 6){

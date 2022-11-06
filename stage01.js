@@ -1522,12 +1522,32 @@ function laser_move(){
              
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
-            if (wayBefore=='L') xx--; 
-            if (wayBefore=='R') xx++; 
-            if (wayBefore=='U') yy--; 
-            if (wayBefore=='D') yy++; 
+            if (wayBefore=='L') xx = xx - 3; 
+            if (wayBefore=='R') xx = xx + 3;
+            if (wayBefore=='U') yy = yy - 3; 
+            if (wayBefore=='D') yy = yy + 3;
+            if (wayBefore=='LU') {
+                xx = xx - 3;
+                yy = yy - 3;
+            }
+            if (wayBefore=='RU') {
+                xx = xx + 3;
+                yy = yy - 3;
+            }
+            if (wayBefore=='LD') {
+                xx = xx - 3;
+                yy = yy + 3;
+            }
+            if (wayBefore=='LU') {
+                xx = xx - 3;
+                yy = yy - 3;
+            }                                    
+            if (isKeyCode == "16" || wayBefore==null) {
+                xx = 0;
+                yy = 0;
+            }              
 
-            console.log("xx,yy->",xx+","+yy);
+            //console.log("xx,yy->",xx+","+yy);
             //표적(관역)이 보여진다.
             Context4.beginPath();
             Context4.arc(theCanvas.clientWidth / 2 + xx  , theCanvas.clientHeight / 4 + yy, 60, 0, Math.PI * 2);

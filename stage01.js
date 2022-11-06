@@ -1180,7 +1180,7 @@ function player_init(){
     power = 1;
     //무적시간
     imomtal_time = ini_imomtal_time;
-    
+    //조준관역 좌표도 기본으로
     xxAim = 0;
     yyAim = 0;
 }
@@ -1347,8 +1347,8 @@ function player_move(){
         warp_sound.play();
 
         //조준관역 좌표도 기본으로
-        xxAim = 0;
-        yyAim = 0;  
+        //xxAim = 0;
+        //yyAim = 0;  
        
         //와프 이미지로 변경
         for (var i=0;i<=warp_distance + power/100;i++){
@@ -1545,8 +1545,7 @@ function laser_move(){
             if (wayBefore=='RD') {
                 xxAim = xxAim + 3;
                 yyAim = yyAim + 3;
-            }                                    
-            
+            }                 
             if (wayBefore==null) {
                 xxAim = 0;
                 yyAim = 0;
@@ -1559,9 +1558,29 @@ function laser_move(){
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 50, 0, Math.PI * 2);
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 5, 0, Math.PI * 2);
             Context4.lineWidth = "2"; 
-            Context4.strokeStyle = "#008000";
-            Context4.fillStyle = "#008000";
+            // Context4.strokeStyle = "#008000";
+            // Context4.fillStyle = "#008000";
+            Context4.strokeStyle = "white";
+            Context4.fillStyle = "white";
             Context4.stroke(); 
+
+            if((theCanvas.clientWidth / 2 + xxAim) > maxX){
+                xxAim = 0;
+                yyAim = 0;
+            } 
+            if((theCanvas.clientWidth / 2 + xxAim) < 0){
+                xxAim = 0;
+                yyAim = 0;
+            }  
+            if(( theCanvas.clientHeight / 4 + yyAim) > maxY){
+                xxAim = 0;
+                yyAim = 0;
+            }             
+            if(( theCanvas.clientHeight / 4 + yyAim) < 0){
+                xxAim = 0;
+                yyAim = 0;
+            }            
+           
 
             //ld = Math.floor(Pdistance/10);
             //l_size = 100;
@@ -4544,8 +4563,8 @@ function clickCanvas(event, as_gb) {
         warp_sound.play();
 
         //조준관역 좌표도 기본으로
-        xxAim = 0;
-        yyAim = 0;  
+        //xxAim = 0;
+        //yyAim = 0;  
 
 		//isKeyCode = 17;
 		//Warp 이미지로 변경

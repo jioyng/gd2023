@@ -1566,18 +1566,18 @@ function laser_move(){
 
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
                 xxAim = 0;
-                yyAim = 0;
+                //yyAim = 0;
             } 
             if((theCanvas.clientWidth / 2 + xxAim) < 0){
                 xxAim = 0;
-                yyAim = 0;
+                //yyAim = 0;
             }  
             if(( theCanvas.clientHeight / 4 + yyAim) > maxY){
-                xxAim = 0;
+                //xxAim = 0;
                 yyAim = 0;
             }             
             if(( theCanvas.clientHeight / 4 + yyAim) < 0){
-                xxAim = 0;
+                //xxAim = 0;
                 yyAim = 0;
             }            
            

@@ -152,7 +152,7 @@ button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 60;  //60프레임
+var ini_gameFrame = 40;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -1526,27 +1526,27 @@ function laser_move(){
              
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
-            if (wayBefore=='L') xxAim = xxAim - 3; 
-            if (wayBefore=='R') xxAim = xxAim + 3;
-            if (wayBefore=='U') yyAim = yyAim - 3; 
-            if (wayBefore=='D') yyAim = yyAim + 3;
-            if (wayBefore=='LU') {
+            if (wayBefore=='L'){
+                xxAim = xxAim - 3; 
+            }else if (wayBefore=='R'){
+                xxAim = xxAim + 3;
+            }else if (wayBefore=='U'){
+                yyAim = yyAim - 3; 
+            }else if (wayBefore=='D'){
+                yyAim = yyAim + 3;
+            }else if (wayBefore=='LU') {
                 xxAim = xxAim - 3;
                 yyAim = yyAim - 3;
-            }
-            if (wayBefore=='RU') {
+            }else if (wayBefore=='RU') {
                 xxAim = xxAim + 3;
                 yyAim = yyAim - 3;
-            }
-            if (wayBefore=='LD') {
+            }else if (wayBefore=='LD') {
                 xxAim = xxAim - 3;
                 yyAim = yyAim + 3;
-            }
-            if (wayBefore=='RD') {
+            }else if (wayBefore=='RD') {
                 xxAim = xxAim + 3;
                 yyAim = yyAim + 3;
-            }                 
-            if (wayBefore==null) {
+            }else {
                 xxAim = 0;
                 yyAim = 0;
             }              
@@ -1566,18 +1566,18 @@ function laser_move(){
 
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
                 xxAim = 0;
-                //yyAim = 0;
+                yyAim = 0;
             } 
             if((theCanvas.clientWidth / 2 + xxAim) < 0){
                 xxAim = 0;
-                //yyAim = 0;
+                yyAim = 0;
             }  
             if(( theCanvas.clientHeight / 4 + yyAim) > maxY){
-                //xxAim = 0;
+                xxAim = 0;
                 yyAim = 0;
             }             
             if(( theCanvas.clientHeight / 4 + yyAim) < 0){
-                //xxAim = 0;
+                xxAim = 0;
                 yyAim = 0;
             }            
            
@@ -1601,7 +1601,7 @@ function laser_move(){
 
                 //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
                 }else { 
-                    lmovey = lmovey + (theCanvas.clientHeight/4 - yyAim - playerY)/400;               
+                    lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
                 } 
 
                 if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 

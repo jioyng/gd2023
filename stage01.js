@@ -1347,8 +1347,8 @@ function player_move(){
         warp_sound.play();
 
         //조준관역 좌표도 기본으로
-        //xxAim = 0;
-        //yyAim = 0;  
+        xxAim = 0;
+        yyAim = 0;  
        
         //와프 이미지로 변경
         for (var i=0;i<=warp_distance + power/100;i++){
@@ -4563,8 +4563,8 @@ function clickCanvas(event, as_gb) {
         warp_sound.play();
 
         //조준관역 좌표도 기본으로
-        //xxAim = 0;
-        //yyAim = 0;  
+        xxAim = 0;
+        yyAim = 0;  
 
 		//isKeyCode = 17;
 		//Warp 이미지로 변경

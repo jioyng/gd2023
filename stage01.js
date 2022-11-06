@@ -743,9 +743,11 @@ var enemy_size = 1;
 var enemy_speed = 1;
 
 //적 초기 위치
-var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+//var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100); //시작  x
+//var ini_enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
+var ini_enemyx = parseInt(theCanvas.clientWidth / 2  + cityEnd_x) + Math.floor(Math.random() * 30) - Math.floor(Math.random() * 20); //시작  x
 var ini_enemyy = parseInt(theCanvas.clientHeight / 4 + cityEnd_y) + Math.floor(Math.random() * 50) - Math.floor(Math.random() * 30); //시작 y
- 
+
 //적 이동위치
 var enemyxx = 0;
 var enemyyy = 0;
@@ -2152,11 +2154,12 @@ function enemy_init(index){
         this.weappon_size = weappon_size;
 
         //적 미사일 속도
-        this.weappon_speed = weappon_speed + 0.1;
+        this.weappon_speed = weappon_speed * 0.6 + 0.1;
 
         //적 동시 미사일 발사수는 랜덤하게
         this.weappon_cnt = Math.floor(Math.random() * 10) + 20;
-        this.max_weappon_cnt = 30; 
+        //this.max_weappon_cnt = 30;
+        this.max_weappon_cnt = 26; 
 
         this.ini_enemy_life = 100;
         this.enemy_life = this.ini_enemy_life;
@@ -4712,7 +4715,7 @@ function weappon_move(){
  
 
             //미사일 화면 이탈시 또는 미사일이 너무 커지면
-            if (this.weapponArray[i].bsize >= 60){
+            if (this.weapponArray[i].bsize >= 50){
                
                 this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                 this.weappon_size = this.weappon_size - 0.1;
@@ -4721,7 +4724,7 @@ function weappon_move(){
   
 
             //레이져가 플레이어보다 커지면
-            if (this.weapponArray[i].bsize >= playerHeight/3){
+            if (this.weapponArray[i].bsize >= playerHeight/4){
               
                 this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                 this.weappon_size = this.weappon_size - 0.1;

@@ -32,7 +32,7 @@ var ls_height = window.innerHeight;	        	//터치 드래그시 상단 주소
 
 var docV = document.documentElement;
 
-//윈도우 리사이징 호출
+//윈도우 리사이징 호출BtnaimX
 window.addEventListener("resize",  fit_resize);
 
 //게임 로드시 켐퍼스 리사이징 조정
@@ -44,6 +44,10 @@ var Context = theCanvas.getContext("2d");
 var Context2 = theCanvas.getContext("2d");
 //게임배경 컨텍스트(게임 배경(우주 및 콜로니))
 var Context3 = theCanvas.getContext("2d");
+//게임 표적(관역)
+var Context4 = theCanvas.getContext("2d");
+var BtnaimX = 0;        
+var BtnaimY = 0;
 
 //게임 화면 경계
 var minX = theCanvas.offsetLeft;
@@ -1514,11 +1518,24 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10); 
         if (skill == 1){  
              
+            //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
+
+            console.log(BtnaimX+","+BtnaimY);
+            //표적(관역)이 보여진다.
+            Context4.beginPath();
+            Context4.arc(theCanvas.clientWidth / 2 + pmovex  , theCanvas.clientHeight / 4 + pmovey, 60, 0, Math.PI * 2);
+            Context4.arc(theCanvas.clientWidth / 2 + pmovex  , theCanvas.clientHeight / 4 + pmovey, 50, 0, Math.PI * 2);
+            Context4.arc(theCanvas.clientWidth / 2 + pmovex  , theCanvas.clientHeight / 4 + pmovey , 5, 0, Math.PI * 2);
+            Context4.lineWidth = "2"; 
+            Context4.strokeStyle = "#008000";
+            Context4.fillStyle = "#008000";
+            Context4.stroke(); 
+
             //ld = Math.floor(Pdistance/10);
             //l_size = 100;
             l_width = 6;
             l_size = 6;
-            for (i=0;i<=20;i++){
+            for (i=0;i<=30;i++){
                 //l_width = l_width - 0.1;
                 //플레이어 거리에 따른 레이져 크기 변경
                 //l_size = 10;
@@ -1527,24 +1544,46 @@ function laser_move(){
                 //플레이어 위치에 따른 총알 방향 변경
                 //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
                 //if (playerY >=  cityEnd_y){
-                if (playerY >=  theCanvas.clientHeight / 2){    
+                if (playerY >=  theCanvas.clientHeight/4 + pmovey){    
                 
-                    lmovey = lmovey - (playerY - cityEnd_y)/400; 
+                    lmovey = lmovey - (playerY - theCanvas.clientHeight/4 + pmovey)/400; 
 
                 //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
                 }else { 
-                    lmovey = lmovey + (cityEnd_y - playerY)/400;               
+                    lmovey = lmovey + (theCanvas.clientHeight/4 + pmovey - playerY)/400;               
                 } 
 
-                if(playerX >=  (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50)){ 
-                    lmovex = lmovex  + ((theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50) - playerX)/400;
+                if(playerX >=  (theCanvas.clientWidth/2 + pmovex)){ 
+                    lmovex = lmovex  + (theCanvas.clientWidth/2 + pmovex - playerX)/400;
                 //타켓이 플레이어 좌측
                 }else { 
-                    lmovex = lmovex - (playerX - (theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50))/400;
+                    lmovex = lmovex - (playerX - theCanvas.clientWidth/2 + pmovex)/400;
+                } 
+    
+                //표적에 들어오면 총알을 작아진다.
+                if ((lmovex >= theCanvas.clientWidth/2 + pmovex - 40 && lmovex <= theCanvas.clientWidth/2 + pmovex + 40 ) 
+                    //&& (lmovey >= theCanvas.clientHeight/4 + 100 && lmovey <= theCanvas.clientWidth/4 - 100 )
+                ){
+                    //alert(l_width + "," +l_size );
+                    //l_width = 0;
+                    //l_size = 0;
+                    l_width = l_width - 0.1;
+                    l_size = l_size - 0.1;                  
+                    return;
                 }
 
-      
-    
+                //표적에 들어오면 총알을 작아진다.
+                if (lmovey <= theCanvas.clientHeight/4 + 40 && lmovey >= theCanvas.clientWidth/4 - 40 )
+                {
+                    //alert(l_width + "," +l_size );
+                    //l_width = 0;
+                    //l_size = 0;
+                    l_width = l_width - 0.1;
+                    l_size = l_size - 0.1;
+                     return;
+                }                
+       
+
                 //alert(lmovex+","+lmovey+","+l_size) 
                 Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
             }    
@@ -4421,6 +4460,9 @@ function clickCanvas(event, as_gb) {
 	if(Context.isPointInPath(button01, x,  y)) {
 
 		Context.stroke(button01);    //키 입력 반입체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여) 
+
+        BtnaimX = x;
+        BtnaimY = y;
 
         //공격 스킬구분에 따른 공격 레이져 초기변수
         if (skill == 1){   

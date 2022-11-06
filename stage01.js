@@ -1542,9 +1542,9 @@ function laser_move(){
                 xxAim = xxAim - 3;
                 yyAim = yyAim + 3;
             }
-            if (wayBefore=='LU') {
-                xxAim = xxAim - 3;
-                yyAim = yyAim - 3;
+            if (wayBefore=='RD') {
+                xxAim = xxAim + 3;
+                yyAim = yyAim + 3;
             }                                    
             
             if (wayBefore==null) {

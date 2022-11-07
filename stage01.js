@@ -1527,25 +1527,25 @@ function laser_move(){
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
             if (wayBefore=='L'){
-                xxAim = xxAim - 16; 
+                xxAim = xxAim - 6; 
             }else if (wayBefore=='R'){
-                xxAim = xxAim + 16;
+                xxAim = xxAim + 6;
             }else if (wayBefore=='U'){
-                yyAim = yyAim - 16; 
+                yyAim = yyAim - 6; 
             }else if (wayBefore=='D'){
-                yyAim = yyAim + 16;
+                yyAim = yyAim + 6;
             }else if (wayBefore=='LU') {
-                xxAim = xxAim - 16;
-                yyAim = yyAim - 16;
+                xxAim = xxAim - 6;
+                yyAim = yyAim - 6;
             }else if (wayBefore=='RU') {
-                xxAim = xxAim + 16;
-                yyAim = yyAim - 16;
+                xxAim = xxAim + 6;
+                yyAim = yyAim - 6;
             }else if (wayBefore=='LD') {
-                xxAim = xxAim - 16;
-                yyAim = yyAim + 16;
+                xxAim = xxAim - 6;
+                yyAim = yyAim + 6;
             }else if (wayBefore=='RD') {
-                xxAim = xxAim + 16;
-                yyAim = yyAim + 16;
+                xxAim = xxAim + 6;
+                yyAim = yyAim + 6;
             }else {
                 xxAim = 0;
                 yyAim = 0;

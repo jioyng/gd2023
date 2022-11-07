@@ -1527,25 +1527,25 @@ function laser_move(){
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
             if (wayBefore=='L'){
-                xxAim = xxAim - 6; 
+                xxAim = xxAim - 16; 
             }else if (wayBefore=='R'){
-                xxAim = xxAim + 6;
+                xxAim = xxAim + 16;
             }else if (wayBefore=='U'){
-                yyAim = yyAim - 6; 
+                yyAim = yyAim - 16; 
             }else if (wayBefore=='D'){
-                yyAim = yyAim + 6;
+                yyAim = yyAim + 16;
             }else if (wayBefore=='LU') {
-                xxAim = xxAim - 6;
-                yyAim = yyAim - 6;
+                xxAim = xxAim - 16;
+                yyAim = yyAim - 16;
             }else if (wayBefore=='RU') {
-                xxAim = xxAim + 6;
-                yyAim = yyAim - 6;
+                xxAim = xxAim + 16;
+                yyAim = yyAim - 16;
             }else if (wayBefore=='LD') {
-                xxAim = xxAim - 6;
-                yyAim = yyAim + 6;
+                xxAim = xxAim - 16;
+                yyAim = yyAim + 16;
             }else if (wayBefore=='RD') {
-                xxAim = xxAim + 6;
-                yyAim = yyAim + 6;
+                xxAim = xxAim + 16;
+                yyAim = yyAim + 16;
             }else {
                 xxAim = 0;
                 yyAim = 0;
@@ -1554,8 +1554,11 @@ function laser_move(){
             //console.log("xx,yy->",xx+","+yy);
             //표적(관역)이 보여진다.
             Context4.beginPath();
+            Context2.globalAlpha = 0.4;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80, 0, Math.PI * 2);
+            Context2.globalAlpha = 0.6;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 50, 0, Math.PI * 2);
+            Context2.globalAlpha = 0.8;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 5, 0, Math.PI * 2);
             Context4.lineWidth = "2"; 
             // Context4.strokeStyle = "#008000";
@@ -1566,22 +1569,21 @@ function laser_move(){
 
             //과녁이 경계밖으로 나가려고 하면
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
-                xxAim = xxAim - 200;
+                xxAim = xxAim - 20;
                 //yyAim = 0;
             } 
             if((theCanvas.clientWidth / 2 + xxAim) < 0){
-                xxAim = xxAim + 200;
+                xxAim = xxAim + 20;
                 //yyAim = 0;
             }  
             if(( theCanvas.clientHeight / 4 + yyAim) > maxY){
                 //xxAim = 0;
-                yyAim = yyAim - 200;
+                yyAim = yyAim - 20;
             }             
             if(( theCanvas.clientHeight / 4 + yyAim) < 0){
                 //xxAim = 0;
-                yyAim = yyAim + 200;
-            }            
-           
+                yyAim = yyAim + 20;
+            }                       
 
             //ld = Math.floor(Pdistance/10);
             //l_size = 100;

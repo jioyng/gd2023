@@ -1564,21 +1564,22 @@ function laser_move(){
             Context4.fillStyle = "white";
             Context4.stroke(); 
 
+            //과녁이 경계밖으로 나가려고 하면
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
-                xxAim = 0;
-                yyAim = 0;
+                xxAim = xxAim - 200;
+                //yyAim = 0;
             } 
             if((theCanvas.clientWidth / 2 + xxAim) < 0){
-                xxAim = 0;
-                yyAim = 0;
+                xxAim = xxAim + 200;
+                //yyAim = 0;
             }  
             if(( theCanvas.clientHeight / 4 + yyAim) > maxY){
-                xxAim = 0;
-                yyAim = 0;
+                //xxAim = 0;
+                yyAim = yyAim - 200;
             }             
             if(( theCanvas.clientHeight / 4 + yyAim) < 0){
-                xxAim = 0;
-                yyAim = 0;
+                //xxAim = 0;
+                yyAim = yyAim + 200;
             }            
            
 

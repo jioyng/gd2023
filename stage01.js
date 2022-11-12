@@ -505,8 +505,8 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_imomtal_time = 100;
-var imomtal_time = ini_imomtal_time;
+var ini_ready_time = 200;
+var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
 var laserImage = new Image();
@@ -1179,7 +1179,7 @@ function player_init(){
     //enginImage.src = enginImage.src;
     power = 1;
     //무적시간
-    imomtal_time = ini_imomtal_time;
+    ready_time = ini_ready_time;
     //조준관역 좌표도 기본으로
     xxAim = 0;
     yyAim = 0;
@@ -1227,7 +1227,7 @@ function enemy_didtance(){
 function player_move(){ 
 
     //플레이어 초기 시작시 잠시만 무적 모드
-    imomtal_time--;
+    ready_time--;
     directionDblTime++;
 
     if (directionDblTime < 100 && isKeyCode == isBfKeycode && isBfKeycode != null){
@@ -1238,7 +1238,7 @@ function player_move(){
         isBfKeycode = null;
     }
 
-    if (imomtal_time > 0 ){ 
+    if (ready_time > 0 ){ 
         warp_sound.currentTime  = 0;
         warp_sound.play();
         playerImage = player_warp; 
@@ -1615,7 +1615,7 @@ function laser_move(){
                 } 
     
                 //표적에 들어오면 총알을 작아진다.
-                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 ) 
+                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 20 && lmovex <= theCanvas.clientWidth/2 + xxAim + 20 ) 
                     //&& (lmovey >= theCanvas.clientHeight/4 + 100 && lmovey <= theCanvas.clientWidth/4 - 100 )
                 ){
                     //alert(l_width + "," +l_size );
@@ -1627,7 +1627,7 @@ function laser_move(){
                 }
 
                 //표적에 들어오면 총알을 작아진다.
-                if (lmovey <= theCanvas.clientHeight/4 + yyAim + 40 && lmovey >= theCanvas.clientWidth/4 + yyAim - 40 )
+                if (lmovey <= theCanvas.clientHeight/4 + yyAim && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;

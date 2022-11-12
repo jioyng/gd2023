@@ -2255,7 +2255,7 @@ function enemy_init(index){
         //적 동시 미사일 발사수는 랜덤하게
         this.weappon_cnt = Math.floor(Math.random() * 10) + 20;
         //this.max_weappon_cnt = 30;
-        this.max_weappon_cnt = 26; 
+        this.max_weappon_cnt = 20; 
 
         this.ini_enemy_life = 100;
         this.enemy_life = this.ini_enemy_life;
@@ -4995,7 +4995,7 @@ function weappon_move(){
 
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면
-                if (this.weapponArray[i].bsize >= 100){
+                if (this.weapponArray[i].bsize >= 60){
                     this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                     this.weappon_size = this.weappon_size - 0.1;
                 }
@@ -5061,7 +5061,7 @@ function weappon_move(){
                 //유도 미사일 특징
                 //1.크기가 크다. 느리다
                 //this.weappon_size = this.weappon_size + this.enemy_size/10;
-                this.weappon_size = this.weappon_size + 0.4;
+                this.weappon_size = this.weappon_size + 0.2;
 
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면
@@ -5102,7 +5102,7 @@ function weappon_move(){
 
 
                 this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight;
-                this.weapponArray[i].bsize = this.weappon_size;
+                this.weapponArray[i].bsize = this.weappon_size - 1;
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
                 //this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed; 
                 //Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/10  + this.weapponArray[i].bmy / 100,this.weapponArray[i].bsize / 5 + this.weapponArray[i].bmy / 50);
@@ -5132,7 +5132,7 @@ function weappon_move(){
                 //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
                 //this.weappon_size = this.weappon_size + this.enemy_size/20;
                 //this.weappon_size = this.weappon_size + 1;
-                this.weappon_size = this.weappon_size + 0.4;  
+                this.weappon_size = this.weappon_size + 0.2;  
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면
                 if (this.weapponArray[i].bsize >= 50){
@@ -5144,7 +5144,7 @@ function weappon_move(){
     
 
                 //레이져가 플레이어보다 커지면
-                if (this.weapponArray[i].bsize >= playerHeight){
+                if (this.weapponArray[i].bsize >= playerHeight/2){
                 
                     // this.weapponArray[i].bsize = this.weapponArray[i].bsize + 1;
                     // this.weappon_size = this.weappon_size + 1;
@@ -5167,7 +5167,7 @@ function weappon_move(){
                 // }
     
                 this.weapponArray[i].bmx =  this.weapponArray[i].bmx + this.weapponArray[i].bdirection * this.weappon_leftRight * 2;
-                this.weapponArray[i].bsize = this.weappon_size++;
+                this.weapponArray[i].bsize = this.weappon_size + 0.2;
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + this.weapponArray[i].bsize * this.weappon_upDown / (Math.floor(Math.random()*1) + 2); //<= 총알 속도의 핵심(his.weappon_upDown / 4).
                 this.weapponArray[i].bmy  = this.weapponArray[i].bmy  * this.weapponArray[i].bspeed* 2; 
                 
@@ -5240,7 +5240,7 @@ function weappon_move(){
                 //유도 미사일 특징
                 //1.크기가 크다. 느리다
                 //this.weappon_size = this.weappon_size + this.enemy_size/10;
-                this.weappon_size = this.weappon_size + 0.4;
+                this.weappon_size = this.weappon_size + 0.3;
 
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면
@@ -5312,7 +5312,7 @@ function weappon_move(){
                     //유도 미사일 특징
                     //1.크기가 크다. 느리다
                     //this.weappon_size = this.weappon_size + this.enemy_size/10;
-                    this.weappon_size = this.weappon_size + 0.8;
+                    this.weappon_size = this.weappon_size + 0.3;
     
                     //미사일 화면 이탈시 또는 미사일이 너무 커지면
                     if (this.weapponArray[i].bsize >= 100){
@@ -5378,7 +5378,7 @@ function weappon_move(){
                     //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
                     //this.weappon_size = this.weappon_size + this.enemy_size/20;
                     //this.weappon_size = this.weappon_size + 1;
-                    this.weappon_size = this.weappon_size + 0.4;
+                    this.weappon_size = this.weappon_size + 0.3;
         
 
                     //미사일 화면 이탈시 또는 미사일이 너무 커지면
@@ -5479,7 +5479,7 @@ function weappon_move(){
                 //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
                 //this.weappon_size = this.weappon_size + this.enemy_size/20;
                 //this.weappon_size = this.weappon_size + 1;
-                this.weappon_size = this.weappon_size + 0.4; 
+                this.weappon_size = this.weappon_size + 0.3; 
 
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면

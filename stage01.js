@@ -1147,6 +1147,10 @@ function game_init(){
     //적 경계 진입 여부
     enemy_border_over_yn = 'N';
 
+    //방향키코드 초기화
+    isKeycode = null;
+    isBfKeycode = null;
+
 }
 
 ////////////////// 플레이어 변수 초기화
@@ -1232,7 +1236,7 @@ function player_move(){
 
     if (directionDblTime < 100 && isKeyCode == isBfKeycode && isBfKeycode != null){
 
-        alert(isKeyCode + ',' + isBfKeycode);
+        //alert(isKeyCode + ',' + isBfKeycode);
         console.log("isBfKeycode + ',' + directionDblTime:", isBfKeycode + ',' + directionDblTime);
         directionDblTime = 0;
         isBfKeycode = null;
@@ -1615,9 +1619,8 @@ function laser_move(){
                 } 
     
                 //표적에 들어오면 총알을 작아진다.
-                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 20 && lmovex <= theCanvas.clientWidth/2 + xxAim + 20 ) 
-                    //&& (lmovey >= theCanvas.clientHeight/4 + 100 && lmovey <= theCanvas.clientWidth/4 - 100 )
-                ){
+                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 60 )) 
+                {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
@@ -1632,8 +1635,8 @@ function laser_move(){
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
-                    l_width = l_width - 0.1;
-                    l_size = l_size - 0.1;
+                    l_width = l_width - 0.2;
+                    l_size = l_size - 0.2;
                      return;
                 }                
        
@@ -5062,14 +5065,14 @@ function weappon_move(){
 
 
                 //미사일 화면 이탈시 또는 미사일이 너무 커지면
-                if (this.weapponArray[i].bsize >= 100){
+                if (this.weapponArray[i].bsize >= 60){
                     this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                     this.weappon_size = this.weappon_size - 0.1;
                 }
 
 
                 //미사일이 플레이어보다 커지면
-                if (this.weapponArray[i].bsize >= playerHeight/2){
+                if (this.weapponArray[i].bsize >= playerHeight/3){
                     this.weapponArray[i].bsize = this.weapponArray[i].bsize - 1;
                     this.weappon_size = this.weappon_size - 0.1;
                 }     
@@ -5078,7 +5081,7 @@ function weappon_move(){
                 this.weapponArray[i].bmx = this.weapponArray[i].bmx + Math.floor(Math.random()*10) - Math.floor(Math.random()*15);
                 this.weapponArray[i].bmy = this.weapponArray[i].bmy + Math.floor(Math.random()*2) - Math.floor(Math.random()*8);
                 //3.속도가 느리다.
-                this.weappon_speed = 1/3;
+                this.weappon_speed = 1/4;
 
                 //4.플레이어 위치에 따른 미사일 방향 변경된다.
                 if (playerY >= this.enemyy + this.enemyh/2 + theCanvas.clientHeight / 6){

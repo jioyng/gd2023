@@ -1558,11 +1558,11 @@ function laser_move(){
             //console.log("xx,yy->",xx+","+yy);
             //표적(관역)이 보여진다.
             Context4.beginPath();
-            Context2.globalAlpha = 0.4;
+            Context4.globalAlpha = 0.4;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80, 0, Math.PI * 2);
-            Context2.globalAlpha = 0.6;
+            Context4.globalAlpha = 0.6;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 50, 0, Math.PI * 2);
-            Context2.globalAlpha = 0.8;
+            Context4.globalAlpha = 0.8;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 5, 0, Math.PI * 2);
             Context4.lineWidth = "2"; 
             // Context4.strokeStyle = "#008000";
@@ -1570,6 +1570,8 @@ function laser_move(){
             Context4.strokeStyle = "white";
             Context4.fillStyle = "white";
             Context4.stroke(); 
+
+ 
 
             //과녁이 경계밖으로 나가려고 하면
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
@@ -1619,7 +1621,7 @@ function laser_move(){
                 } 
     
                 //표적에 들어오면 총알을 작아진다.
-                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 60 )) 
+                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 )) 
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
@@ -1630,7 +1632,7 @@ function laser_move(){
                 }
 
                 //표적에 들어오면 총알을 작아진다.
-                if (lmovey <= theCanvas.clientHeight/4 + yyAim && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
+                if (lmovey <= theCanvas.clientHeight/4 + yyAim - 40 && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
@@ -2381,7 +2383,7 @@ function enemy_collision(){
              if (skill == 1){
                 this.enemy_life = this.enemy_life - 1;              
              }else if (skill == 2){
-                this.enemy_life = this.enemy_life - 1;            
+                this.enemy_life = this.enemy_life - 0.1;            
              }else {
                 this.enemy_life = this.enemy_life - 10;  
              } 

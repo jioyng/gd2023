@@ -1621,24 +1621,42 @@ function laser_move(){
                 } 
     
                 //표적에 들어오면 총알을 작아진다.
-                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 )) 
+                
+                if ((playerX >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
+                { 
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01; 
+                    
+                    
+                    if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                        return; 
+                    }
+
+                    if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                        return; 
+                    }                    
+                }else if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 )) 
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
-                    l_width = l_width - 0.1;
-                    l_size = l_size - 0.1;                  
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;                  
                     return;
                 }
 
                 //표적에 들어오면 총알을 작아진다.
-                if (lmovey <= theCanvas.clientHeight/4 + yyAim - 40 && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
+                if ((playerY <= theCanvas.clientHeight/4 + yyAim - 40 && playerY >= theCanvas.clientHeight/4 + yyAim + 40 )) 
+                { 
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;      
+                }else if (lmovey <= theCanvas.clientHeight/4 + yyAim - 40 && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
-                    l_width = l_width - 0.2;
-                    l_size = l_size - 0.2;
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;
                      return;
                 }                
        

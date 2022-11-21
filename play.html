@@ -322,6 +322,10 @@
         this.play();
     }, false);
 
+	//오토건 사운드 로드
+	var shootgun_sound = new Audio();
+	shootgun_sound.src = "./sound/shootgun.ogg";
+	window.addEventListener("load",shootgun_sound, false); 
 
 	//레이져 사운드 로드
 	var laser_sound = new Audio();

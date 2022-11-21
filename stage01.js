@@ -1416,12 +1416,18 @@ function player_move(){
         //레이져 변수 초기화
         laser_init();
         laser_yn = 'Y';
-        laser_move();
-		laser_sound.currentTime  = 0;
+        laser_move(); 
 
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
-        if (skill == 1)   
-        laser_sound.play();
+        if (skill == 1){
+            shootgun_sound.currentTime  = 0.2;
+            shootgun_sound.play(); 
+        }else if (skill == 2){
+            laser_sound.currentTime  = 0;
+            laser_sound.play();
+        }else {
+            warp_sound.play();
+        }
 
         isKeyDown = [];
         isKeyCode = null;   
@@ -4543,8 +4549,8 @@ function clickCanvas(event, as_gb) {
 
         //공격 스킬구분에 따른 공격 레이져 초기변수
         if (skill == 1){   
-            laser_sound.currentTime  = 0;
-            laser_sound.play();  
+            shootgun_sound.currentTime  = 0.2;
+            shootgun_sound.play();   
         }else if (skill == 2){   
             laser_sound.currentTime  = 0;
             laser_sound.play();    
@@ -4757,11 +4763,11 @@ function weappon_init(){
         //audio.pause();
 
         if ((this.enemy_life < 70 && this.enemy_life > 45) || (this.enemy_life < 15 && this.enemy_life > 5)){
-            //  autogun_sound.currentTime  = 0;
-            //  autogun_sound.play();   //보스 무기 사운드  
-             autogun_sound.currentTime  = 12;
-             autogun_sound.play();   //보스 무기 사운드 
-             //autogun_sound.currentTime  = 5; 
+            //  shootgun_sound.currentTime  = 0;
+            //  shootgun_sound.play();   //보스 무기 사운드  
+             shootgun_sound.currentTime  = 0.22;
+             shootgun_sound.play();   //보스 무기 사운드 
+             //shootgun_sound.currentTime  = 5; 
         }else {
             // shootgun_sound.currentTime  = 0;
             // shootgun_sound.play();   //보스 무기 사운드   
@@ -5141,9 +5147,9 @@ function weappon_move(){
             }else if (this.enemy_life >= 40){
              
                 this.weapponImage = weappon01Image;
-                // autogun_sound.currentTime  = 0;
-                // autogun_sound.play();   //보스 무기 사운드 
-                // autogun_sound.currentTime  = 0;
+                // shootgun_sound.currentTime  = 0;
+                // shootgun_sound.play();   //보스 무기 사운드 
+                // shootgun_sound.currentTime  = 0;
 
                 add_borderX = theCanvas.clientWidth;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
                 add_borderY = theCanvas.clientHeight;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
@@ -5488,9 +5494,9 @@ function weappon_move(){
             }else {
                 
                 this.weapponImage = weappon01Image;  
-                // autogun_sound.currentTime  = 0;
-                // autogun_sound.play();   //보스 무기 사운드 
-                // autogun_sound.currentTime  = 0;
+                // shootgun_sound.currentTime  = 0;
+                // shootgun_sound.play();   //보스 무기 사운드 
+                // shootgun_sound.currentTime  = 0;
 
                 add_borderX = theCanvas.clientWidth;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
                 add_borderY = theCanvas.clientHeight;  //총알이 리셋되는 경계를 늘려주는 변수(총알이 밖으로 나가면 전체가 초기화 되는 현상때문에)
@@ -6370,12 +6376,18 @@ function onkeyDown(e, as_strKeyEventValue){
     }
 
     //레이져
-    if (strKeyEventValue == "Space"  || isKeyCode == 32){
-
-		laser_sound.currentTime  = 0;
+    if (strKeyEventValue == "Space"  || isKeyCode == 32){ 
+        
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
-        if (skill == 1)   
-        laser_sound.play();
+        if (skill == 1){
+            shootgun_sound.currentTime  = 0.2;
+            shootgun_sound.play();  
+        }else if (skill == 2){ 
+            laser_sound.currentTime  = 0;
+            laser_sound.play();
+        }else {
+            warp_sound.play();
+        }
 
         //레이져 변수 초기화
         laser_init();

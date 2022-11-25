@@ -469,7 +469,7 @@ $(function(){
 
 	//control색상
 	var ls_CColor = localStorage.getItem('control_color');        
-		
+	ls_CColor = "red";   //기본값	
 	$("#CColor").css("background-color",ls_CColor);	
 
 	$("#CColor").click(function(){  
@@ -484,7 +484,7 @@ $(function(){
 
 	//음성모드
 	var ls_VColor = localStorage.getItem('voice_color');        
-		
+	ls_VColor = "yellow";   //기본값
 	$("#VColor").css("background-color",ls_VColor);
 	
 	$("#VColor").click(function(){  

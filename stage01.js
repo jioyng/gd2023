@@ -5839,12 +5839,14 @@ function player_collision(){
         //미사일과 Y좌표 충돌시
         if ((parseInt(this.weapponArray[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(this.weapponArray[i].bmy)  + this.weapponArray[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
             //console.log("Pdistance",Pdistance)  
+                                
+                //1초간 진동 
+                navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
 
                   //충돌시 폭파이미지로 변경
-                if (player_life <= 1){ 
-                                
-                    //1초간 진동 
-                    navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                if (player_life <= 1){  
+                    //2초간 진동 
+                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
 
                     // explosion_sound.currentTime  = 4;
                     // explosion_sound.play();  
@@ -5954,12 +5956,12 @@ function player_collision(){
                         }                  
 
                 //게임 재시작 or 종료
-                }else {
-                    //2초간 진동 
-                    //navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                }else { 
                      
                     //목소리 재생모드일경우만 실행  
                     if (ls_VColor == "yellow") {
+                        //2초간 진동 
+                        navigator.vibrate(3000); // 진동을 울리게 한다. 1000ms = 1s 이다.
                         vfinish_sound.play(); 
                         //대화
                         Context.globalAlpha = 1;

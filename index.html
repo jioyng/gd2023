@@ -99,7 +99,7 @@ background-position: 50% -5%; */
 </style>
 </head>
     <!-- <body bgcolor="#262626" background="./img/main_intro.jpg" onload="play_misound();" > -->
-	<body bgcolor="#262626" background="./img/main_intro.jpg"  onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+	<body bgcolor="#262626" background="./img/main_intro.jpg"  >
 	<!-- <div id="tot_div">	  -->
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
@@ -165,7 +165,11 @@ background-position: 50% -5%; */
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8">
-
+//뒤로가기방지
+history.pushState(null, null, location.href); 
+window.onpopstate = function(event) { 
+history.go(1); 
+};
 
 //로드시 PWA구현을 위해 서비스 워커 등록(로딩시 하단에 설치 메세지)
 window.addEventListener('load', ()=>{
@@ -575,9 +579,6 @@ $(function(){
 
 });
 
-window.history.forward(); function noBack(){  
-  window.history.forward();
-}
 </script>
 </body>
 </html>

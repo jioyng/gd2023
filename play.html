@@ -18,7 +18,7 @@
     <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>   
   </head>
   <title> 건닷지 </title>  
-  <body onload="noBack2();" onpageshow="if(event.persisted) noBack2();" onunload="">
+  <body >
     <div id="tot_hidden" style="position:absolute;top:0px;left:0px;overflow:auto;background-color:black;">
 	<!-- <h2>가로 모드에서 실행 바랍니다.<br>기기에 설치시 좀더 쾌적하게<br>게임을 즐기실수 있습니다.</h2>
 	<img src="./img/rainbow.jpg"  style="overflow:auto;"> -->
@@ -97,7 +97,11 @@
 -->
 
     <script type="text/javascript" language="javascript" charset="utf-8">
-
+      //뒤로가기방지
+      history.pushState(null, null, location.href); 
+      window.onpopstate = function(event) { 
+        history.go(1); 
+      };
      $(function() { 
 
       //모바일에서 더블탭시 화면 확대,축소(spread, pinch) 방지
@@ -528,7 +532,7 @@
   //   };   
      
 	// });
-  window.history.forward(); function noBack2(){   
+  window.history.forward(); function noBack(){  
   window.history.forward();
 }
   </script>

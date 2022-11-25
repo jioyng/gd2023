@@ -5838,16 +5838,14 @@ function player_collision(){
     if ((parseInt(this.weapponArray[i].bmx) <= parseInt(playerX)  + playerWidth - ll_tmpspace) && (parseInt(this.weapponArray[i].bmx) + this.weapponArray[i].bsize >= parseInt(playerX)  + ll_tmpspace )){
         //미사일과 Y좌표 충돌시
         if ((parseInt(this.weapponArray[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(this.weapponArray[i].bmy)  + this.weapponArray[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
-            //console.log("Pdistance",Pdistance) 
-                
-                //1초간 진동
-                if (navigator.vibrate) {
-                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
-                } else {
-                    //alert("진동을 지원하지 않는 기종 입니다.");
-                }       //충돌시 폭파이미지로 변경
+            //console.log("Pdistance",Pdistance)  
+
+                  //충돌시 폭파이미지로 변경
                 if (player_life <= 1){ 
                                 
+                    //1초간 진동 
+                    navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+
                     // explosion_sound.currentTime  = 4;
                     // explosion_sound.play();  
                     Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
@@ -5957,12 +5955,9 @@ function player_collision(){
 
                 //게임 재시작 or 종료
                 }else {
-                    //2초간 진동
-                    if (navigator.vibrate) {
-                    navigator.vibrate(3000); // 진동을 울리게 한다. 1000ms = 1s 이다.
-                    } else {
-                    //alert("진동을 지원하지 않는 기종 입니다.");
-                    } 
+                    //2초간 진동 
+                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                     
                     //목소리 재생모드일경우만 실행  
                     if (ls_VColor == "yellow") {
                         vfinish_sound.play(); 

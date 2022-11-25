@@ -5841,123 +5841,128 @@ function player_collision(){
             //console.log("Pdistance",Pdistance)
                 //충돌시 폭파이미지로 변경
                 if (player_life <= 1){
-                //2초간 진동
-                if (navigator.vibrate) {
-                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
-                } else {
-                    //alert("진동을 지원하지 않는 기종 입니다.");
-                } 
+                    //1초간 진동
+                    if (navigator.vibrate) {
+                        navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                    } else {
+                        //alert("진동을 지원하지 않는 기종 입니다.");
+                    } 
 
-                // explosion_sound.currentTime  = 4;
-                // explosion_sound.play();  
-                Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
-                Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
-                Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
+                    // explosion_sound.currentTime  = 4;
+                    // explosion_sound.play();  
+                    Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
+                    Context.drawImage(explosionImage01,playerX-10,playerY - 15,60*(Pdistance/500)*playerHeight/50,30*(Pdistance/500)*playerWidth/10);
+                    Context.drawImage(explosionImage01,playerX+Math.floor(Math.random()*10),playerY-Math.floor(Math.random()*60),120,115);
 
-                playerImage = explosionImage01;
-                player_warp = explosionImage01;
+                    playerImage = explosionImage01;
+                    player_warp = explosionImage01;
 
-                this.energe_bar = '';
-                explosion_sound.play();
-                explosion_sound.currentTime  = 0;
+                    this.energe_bar = '';
+                    explosion_sound.play();
+                    explosion_sound.currentTime  = 0;
 
-                explosion_sound.play();
-                audio.pause();
-                //audio.currentTime  = 0;
+                    explosion_sound.play();
+                    audio.pause();
+                    //audio.currentTime  = 0;
 
-                // playerImage = noneImage;
-                // laserImage = noneImage;
-                // player_warp =  noneImage;
+                    // playerImage = noneImage;
+                    // laserImage = noneImage;
+                    // player_warp =  noneImage;
 
-                //콜로니 밖 우주 배경그려주기(투명도 적용)
-                Context.save();
+                    //콜로니 밖 우주 배경그려주기(투명도 적용)
+                    Context.save();
 
-                Context.globalAlpha = 0.8;
+                    Context.globalAlpha = 0.8;
 
-                status = 4;    //게임 END
+                    status = 4;    //게임 END
 
-                //게임 점수 저장
-                var ls_current_score = gameScore;
-                var ls_current_time = gameTime;
-                localStorage.setItem('current_score',ls_current_score);
-                localStorage.setItem('current_time',ls_current_time);
+                    //게임 점수 저장
+                    var ls_current_score = gameScore;
+                    var ls_current_time = gameTime;
+                    localStorage.setItem('current_score',ls_current_score);
+                    localStorage.setItem('current_time',ls_current_time);
 
-                var ls_before_score = localStorage.getItem('before_score');
-                var ls_before_time = localStorage.getItem('before_time'); 
+                    var ls_before_score = localStorage.getItem('before_score');
+                    var ls_before_time = localStorage.getItem('before_time'); 
 
-                if (ls_before_score == null || ls_before_score == ""){
-                    ls_before_score = ls_current_score;
-                    ls_before_time = ls_current_time;
-                    localStorage.setItem('before_score',ls_current_score);
-                    localStorage.setItem('before_time',ls_current_time);
-                }
+                    if (ls_before_score == null || ls_before_score == ""){
+                        ls_before_score = ls_current_score;
+                        ls_before_time = ls_current_time;
+                        localStorage.setItem('before_score',ls_current_score);
+                        localStorage.setItem('before_time',ls_current_time);
+                    }
 
-                //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
-                if (parseInt(ls_current_score) > parseInt(ls_before_score)){
-                    localStorage.setItem('best_score',ls_current_score);
-                    localStorage.setItem('best_time',ls_current_time);
-                }else {
-                    localStorage.setItem('best_score',ls_before_score);
-                    localStorage.setItem('best_time',ls_before_time);
-                }
+                    //현재 점수가 이전 점수보다 클경우 최고 점수에 저장, 작을경우 이전 점수 저장
+                    if (parseInt(ls_current_score) > parseInt(ls_before_score)){
+                        localStorage.setItem('best_score',ls_current_score);
+                        localStorage.setItem('best_time',ls_current_time);
+                    }else {
+                        localStorage.setItem('best_score',ls_before_score);
+                        localStorage.setItem('best_time',ls_before_time);
+                    }
 
-                // 이전 점수에 베스트 점수를 저장
-                var ls_best_score = localStorage.getItem('best_score');
-                    localStorage.setItem('before_score',ls_best_score);
-                var ls_best_time = localStorage.getItem('best_time');
-                    localStorage.setItem('before_time',ls_best_time); 
+                    // 이전 점수에 베스트 점수를 저장
+                    var ls_best_score = localStorage.getItem('best_score');
+                        localStorage.setItem('before_score',ls_best_score);
+                    var ls_best_time = localStorage.getItem('best_time');
+                        localStorage.setItem('before_time',ls_best_time); 
 
-                //플레이어가 남아있는경우 자동으로 시작
-                player_cnt = parseInt(player_cnt) - 1;
+                    //플레이어가 남아있는경우 자동으로 시작
+                    player_cnt = parseInt(player_cnt) - 1;
 
-                if (parseInt(player_cnt) > 0){ 
+                    if (parseInt(player_cnt) > 0){ 
 
-                    
-                    //출현 사운드
-                    mount_sound.play();
-                    gameStart(13);
+                        
+                        //출현 사운드
+                        mount_sound.play();
+                        gameStart(13);
 
-                    isKeyDown = [];
-                    isKeyCode = null;
-                    wayBefore = null;
-                    pmovex = 0;
-                    pmovey = 0; 
-
-
-                    // for(var n=0;n<=200;n++){
-                    //     //잠시만 와프 이미지
-                    //     if(n%2 == 0){
-                    //         playerImage = player_warp;
-                    //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
-
-                    //     }else {
-                    //         playerImage = player;
-                    //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
-
-                    //     }
-                    //     //잠시만 무적
-          
-                    //     player_collision_yn = 'Y'; 
-                    // } 
-                        player_collision_yn = 'N'; 
-                        playerImage = player;
-                     
+                        isKeyDown = [];
+                        isKeyCode = null;
+                        wayBefore = null;
+                        pmovex = 0;
+                        pmovey = 0; 
 
 
-                    //목소리 재생모드일경우만 실행  
-                    if (ls_VColor == "yellow"){
-                        vregret_sound.play();
-                        //대화
-                        Context2.globalAlpha = 1;
-                        Context2.font  = "30px Arial";  
-                        Context2.fillStyle = '#ffffff';
-                        Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
-                        //Context2.fill();
-                    }                  
+                        // for(var n=0;n<=200;n++){
+                        //     //잠시만 와프 이미지
+                        //     if(n%2 == 0){
+                        //         playerImage = player_warp;
+                        //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+
+                        //     }else {
+                        //         playerImage = player;
+                        //         Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+
+                        //     }
+                        //     //잠시만 무적
+            
+                        //     player_collision_yn = 'Y'; 
+                        // } 
+                            player_collision_yn = 'N'; 
+                            playerImage = player;
+                        
+
+
+                        //목소리 재생모드일경우만 실행  
+                        if (ls_VColor == "yellow"){
+                            vregret_sound.play();
+                            //대화
+                            Context2.globalAlpha = 1;
+                            Context2.font  = "30px Arial";  
+                            Context2.fillStyle = '#ffffff';
+                            Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
+                            //Context2.fill();
+                        }                  
 
                 //게임 재시작 or 종료
                 }else {
-
+                    //2초간 진동
+                    if (navigator.vibrate) {
+                    navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                    } else {
+                    //alert("진동을 지원하지 않는 기종 입니다.");
+                    } 
                     //목소리 재생모드일경우만 실행  
                     if (ls_VColor == "yellow") {
                         vfinish_sound.play(); 

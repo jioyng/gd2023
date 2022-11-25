@@ -18,7 +18,7 @@
     <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>   
   </head>
   <title> 건닷지 </title>  
-  <body >
+  <body onload="noBack2();" onpageshow="if(event.persisted) noBack2();" onunload="">
     <div id="tot_hidden" style="position:absolute;top:0px;left:0px;overflow:auto;background-color:black;">
 	<!-- <h2>가로 모드에서 실행 바랍니다.<br>기기에 설치시 좀더 쾌적하게<br>게임을 즐기실수 있습니다.</h2>
 	<img src="./img/rainbow.jpg"  style="overflow:auto;"> -->
@@ -528,7 +528,9 @@
   //   };   
      
 	// });
-	 
+  window.history.forward(); function noBack2(){   
+  window.history.forward();
+}
   </script>
   <!-- <script type="text/javascript" src="./js/hammer.js"></script>   -->
   <script type="text/javascript" src="./js/Common.js"></script>  

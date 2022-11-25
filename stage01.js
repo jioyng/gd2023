@@ -2405,7 +2405,7 @@ function enemy_collision(){
              //적 에너지 차감
              //스킬 2일때는 10씩 차감
              if (skill == 1){
-                this.enemy_life = this.enemy_life - 1;              
+                this.enemy_life = this.enemy_life - 0.5;              
              }else if (skill == 2){
                 this.enemy_life = this.enemy_life - 0.2;            
              }else {

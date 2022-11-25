@@ -5839,15 +5839,14 @@ function player_collision(){
         //미사일과 Y좌표 충돌시
         if ((parseInt(this.weapponArray[i].bmy) <= parseInt(playerY)  + playerHeight - ll_tmpspace) && (parseInt(this.weapponArray[i].bmy)  + this.weapponArray[i].bsize >= parseInt(playerY)  + ll_tmpspace)){
             //console.log("Pdistance",Pdistance)
-            //충돌시 폭파이미지로 변경
-            //2초간 진동
-            if (navigator.vibrate) {
-                navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
-            } else {
-                //alert("진동을 지원하지 않는 기종 입니다.");
-            } 
-
-            if (player_life <= 1){
+                //충돌시 폭파이미지로 변경
+                if (player_life <= 1){
+                //2초간 진동
+                if (navigator.vibrate) {
+                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                } else {
+                    //alert("진동을 지원하지 않는 기종 입니다.");
+                } 
 
                 // explosion_sound.currentTime  = 4;
                 // explosion_sound.play();  

@@ -345,7 +345,7 @@ $(function(){
 					//tempDelay();
 				misound.pause();
 
-
+				toggleFullScreen();
 				//window.location = 'play.html';
 				setTimeout(startIntro, 1000);
 
@@ -356,7 +356,7 @@ $(function(){
 		function startIntro(){
 
 				//전체화면으로 실행
-				toggleFullScreen();
+				//toggleFullScreen();
 
 				// if (IntroSound() != 1)  {
 				// 	return;
@@ -365,10 +365,10 @@ $(function(){
 				//인트로 시작 사운드
 				IntroSound();
 
-				 //var ls_width = "100%";
-				 //var ls_height = "100%";
-				 var ls_width = window.innerWidth;
-				 var ls_height = window.innerHeight;
+				 var ls_width = "100%";
+				 var ls_height = "100%";
+				// var ls_width = document.innerWidth;
+				// var ls_height = document.innerHeight;
 
 				 $("#totIntro").width(ls_width);
 				 $("#totIntro").height(ls_height);

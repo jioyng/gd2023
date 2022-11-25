@@ -5843,7 +5843,7 @@ function player_collision(){
                 if (player_life <= 1){
                     //1초간 진동
                     if (navigator.vibrate) {
-                        navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                        navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
                     } else {
                         //alert("진동을 지원하지 않는 기종 입니다.");
                     } 
@@ -5959,7 +5959,7 @@ function player_collision(){
                 }else {
                     //2초간 진동
                     if (navigator.vibrate) {
-                    navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
                     } else {
                     //alert("진동을 지원하지 않는 기종 입니다.");
                     } 

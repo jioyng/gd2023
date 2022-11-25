@@ -5956,7 +5956,7 @@ function player_collision(){
                 //게임 재시작 or 종료
                 }else {
                     //2초간 진동 
-                    navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                    //navigator.vibrate(2000); // 진동을 울리게 한다. 1000ms = 1s 이다.
                      
                     //목소리 재생모드일경우만 실행  
                     if (ls_VColor == "yellow") {

@@ -129,8 +129,8 @@ background-position: 50% -5%; */
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
 		<div style="position: absolute; top: 0px; left: 10px; z-index:200;">
 		    <button id="DColor" class="circle" style="opacity:0.3" ></button>			
-			<button id="CColor" class="circle" style="opacity:0.3" ></button>
-		    <button id="VColor" class="circle" style="opacity:0.3" ></button>			
+			<button id="CColor" class="circle" style="opacity:0.3;" ></button>
+		    <button id="VColor" class="circle" style="opacity:0.3;" ></button>			
 		</div>
 		<div id="title" class="main" style="background:'#5f7a8a';text-align:center; z-index:10; width:96%;">
 		Gun Dodge 2020
@@ -186,10 +186,13 @@ window.addEventListener('load', ()=>{
 window.addEventListener("resize",  fit_resize);
 
 function fit_resize(){
-	var ls_width = window.innerWidth;
-	var ls_height = window.innerHeight;
+//	var ls_width = window.innerWidth;
+//	var ls_height = window.innerHeight;
 // var ls_width = document.innerWidth;
 // var ls_height = document.innerHeight;
+
+var ls_width = "100%";
+var ls_height = "100%";
 
 	$("#totIntro").width(ls_width);
 	$("#totIntro").height(ls_height);
@@ -358,8 +361,8 @@ $(function(){
 				//인트로 시작 사운드
 				IntroSound();
 
-				 var ls_width = window.innerWidth;
-				 var ls_height = window.innerHeight;
+				 var ls_width = "100%";
+				 var ls_height = "100%";
 				// var ls_width = document.innerWidth;
 				// var ls_height = document.innerHeight;
 
@@ -469,8 +472,8 @@ $(function(){
 
 	//control색상
 	var ls_CColor = localStorage.getItem('control_color');        
-	ls_CColor = "red";   //기본값	
-	localStorage.setItem('control_color',ls_CColor);	
+	if(ls_CColor==null) ls_CColor="red";
+		
 	$("#CColor").css("background-color",ls_CColor);	
 
 	$("#CColor").click(function(){  
@@ -485,8 +488,8 @@ $(function(){
 
 	//음성모드
 	var ls_VColor = localStorage.getItem('voice_color');        
-	ls_VColor = "yellow";   //기본값
-	localStorage.setItem('voice_color',ls_VColor);	
+	if(ls_VColor==null) ls_VColor="yellow";
+
 	$("#VColor").css("background-color",ls_VColor);
 	
 	$("#VColor").click(function(){  

@@ -4233,14 +4233,14 @@ function fit_fullsize(){
         toggleFullScreen(); 
         fitToContainer(theCanvas); 
         ls_height2 = window.innerHeight;
-        return;
+         
         //게임 화면 경계
         minX = theCanvas.offsetLeft;
         maxX = theCanvas.clientWidth - minX;
         minY = theCanvas.offsetTop;
         maxY = theCanvas.clientHeight - minY;
          
-        //directonUp = new Path2D();
+        directonUp = new Path2D();
         directonUp.fillStyle = "rgb(242, 255, 0)";
         directonUp.rect(minX + 120, maxY - 330, 100, 140);
 

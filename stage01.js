@@ -1596,6 +1596,7 @@ function laser_move(){
                 yyAim = yyAim + 20;
             }                       
 
+            Context4.globalAlpha = 0.5;
             //ld = Math.floor(Pdistance/10);
             //l_size = 100;
             l_width = 6;
@@ -1668,6 +1669,9 @@ function laser_move(){
 
                 //alert(lmovex+","+lmovey+","+l_size) 
                 Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
+
+                
+                //Context4.lineWidth = "0.5"
             }    
                 
         }else if (skill == 2){  

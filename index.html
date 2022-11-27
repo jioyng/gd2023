@@ -195,9 +195,15 @@ function fit_resize(){
 // var ls_width = document.innerWidth;
 // var ls_height = document.innerHeight;
 
-var ls_width = "100%";
-var ls_height = "100%";
+// var ls_width = "100%";
+// var ls_height = "100%";
+var ls_width = window.Width;
+var ls_height = window.Height;
 
+if(parseInt(ls_height)>parseInt(ls_width)){
+	ls_width=window.Height;
+	ls_height=window.Width;
+}
 	$("#totIntro").width(ls_width);
 	$("#totIntro").height(ls_height);
 
@@ -369,8 +375,15 @@ $(function(){
 				 //var ls_height = "100%";
 				// var ls_width = document.innerWidth;
 				// var ls_height = document.innerHeight;
+				// var ls_width = window.Width;
+				// var ls_height = window.Height;
 				var ls_width = window.Width;
 				var ls_height = window.Height;
+				
+				if(parseInt(ls_height)>parseInt(ls_width)){
+					ls_width=window.Height;
+					ls_height=window.Width;
+				}
 
 				 $("#totIntro").width(ls_width);
 				 $("#totIntro").height(ls_height); 

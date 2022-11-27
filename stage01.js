@@ -12,8 +12,7 @@ window.addEventListener("keydown",onkeyDown, false);
 window.addEventListener("keyup",onkeyUp, false);
 //더블클릭시
 //window.addEventListener("dblclick",onDblkeyDown, false);
-
-
+ 
 //제일 처음 페이지 load 여부
 var first_load_yn = "Y";
 
@@ -4220,11 +4219,25 @@ function gameControl() {
     Context.stroke(button03);    
 
 } 
-
+var  ls_height2 = window.innerHeight; 
 //////////////////마우스 클릭시 이벤트 메핑
 GameCanvas.addEventListener('mousedown', function(event) { 
 
-    //event.preventDefault();
+    //event.preventDefault(); 
+    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
+    if (navigator.platform.substr(0,3) == "Win" && ls_height != ls_height2){
+
+        ls_height = window.innerHeight;      
+        ls_width = window.innerWidth;   
+    
+        ////////////////// 게임 캠퍼스 재조정
+        toggleFullScreen(); 
+        fitToContainer(theCanvas); 
+        ls_height2 = window.innerHeight;
+        //alert(ls_height+","+ls_height2)
+    }
+    
+
 
     //모바일인경우 게임진행시에는 리턴
     if (status == 2){

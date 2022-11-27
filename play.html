@@ -28,14 +28,14 @@
 	<!-- &nbsp;
 	<button id="btnInstall">기기에 설치하기<button> -->
     <!-- <p><h1>Loadding......</h1></p>     -->
-    <p><h1>PAUSE!<br>Please,<br>Play landscape mode.</h1></p>
+    <p><h1>Play landscape mode.</h1></p>
     <!-- <p><h1>This game is impossible on portrait.</h1></p> -->
 	</div>
-	<div id="tot_div" class="tot">
+	<div id="tot_div" class="tot" style="position: absolute; top: 0px; left: 0px;overflow:auto; width:100%; height:100%;" >
     <!--캔버스 화면 오버시 드래그 방지-->
-      <div id="can_div" style="position: absolute; top: 0px; left: 0px;overflow:auto; width:1280px; height:670px;" ondrop="drop(event)" ondragover="allowDrop(event)">   
+      <div id="can_div" style="position: absolute; top: 0px; left: 0px;overflow:auto; width:100%; height:100%" ondrop="drop(event)" ondragover="allowDrop(event)">   
       <div class="game_div" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <canvas id="GameCanvas"  width="1280" height="670" style="position:absolute;top:0px;left:0px;border:0" onclick="clickCanvas(window.event,1)"  onMouseMove="clickCanvas(window.event,2)" onMouseOver="clickCanvas(window.event,3)" onMouseDown="clickCanvas(window.event,4)">        
+          <canvas id="GameCanvas"  width="100%" height="100%" style="position:absolute;top:0px;left:0px;border:0" onclick="clickCanvas(window.event,1)"  onMouseMove="clickCanvas(window.event,2)" onMouseOver="clickCanvas(window.event,3)" onMouseDown="clickCanvas(window.event,4)">        
             HTML5 Canvas를 지원하지 않습니다.
         </canvas>
       </div>

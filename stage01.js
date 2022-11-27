@@ -4216,17 +4216,16 @@ function gameControl() {
 
     Context.stroke(button01);
     Context.stroke(button02);
-    Context.stroke(button03);    
-
+    Context.stroke(button03);
+        
 } 
 var  ls_height2 = window.innerHeight; 
-//////////////////마우스 클릭시 이벤트 메핑
-GameCanvas.addEventListener('mousedown', function(event) { 
 
+function fit_fullsize(){
     //event.preventDefault(); 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
-    if (navigator.platform.substr(0,3) == "Win" && ls_height != ls_height2){
-
+    //if (navigator.platform.substr(0,3) == "Win" && ls_height != ls_height2){
+    if (ls_height != ls_height2){
         ls_height = window.innerHeight;      
         ls_width = window.innerWidth;   
     
@@ -4235,9 +4234,14 @@ GameCanvas.addEventListener('mousedown', function(event) {
         fitToContainer(theCanvas); 
         ls_height2 = window.innerHeight;
         //alert(ls_height+","+ls_height2)
-    }
-    
+    } 
+}
+//////////////////마우스 클릭시 이벤트 메핑
+GameCanvas.addEventListener('mousedown', function(event) { 
 
+    //event.preventDefault(); 
+    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
+    fit_fullsize();
 
     //모바일인경우 게임진행시에는 리턴
     if (status == 2){

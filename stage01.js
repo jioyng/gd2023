@@ -4187,9 +4187,9 @@ function game_status(){
 function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
-	if (navigator.platform.substr(0,3) == "Win" ){
+	//if (navigator.platform.substr(0,3) == "Win" ){
         //return;
-    }
+    //}
 
     Context.globalAlpha = 0.5;
 
@@ -4233,7 +4233,64 @@ function fit_fullsize(){
         toggleFullScreen(); 
         fitToContainer(theCanvas); 
         ls_height2 = window.innerHeight;
-        //alert(ls_height+","+ls_height2)
+         
+        //게임 화면 경계
+        minX = theCanvas.offsetLeft;
+        maxX = theCanvas.clientWidth - minX;
+        minY = theCanvas.offsetTop;
+        maxY = theCanvas.clientHeight - minY;
+         
+        directonUp = new Path2D();
+        directonUp.fillStyle = "rgb(242, 255, 0)";
+        directonUp.rect(minX + 120, maxY - 330, 100, 140);
+
+        directonLeft = new Path2D();
+        directonLeft.fillStyle = "rgb(242, 255, 0)";
+        directonLeft.rect(minX + 10, maxY - 220, 140, 100);
+
+        directonRight = new Path2D();
+        directonRight.fillStyle = "rgb(242, 255, 0)";
+        directonRight.rect(minX + 190, maxY - 220, 140, 100);
+
+        directonDown = new Path2D();
+        directonDown.fillStyle = "rgb(242, 255, 0)";
+        directonDown.rect(minX + 120, maxY - 150, 100, 140);
+
+        directonUpLeft = new Path2D();
+        directonUpLeft.fillStyle = "rgb(242, 255, 0)";
+        directonUpLeft.rect(minX + 40, maxY - 300, 80, 80);
+
+        directonUpRight = new Path2D();
+        directonUpRight.fillStyle = "rgb(242, 255, 0)";
+        directonUpRight.rect(minX + 220, maxY - 300, 80, 80);
+
+        directonDownLeft = new Path2D();
+        directonDownLeft.fillStyle = "rgb(242, 255, 0)";
+        directonDownLeft.rect(minX + 40, maxY - 120, 80, 80);
+
+        directonDownRight = new Path2D();
+        directonDownRight.fillStyle = "rgb(242, 255, 0)";
+        directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
+
+        directonMiddle = new Path2D();
+        directonMiddle.fillStyle = "rgb(242, 255, 0)";
+        directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+        button01 = new Path2D();
+        button01.fillStyle = "rgb(242, 255, 0)";
+        //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+        button02 = new Path2D();
+        button02.fillStyle = "rgb(242, 255, 0)";
+        //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+ 
+        button03 = new Path2D();
+        button03.fillStyle = "rgb(242, 255, 0)";
+        //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+ 
     } 
 }
 //////////////////마우스 클릭시 이벤트 메핑

@@ -4233,7 +4233,7 @@ function fit_fullsize(){
         toggleFullScreen(); 
         fitToContainer(theCanvas); 
         ls_height2 = window.innerHeight;
-         
+        return;
         //게임 화면 경계
         minX = theCanvas.offsetLeft;
         maxX = theCanvas.clientWidth - minX;

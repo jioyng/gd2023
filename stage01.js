@@ -516,6 +516,10 @@ var laser = new Image();
 laser.src = "./img/laser01.png";
 laser.addEventListener("load",drawScreen, false);
 
+var laser02 = new Image();
+laser02.src = "./img/bullet01.png";
+laser02.addEventListener("load",drawScreen, false);
+
 //레이져 초기 생성 위치
 var laserX = playerX + playerWidth/2;
 var laserY = playerY;
@@ -1532,7 +1536,7 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
         if (skill == 1){  
-             
+            laserImage = laser02;
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
             if (wayBefore=='L'){
@@ -1675,6 +1679,7 @@ function laser_move(){
             }    
                 
         }else if (skill == 2){  
+            laserImage = laser;
             for (i=0;i<=100;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
@@ -1688,7 +1693,7 @@ function laser_move(){
             }
 
         }else {   
-
+            laserImage = laser02;
             if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //레이져 필살기 사운드
@@ -4616,7 +4621,7 @@ function clickCanvas(event, as_gb) {
     } 
  
     //레이져 버튼 터치
-    //레이져 발사
+    //레이져 발사currentTime
     //var laser_touch_time = 0; 
 	if(Context.isPointInPath(button01, x,  y)) {
 

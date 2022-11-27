@@ -4240,7 +4240,7 @@ function fit_fullsize(){
         minY = theCanvas.offsetTop;
         maxY = theCanvas.clientHeight - minY;
          
-        directonUp = new Path2D();
+        //directonUp = new Path2D();
         directonUp.fillStyle = "rgb(242, 255, 0)";
         directonUp.rect(minX + 120, maxY - 330, 100, 140);
 

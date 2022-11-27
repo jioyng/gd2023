@@ -107,8 +107,8 @@ background-position: 50% -5%; */
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100vh;width:100vw;display:none;">
 			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100vh;height: 100vh;">
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
-				<b>우주력 2020년, 지구 은하 식민지중 가장 거대한 스페이스14의 내부에 정체를 모르는 우주 바이러스가 침투했다.<br>
-				바이러스는 뉴스페이스14의 산업 및 군사, 방위 시설에 까지 침투하였고, 이 감염 반응은 예상치 못한 결과를 초래했다.</b>
+				<b>우주력 2020년, 지구 대체 코로니중 가장 거대한 규모의 스페이스14 내부에 이상 전자 바이러스가 침투했다.<br>
+				바이러스는 코로니 내부의 모두 기계 및 통제 시설에 까지 침투하였고, 이로인한 반응은 인류가 예상치 못한 결과를 초래했다.</b>
 			</div>
 		</div>
 		<!-- <audio id='misound' src='./sound/intro.ogg' autoplay></audio> -->
@@ -365,14 +365,16 @@ $(function(){
 				//인트로 시작 사운드
 				IntroSound();
 
-				 var ls_width = "100%";
-				 var ls_height = "100%";
+				 //var ls_width = "100%";
+				 //var ls_height = "100%";
 				// var ls_width = document.innerWidth;
 				// var ls_height = document.innerHeight;
+				var ls_width = window.Width;
+				var ls_height = window.Height;
 
 				 $("#totIntro").width(ls_width);
-				 $("#totIntro").height(ls_height);
- 
+				 $("#totIntro").height(ls_height); 
+
 
 				 $("#imgIntro").width(ls_width);
 				 $("#imgIntro").height(ls_height);
@@ -387,7 +389,7 @@ $(function(){
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro02.jpg");
 
-						$("#infoText").html("<b>바이러스는 뉴스페이스14의 핵심 제어시설 M.A.I(마더 인공지능 시스템)에까지 침투했고<br>이로인해 내부의 모든 기기들은 더이상 인간의 통제를 거부하는 상황까지 갔게됬다.</b>");
+						$("#infoText").html("<b>바이러스는 뉴스페이스14의 마더시스템인 M.A.I를 장악하자 콜로니의 모든 기기들은 더이상 통제를 거부하고, 심지어 인류를 위협하기 시작한다.</b>");
 
 					})
 				}, 5000);
@@ -395,14 +397,14 @@ $(function(){
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro03.jpg");
-						$("#infoText").html("<b>우주연합 사령부는 사건의 확산을 막기위해 위해 연합 최정예 에이스인 JohnRed 요원을 선발하였고<br>비밀리에 M.A.I의 파괴를 명하며, 작전명 GD2020라 칭했다.</b>");
+						$("#infoText").html("<b>우주연합 사령부는 이를 저지하기위해 연합 최정예 부대를 창설하고 M.A.I의 파괴를 명하며,<br>임무의 코드네임은 GD2020 이라 칭했다.</b>");
 					})
 				}, 10000);
 
 				setTimeout(function() {
 					$(".main").fadeOut( "slow", function() {
 						$("#imgIntro").attr("src","./img/intro04.jpg");
-						$("#infoText").html("<b>JohnRed는 즉시 최신 비밀 전투기 화이자에 팁승하고 뉴스페이스14 잠입에 성공하지만...</b>");
+						$("#infoText").html("<b>캡틴 JohnRed는 전투머신 화이자에 팁승하고 동료들과 뉴스페이스14 잠입에 성공하지만...</b>");
 					})
 				}, 15000);
 

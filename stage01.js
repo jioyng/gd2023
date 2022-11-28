@@ -516,9 +516,15 @@ var laser = new Image();
 laser.src = "./img/laser01.png";
 laser.addEventListener("load",drawScreen, false);
 
+var laser01 = new Image();
+laser01.src = "./img/bullet01.png";
+laser01.addEventListener("load",drawScreen, false);
+
+
 var laser02 = new Image();
-laser02.src = "./img/bullet01.png";
+laser02.src = "./img/engin01.png";
 laser02.addEventListener("load",drawScreen, false);
+
 
 //레이져 초기 생성 위치
 var laserX = playerX + playerWidth/2;
@@ -1536,7 +1542,7 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
         if (skill == 1){  
-            laserImage = laser02;
+            laserImage = laser01;
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
             if (wayBefore=='L'){
@@ -1713,7 +1719,7 @@ function laser_move(){
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
 
-                    Context.drawImage(laserImage,lmovex,lmovey,l_width/2,l_size - i/5);  
+                    Context.drawImage(laserImage,lmovex,lmovey,l_size,l_size - i/8);  
                 }   
 
             } 

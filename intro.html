@@ -22,7 +22,7 @@
   <title> 건닷지 </title> 
 </head> 
 	<body>
-	<div id="tot_div" bgcolor="#262626" class="main" style="width: 100%;height: 100%;">	  
+	<div id="tot_div" bgcolor="#262626" class="main" style="width:100%;height:100%;">	  
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
@@ -47,16 +47,16 @@ history.go(1);
 //로드시 PWA구현을 위해 서비스 워커 등록(로딩시 하단에 설치 메세지)
 window.addEventListener('load', ()=>{
  
-	// if('serviceWorker' in navigator){
-	// 	try {
-	// 		navigator.serviceWorker.register('serviceWorker.js');
-	// 		console.log("Service Worker Registered");
-	// 		//alert("a")
-	// 	} catch (error) {
-	// 		console.log("Service Worker Registration Failed");
-	// 		//alert("f")
-	// 	}
-	// }
+	if('serviceWorker' in navigator){
+		try {
+			navigator.serviceWorker.register('serviceWorker.js');
+			console.log("Service Worker Registered");
+			//alert("a")
+		} catch (error) {
+			console.log("Service Worker Registration Failed");
+			//alert("f")
+		}
+	}
 });
 
 //윈도우 리사이징 호출
@@ -87,8 +87,8 @@ if(parseInt(ls_height)>parseInt(ls_width)){
 }
 
 
-$(function(){ 
-	$(document).ready(function(e){	 
+//$(function(){ 
+$(document).ready(function(e){	 
 
 		//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
 		//f_search_lanDColor();        //화면 로딩시 자동 호출
@@ -99,7 +99,7 @@ $(function(){
 		});
 
 		//화면 드래그 방지
-		$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+		$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%', 'width': '100%'});
 		$('#totdiv').on('scroll touchmove mousewheel', function(event) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -141,59 +141,50 @@ $(function(){
 						ls_width=window.Height;
 						ls_height=window.Width;
 					}
-
-					// $("#totIntro").width(ls_width);
-					// $("#totIntro").height(ls_height); 
-
-
-					// $("#imgIntro").width(ls_width);
-					// $("#imgIntro").height(ls_height);
-
-					//$("#totIntro").show();
-
-					if($("#totIntro").show()){
-
-			
-					setTimeout(function() {
-						$(".main").fadeOut( "slow", function() {
-							$("#imgIntro").attr("src","./img/intro02.jpg");
-
+ 
+					$("#totIntro").show();
+ 			
+					setTimeout(function() { 
+						//$("#totIntro").fadeOut( "slow", function() { 
+						$("#imgIntro").attr("src","./img/intro02.jpg");
 							$("#infoText").html("<b>바이러스는 뉴스페이스14의 마더시스템인 M.A.I를 장악하자 콜로니의 모든 기기들은 더이상 통제를 거부하고,<br>심지어 인류를 위협하기 시작한다.</b>");
 
-						})
+						//})
 					}, 5000);
 
 					setTimeout(function() {
-						$(".main").fadeOut( "slow", function() {
-							$("#imgIntro").attr("src","./img/intro03.jpg");
+						
+						//$("#totIntro").fadeOut( "slow", function() { 
+						$("#imgIntro").attr("src","./img/intro03.jpg");
 							$("#infoText").html("<b>우주연합 사령부는 이를 저지하기위해 연합 최정예 부대를 창설하고 M.A.I의 파괴를 명하며,<br>임무의 코드네임은 GD2020 이라 칭했다.</b>");
-						})
+						//})
 					}, 10000);
 
 					setTimeout(function() {
-						$(".main").fadeOut( "slow", function() {
+						
+						//$("#totIntro").fadeOut( "slow", function() {
 							$("#imgIntro").attr("src","./img/intro04.jpg");
 							$("#infoText").html("<b>캡틴 JohnRed는 전투머신 화이자에 팁승하고 동료들과 뉴스페이스14 잠입에 성공하지만...</b>");
-						})
+						//})
 					}, 15000);
 
 					setTimeout(function() {
-						$(".main").fadeOut( "slow", function() {
+						
+						//$("#totIntro").fadeOut( "slow", function() { 
 							$("#imgIntro").attr("src","./img/intro05.jpg");
-							//화이자, 모더나, 아스트라제네카
 							$("#infoText").html("<b>얼마되지않아 이를 가로막는 A.I 병기들의 공격을 받기 시작한다.</b>");
-						})
+						//})
 					}, 20000);
 
 					setTimeout(function() {
-						$(".main").fadeOut( "slow", function() {
+						$("#imgIntro").fadeOut( "slow", function() {
 							window.location = 'play.html';
 						})
 					}, 25000);
 
 					totIntro.addEventListener('click', function() {
 
-						$(".main").fadeOut( "slow", function() {
+						$("#imgIntro").fadeOut( "slow", function() {
 	
 							window.location = 'play.html';
 
@@ -202,12 +193,12 @@ $(function(){
 						})
 
 					})
-			} 
+		  
 		}	 
 		
 		startIntro(); 
-	})
 })
+//})
 
 </script>
 </body>

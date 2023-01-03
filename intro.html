@@ -19,19 +19,19 @@
     <!-- <script type="text/javascript" src="./js/hammer.js"></script>   -->
     <script type="text/javascript" src="./js/Common.js"></script> 
 	<style>
-	/* body {
+	 body {
 		height: 100vh;
 		background: url("./img/intro01.jpg") no-repeat center;
 		background-size: cover;
-	}	 */
+	}	 
 	</style>
   <title> 건닷지 </title> 
 </head> 
 	<body>
-	  <div id="tot_div" bgcolor="#262626" style="width:100%;height:100%;">	  
+	  <!-- <div id="tot_div" bgcolor="#262626" style="width:100%;height:100%;">	  
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
-		</div>  
+		</div>   -->
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;">
 			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100%;height: 100vh;">
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
@@ -40,9 +40,9 @@
 			</div>
 		</div>  
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
-	  </div>  
+	  <!-- </div>   -->
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/Common.js"></script>
+<!-- <script type="text/javascript" src="js/Common.js"></script> -->
 <script type="text/javascript" charset="utf-8">
 //뒤로가기방지
 history.pushState(null, null, location.href); 
@@ -50,47 +50,47 @@ window.onpopstate = function(event) {
 history.go(1); 
 };
 
-//로드시 PWA구현을 위해 서비스 워커 등록(로딩시 하단에 설치 메세지)
-window.addEventListener('load', ()=>{
+// //로드시 PWA구현을 위해 서비스 워커 등록(로딩시 하단에 설치 메세지)
+// window.addEventListener('load', ()=>{
  
-	if('serviceWorker' in navigator){
-		try {
-			navigator.serviceWorker.register('serviceWorker.js');
-			console.log("Service Worker Registered");
-			//alert("a")
-		} catch (error) {
-			console.log("Service Worker Registration Failed");
-			//alert("f")
-		}
-	}
-});
+// 	if('serviceWorker' in navigator){
+// 		try {
+// 			navigator.serviceWorker.register('serviceWorker.js');
+// 			console.log("Service Worker Registered");
+// 			//alert("a")
+// 		} catch (error) {
+// 			console.log("Service Worker Registration Failed");
+// 			//alert("f")
+// 		}
+// 	}
+// });
 
-//윈도우 리사이징 호출
-window.addEventListener("resize",  fit_resize);
+// //윈도우 리사이징 호출
+// window.addEventListener("resize",  fit_resize);
 
-function fit_resize(){
+// function fit_resize(){
  
-//	var ls_width = window.innerWidth;
-//	var ls_height = window.innerHeight;
-// var ls_width = document.innerWidth;
-// var ls_height = document.innerHeight;
+// //	var ls_width = window.innerWidth;
+// //	var ls_height = window.innerHeight;
+// // var ls_width = document.innerWidth;
+// // var ls_height = document.innerHeight;
 
-// var ls_width = "100%";
-// var ls_height = "100%";
-var ls_width = window.Width;
-var ls_height = window.Height;
+// // var ls_width = "100%";
+// // var ls_height = "100%";
+// var ls_width = window.Width;
+// var ls_height = window.Height;
 
-if(parseInt(ls_height)>parseInt(ls_width)){
-	ls_width=window.Height;
-	ls_height=window.Width;
-}
-	// $("#totIntro").width(ls_width);
-	// $("#totIntro").height(ls_height);
+// if(parseInt(ls_height)>parseInt(ls_width)){
+// 	ls_width=window.Height;
+// 	ls_height=window.Width;
+// }
+// 	// $("#totIntro").width(ls_width);
+// 	// $("#totIntro").height(ls_height);
 
 
-	// $("#imgIntro").width(ls_width);
-	// $("#imgIntro").height(ls_height);
-}
+// 	// $("#imgIntro").width(ls_width);
+// 	// $("#imgIntro").height(ls_height);
+// }
 
 
 //$(function(){ 
@@ -105,7 +105,7 @@ $(document).ready(function(e){
 		});
 
 		//화면 드래그 방지
-		$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%', 'width': '100%'});
+		//$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%', 'width': '100%'});
 		$('#totdiv').on('scroll touchmove mousewheel', function(event) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -138,17 +138,17 @@ $(document).ready(function(e){
 	
 		function startIntro(){
 	
-					//인트로 시작 사운드
-					IntroSound();
-					var ls_width = window.Width;
-					var ls_height = window.Height;
+					// //인트로 시작 사운드
+					// IntroSound();
+					// var ls_width = window.Width;
+					// var ls_height = window.Height;
 					
-					if(parseInt(ls_height)>parseInt(ls_width)){
-						ls_width=window.Height;
-						ls_height=window.Width;
-					}
+					// if(parseInt(ls_height)>parseInt(ls_width)){
+					// 	ls_width=window.Height;
+					// 	ls_height=window.Width;
+					// }
  
-					$("#totIntro").show();
+					// $("#totIntro").show();
  			
 					setTimeout(function() { 
 						//$("#totIntro").fadeOut( "slow", function() { 

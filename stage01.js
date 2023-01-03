@@ -654,12 +654,12 @@ enemy04Image.addEventListener("load",drawScreen, false);
 
 //적04 건 이미지
 var enemy04GunImage = new Image();
-enemy04GunImage.src = "./img/laser03.png";
+enemy04GunImage.src = "./img/laser02.png";
 enemy04GunImage.addEventListener("load",drawScreen, false);
 
 //적04 미시일 이미지 및 로드
 var weappon04Image = new Image();
-weappon04Image.src = "./img/laser03.png";
+weappon04Image.src = "./img/laser01.png";
 weappon04Image.addEventListener("load",drawScreen, false);
 
 //적04 엔진 이미지

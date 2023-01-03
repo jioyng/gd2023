@@ -22,10 +22,10 @@
   <title> 건닷지 </title> 
 </head> 
 	<body>
-	<div id="tot_div" bgcolor="#262626" class="main" style="width:100%;height:100%;">	  
+	<!-- <div id="tot_div" bgcolor="#262626" style="width:100%;height:100%;">	  
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
-		</div>
+		</div> -->
 		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;">
 			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100%;height: 100%;">
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
@@ -34,7 +34,7 @@
 			</div>
 		</div>  
 		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
-	</div>
+	<!-- </div> -->
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -184,13 +184,13 @@ $(document).ready(function(e){
 
 					totIntro.addEventListener('click', function() {
 
-						$("#imgIntro").fadeOut( "slow", function() {
+						//$("#imgIntro").fadeOut( "slow", function() {
 	
 							window.location = 'play.html';
 
 							//var href = 'play.html';
 							//$("#totIntro").load(href);
-						})
+						//})
 
 					})
 		  

@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- 	<meta name="viewport" content="width=device-width,height=device-height, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-	<link rel="manifest" href="manifest.json">
-	<!--마지막으로 PWA가 Safari에서는 잘 인식하지 않는 경우 가 있습니다. 그것을 대비, 출처: https://uxgjs.tistory.com/225 [UX 공작소] -->
-	<link rel="apple-touch-icon" href="touch-icon-iphone.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
-	<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
-</head>
-<title> 건닷지 2020</title>
+<html lang="ko">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1,  user-scalable=no">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+  <!--<meta name="viewport" content="width=device-width, user-scalable=no">  -->
+  <meta name="viewport" content="width=device-width,height=device-height, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <!--마지막으로 PWA가 Safari에서는 잘 인식하지 않는 경우 가 있습니다. 그것을 대비, 출처: https://uxgjs.tistory.com/225 [UX 공작소] -->
+  <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png"> 
+  <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png"> 
+  <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png"> 
+
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>-->
+    <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>   
+    <!-- <script type="text/javascript" src="./js/hammer.js"></script>   -->
+    <script type="text/javascript" src="./js/Common.js"></script>  
+  </head>
+  <title> 건닷지 </title> 
 </head> 
 	<body>
-	<div id="tot_div" class="main" style="width: 100%;height: 100%;">	  
+	<div id="tot_div" bgcolor="#262626" class="main" style="width: 100%;height: 100%;">	  
 		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
 				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
 		</div>
-		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100vh;width:100vw;display:none;">
-			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100vh;height: 100vh;">
+		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100%;width:100%;">
+			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100%;height: 100%;">
 			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
 				<b>우주력 2020년, 지구 대체 코로니중 가장 거대한 규모의 스페이스14 내부에 이상 전자 바이러스가 침투했다.<br>
 				바이러스는 코로니 내부의 모두 기계 및 통제 시설에 까지 침투하였고, 이로인한 반응은 인류가 예상치 못한 결과를 초래했다.</b>
@@ -54,7 +63,7 @@ window.addEventListener('load', ()=>{
 window.addEventListener("resize",  fit_resize);
 
 function fit_resize(){
-	return;
+ 
 //	var ls_width = window.innerWidth;
 //	var ls_height = window.innerHeight;
 // var ls_width = document.innerWidth;
@@ -69,12 +78,12 @@ if(parseInt(ls_height)>parseInt(ls_width)){
 	ls_width=window.Height;
 	ls_height=window.Width;
 }
-	$("#totIntro").width(ls_width);
-	$("#totIntro").height(ls_height);
+	// $("#totIntro").width(ls_width);
+	// $("#totIntro").height(ls_height);
 
 
-	$("#imgIntro").width(ls_width);
-	$("#imgIntro").height(ls_height);
+	// $("#imgIntro").width(ls_width);
+	// $("#imgIntro").height(ls_height);
 }
 
 
@@ -133,12 +142,12 @@ $(function(){
 						ls_height=window.Width;
 					}
 
-					$("#totIntro").width(ls_width);
-					$("#totIntro").height(ls_height); 
+					// $("#totIntro").width(ls_width);
+					// $("#totIntro").height(ls_height); 
 
 
-					$("#imgIntro").width(ls_width);
-					$("#imgIntro").height(ls_height);
+					// $("#imgIntro").width(ls_width);
+					// $("#imgIntro").height(ls_height);
 
 					//$("#totIntro").show();
 

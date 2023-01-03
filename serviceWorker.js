@@ -1,7 +1,8 @@
 const staticAssets=[
     './',
     './css/style.css',
-    './index.html', 
+    './index.html',
+    './intro.html',
     './play.html',
     './stage01.js',    
     './end.js',        

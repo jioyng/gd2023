@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 	<meta name="viewport" content="width=device-width,height=device-height, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<link rel="manifest" href="manifest.json">
+	<!--마지막으로 PWA가 Safari에서는 잘 인식하지 않는 경우 가 있습니다. 그것을 대비, 출처: https://uxgjs.tistory.com/225 [UX 공작소] -->
+	<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+</head>
+<title> 건닷지 2020</title>
+</head> 
+	<body>
+	<div id="tot_div" class="main" style="width: 100%;height: 100%;">	  
+		<div id="totdiv"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;display:table;height:100%;width:100%;visibility:hidden;">
+				<p style="display:table-cell; text-align:center; vertical-align:middle;">This game is impossible on portrait.</p>
+		</div>
+		<div id="totIntro"  oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style="position: absolute;left:0%;top:0%;background:#262626;text-align:center;vertical-align:middle;font-size:17pt;color:white;z-index:1000;height:100vh;width:100vw;display:none;">
+			<img id="imgIntro"  src="./img/intro01.jpg" style="width: 100vh;height: 100vh;">
+			<div id="infoText" style="left:50px; width: 1000px; bottom: 140px; font-size: 0.6em; text-align:left; position: absolute;">
+				<b>우주력 2020년, 지구 대체 코로니중 가장 거대한 규모의 스페이스14 내부에 이상 전자 바이러스가 침투했다.<br>
+				바이러스는 코로니 내부의 모두 기계 및 통제 시설에 까지 침투하였고, 이로인한 반응은 인류가 예상치 못한 결과를 초래했다.</b>
+			</div>
+		</div>  
+		 <audio id='intro01' src='./sound/intro01.ogg'></audio>
+	</div>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type="text/javascript" charset="utf-8">
+//뒤로가기방지
+history.pushState(null, null, location.href); 
+window.onpopstate = function(event) { 
+history.go(1); 
+};
+
+//로드시 PWA구현을 위해 서비스 워커 등록(로딩시 하단에 설치 메세지)
+window.addEventListener('load', ()=>{
+ 
+	// if('serviceWorker' in navigator){
+	// 	try {
+	// 		navigator.serviceWorker.register('serviceWorker.js');
+	// 		console.log("Service Worker Registered");
+	// 		//alert("a")
+	// 	} catch (error) {
+	// 		console.log("Service Worker Registration Failed");
+	// 		//alert("f")
+	// 	}
+	// }
+});
+
+//윈도우 리사이징 호출
+window.addEventListener("resize",  fit_resize);
+
+function fit_resize(){
+	return;
+//	var ls_width = window.innerWidth;
+//	var ls_height = window.innerHeight;
+// var ls_width = document.innerWidth;
+// var ls_height = document.innerHeight;
+
+// var ls_width = "100%";
+// var ls_height = "100%";
+var ls_width = window.Width;
+var ls_height = window.Height;
+
+if(parseInt(ls_height)>parseInt(ls_width)){
+	ls_width=window.Height;
+	ls_height=window.Width;
+}
+	$("#totIntro").width(ls_width);
+	$("#totIntro").height(ls_height);
+
+
+	$("#imgIntro").width(ls_width);
+	$("#imgIntro").height(ls_height);
+}
+
+
+$(function(){ 
+	$(document).ready(function(e){	 
+
+		//가로모드에서만 실행(화면 로드시 시작되는 모드 체크, common.js에 명시)
+		//f_search_lanDColor();        //화면 로딩시 자동 호출
+
+		// //우클릭, 드래그, 선택 방지
+		$(document).on("contextmenu dragstart selectstart",function(e){
+			return false;
+		});
+
+		//화면 드래그 방지
+		$('html, body, totdiv').css({'overflow': 'hidden', 'height': '100%'});
+		$('#totdiv').on('scroll touchmove mousewheel', function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				return false;
+		});
+
+		$(document).keydown(function(e){	//어떤키를 눌렀는지 e에 담는다
+
+			var a = e.keyCode;	    //a에 해당키의 keycode를 넣고, alert(a);
+
+			if(a == 13 || a == 32){//키가 sparce or enter 이면 실행 (엔터는 13)
+				$("#start").click();
+			}
+
+		});
+	
+		//인트로 음악
+		function IntroSound(){
+			//intro효과
+			var intro01 = document.getElementById('intro01');
+
+			if (intro01 != null){
+				//stsound.currentTime = 2; //재생위치
+
+				intro01.currentTime = 13; //재생위치
+
+				intro01.play();
+			}
+		}; 
+	
+		function startIntro(){
+	
+					//인트로 시작 사운드
+					IntroSound();
+					var ls_width = window.Width;
+					var ls_height = window.Height;
+					
+					if(parseInt(ls_height)>parseInt(ls_width)){
+						ls_width=window.Height;
+						ls_height=window.Width;
+					}
+
+					$("#totIntro").width(ls_width);
+					$("#totIntro").height(ls_height); 
+
+
+					$("#imgIntro").width(ls_width);
+					$("#imgIntro").height(ls_height);
+
+					//$("#totIntro").show();
+
+					if($("#totIntro").show()){
+
+			
+					setTimeout(function() {
+						$(".main").fadeOut( "slow", function() {
+							$("#imgIntro").attr("src","./img/intro02.jpg");
+
+							$("#infoText").html("<b>바이러스는 뉴스페이스14의 마더시스템인 M.A.I를 장악하자 콜로니의 모든 기기들은 더이상 통제를 거부하고,<br>심지어 인류를 위협하기 시작한다.</b>");
+
+						})
+					}, 5000);
+
+					setTimeout(function() {
+						$(".main").fadeOut( "slow", function() {
+							$("#imgIntro").attr("src","./img/intro03.jpg");
+							$("#infoText").html("<b>우주연합 사령부는 이를 저지하기위해 연합 최정예 부대를 창설하고 M.A.I의 파괴를 명하며,<br>임무의 코드네임은 GD2020 이라 칭했다.</b>");
+						})
+					}, 10000);
+
+					setTimeout(function() {
+						$(".main").fadeOut( "slow", function() {
+							$("#imgIntro").attr("src","./img/intro04.jpg");
+							$("#infoText").html("<b>캡틴 JohnRed는 전투머신 화이자에 팁승하고 동료들과 뉴스페이스14 잠입에 성공하지만...</b>");
+						})
+					}, 15000);
+
+					setTimeout(function() {
+						$(".main").fadeOut( "slow", function() {
+							$("#imgIntro").attr("src","./img/intro05.jpg");
+							//화이자, 모더나, 아스트라제네카
+							$("#infoText").html("<b>얼마되지않아 이를 가로막는 A.I 병기들의 공격을 받기 시작한다.</b>");
+						})
+					}, 20000);
+
+					setTimeout(function() {
+						$(".main").fadeOut( "slow", function() {
+							window.location = 'play.html';
+						})
+					}, 25000);
+
+					totIntro.addEventListener('click', function() {
+
+						$(".main").fadeOut( "slow", function() {
+	
+							window.location = 'play.html';
+
+							//var href = 'play.html';
+							//$("#totIntro").load(href);
+						})
+
+					})
+			} 
+		}	 
+		
+		startIntro(); 
+	})
+})
+
+</script>
+</body>
+</html>

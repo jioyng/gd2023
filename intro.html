@@ -13,12 +13,26 @@
 		<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
 		<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
 	<style>
-	 #imgIntro {
-		height: 100vh;
-		width: 100vw;
-		background: url("./img/intro01.jpg") no-repeat center;
-		background-size: cover;
-	}	 
+		body {
+
+		background-size: 100%;
+		background-repeat:no-repeat;
+		/* -background-position: 40% -30%;
+		background-position: 50% -5%; */
+		}
+		#imgIntro {
+			height: 100vh;
+			width: 100vw;
+			background: url("./img/intro01.jpg") no-repeat center;
+			background-size: cover;
+			font-size: 80px;
+			font-style: oblique;
+			font-weight: bold;
+			background-image: -webkit-linear-gradient(#eee, #156);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			position:relative;			
+		}	 
 	</style> 
   	<title> 건닷지 </title> 
 </head> 

@@ -4245,7 +4245,7 @@ function fit_fullsize(){
         ls_width = window.innerWidth;   
     
         ////////////////// 게임 캠퍼스 재조정
-        toggleFullScreen(); 
+        //toggleFullScreen(); 
         fitToContainer(theCanvas); 
         ls_height2 = window.innerHeight;
          
@@ -5693,7 +5693,7 @@ function weappon_move(){
                     }
                 }else {
                     //그외  
-                    for (z=0;z<12;z++){
+                    for (z=0;z<12;z++){       
                         Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/4 + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);      
                     }
                 }   

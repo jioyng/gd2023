@@ -190,6 +190,7 @@ window.addEventListener('load', ()=>{
 window.addEventListener("resize",  fit_resize);
 
 function fit_resize(){
+	return;
 //	var ls_width = window.innerWidth;
 //	var ls_height = window.innerHeight;
 // var ls_width = document.innerWidth;
@@ -312,9 +313,7 @@ $(function(){
 	//$("#start").bind('touchstart', function(e) {
 	//jquery 3.3.1 버젼부터는 클릭(click)과 터치(touchstart) 이벤트가 통합된듯함.
 		start.addEventListener('click', function() {
-		//$("#start").click(function(){
-
-				//window.location = 'play.html';
+		//$("#start").click(function(){ 
 
 			if (StSound() != 1)  {
 			return;
@@ -352,7 +351,12 @@ $(function(){
 				misound.pause();
 
 				//toggleFullScreen();
+<<<<<<< HEAD
 				//window.location = 'play.html';
+=======
+				//인트로 화면으로 이동
+				//window.location = 'intro.html';
+>>>>>>> main
 				setTimeout(startIntro, 1000);
 
 			});

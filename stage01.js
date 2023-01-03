@@ -32,7 +32,7 @@ var ls_height = window.innerHeight;	        	//터치 드래그시 상단 주소
 var docV = document.documentElement;
 
 //윈도우 리사이징 호출BtnaimX
-window.addEventListener("resize",  fit_resize);
+//window.addEventListener("resize",  fit_resize);
 
 //게임 로드시 켐퍼스 리사이징 조정
 fitToContainer(theCanvas);
@@ -5693,7 +5693,7 @@ function weappon_move(){
                     }
                 }else {
                     //그외  
-                    for (z=0;z<12;z++){
+                    for (z=0;z<12;z++){       
                         Context.drawImage(this.weapponImage,this.weapponArray[i].bmx,this.weapponArray[i].bmy,this.weapponArray[i].bsize/4 + this.weapponArray[i].bmy / 200, this.weapponArray[i].bsize/2 + this.weapponArray[i].bmy / 100);      
                     }
                 }   

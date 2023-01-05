@@ -3538,7 +3538,9 @@ function game_background(){
         // var cityImage8 = city08Image;
         // var cityImage9 = city09Image;
 
-        var tmp_str = String(parseInt(gameTime/10));
+        //var tmp_str = String(parseInt(gameTime/10)); //분모가 작을수로 배경속도가 빨라진다.
+        console.log("cityEnd_y/100",10+parseInt(cityEnd_y/100));
+        var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
         var tmp_num = tmp_str.substr(tmp_str.length-1);
         //console.log("tesT",str2);
          

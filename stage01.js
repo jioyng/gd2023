@@ -466,7 +466,7 @@ var ini_player_width = 320;   //319
 var ini_player_height = 500;  //503
 // var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 // var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
-var ini_player_size = 3000;    //플레이어 초기 크기 배율
+var ini_player_size = 1;    //플레이어 초기 크기 배율
 
 //플레이어크기
 var playerWidth = ini_player_width;
@@ -772,8 +772,8 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-var ini_enemyw = 45*2;
-var ini_enemyh = 55*2;
+var ini_enemyw = 45;
+var ini_enemyh = 55;
 
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;

@@ -151,7 +151,7 @@ button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 45;  //60프레임
+var ini_gameFrame = 60;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -772,8 +772,8 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
-var ini_enemyw = 45;
-var ini_enemyh = 55;
+var ini_enemyw = 46*1.4;
+var ini_enemyh = 55*1.4;
 
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;
@@ -3050,10 +3050,10 @@ function game_background(){
     }else {
         Context.globalAlpha = 0.8;
     }
- 
+    Context.globalAlpha = 1;
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
     //시간이 지남에 따라 이미지도 좀좀 키워준다.
-    Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20,theCanvas.clientHeight + gameTime/20);
+    Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime,theCanvas.clientHeight + gameTime);
     
     //콜로니끝
     //콜로니 끝 근처는 어둡다.

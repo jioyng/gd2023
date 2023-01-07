@@ -2867,7 +2867,7 @@ function enemy_move(){
 function ship01_move(){
 
     //if (gameTime >= 500000){
-    if (gameTime >= 5000){
+    if (gameTime >= 2800){
         //alert("광선발사")
         return;
     }

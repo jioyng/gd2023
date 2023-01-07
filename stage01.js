@@ -204,7 +204,7 @@ noneImage.addEventListener("load",drawScreen, false);
 
 //게임 배경(우주) 이미지
 var backgroundImage = new Image();
-backgroundImage.src = "./img/background01.png";
+backgroundImage.src = "./img/background04.png";
 backgroundImage.addEventListener("load",drawScreen, false);
 
 //게임 배경(도로) 이미지
@@ -3094,17 +3094,26 @@ function game_background(){
     //콜로니 밖 우주 배경그려주기(투명도 적용)
     Context.save();
 
-    if (parseInt(gameTime/(1000*Pspeed)) % 3 == 0){
+    if (parseInt(gameTime/(1000*Pspeed)) % 5 == 0){
         Context.globalAlpha = 0.4;
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 3 == 1){
+        Context.drawImage(backgroundImage,0,  0,theCanvas.clientWidth + gameTime/20*10,theCanvas.clientHeight + gameTime/20*10);
+    }else if (parseInt(gameTime/(1000*Pspeed)) % 5 == 1){
         Context.globalAlpha = 0.6;
-    }else {
+        Context.drawImage(backgroundImage,0,  0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
+    }else if (parseInt(gameTime/(1000*Pspeed)) % 5 == 2){
         Context.globalAlpha = 0.5;
+        Context.drawImage(backgroundImage,0, - gameTime/20,theCanvas.clientWidth - gameTime/20,theCanvas.clientHeight - gameTime/20);
+    }else if (parseInt(gameTime/(1000*Pspeed)) % 5 == 3){
+        Context.globalAlpha = 0.4;
+        Context.drawImage(backgroundImage,0, gameTime/20,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
+    }else {
+        Context.globalAlpha = 0.3;
+        Context.drawImage(backgroundImage,0,  0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*10);
     }
  
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
     //시간이 지남에 따라 이미지도 좀좀 키워준다.
-    Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20,theCanvas.clientHeight + gameTime/20);
+    //Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20*10,theCanvas.clientHeight + gameTime/20*10);
     
     //콜로니끝
     //콜로니 끝 근처는 어둡다.

@@ -3105,10 +3105,10 @@ function game_background(){
         Context.drawImage(backgroundImage,0, - gameTime/20,theCanvas.clientWidth - gameTime/20,theCanvas.clientHeight - gameTime/20);
     }else if (parseInt(gameTime/(1000*Pspeed)) % 5 == 3){
         Context.globalAlpha = 0.4;
-        Context.drawImage(backgroundImage,0, gameTime/20,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
+        Context.drawImage(backgroundImage,0, gameTime/20,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
     }else {
         Context.globalAlpha = 0.3;
-        Context.drawImage(backgroundImage,0,  0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*10);
+        Context.drawImage(backgroundImage,0,  0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
     }
  
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
@@ -3549,7 +3549,8 @@ function game_background(){
 
         //var tmp_str = String(parseInt(gameTime/10)); //분모가 작을수로 배경속도가 빨라진다.
         console.log("cityEnd_y/100",10+parseInt(cityEnd_y/100));
-        var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
+        //var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
+        var tmp_str = String(parseInt(gameTime/10));
         var tmp_num = tmp_str.substr(tmp_str.length-1);
         //console.log("tesT",str2);
          

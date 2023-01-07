@@ -151,7 +151,7 @@ button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 45;  //60프레임
+var ini_gameFrame = 60;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -3549,8 +3549,8 @@ function game_background(){
 
         //var tmp_str = String(parseInt(gameTime/10)); //분모가 작을수로 배경속도가 빨라진다.
         console.log("cityEnd_y/100",10+parseInt(cityEnd_y/100));
-        //var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
-        var tmp_str = String(parseInt(gameTime/10));
+        var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
+        //var tmp_str = String(parseInt(gameTime/10));
         var tmp_num = tmp_str.substr(tmp_str.length-1);
         //console.log("tesT",str2);
          
@@ -3852,7 +3852,7 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.5; 
-                Context3.drawImage(eval("cityImage1"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 + (100 - playerX/7)/6 + 5,  30 + theCanvas.clientHeight / 6  + j   + cityEnd_y, j*4 - (200 - playerX/7)/6,60* random01 + 100 );
+                Context3.drawImage(eval("cityImage1"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2,  30 + theCanvas.clientHeight / 6  + j   + cityEnd_y, j*4,60* random01 + 100 );
                 
                 j = j + (2*random01);     //건물 상하 조밀도
                 //j = j + 60;
@@ -3860,7 +3860,7 @@ function game_background(){
  
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.02; 
-                Context3.drawImage(eval("cityImage1"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage1"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.03; 
@@ -3880,7 +3880,7 @@ function game_background(){
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01; 
-                Context3.drawImage(eval("cityImage2"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage2"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02; 
@@ -3899,7 +3899,7 @@ function game_background(){
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*3; 
-                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage3"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02*3; 
@@ -3910,13 +3910,13 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.6; 
-                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/28,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2 - playerX)/28 ,1 * random01 + 30)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*1.6 - parseInt(ls_width/2)/28,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2)/10 + 10,1 * random01 + 30)
     
                 j = j + (10*random01);     //건물 상하 조밀도 
  
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*3; 
-                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage4"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02*3; 
@@ -3928,13 +3928,13 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.7; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/26,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2 - playerX)/26 ,4 * random01 + 34)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/30,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2)/26 ,4 * random01 + 34)
     
                 j = j + (20*random01);     //건물 상하 조밀도 
  
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*3; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02*3; 
@@ -3946,13 +3946,13 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/22,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2 - playerX)/22 ,4 * random01 + 36)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/30,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2)/50 ,4 * random01 + 36)
     
                 j = j + (20*random01);     //건물 상하 조밀도 
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*2; 
-                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage5"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02*2; 
@@ -3963,13 +3963,13 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/20,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2 - playerX)/20 ,5 * random01 + 80)
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/20,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,  random01 + j*4 - parseInt(ls_width/2)/80 ,5 * random01 + 80)
     
                 j = j + (20*random01);     //건물 상하 조밀도
               
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.02*2; 
-                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage6"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.04*2; 
@@ -3980,11 +3980,11 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2 - playerX)/18 ,6 * random01 + 80 - playerX/60)    
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2)/18 ,6 * random01 + 80)    
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*2; 
-                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.03*2; 
@@ -3998,11 +3998,11 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.8; 
-                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2 - playerX)/18 ,6 * random01 + 86 - playerX/60)    
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/18,  20 + theCanvas.clientHeight / 6  + j + random01  + cityEnd_y,   random01 + j*4 - parseInt(ls_width/2)/18 ,6 * random01 + 86)    
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*2; 
-                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage7"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.03*2; 
@@ -4016,11 +4016,11 @@ function game_background(){
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/12,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4  - parseInt(ls_width/2 - playerX)/12 ,100 );
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/12,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4  - parseInt(ls_width/2)/12 ,100 );
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01*2; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02*2; 
@@ -4031,15 +4031,15 @@ function game_background(){
 
             }  
 
-            for (var j = 400 ; j < 404;j){  
+            for (var j = 400 ; j < 410;j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.9; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2 - playerX)/12,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4  - parseInt(ls_width/2 - playerX)/12 ,80 );
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - parseInt(ls_width/2)/12,  20 + theCanvas.clientHeight / 6  + j  + cityEnd_y ,  random01 + j*4  - parseInt(ls_width/2)/12 ,80 );
 
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02; 
@@ -4050,7 +4050,7 @@ function game_background(){
 
             }              
 
-            for (var j = 480 ; j < 486;j){  
+            for (var j = 450 ; j < 476;j){  
         
                 //지면 땅
                 Context3.globalAlpha = 0.7; 
@@ -4058,7 +4058,7 @@ function game_background(){
     
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01; 
-                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage8"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02; 
@@ -4079,7 +4079,7 @@ function game_background(){
                 //j = j + 40*random01;     //건물 상하 조밀도
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01; 
-                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02; 
@@ -4096,7 +4096,7 @@ function game_background(){
                 //j = j + 40*random01;     //건물 상하 조밀도
                 //지붕 건물 반사
                 Context3.globalAlpha = 0.01; 
-                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3 + playerX/5 ,10 * random02 + 80)
+                Context3.drawImage(eval("cityImage9"),theCanvas.clientWidth / 2  - parseInt(cityEnd_size/2) + cityEnd_x - j*2 - 10,theCanvas.clientHeight / 10  - j - random01  + cityEnd_y,  random01 + j*3  ,10 * random02 + 80)
                         
                 //지붕 땅 반사
                 Context3.globalAlpha = 0.02; 

@@ -139,7 +139,11 @@ button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
+<<<<<<< HEAD
 var ini_gameFrame = 40;  //60프레임
+=======
+var ini_gameFrame = 60;  //60프레임
+>>>>>>> 0112156a639dede87282f94df5ae75d572930952
 //진행시간(=거리)
 var init_gameTime = 0;
 var gameTime = 0;
@@ -192,7 +196,7 @@ noneImage.addEventListener("load",drawScreen, false);
 
 //게임 배경(우주) 이미지
 var backgroundImage = new Image();
-backgroundImage.src = "./img/background01.png";
+backgroundImage.src = "./img/background02.png";
 backgroundImage.addEventListener("load",drawScreen, false);
 
 //게임 배경(도로) 이미지
@@ -405,6 +409,7 @@ var wayBefore = 'None;'
 //플레이어 초기값( 크기, 위치 및 기본 이동거리, 스피트)
 //var ini_player_width = 70;
 //var ini_player_height = 45;
+<<<<<<< HEAD
 var ini_player_width = 130;
 var ini_player_height = 200;
 //var ini_player_width = 160;   //319
@@ -412,6 +417,17 @@ var ini_player_height = 200;
 var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
 var ini_player_size = 100;    //플레이어 초기 크기 배율
+=======
+//var ini_player_width = 140;
+//var ini_player_height = 200;
+//var ini_player_width = 160;   //319
+//var ini_player_height = 250;  //503
+var ini_player_width = 320;   //319
+var ini_player_height = 500;  //503
+// var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
+// var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
+var ini_player_size = 1;    //플레이어 초기 크기 배율
+>>>>>>> 0112156a639dede87282f94df5ae75d572930952
 
 //플레이어크기
 var playerWidth = ini_player_width;
@@ -569,8 +585,14 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
+<<<<<<< HEAD
 var ini_enemyw = 42;
 var ini_enemyh = 55;
+=======
+var ini_enemyw = 46*1.4;
+var ini_enemyh = 55*1.4;
+
+>>>>>>> 0112156a639dede87282f94df5ae75d572930952
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;
 var enemyw = ini_enemyw;
@@ -1847,62 +1869,9 @@ function game_background(){
 
     if (back_distance >= 1000){
         back_distance = 0;
-    }
+    } 
 
-    // if (parseInt(gameTime/800 % 9) == 0){
-    //     cityEnd_x = cityEnd_x + 0.2*4;
-    //     cityEnd_y = cityEnd_y + 0.1*4
-    // }else if (parseInt(gameTime/500 % 9) == 1){
-    //     cityEnd_x = cityEnd_x - 0.5*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 2){
-    //     cityEnd_x = cityEnd_x + 0.5*4;
-    //     cityEnd_y = cityEnd_y + 0.3*4;
-    // }else if (parseInt(gameTime/500 % 9) == 3){
-    //     cityEnd_x = cityEnd_x + 0.1*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 4){
-    //     cityEnd_x = cityEnd_x - 0.6*4;
-    //     cityEnd_y = cityEnd_y - 0.4*4;
-    // }else if (parseInt(gameTime/500 % 9) == 5){
-    //     cityEnd_x = cityEnd_x + 0.7*4;
-    //     cityEnd_y = cityEnd_y + 0.4*4;
-    // }else if (parseInt(gameTime/500 % 9) == 6){
-    //     cityEnd_x = cityEnd_x - 0.4*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 7){
-    //     cityEnd_x = cityEnd_x + 0.3*4;
-    //     cityEnd_y = cityEnd_y + 0.3*4;
-    // }else if (parseInt(gameTime/500 % 9) == 8){
-    //     cityEnd_x = cityEnd_x - 0.2*4;
-    //     cityEnd_y = cityEnd_y - 0.1*4;
-    // }else {
-    //     cityEnd_x = cityEnd_x + 0.1*4;
-    //     cityEnd_y = cityEnd_y + 0.2*4;
-    // }
-
-    cityEnd_size =  cityEnd_size - pmovey/20;
-     
-    //플레이어 이동에 따른 게임 중심 좌표 이동
-    // if (cityEnd_x > ls_width/2){ 
-        
-    //     cityEnd_x = cityEnd_x + pmovex/2;
-    //     //cityEnd_y = cityEnd_y - pmovey/3; 
-
-    // }else {
-    //     cityEnd_x = cityEnd_x - pmovex/2;
-    //     // if (cityEnd_x < init_cityEnd_x){
-    //     //     cityEnd_x = cityEnd_x - pmovex/2;
-    //     // }
-    // }
- 
-//     if (cityEnd_y >= ls_height){  
-//         //cityEnd_x = cityEnd_x - pmovex/3;
-//         cityEnd_y = cityEnd_y + pmovey*2; 
-// console.log("x",cityEnd_y)
-//     }else {
- 
-              
+    cityEnd_size =  cityEnd_size - pmovey/20;  
         
     //플레이어 이동에 따른 배경 중심좌표 이동
     if (wayBefore == 'R'){
@@ -1997,12 +1966,13 @@ function game_background(){
     Context.save();
 
     if (parseInt(gameTime/(1000*Pspeed)) % 3 == 0){
-        Context.globalAlpha = 0.4;
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 3 == 1){
         Context.globalAlpha = 0.6;
+    }else if (parseInt(gameTime/(1000*Pspeed)) % 3 == 1){
+        Context.globalAlpha = 0.7;
     }else {
-        Context.globalAlpha = 0.5;
+        Context.globalAlpha = 0.8;
     }
+<<<<<<< HEAD
 
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
     //시간이 지남에 따라 이미지도 좀좀 키워준다.
@@ -2053,9 +2023,28 @@ function game_background(){
     }else{
         Context3.fillStyle = 'black';
     }
+=======
+    Context.globalAlpha = 1;
+    //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
+    //시간이 지남에 따라 이미지도 좀좀 키워준다.
+    Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime,theCanvas.clientHeight + gameTime);
+    
+    //콜로니끝
+    //콜로니 끝 근처는 어둡다.
+    // Context3.beginPath();
+    // Context3.arc(theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 50 ,theCanvas.clientHeight / 2  ,100 +  Math.floor(Math.random() * 5) ,0,2*Math.PI);
+ 
+ 
+    // if (Math.floor(Math.random() * 2) == 2){
+    //     Context3.stroke();        //원 테두리
+    //     //Context3.fillStyle = 'gray';
+    // }else{
+    //     Context3.fillStyle = 'black';
+    // }
+>>>>>>> 0112156a639dede87282f94df5ae75d572930952
 
     //Context3.fillStyle = 'black';
-    Context3.fill();
+    //Context3.fill();
 
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x , theCanvas.clientHeight / 4 + cityEnd_y - 50 +  Math.floor(Math.random() * 3) ,  90 ,60 );
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 20 , theCanvas.clientHeight / 4 + cityEnd_y - 40 +  Math.floor(Math.random() * 3) ,  60 ,40 );
@@ -2064,6 +2053,7 @@ function game_background(){
 
 
     Context.restore();
+<<<<<<< HEAD
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
@@ -2755,6 +2745,49 @@ function game_background(){
  
  
     //}
+=======
+    
+
+    //첫번째 보스가 파괴되고 나면 아래에서 전함이 나온다.
+    if (enemy_boss_01_status == 2){
+
+        Context3.globalAlpha = 1;
+
+        if (l >= 500){
+
+            m = m + 0.2;
+
+            if (m<=300){
+                Context3.drawImage(enemy05Image,600 - l + m,(theCanvas.clientHeight + 20) -l  + m,  1600 - l  + m ,800 - l  + Math.random()*2);
+            }else {
+                m = 0;
+                l = -200;
+            };
+
+        }else {
+            l = l + 0.6;
+            Context3.drawImage(enemy05Image,600 - l,(theCanvas.clientHeight + 20) -l,  1600 - l ,800 - l   + Math.random()*2);
+        } 
+        
+    }
+
+
+     //두번째 보스가 파괴되고 나면 아래에서 전함이 나온다.
+     if (enemy_boss_02_status == 2){
+
+        Context3.globalAlpha = 1;
+
+        if (l >= 500){
+
+            m = m + 0.2;
+
+            if (m<=300){
+                Context3.drawImage(enemy05Image,600 - l + m,(theCanvas.clientHeight + 20) -l  + m,  1600 - l  + m ,800 - l  + Math.random()*2);
+            }else {
+                m = 0;
+                l = -200;
+            };
+>>>>>>> 0112156a639dede87282f94df5ae75d572930952
 
     //투명도 원상태로
     Context3.fillStyle = '#ffffff';

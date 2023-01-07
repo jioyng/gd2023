@@ -1267,36 +1267,36 @@ function player_move(){
     //플레이어가 움직이면 필살기 충전은 초기환된다.
     //laser_charge_total_time = 0;
     //laser_charge_start_time = gameTime;
-
+ + power/50000;
     //방향이동(키이벤트보다는 프레임에 설정하는게 더 부드러움.)
 	//대각선방향 => 상하좌우키 동시 누른것과 같음.
 	//좌상
 	if (isKeyDown[103] || isKeyCode == 36 ) {
         wayBefore = 'LU';
-		//pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
-        //pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
-        pmovex = pmovex - Pspeed - power/50000;
-        pmovey = pmovey - Pspeed - power/50000;        
+		//pmovex = pmovex - 0.1 * Pspeed/2;
+        //pmovey = pmovey - 0.1 * Pspeed/2;
+        pmovex = pmovex - Pspeed;
+        pmovey = pmovey - Pspeed;        
         playerImage = player_135;
 	}else
 
 	//우상
 	if (isKeyDown[105] || isKeyCode == 33  ) {
         wayBefore = 'RU';
-		//pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
-        //pmovey = pmovey - 0.1 * Pspeed/2 - power/50000;
-        pmovex = pmovex + Pspeed + power/50000;
-        pmovey = pmovey - Pspeed - power/50000;
+		//pmovex = pmovex + 0.1 * Pspeed/2;
+        //pmovey = pmovey - 0.1 * Pspeed/2;
+        pmovex = pmovex + Pspeed;
+        pmovey = pmovey - Pspeed;
         playerImage = player_45;
 	}else
 
 	//좌하
 	if (isKeyDown[97] || isKeyCode == 35 ) {
         wayBefore = 'LD';
-		//pmovex = pmovex - 0.1 * Pspeed/2 - power/50000;
-        //pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
-        pmovex = pmovex - Pspeed - power/50000;
-        pmovey = pmovey + Pspeed + power/50000;
+		//pmovex = pmovex - 0.1 * Pspeed/2;
+        //pmovey = pmovey + 0.1 * Pspeed/2;
+        pmovex = pmovex - Pspeed;
+        pmovey = pmovey + Pspeed;
         //playerImage = player;
         playerImage = player_135;
 	}else
@@ -1304,10 +1304,10 @@ function player_move(){
 	//우하
 	if (isKeyDown[99] || isKeyCode == 34 ) {
         wayBefore = 'RD';
-		//pmovex = pmovex + 0.1 * Pspeed/2 + power/50000;
-        //pmovey = pmovey + 0.1 * Pspeed/2 + power/50000;
-		pmovex = pmovex + Pspeed + power/50000;
-        pmovey = pmovey + Pspeed + power/50000;        
+		//pmovex = pmovex + 0.1 * Pspeed/2;
+        //pmovey = pmovey + 0.1 * Pspeed/2;
+		pmovex = pmovex + Pspeed;
+        pmovey = pmovey + Pspeed;        
         //playerImage = player;
         playerImage = player_45;
 	}else {
@@ -1317,8 +1317,8 @@ function player_move(){
         if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
             //--pmovex;
             wayBefore = 'L'; 
-            //pmovex = pmovex - 0.1 * Pspeed / 2 - power/50000;
-            pmovex = pmovex - Pspeed - power/50000;
+            //pmovex = pmovex - 0.1 * Pspeed / 2;
+            pmovex = pmovex - Pspeed;
             playerImage = player_180;
 
         }
@@ -1327,24 +1327,24 @@ function player_move(){
         if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
             //++pmovex;
             wayBefore = 'R';
-            //pmovex = pmovex + 0.1 * Pspeed / 2 + power/50000;
-            pmovex = pmovex + Pspeed + power/50000;
+            //pmovex = pmovex + 0.1 * Pspeed / 2;
+            pmovex = pmovex + Pspeed;
             playerImage = player_360;
         }
 
         //상
         if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
             wayBefore = 'U';
-            //pmovey = pmovey - 0.1 * Pspeed / 2 - power/50000;
-            pmovey = pmovey - Pspeed - power/50000;
+            //pmovey = pmovey - 0.1 * Pspeed / 2;
+            pmovey = pmovey - Pspeed;
             playerImage = player_90;
         }
 
         //하
         if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
             wayBefore = 'D';
-            //pmovey = pmovey + 0.1 * Pspeed / 2 + power/50000;
-            pmovey = pmovey + Pspeed + power/50000;
+            //pmovey = pmovey + 0.1 * Pspeed / 2;
+            pmovey = pmovey + Pspeed;
             playerImage = player_270;
         }
         
@@ -2866,7 +2866,8 @@ function enemy_move(){
 ////////////////// 전함01 이동
 function ship01_move(){
 
-    if (gameTime >= 500000){
+    //if (gameTime >= 500000){
+    if (gameTime >= 5000){
         //alert("광선발사")
         return;
     }
@@ -6350,10 +6351,10 @@ function drawScreen(){
     Context.fillStyle = '#ffffff';
     Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
     Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
-    //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,150);
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
     Context.fillText("Skill     : " + skill,10,150); 
     Context.fillText("Power : " + power,10,200); 
+    Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,250);    
 
 
 

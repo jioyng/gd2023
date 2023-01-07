@@ -3007,7 +3007,7 @@ function game_background(){
     //플레이어 이동에 따른 배경 중심좌표 이동
     if (wayBefore == 'R'){
         if (cityEnd_x > -500){
-            cityEnd_x = cityEnd_x - 1 - playerX/1000;
+            cityEnd_x = cityEnd_x - 1 - playerX/2000;
         }else {
             cityEnd_x = cityEnd_x;
         }  
@@ -3015,7 +3015,7 @@ function game_background(){
 
     if (wayBefore == 'L'){ 
         if (cityEnd_x < 500){
-            cityEnd_x = cityEnd_x + 1 + playerX/1000;
+            cityEnd_x = cityEnd_x + 1 + playerX/2000;
         }else {
             cityEnd_x = cityEnd_x;
         } 
@@ -3025,13 +3025,13 @@ function game_background(){
         if (cityEnd_y < -700){
             cityEnd_y = cityEnd_y;
         }else {
-            cityEnd_y = cityEnd_y - 1  - playerY/1000;
+            cityEnd_y = cityEnd_y - 1  - playerY/2000;
         } 
     }
     
     if (wayBefore == 'U'){        
         if (cityEnd_y < ls_height + 600) {
-            cityEnd_y = cityEnd_y + 1  + playerY/1000;
+            cityEnd_y = cityEnd_y + 1  + playerY/2000;
         }else {
             cityEnd_y = cityEnd_y;
         } 
@@ -3039,12 +3039,12 @@ function game_background(){
         
     if (wayBefore == 'RU'){
         if (cityEnd_x > -500){
-            cityEnd_x = cityEnd_x - 1  - playerX/1000;
+            cityEnd_x = cityEnd_x - 1  - playerX/2000;
         }else {
             cityEnd_x = cityEnd_x;
         } 
         if (cityEnd_y < ls_height + 600) {
-            cityEnd_y = cityEnd_y + 1 + playerY/1000;
+            cityEnd_y = cityEnd_y + 1 + playerY/2000;
         }else {
             cityEnd_y = cityEnd_y;
         }         
@@ -3052,12 +3052,12 @@ function game_background(){
 
     if (wayBefore == 'LU'){ 
         if (cityEnd_x < 500){
-            cityEnd_x = cityEnd_x + playerX/1000;
+            cityEnd_x = cityEnd_x + playerX/2000;
         }else {
             cityEnd_x = cityEnd_x;
         } 
         if (cityEnd_y < ls_height + 600) {
-            cityEnd_y = cityEnd_y + 1 + playerY/1000;
+            cityEnd_y = cityEnd_y + 1 + playerY/2000;
         }else {
             cityEnd_y = cityEnd_y;
         }              

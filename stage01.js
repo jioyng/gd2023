@@ -56,6 +56,12 @@ var maxY = theCanvas.clientHeight - minY;
 var add_borderX = 0;
 var add_borderY = 0;
 
+//백그라운드 사이즈 
+var backgroundWidth = theCanvas.clientWidth; 
+var backgroundHeight = theCanvas.clientHeight;  
+var backgroundX = 0; 
+var backgroundY = 0;  
+
 /////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
 //캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
 //키입력 저장 array
@@ -3098,17 +3104,7 @@ function game_background(){
     }  
 
     //console.log(cityEnd_x,cityEnd_y);
-    //Context.globalAlpha = 0.5;
-
-    
-
-    // if (parseInt(gameTime/(3000*Pspeed)) % 2 == 0){ 
-    //     backgroundImage = backgroundImage2;
-    // }else {  
-    //     backgroundImage = backgroundImage3;
-    //     Context.restore();
-    // }  
-
+    //Context.globalAlpha = 0.5; 
     
     //콜로니 밖 우주 배경그려주기(투명도 적용)
     Context.save(); 
@@ -3121,56 +3117,87 @@ function game_background(){
     //Context.translate(unitX,unitY);
     // 좌표계를 회전 시킨다.
     //angle++;  
-    
-    if (parseInt(gameTime/(1000*Pspeed)) % 4 == 0){ 
-        Context.translate(-20,-200);
-        Context.rotate(3*gameTime/1000*Math.PI/180);
-        //backgroundImage.style.transform = "rotate(" + gameTime/20*5 + "deg)";
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 4 == 1){
-        //Context.translate(10,150);
-        Context.rotate(-2*gameTime/1000*Math.PI/180);
-        //backgroundImage.style.transform = "rotate(" + gameTime/20*5 + "deg)"; 
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 4 == 2){
-        //Context.translate(-10,-150);
-        Context.rotate(-2*gameTime/1000*Math.PI/180);
-        //backgroundImage.style.transform = "rotate(" + gameTime/20*5 + "deg)"; 
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 4 == 3){
-        //Context.translate(10,150);
-        Context.rotate(1*gameTime/1000*Math.PI/180);
-        //backgroundImage.style.transform = "rotate(" + gameTime/20*5 + "deg)";
-    } 
+     
+Context.rotate(backgroundY/2000*Math.PI/180); 
+  
 
-    if (parseInt(gameTime/(1000*Pspeed)) % 9 == 0){ 
+//console.log("parseInt(gameTime/(1000)) % 9:",parseInt(gameTime/(1000)) % 9);
+
+    if (parseInt(gameTime/(1000)) % 9 == 0){ 
         Context.globalAlpha = 0.4;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*10,theCanvas.clientHeight + gameTime/20*10); 
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 1){
-        Context.globalAlpha = 0.6;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 2){
-        Context.globalAlpha = 0.5;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 3){ 
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY - 1;        
+        backgroundWidth = backgroundWidth + 1.5;
+        backgroundHeight = backgroundHeight + 1.5; 
+    }else if (parseInt(gameTime/(1000)) % 9 == 1){
+        Context.globalAlpha = 0.6;        
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY - 1;
+        backgroundWidth = backgroundWidth + 1;
+        backgroundHeight = backgroundHeight + 1;         
+    }else if (parseInt(gameTime/(1000)) % 9 == 2){
+        Context.globalAlpha = 0.5;     
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY - 1;           
+        backgroundWidth = backgroundWidth + 1;
+        backgroundHeight = backgroundHeight + 1;      
+    }else if (parseInt(gameTime/(1000)) % 9 == 3){ 
         Context.globalAlpha = 0.4;
+        backgroundWidth = backgroundWidth + 1;
+        backgroundHeight = backgroundHeight + 1;         
         Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 4){ 
+    }else if (parseInt(gameTime/(1000)) % 9 == 4){ 
         Context.globalAlpha = 0.3;
+        backgroundWidth = backgroundWidth + 1;
+        backgroundHeight = backgroundHeight + 1;         
         Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 5){  
+    }else if (parseInt(gameTime/(1000)) % 9 == 5){  
         Context.globalAlpha = 0.4;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 6){ 
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY - 1;        
+        backgroundWidth = backgroundWidth - 1;
+        backgroundHeight = backgroundHeight - 1;  
+    }else if (parseInt(gameTime/(1000)) % 9 == 6){ 
         Context.globalAlpha = 0.5;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 7){ 
-        Context.globalAlpha = 0.6;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 8){
-        Context.globalAlpha = 0.8;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
+        backgroundX = backgroundX + 1;
+        backgroundY = backgroundY + 1;         
+        backgroundWidth = backgroundWidth - 1.5;
+        backgroundHeight = backgroundHeight - 1.5; 
+    }else if (parseInt(gameTime/(1000)) % 9 == 7){ 
+        Context.globalAlpha = 0.4; 
+        backgroundX = backgroundX + 1;
+        backgroundY = backgroundY + 1;        
+        backgroundWidth = backgroundWidth + 2;
+        backgroundHeight = backgroundHeight - 1; 
+    }else if (parseInt(gameTime/(1000)) % 9 == 8){ 
+    
+        if (backgroundWidth != theCanvas.clientWidth){ 
+            backgroundWidth = theCanvas.clientWidth; 
+            backgroundHeight = theCanvas.clientHeight;  
+            backgroundX = 0; 
+            backgroundY = 0;   
+            Context.restore();
+            if (parseInt(gameTime/(10000)) % 2 == 1){
+                backgroundImage = backgroundImage2;
+            }else {  
+                backgroundImage = backgroundImage3; 
+            }   
+        } 
+        Context.globalAlpha = 0.5;
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY - 1;  
+        backgroundWidth = backgroundWidth + 1; 
+        backgroundHeight = backgroundHeight + 1;          
     }else {
-        Context.globalAlpha = 0.7;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
+        Context.globalAlpha = 0.6; 
+        backgroundX = backgroundX + 0.5;
+        backgroundY = backgroundY + 0.5;          
+        backgroundWidth = backgroundWidth - 1;
+        backgroundHeight = backgroundHeight - 1;  
+               
     }
+
+    Context.drawImage(backgroundImage, backgroundX, backgroundY,backgroundWidth,backgroundHeight); 
 
     //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
     //시간이 지남에 따라 이미지도 좀좀 키워준다.

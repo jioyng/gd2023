@@ -3100,6 +3100,16 @@ function game_background(){
     //console.log(cityEnd_x,cityEnd_y);
     //Context.globalAlpha = 0.5;
 
+    
+
+    // if (parseInt(gameTime/(3000*Pspeed)) % 2 == 0){ 
+    //     backgroundImage = backgroundImage2;
+    // }else {  
+    //     backgroundImage = backgroundImage3;
+    //     Context.restore();
+    // }  
+
+    
     //콜로니 밖 우주 배경그려주기(투명도 적용)
     Context.save(); 
 
@@ -3130,12 +3140,6 @@ function game_background(){
         //backgroundImage.style.transform = "rotate(" + gameTime/20*5 + "deg)";
     } 
 
-    if (parseInt(gameTime/(10000*Pspeed)) % 2 == 0){ 
-        backgroundImage = backgroundImage2;
-    }else { 
-        backgroundImage = backgroundImage3;
-    }  
-
     if (parseInt(gameTime/(1000*Pspeed)) % 9 == 0){ 
         Context.globalAlpha = 0.4;
         Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*10,theCanvas.clientHeight + gameTime/20*10); 
@@ -3163,11 +3167,8 @@ function game_background(){
     }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 8){
         Context.globalAlpha = 0.8;
         Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
-    }else if (parseInt(gameTime/(1000*Pspeed)) % 9 == 9){
-        Context.globalAlpha = 0.7;
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
     }else {
-        Context.globalAlpha = 0.6;
+        Context.globalAlpha = 0.7;
         Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth - gameTime/20*5,theCanvas.clientHeight + gameTime/20*5);
     }
 

@@ -3183,7 +3183,7 @@ Context.rotate(backgroundY/2000*Math.PI/180);
                 backgroundImage = backgroundImage3; 
             }   
             Context.globalAlpha = 0.5;
-            Context.translate(-10,-10);
+            //Context.translate(-10,-10);
         } 
         Context.globalAlpha = 0.5;
         backgroundX = backgroundX - 1;

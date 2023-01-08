@@ -3119,7 +3119,7 @@ function game_background(){
     //angle++;  
      
 Context.rotate(backgroundY/2000*Math.PI/180); 
-  
+ 
 
 //console.log("parseInt(gameTime/(1000)) % 9:",parseInt(gameTime/(1000)) % 9);
 
@@ -3182,6 +3182,8 @@ Context.rotate(backgroundY/2000*Math.PI/180);
             }else {  
                 backgroundImage = backgroundImage3; 
             }   
+            Context.globalAlpha = 0.5;
+            Context.translate(-10,-10);
         } 
         Context.globalAlpha = 0.5;
         backgroundX = backgroundX - 1;

@@ -3196,14 +3196,14 @@ Context.rotate(backgroundY/2000*Math.PI/180);
             }    
         //     //Context.translate(-10,-10);
         // }else {
-            Context.globalAlpha = 0.3;
+            Context.globalAlpha = 0.2;
             //backgroundX = backgroundX - 1;
             //backgroundY = backgroundY - 1;  
-            backgroundWidth = backgroundWidth - 4.2; 
+            backgroundWidth = backgroundWidth - 4; 
             backgroundHeight = backgroundHeight - 0.01;     
         //}     
     }else {
-        Context.globalAlpha = 0.5; 
+        Context.globalAlpha = 0.3; 
         backgroundX = backgroundX + 0.5;
         backgroundY = backgroundY + 0.5;          
         backgroundWidth = backgroundWidth - 1;

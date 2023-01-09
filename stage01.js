@@ -3193,15 +3193,14 @@ Context.rotate(backgroundY/2000*Math.PI/180);
                 backgroundImage = backgroundImage3;
             }else {    
                 backgroundImage = backgroundImage4; 
-            }   
-            Context.globalAlpha = 0.4;
+            }    
         //     //Context.translate(-10,-10);
         // }else {
             Context.globalAlpha = 0.5;
             //backgroundX = backgroundX - 1;
             //backgroundY = backgroundY - 1;  
-            backgroundWidth = backgroundWidth - 1; 
-            backgroundHeight = backgroundHeight - 1;     
+            backgroundWidth = backgroundWidth - 2; 
+            backgroundHeight = backgroundHeight - 2;     
         //}     
     }else {
         Context.globalAlpha = 0.6; 

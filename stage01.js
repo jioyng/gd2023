@@ -1174,6 +1174,13 @@ function game_init(){
     isKeycode = null;
     isBfKeycode = null;
 
+    //배경 최기화
+    backgroundWidth = theCanvas.clientWidth; 
+    backgroundHeight = theCanvas.clientHeight;  
+    backgroundX = 0; 
+    backgroundY = 0;   
+    Context.restore();
+
 }
 
 ////////////////// 플레이어 변수 초기화
@@ -3171,7 +3178,7 @@ Context.rotate(backgroundY/2000*Math.PI/180);
         backgroundHeight = backgroundHeight - 1; 
     }else if (parseInt(gameTime/(1000)) % 9 == 8){ 
     
-        if (backgroundWidth != theCanvas.clientWidth){ 
+        if (backgroundWidth <= theCanvas.clientWidth){ 
             backgroundWidth = theCanvas.clientWidth; 
             backgroundHeight = theCanvas.clientHeight;  
             backgroundX = 0; 

@@ -221,6 +221,10 @@ var backgroundImage3 = new Image();
 backgroundImage3.src = "./img/background05.png";
 backgroundImage3.addEventListener("load",drawScreen, false);
 
+var backgroundImage4 = new Image();
+backgroundImage4.src = "./img/background03.png";
+backgroundImage4.addEventListener("load",drawScreen, false);
+
 //게임 배경(도로) 이미지
 var cityImage = new Image();
 cityImage.src = "./img/city01.png";
@@ -3177,26 +3181,28 @@ Context.rotate(backgroundY/2000*Math.PI/180);
         backgroundWidth = backgroundWidth + 2;
         backgroundHeight = backgroundHeight - 1; 
     }else if (parseInt(gameTime/(1000)) % 9 == 8){ 
-    
-        if (backgroundWidth <= theCanvas.clientWidth){ 
-            backgroundWidth = theCanvas.clientWidth; 
-            backgroundHeight = theCanvas.clientHeight;  
+        // if (backgroundWidth != theCanvas.clientWidth){ 
+        //     backgroundWidth = theCanvas.clientWidth; 
+        //     backgroundHeight = theCanvas.clientHeight;  
             backgroundX = 0; 
             backgroundY = 0;   
             Context.restore();
-            if (parseInt(gameTime/(10000)) % 2 == 1){
+            if (parseInt(gameTime/(10000)) % 3 == 1){
                 backgroundImage = backgroundImage2;
-            }else {  
-                backgroundImage = backgroundImage3; 
+            }else if (parseInt(gameTime/(10000)) % 3 == 2){
+                backgroundImage = backgroundImage3;
+            }else {    
+                backgroundImage = backgroundImage4; 
             }   
+            Context.globalAlpha = 0.4;
+        //     //Context.translate(-10,-10);
+        // }else {
             Context.globalAlpha = 0.5;
-            //Context.translate(-10,-10);
-        } 
-        Context.globalAlpha = 0.5;
-        backgroundX = backgroundX - 1;
-        backgroundY = backgroundY - 1;  
-        backgroundWidth = backgroundWidth + 1; 
-        backgroundHeight = backgroundHeight + 1;          
+            //backgroundX = backgroundX - 1;
+            //backgroundY = backgroundY - 1;  
+            backgroundWidth = backgroundWidth - 1; 
+            backgroundHeight = backgroundHeight - 1;     
+        //}     
     }else {
         Context.globalAlpha = 0.6; 
         backgroundX = backgroundX + 0.5;

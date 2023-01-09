@@ -3199,8 +3199,8 @@ Context.rotate(backgroundY/2000*Math.PI/180);
             Context.globalAlpha = 0.5;
             //backgroundX = backgroundX - 1;
             //backgroundY = backgroundY - 1;  
-            backgroundWidth = backgroundWidth - 2; 
-            backgroundHeight = backgroundHeight - 2;     
+            backgroundWidth = backgroundWidth - 3; 
+            backgroundHeight = backgroundHeight - 3;     
         //}     
     }else {
         Context.globalAlpha = 0.6; 

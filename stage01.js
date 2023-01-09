@@ -3185,7 +3185,7 @@ Context.rotate(backgroundY/2000*Math.PI/180);
         //     backgroundWidth = theCanvas.clientWidth; 
         //     backgroundHeight = theCanvas.clientHeight;  
             backgroundX = backgroundX - 0.1; 
-            backgroundY = backgroundY - 0.2;   
+            backgroundY = backgroundY - 0.02;  
             Context.restore();
             if (parseInt(gameTime/(10000)) % 3 == 1){
                 backgroundImage = backgroundImage2;
@@ -3200,7 +3200,7 @@ Context.rotate(backgroundY/2000*Math.PI/180);
             //backgroundX = backgroundX - 1;
             //backgroundY = backgroundY - 1;  
             backgroundWidth = backgroundWidth - 4; 
-            backgroundHeight = backgroundHeight - 2.5;     
+            backgroundHeight = backgroundHeight - 1.5;     
         //}     
     }else {
         Context.globalAlpha = 0.6; 

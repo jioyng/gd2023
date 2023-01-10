@@ -41,10 +41,12 @@ fitToContainer(theCanvas);
 var Context = theCanvas.getContext("2d");
 //게임 상태 컨텍스트(게임 상태 표시 : 시작, 진행, 멈춤, 종료 메세지)
 var Context2 = theCanvas.getContext("2d");
-//게임배경 컨텍스트(게임 배경(우주 및 콜로니))
+//게임배경 컨텍스트(게임 콜리니 내부)
 var Context3 = theCanvas.getContext("2d");
 //게임 표적(관역)
 var Context4 = theCanvas.getContext("2d");
+//게임배경 컨텍스트(게임 콜리니 외부)
+var Context5 = theCanvas.getContext("2d");
 var xxAim = 0;
 var yyAim = 0;
 
@@ -61,6 +63,7 @@ var backgroundWidth = theCanvas.clientWidth;
 var backgroundHeight = theCanvas.clientHeight;  
 var backgroundX = 0; 
 var backgroundY = 0;  
+var backgroundAngle = 0;
 
 /////////////////////////////////////////게임 컨트롤 관련 설정//////////////////////////////////////////
 //캔버스 엘리먼트로 게임 컨트롤 버튼 변경 => 둠객체사용시 화면 확대 축소됨 에 따른 불편 생김(기존 조종 컨트롤 돔객체는 hidden 처리)
@@ -477,7 +480,7 @@ var wayBefore = 'None;'
 //var ini_player_width = 70;
 //var ini_player_height = 45;
 var ini_player_width = 140;
-var ini_player_height = 200;
+var ini_player_height = 150;
 //var ini_player_width = 160;   //319
 //var ini_player_height = 250;  //503
 // var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
@@ -789,7 +792,7 @@ var enemyyy = 0;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
 var ini_enemyw = 42;
-var ini_enemyh = 55;
+var ini_enemyh = 50;
 
 //var ini_enemyw = 60;
 //var ini_enemyh = 80;
@@ -1019,6 +1022,8 @@ canvas.height = canvas.offsetHeight;
 
 ////////////////// 게임 변수 초기화
 function game_init(){
+    backgroundImage=backgroundImage2;
+    Context5.drawImage(backgroundImage, backgroundX, backgroundY,backgroundWidth,backgroundHeight); 
 
     first_load_yn = "N";  //머지? 이러게하니 잘되네...
 
@@ -1183,6 +1188,7 @@ function game_init(){
     backgroundHeight = theCanvas.clientHeight;  
     backgroundX = 0; 
     backgroundY = 0;   
+    backgroundAngle = 0;
     Context.restore();
 
 }
@@ -2892,10 +2898,10 @@ function enemy_move(){
 function ship01_move(){
 
     //if (gameTime >= 500000){
-    if (gameTime >= 2000){
+    if (gameTime < 2000){
         //alert("광선발사")
         return;
-    }
+    } 
         //전함01 이동
         if (ini_ship01x > 0){
 
@@ -2907,6 +2913,11 @@ function ship01_move(){
             Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65+gameTime/100,15+gameTime/100)
             Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15+gameTime/100,5+gameTime/100)
             Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24+gameTime/100,8+gameTime/51000)
+            Context.drawImage(ship01_Image,ship01x + 60,ship01y + 43,65+gameTime/100,15+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 70,ship01y + 60,25+gameTime/100,25+gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 80,ship01y + 75,34+gameTime/100,38+gameTime/52000)
+            Context.drawImage(ship01_Image,ship01x + 90,ship01y + 80,45+gameTime/100,5+gameTime/300)
+            Context.drawImage(ship01_Image,ship01x + 100,ship01y + 95,54+gameTime/100,48+gameTime/50000)
 
         }
 }
@@ -3112,111 +3123,89 @@ function game_background(){
         }else {
             cityEnd_y = cityEnd_y - 1;
         }             
-    }  
-
-    //console.log(cityEnd_x,cityEnd_y);
-    //Context.globalAlpha = 0.5; 
-    
-    //콜로니 밖 우주 배경그려주기(투명도 적용)
-    Context.save(); 
-
-    //배경회전 
-    //context.drawImage(backImg, 0, 0, 500, 500); 
-    // context 의 현재상태(정상상태, 변화를 가하지 않은 상태)를 임시 저장한다.
-    //Context.save();
-    // 좌표계를 unit 이 있는 위치로 평행 이동한다.
-    //Context.translate(unitX,unitY);
-    // 좌표계를 회전 시킨다.
-    //angle++;  
-     
-Context.rotate(backgroundY/2000*Math.PI/180); 
+    }   
  
 
-//console.log("parseInt(gameTime/(1000)) % 9:",parseInt(gameTime/(1000)) % 9);
+    //코로니 바깥배경
+    //배경회전 샘플
+    // Context5.save();
+    // Context5.globalAlpha = 0.8;
+    // Context5.translate(theCanvas.clientWidth / 2  + cityEnd_x - 10, theCanvas.clientHeight / 4  + 50 + cityEnd_y);
+    // Context5.rotate(backgroundAngle*0.4*Math.PI/180);   
+    // Context5.drawImage(backgroundImage, -1*backgroundWidth, -1*backgroundHeight,backgroundWidth*3,backgroundHeight*3);  
+    // //if (backgroundAngle>=360) backgroundAngle = 0;
+    // Context5.restore(); 
+    // backgroundAngle++;  
 
-    if (parseInt(gameTime/(1000)) % 9 == 0){ 
-        Context.globalAlpha = 0.4;
+    //console.log("(parseInt(gameTime/(1000)) % 5:",parseInt(gameTime/(1000)) % 5); 
+    if (parseInt(gameTime/(1000)) % 5 == 0){ 
+        //확대
+        Context5.globalAlpha = 0.6;
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;        
         backgroundWidth = backgroundWidth + 1.5;
-        backgroundHeight = backgroundHeight + 1.5; 
-    }else if (parseInt(gameTime/(1000)) % 9 == 1){
-        Context.globalAlpha = 0.6;        
+        backgroundHeight = backgroundHeight + 1.5;   
+        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+        backgroundAngle=0;
+    }else if (parseInt(gameTime/(1000)) % 5 == 1){
+        //회전하면서 확대
+        Context5.globalAlpha = 0.5;        
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;
-        backgroundWidth = backgroundWidth + 1;
-        backgroundHeight = backgroundHeight + 1;         
-    }else if (parseInt(gameTime/(1000)) % 9 == 2){
-        Context.globalAlpha = 0.5;     
-        backgroundX = backgroundX - 1;
-        backgroundY = backgroundY - 1;           
-        backgroundWidth = backgroundWidth + 1;
-        backgroundHeight = backgroundHeight + 1;      
-    }else if (parseInt(gameTime/(1000)) % 9 == 3){ 
-        Context.globalAlpha = 0.4;
-        backgroundWidth = backgroundWidth + 1;
-        backgroundHeight = backgroundHeight + 1;         
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000)) % 9 == 4){ 
-        Context.globalAlpha = 0.3;
-        backgroundWidth = backgroundWidth + 1;
-        backgroundHeight = backgroundHeight + 1;         
-        Context.drawImage(backgroundImage, 0, 0,theCanvas.clientWidth + gameTime/20*5,theCanvas.clientHeight - gameTime/20*5);
-    }else if (parseInt(gameTime/(1000)) % 9 == 5){  
-        Context.globalAlpha = 0.4;
-        backgroundX = backgroundX - 1;
-        backgroundY = backgroundY - 1;        
-        backgroundWidth = backgroundWidth - 1;
-        backgroundHeight = backgroundHeight - 1;  
-    }else if (parseInt(gameTime/(1000)) % 9 == 6){ 
-        Context.globalAlpha = 0.5;
+        backgroundWidth = backgroundWidth + 2;
+        backgroundHeight = backgroundHeight + 2.5;  
+        Context5.save(); 
+        Context5.rotate(-1*backgroundAngle/6*Math.PI/180);   
+        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+        Context5.restore(); 
+        backgroundAngle++;  
+    }else if (parseInt(gameTime/(1000)) % 5 == 2){
+        //축소
+        Context5.globalAlpha = 0.4;
         backgroundX = backgroundX + 1;
-        backgroundY = backgroundY + 1;         
-        backgroundWidth = backgroundWidth - 1.5;
-        backgroundHeight = backgroundHeight - 1.5; 
-    }else if (parseInt(gameTime/(1000)) % 9 == 7){ 
-        Context.globalAlpha = 0.4; 
+        backgroundY = backgroundY + 1;            
+        backgroundWidth = backgroundWidth - 2.5;
+        backgroundHeight = backgroundHeight - 2.5;  
+        if (String(backgroundImage) == String(backgroundImage2)){
+            backgroundImage=backgroundImage4; 
+        }else {
+            backgroundImage=backgroundImage2;  
+        }
+        //Context5.save();  
+        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+        //Context5.restore(); 
+        backgroundAngle=0;
+    }else if (parseInt(gameTime/(1000)) % 5 == 3){ 
+        //회전하면서 확대
+        Context5.globalAlpha = 0.6;        
         backgroundX = backgroundX + 1;
-        backgroundY = backgroundY + 1;        
-        backgroundWidth = backgroundWidth + 3;
-        backgroundHeight = backgroundHeight - 1; 
-    }else if (parseInt(gameTime/(1000)) % 9 == 8){ 
-        // if (backgroundWidth != theCanvas.clientWidth){ 
-        //     backgroundWidth = theCanvas.clientWidth; 
-        //     backgroundHeight = theCanvas.clientHeight;  
-            backgroundX = backgroundX - 0.001; 
-            backgroundY = backgroundY - 0.001;  
-            Context.restore();
-            if (parseInt(gameTime/(10000)) % 3 == 1){
-                backgroundImage = backgroundImage2;
-            }else if (parseInt(gameTime/(10000)) % 3 == 2){
-                backgroundImage = backgroundImage3;
-            }else {    
-                backgroundImage = backgroundImage4; 
-            }    
-        //     //Context.translate(-10,-10);
+        backgroundY = backgroundY - 1.5;
+        backgroundWidth = backgroundWidth + 3.5;
+        backgroundHeight = backgroundHeight + 3;  
+        Context5.save(); 
+        Context5.rotate(backgroundAngle/20*Math.PI/180);   
+        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+        Context5.restore(); 
+        backgroundAngle++;   
+    }else { 
+        //축소
+        Context5.globalAlpha = 0.5;
+        backgroundX = backgroundX - 1;
+        backgroundY = backgroundY + 1.5;            
+        backgroundWidth = backgroundWidth - 2.5;
+        backgroundHeight = backgroundHeight - 3;  
+        // if (String(backgroundImage) == String(backgroundImage2)){
+        //     backgroundImage=backgroundImage4; 
         // }else {
-            Context.globalAlpha = 0.2;
-            //backgroundX = backgroundX - 1;
-            //backgroundY = backgroundY - 1;  
-            backgroundWidth = backgroundWidth - 4; 
-            backgroundHeight = backgroundHeight - 0.01;     
-        //}     
-    }else {
-        Context.globalAlpha = 0.3; 
-        backgroundX = backgroundX + 0.5;
-        backgroundY = backgroundY + 0.5;          
-        backgroundWidth = backgroundWidth - 1;
-        backgroundHeight = backgroundHeight - 1;  
-               
+        //     backgroundImage=backgroundImage2;  
+        // }
+        //Context5.save();  
+        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+        //Context5.restore(); 
+        backgroundAngle=0;
     }
 
-    Context.drawImage(backgroundImage, backgroundX, backgroundY,backgroundWidth,backgroundHeight); 
 
-    //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
-    //시간이 지남에 따라 이미지도 좀좀 키워준다.
-    //Context.drawImage(backgroundImage,gameTime/20 * -1,  gameTime/20 * -1 ,theCanvas.clientWidth + gameTime/20*10,theCanvas.clientHeight + gameTime/20*10);
-    
     //콜로니끝
     //콜로니 끝 근처는 어둡다.
     Context3.beginPath();

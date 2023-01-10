@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step12_canvas3.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 사용해 보기</h1>
+    <!--
+        글자, 그림, 이미지 등을 javascript 를 활용해서 출력할수 있는 canvas 요소
+        속성을 이용해서 가로, 세로 크기를 지정한다. 
+    -->
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+        // canvas 의 참조값 얻어오기
+        let canvas=document.getElementById("myCanvas");
+        // canvas 에 그림을 그릴수 있는 도구(context) 의 참조값 얻어오기
+        let context=canvas.getContext("2d");
+        
+        //이미지 객체를 생성하고 
+        let kimImg=new Image();
+        //이미지 로딩을 시작한다.
+        kimImg.src="img/player.png";
+
+        //배경이미지
+        let backImg=new Image();
+        backImg.src="img/background04.png";
+
+        let unitX=250;
+        let unitY=250;
+
+        let angle=0;
+
+        let tmp=1;
+
+        setInterval(function(){
+            context.drawImage(backImg, 0, 0, 500, 500);
+
+            // context 의 현재상태(정상상태, 변화를 가하지 않은 상태)를 임시 저장한다.
+            context.save();
+            // 좌표계를 unit 이 있는 위치로 평행 이동한다.
+            context.translate(unitX,unitY);
+            // 좌표계를 회전 시킨다.
+            context.rotate(tmp*angle*Math.PI/180);
+
+            //context.drawImage(backImg, -250, -250, 500, 500);
+
+            // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.
+            context.drawImage(kimImg, 0-50, 0-50, 100, 100);
+
+            // 임시저장된(정상상태)로 context를 복구 시킨다.
+            context.restore();
+
+            angle++;
+        },10)
+
+
+        //mousemove 이벤트가 일어났을때 실행할 함수 등록
+        canvas.addEventListener("mousemove",function(e){
+            //이벤트가 일어난곳의 좌표를 unitX,unitY에 반영하기
+            unitX = e.offsetX;
+            unitY = e.offsetY;
+        })
+        
+
+
+        //mousemove 이벤트가 일어났을때 실행할 함수 등록
+        canvas.addEventListener("click",function(e){
+            if (tmp>0) {
+                tmp = -3;
+            }else {
+                tmp = 3;
+            }
+        })        
+    </script>
+</body>
+</html>

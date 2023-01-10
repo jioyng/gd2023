@@ -228,6 +228,7 @@ var backgroundImage4 = new Image();
 backgroundImage4.src = "./img/background03.png";
 backgroundImage4.addEventListener("load",drawScreen, false);
 
+backgroundImage=backgroundImage2;
 //게임 배경(도로) 이미지
 var cityImage = new Image();
 cityImage.src = "./img/city01.png";
@@ -479,10 +480,14 @@ var wayBefore = 'None;'
 //플레이어 초기값( 크기, 위치 및 기본 이동거리, 스피트)
 //var ini_player_width = 70;
 //var ini_player_height = 45;
-var ini_player_width = 140;
-var ini_player_height = 150;
+// var ini_player_width = 140;
+// var ini_player_height = 150;
 //var ini_player_width = 160;   //319
 //var ini_player_height = 250;  //503
+// var ini_player_width = 140;
+// var ini_player_height = 180;
+var ini_player_width = 150;
+var ini_player_height = 160;
 // var ini_playerX = (theCanvas.clientWidth - ini_player_width)/ 2 - theCanvas.offsetLeft; //X좌표
 // var ini_playerY = theCanvas.clientHeight - 100;  //Y좌표
 var ini_player_size = 5000;    //플레이어 초기 크기 배율
@@ -791,6 +796,8 @@ var enemyyy = 0;
 // var ini_enemyh = 55;
 // var ini_enemyw = 20;
 // var ini_enemyh = 25;
+// var ini_enemyw = 42;
+// var ini_enemyh = 55;
 var ini_enemyw = 42;
 var ini_enemyh = 50;
 
@@ -1022,7 +1029,7 @@ canvas.height = canvas.offsetHeight;
 
 ////////////////// 게임 변수 초기화
 function game_init(){
-    backgroundImage=backgroundImage2;
+
     Context5.drawImage(backgroundImage, backgroundX, backgroundY,backgroundWidth,backgroundHeight); 
 
     first_load_yn = "N";  //머지? 이러게하니 잘되네...
@@ -3140,7 +3147,7 @@ function game_background(){
     //console.log("(parseInt(gameTime/(1000)) % 5:",parseInt(gameTime/(1000)) % 5); 
     if (parseInt(gameTime/(1000)) % 5 == 0){ 
         //확대
-        Context5.globalAlpha = 0.6;
+        Context5.globalAlpha = 0.7;
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;        
         backgroundWidth = backgroundWidth + 1.5;
@@ -3149,7 +3156,7 @@ function game_background(){
         backgroundAngle=0;
     }else if (parseInt(gameTime/(1000)) % 5 == 1){
         //회전하면서 확대
-        Context5.globalAlpha = 0.5;        
+        Context5.globalAlpha = 0.6;        
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;
         backgroundWidth = backgroundWidth + 2;
@@ -3161,7 +3168,7 @@ function game_background(){
         backgroundAngle++;  
     }else if (parseInt(gameTime/(1000)) % 5 == 2){
         //축소
-        Context5.globalAlpha = 0.4;
+        Context5.globalAlpha = 0.5;
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
@@ -3189,10 +3196,10 @@ function game_background(){
         backgroundAngle++;   
     }else { 
         //축소
-        Context5.globalAlpha = 0.5;
-        backgroundX = backgroundX - 1;
-        backgroundY = backgroundY + 1.5;            
-        backgroundWidth = backgroundWidth - 2.5;
+        Context5.globalAlpha = 0.7;
+        backgroundX = backgroundX - 0.5;
+        backgroundY = backgroundY + 1;            
+        backgroundWidth = backgroundWidth - 4.5;
         backgroundHeight = backgroundHeight - 3;  
         // if (String(backgroundImage) == String(backgroundImage2)){
         //     backgroundImage=backgroundImage4; 

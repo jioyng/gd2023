@@ -2907,7 +2907,7 @@ function ship01_move(){
     //if (gameTime >= 500000){
     if (gameTime < 2000){
         //alert("광선발사")
-        return;
+        //return;
     } 
         //전함01 이동
         if (ini_ship01x > 0){
@@ -2915,16 +2915,16 @@ function ship01_move(){
             ship01x = ship01x - 0.1;
             //ship01x = ship01x/10;
 
-            Context.drawImage(ship01_Image,ship01x - 20,ship01y,60+gameTime/100,20+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x,ship01y + 50,30+gameTime/100,10+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65+gameTime/100,15+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15+gameTime/100,5+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24+gameTime/100,8+gameTime/51000)
-            Context.drawImage(ship01_Image,ship01x + 60,ship01y + 43,65+gameTime/100,15+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 70,ship01y + 60,25+gameTime/100,25+gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 80,ship01y + 75,34+gameTime/100,38+gameTime/52000)
-            Context.drawImage(ship01_Image,ship01x + 90,ship01y + 80,45+gameTime/100,5+gameTime/300)
-            Context.drawImage(ship01_Image,ship01x + 100,ship01y + 95,54+gameTime/100,48+gameTime/50000)
+            // Context.drawImage(ship01_Image,ship01x - 20,ship01y,60+gameTime/100,20+gameTime/100)
+            // Context.drawImage(ship01_Image,ship01x,ship01y + 50,30+gameTime/100,10+gameTime/100)
+            // Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65+gameTime/100,15+gameTime/100)
+            // Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15+gameTime/100,5+gameTime/100)
+            // Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24+gameTime/100,8+gameTime/51000)
+            Context.drawImage(ship01_Image,ship01x - 20,ship01y,60-gameTime/100,20-gameTime/100)
+            Context.drawImage(ship01_Image,ship01x,ship01y + 50,30-gameTime/100,10-gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65-gameTime/100,15-gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15-gameTime/100,5-gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24-gameTime/100,8-gameTime/100)
 
         }
 }
@@ -3198,9 +3198,9 @@ function game_background(){
         //축소
         Context5.globalAlpha = 0.7;
         backgroundX = backgroundX - 0.5;
-        backgroundY = backgroundY + 1;            
-        backgroundWidth = backgroundWidth - 4.5;
-        backgroundHeight = backgroundHeight - 3;  
+        backgroundY = backgroundY + 1.5;            
+        backgroundWidth = backgroundWidth - 4;
+        backgroundHeight = backgroundHeight - 3.5;  
         // if (String(backgroundImage) == String(backgroundImage2)){
         //     backgroundImage=backgroundImage4; 
         // }else {

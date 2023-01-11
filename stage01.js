@@ -1651,29 +1651,38 @@ function laser_move(){
             l_size = 6; 
             
             for (i=0;i<=100;i++){
-                //l_width = l_width - 0.1;
-                //플레이어 거리에 따른 레이져 크기 변경
-                //l_size = 10;
-                //l_size = l_size*(Pdistance/300);
+                //표적과 프레이어가 수직일경우
+                if(playerX > theCanvas.clientWidth / 2 + xxAim - 60 && playerX < theCanvas.clientWidth / 2 + xxAim + 60 ){
+                    //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
+                    if (playerY >=  theCanvas.clientHeight/4 + yyAim){   
+                        lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400;  
+                    }else { 
+                        lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
+                    } 
 
-                //플레이어 위치에 따른 총알 방향 변경
-                //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
-                //if (playerY >=  cityEnd_y){
-                // if (playerY >=  theCanvas.clientHeight/4 + yyAim){    
-                
-                //     lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400; 
+                    //타켓이 플레이어보다 좌측에 있으면 총알은 좌측으로
+                    if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
+                        lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400; 
+                    }else { 
+                        lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
+                    } 
 
-                // //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
-                // }else { 
-                //     lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
-                // } 
+                    if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                        l_width = l_width - 0.001;
+                        l_size = l_size - 0.001;  
+                        return; 
+                    }
 
-                // if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
-                //     lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400;
-                // //타켓이 플레이어 좌측
-                // }else { 
-                //     lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
-                // }  
+                    if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                        l_width = l_width - 0.001;
+                        l_size = l_size - 0.001;  
+                        return; 
+                    }  
+                    //alert(lmovex+","+lmovey+","+l_size) 
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size); 
+                    //Context4.lineWidth = "0.5"
+                    continue;
+                }
 
                 //표적에 들어오면 총알을 작아진다. 
                 if ((playerX >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 

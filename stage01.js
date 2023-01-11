@@ -3174,11 +3174,6 @@ function game_background(){
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
         backgroundHeight = backgroundHeight - 2.5;  
-        if (String(backgroundImage.src) == String(backgroundImage2.src)){
-            backgroundImage=backgroundImage4; 
-        }else {
-            backgroundImage=backgroundImage2;  
-        }
         //Context5.save();  
         Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
         //Context5.restore(); 
@@ -3195,24 +3190,39 @@ function game_background(){
         Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
         Context5.restore(); 
         backgroundAngle++;   
-    }else { 
-        //축소
-        Context5.globalAlpha = 0.6;
-        backgroundX = backgroundX - 0.5;
-        backgroundY = backgroundY + 1.5;            
-        backgroundWidth = backgroundWidth - 4;
-        backgroundHeight = backgroundHeight - 3.5;  
-        // if (String(backgroundImage) == String(backgroundImage2)){
-        //     backgroundImage=backgroundImage4; 
-        // }else {
-        //     backgroundImage=backgroundImage2;  
-        // }
-        //Context5.save();  
-        Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
-        //Context5.restore(); 
-        backgroundAngle=0;
-    }
-
+    }else {  
+        if (String(gameTime).substring(String(gameTime).length-3,String(gameTime).length-2) >=9 ){ 
+                //원본
+                if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 3 == 0){ 
+                    backgroundImage=backgroundImage2;
+                }if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 3 == 1){ 
+                    backgroundImage=backgroundImage4; 
+                }else {
+                    backgroundImage=backgroundImage3;
+                }
+                Context5.globalAlpha = 0.5;
+                backgroundX = 0;
+                backgroundY = 0;            
+                backgroundWidth = theCanvas.clientWidth;
+                backgroundHeight = theCanvas.clientHeight;   
+                Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
+                backgroundAngle=0;
+        }else {
+                //배경회전 샘플
+                Context5.save();
+                Context5.globalAlpha = 0.4;
+                backgroundWidth = theCanvas.clientWidth;
+                backgroundHeight = theCanvas.clientHeight; 
+                Context5.translate(backgroundWidth/2, backgroundHeight/2);
+                Context5.rotate((backgroundAngle*backgroundAngle/800)*Math.PI/180);  
+                //돌리기시작할때 이미지를 키운다. 
+                //Context5.drawImage(backgroundImage, -1*theCanvas.clientWidth, -1*theCanvas.clientHeight,theCanvas.clientWidth*3-backgroundAngle/100,theCanvas.clientHeight*3-backgroundAngle/100);  
+                Context5.drawImage(backgroundImage, -1*backgroundWidth, -1*backgroundHeight,backgroundWidth*3-backgroundAngle/15,backgroundHeight*3-backgroundAngle/15);  
+                //if (backgroundAngle>=360) backgroundAngle = 0;
+                Context5.restore(); 
+                backgroundAngle++;  
+        }
+    } 
 
     //콜로니끝
     //콜로니 끝 근처는 어둡다.

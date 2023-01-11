@@ -1678,20 +1678,20 @@ function laser_move(){
                 if ((playerX >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
                 {    
                     //console.log("l");
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02; 
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01; 
               
                     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
                     
                     if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
-                        l_width = l_width - 0.02;
-                        l_size = l_size - 0.02;  
+                        l_width = l_width - 0.01;
+                        l_size = l_size - 0.01;  
                         return; 
                     }
 
                     if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
-                        l_width = l_width - 0.02;
-                        l_size = l_size - 0.02;  
+                        l_width = l_width - 0.01;
+                        l_size = l_size - 0.01;  
                         return; 
                     }   
                     
@@ -1703,8 +1703,8 @@ function laser_move(){
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02;  
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;  
                     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);                
                     return;
                 }
@@ -1712,8 +1712,8 @@ function laser_move(){
                 //표적에 들어오면 총알을 작아진다.
                 if ((playerY <= theCanvas.clientHeight/4 + yyAim - 40 && playerY >= theCanvas.clientHeight/4 + yyAim + 40 )) 
                 { 
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02;
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;
                     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);   
                     return;   
                 }
@@ -1722,21 +1722,21 @@ function laser_move(){
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02; 
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01; 
                     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);   
                     return;
                 }          
 
                 if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02;  
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;  
                     return; 
                 }
 
                 if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
-                    l_width = l_width - 0.02;
-                    l_size = l_size - 0.02;  
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;  
                     return; 
                 }  
 

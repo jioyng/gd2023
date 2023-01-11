@@ -3195,7 +3195,7 @@ function game_background(){
                 //원본
                 if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 3 == 0){ 
                     backgroundImage=backgroundImage2;
-                }if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 3 == 1){ 
+                }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 3 == 1){ 
                     backgroundImage=backgroundImage4; 
                 }else {
                     backgroundImage=backgroundImage3;

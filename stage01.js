@@ -1658,39 +1658,44 @@ function laser_move(){
                 //플레이어 위치에 따른 총알 방향 변경
                 //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
                 //if (playerY >=  cityEnd_y){
-                if (playerY >=  theCanvas.clientHeight/4 + yyAim){    
+                // if (playerY >=  theCanvas.clientHeight/4 + yyAim){    
                 
-                    lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400; 
+                //     lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400; 
 
-                //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
-                }else { 
-                    lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
-                } 
+                // //타켓이 플레이어보다 하단에 있으면 총알은 상단으로
+                // }else { 
+                //     lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
+                // } 
 
-                if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
-                    lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400;
-                //타켓이 플레이어 좌측
-                }else { 
-                    lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
-                } 
+                // if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
+                //     lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400;
+                // //타켓이 플레이어 좌측
+                // }else { 
+                //     lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
+                // } 
     
-                //표적에 들어오면 총알을 작아진다.
-                
+                //표적에 들어오면 총알을 작아진다. 
                 if ((playerX >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
-                { 
+                {    
+                    console.log("l");
                     l_width = l_width - 0.01;
                     l_size = l_size - 0.01; 
                     
-                    
                     if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                        l_width = l_width - 0.01;
+                        l_size = l_size - 0.01;  
                         return; 
                     }
 
                     if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                        l_width = l_width - 0.01;
+                        l_size = l_size - 0.01;  
                         return; 
                     }                    
-                }else if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 )) 
-                {
+                }
+                if ((lmovex >= theCanvas.clientWidth/2 + xxAim - 40 && lmovex <= theCanvas.clientWidth/2 + xxAim + 40 )) 
+                {   
+                    console.log("r");
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
@@ -1703,18 +1708,45 @@ function laser_move(){
                 if ((playerY <= theCanvas.clientHeight/4 + yyAim - 40 && playerY >= theCanvas.clientHeight/4 + yyAim + 40 )) 
                 { 
                     l_width = l_width - 0.01;
-                    l_size = l_size - 0.01;      
-                }else if (lmovey <= theCanvas.clientHeight/4 + yyAim - 40 && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
+                    l_size = l_size - 0.01;
+                    return;   
+                }
+                if (lmovey <= theCanvas.clientHeight/4 + yyAim - 40 && lmovey >= theCanvas.clientHeight/4 + yyAim + 40 )
                 {
                     //alert(l_width + "," +l_size );
                     //l_width = 0;
                     //l_size = 0;
                     l_width = l_width - 0.01;
-                    l_size = l_size - 0.01;
-                     return;
-                }                
-       
+                    l_size = l_size - 0.01; 
+                    return;
+                }          
 
+                if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;  
+                    return; 
+                }
+
+                if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                    l_width = l_width - 0.01;
+                    l_size = l_size - 0.01;  
+                    return; 
+                }  
+
+                //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
+                if (playerY >=  theCanvas.clientHeight/4 + yyAim){   
+                    lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400;  
+                }else { 
+                    lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
+                } 
+
+                //타켓이 플레이어보다 좌측에 있으면 총알은 좌측으로
+                if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
+                    lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400; 
+                }else { 
+                    lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
+                } 
+                
                 //alert(lmovex+","+lmovey+","+l_size) 
                 Context.drawImage(laserImage,lmovex,lmovey,l_width,l_size);
 
@@ -3657,7 +3689,7 @@ function game_background(){
         // var cityImage9 = city09Image;
 
         //var tmp_str = String(parseInt(gameTime/10)); //분모가 작을수로 배경속도가 빨라진다.
-        console.log("cityEnd_y/100",10+parseInt(cityEnd_y/100));
+        //console.log("cityEnd_y/100",10+parseInt(cityEnd_y/100));
         var tmp_str = String(parseInt(gameTime/(10+parseInt(cityEnd_y/100))));
         //var tmp_str = String(parseInt(gameTime/10));
         var tmp_num = tmp_str.substr(tmp_str.length-1);

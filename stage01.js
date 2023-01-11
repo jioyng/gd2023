@@ -3174,7 +3174,7 @@ function game_background(){
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
         backgroundHeight = backgroundHeight - 2.5;  
-        if (String(backgroundImage) == String(backgroundImage2)){
+        if (String(backgroundImage.src) == String(backgroundImage2.src)){
             backgroundImage=backgroundImage4; 
         }else {
             backgroundImage=backgroundImage2;  

@@ -2922,9 +2922,9 @@ function ship01_move(){
             // Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24+gameTime/100,8+gameTime/51000)
             Context.drawImage(ship01_Image,ship01x - 20,ship01y,60-gameTime/100,20-gameTime/100)
             Context.drawImage(ship01_Image,ship01x,ship01y + 50,30-gameTime/100,10-gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65-gameTime/100,15-gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15-gameTime/100,5-gameTime/100)
-            Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24-gameTime/100,8-gameTime/100)
+            Context.drawImage(ship01_Image,ship01x + 40,ship01y + 40,65-gameTime/100,15-gameTime/1000)
+            Context.drawImage(ship01_Image,ship01x + 30,ship01y + 60,15-gameTime/100,5-gameTime/1000)
+            Context.drawImage(ship01_Image,ship01x + 50,ship01y + 45,24-gameTime/100,8-gameTime/1000)
 
         }
 }
@@ -3144,8 +3144,9 @@ function game_background(){
     // Context5.restore(); 
     // backgroundAngle++;  
 
-    //console.log("(parseInt(gameTime/(1000)) % 5:",parseInt(gameTime/(1000)) % 5); 
-    if (parseInt(gameTime/(1000)) % 5 == 0){ 
+    //console.log("여기",String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5); 
+
+    if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 0){ 
         //확대
         Context5.globalAlpha = 0.7;
         backgroundX = backgroundX - 1;
@@ -3154,7 +3155,7 @@ function game_background(){
         backgroundHeight = backgroundHeight + 1.5;   
         Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
         backgroundAngle=0;
-    }else if (parseInt(gameTime/(1000)) % 5 == 1){
+    }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 1){
         //회전하면서 확대
         Context5.globalAlpha = 0.6;        
         backgroundX = backgroundX - 1;
@@ -3166,9 +3167,9 @@ function game_background(){
         Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
         Context5.restore(); 
         backgroundAngle++;  
-    }else if (parseInt(gameTime/(1000)) % 5 == 2){
+    }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 2){
         //축소
-        Context5.globalAlpha = 0.5;
+        Context5.globalAlpha = 0.4;
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
@@ -3182,9 +3183,9 @@ function game_background(){
         Context5.drawImage(backgroundImage,backgroundX,backgroundY ,backgroundWidth,backgroundHeight); 
         //Context5.restore(); 
         backgroundAngle=0;
-    }else if (parseInt(gameTime/(1000)) % 5 == 3){ 
+    }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 3){ 
         //회전하면서 확대
-        Context5.globalAlpha = 0.6;        
+        Context5.globalAlpha = 0.5;        
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY - 1.5;
         backgroundWidth = backgroundWidth + 3.5;
@@ -3196,7 +3197,7 @@ function game_background(){
         backgroundAngle++;   
     }else { 
         //축소
-        Context5.globalAlpha = 0.7;
+        Context5.globalAlpha = 0.6;
         backgroundX = backgroundX - 0.5;
         backgroundY = backgroundY + 1.5;            
         backgroundWidth = backgroundWidth - 4;
@@ -6151,7 +6152,7 @@ function player_collision(){
                             Context2.font  = "30px Arial";  
                             Context2.fillStyle = '#ffffff';
                             Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
-                            //Context2.fill();
+                            //Context2.fill(); 
                         }                  
 
                 //게임 재시작 or 종료

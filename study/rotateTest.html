@@ -30,6 +30,12 @@
         //이미지 로딩을 시작한다.
         kimImg.src="../img/player.png";
 
+
+        //이미지 객체를 생성하고 
+        let kimImg01=new Image();
+        //이미지 로딩을 시작한다.
+        kimImg01.src="../img/player_skill02.png";
+
         //배경이미지
         let backImg=new Image();
         backImg.src="../img/background04.png";
@@ -48,13 +54,15 @@
             context.save();
             // 좌표계를 unit 이 있는 위치로 평행 이동한다.
             context.translate(unitX,unitY);
+            context.drawImage(kimImg, 0-50, 0-50, 100, 100);  
+            
             // 좌표계를 회전 시킨다.
             context.rotate(tmp*angle*Math.PI/180);
 
             //context.drawImage(backImg, -250, -250, 500, 500);
 
-            // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.
-            context.drawImage(kimImg, 0-50, 0-50, 100, 100);
+            // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.          
+            context.drawImage(kimImg01, 0-80, 0-80, 180, 180);
 
             // 임시저장된(정상상태)로 context를 복구 시킨다.
             context.restore();

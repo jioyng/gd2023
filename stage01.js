@@ -1533,11 +1533,29 @@ function player_move(){
     }
 
     if (skill == 1){   
+        if(playerSkillImage.src != playerSkill_01Image.src){
+            // for(var k=0;k<=playerY-10;k++){
+            //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
+            // }
+
+            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+            }            
+        }
         playerSkillImage = playerSkill_01Image;     
         Context.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
     }
 
     if (skill == 2){ 
+        if(playerSkillImage.src != playerSkill_02Image.src){
+            // for(var k=0;k<=playerY-10;k++){
+            //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
+            // }
+
+            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+            }               
+        }        
         playerSkillImage = playerSkill_02Image;   
            //setInterval(function(){
               
@@ -1563,6 +1581,15 @@ function player_move(){
     }
     
     if (skill == 3){   
+        if(playerSkillImage.src != playerSkill_03Image.src){
+            // for(var k=0;k<=playerY-10;k++){
+            //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
+            // }
+
+            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+            }                
+        }         
         playerSkillImage = playerSkill_03Image;     
         Context.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6); 
     }

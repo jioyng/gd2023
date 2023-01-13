@@ -1894,7 +1894,7 @@ function laser_move(){
                 
         }else if (skill == 2){  
             laserImage = laser;
-            for (i=0;i<=120;i++){   
+            for (i=0;i<=150;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
                     l_size = l_size*(Pdistance/200); 
@@ -1918,7 +1918,7 @@ function laser_move(){
                 //appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
-                for (var i=0;i<150;i++){ 
+                for (var i=0;i<100;i++){ 
                      
                      //레이져필살기의 크기는 플레이어의 1/3 크기만큼
                     // l_width = playerWidth/10 + Pdistance/20;   

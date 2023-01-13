@@ -137,7 +137,7 @@ directonDownRight.rect(minX + 220, maxY - 120, 80, 80);
 
 directonMiddle = new Path2D();
 directonMiddle.fillStyle = "rgb(242, 255, 0)";
-directonMiddle.arc(minX + 170, maxY - 170, 18, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+directonMiddle.arc(minX + 170, maxY - 170, 50, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 button01 = new Path2D();
 button01.fillStyle = "rgb(242, 255, 0)";
@@ -1534,11 +1534,9 @@ function player_move(){
 
     if (skill == 1){   
         playerSkillImage = playerSkill_01Image;     
-        Context.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth,playerHeight); 
+        Context.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
     }
 
-    Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
-  
     if (skill == 2){ 
         playerSkillImage = playerSkill_02Image;   
            //setInterval(function(){
@@ -1551,7 +1549,7 @@ function player_move(){
                // 좌표계를 회전 시킨다.
                //Context.rotate(angle*Math.PI/180);
                // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.          
-               Context.drawImage(playerSkillImage,playerX-40,playerY-25,playerWidth*2 + Math.floor(Math.random() * 5),playerHeight*2 + Math.floor(Math.random() * 5));
+               Context.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 5),playerHeight*1.5 + Math.floor(Math.random() * 5));
         
                //context.drawImage(backImg, -250, -250, 500, 500); 
        
@@ -1566,9 +1564,11 @@ function player_move(){
     
     if (skill == 3){   
         playerSkillImage = playerSkill_03Image;     
-        Context.drawImage(playerSkillImage,playerX-30,playerY-25,playerWidth*2,playerHeight); 
+        Context.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6); 
     }
 
+    Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
+  
     //엔진 부스터 방향
     //전진,좌상,우상
     if (strKeyEventValue == "ArrowUp" || isKeyCode == 38 || isKeyDown[103] || isKeyCode == 36 || isKeyDown[105] || isKeyCode == 33){

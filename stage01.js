@@ -494,6 +494,11 @@ var playerSkill_03Image = new Image();
 playerSkill_03Image.src = "./img/player_skill03.png"; 
 playerSkill_03Image.addEventListener("load",drawScreen, false);
 
+//플레이어 스킬3tmp이미지
+var playerSkill_03TmpImage = new Image();
+playerSkill_03TmpImage.src = "./img/player_skill03tmp.png"; 
+playerSkill_03TmpImage.addEventListener("load",drawScreen, false);
+
 //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
 var wayBefore = 'None;'
 
@@ -1581,17 +1586,18 @@ function player_move(){
     }
     
     if (skill == 3){   
-        if(playerSkillImage.src != playerSkill_03Image.src){
+        if(playerSkillImage.src != playerSkill_03Image.src && playerSkillImage.src != playerSkill_03TmpImage.src){
             // for(var k=0;k<=playerY-10;k++){
             //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
             // }
-
+            
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
+                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
             }                
-        }         
-        playerSkillImage = playerSkill_03Image;     
-        Context.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6); 
+        }     
+   
+            Context.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
+       
     }
 
     Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
@@ -1888,7 +1894,7 @@ function laser_move(){
                 
         }else if (skill == 2){  
             laserImage = laser;
-            for (i=0;i<=100;i++){   
+            for (i=0;i<=120;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
                     l_size = l_size*(Pdistance/200); 
@@ -1902,14 +1908,17 @@ function laser_move(){
 
         }else {   
             laserImage = laser02;
-            if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
+                if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
+                //임시 스킬이미지는 안보이게 
+                playerSkillImage = noneImage;     
+                
                 //레이져 필살기 사운드
                 //appear_sound.currentTime = 0.6;
                 //appear_sound.play(); 
                 
                 //레이져 필살기 이미지 이동
-                for (var i=0;i<100;i++){ 
+                for (var i=0;i<150;i++){ 
                      
                      //레이져필살기의 크기는 플레이어의 1/3 크기만큼
                     // l_width = playerWidth/10 + Pdistance/20;   
@@ -1919,9 +1928,10 @@ function laser_move(){
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
                     Context.drawImage(laserImage,lmovex,lmovey,l_size,l_size - i/8);  
+
                 }   
 
             } 
@@ -6513,8 +6523,21 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-    
+   
+            playerSkillImage = playerSkill_03Image;  
+            //playerSkillImage = playerSkill_03TmpImage;   
         } 
+        
+        for (var l=0;l<=3;l++){  
+            Context.drawImage(playerSkillImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
+            playerSkillImage = playerSkill_03TmpImage; 
+            if (l>=3){  
+                //playerSkill_03TmpImage = playerSkillImage;
+                playerSkillImage = playerSkill_03Image;   
+            } 
+ 
+        }
+
 
         laser_move();
     }  

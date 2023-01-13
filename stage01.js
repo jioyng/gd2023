@@ -1539,7 +1539,7 @@ function player_move(){
             // }
 
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
             }            
         }
         playerSkillImage = playerSkill_01Image;     
@@ -1553,7 +1553,7 @@ function player_move(){
             // }
 
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
             }               
         }        
         playerSkillImage = playerSkill_02Image;   
@@ -1587,7 +1587,7 @@ function player_move(){
             // }
 
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2+k/4,playerHeight/2); 
+                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
             }                
         }         
         playerSkillImage = playerSkill_03Image;     

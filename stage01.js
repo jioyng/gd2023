@@ -28,7 +28,7 @@ var ls_width = window.innerWidth;
 var ls_height = window.innerHeight;	        	//터치 드래그시 상단 주소창 숨기기위해 높이값 더줌.
 // var ls_width = document.innerWidth;
 // var ls_height = document.innerHeight;	        	//터치 드래그시 상단 주소창 숨기기위해 높이값 더줌.
-
+Context
 var docV = document.documentElement;
 
 //윈도우 리사이징 호출BtnaimX
@@ -47,6 +47,8 @@ var Context3 = theCanvas.getContext("2d");
 var Context4 = theCanvas.getContext("2d");
 //게임배경 컨텍스트(게임 콜리니 외부)
 var Context5 = theCanvas.getContext("2d");
+//게임스킬 컨텍스트
+var Context6 = theCanvas.getContext("2d");
 var xxAim = 0;
 var yyAim = 0;
 
@@ -488,6 +490,22 @@ playerSkill_01Image.addEventListener("load",drawScreen, false);
 var playerSkill_02Image = new Image();
 playerSkill_02Image.src = "./img/player_skill02.png"; 
 playerSkill_02Image.addEventListener("load",drawScreen, false);
+
+var playerSkill_02UpImage = new Image();
+playerSkill_02UpImage.src = "./img/player_skill02_up.png"; 
+playerSkill_02UpImage.addEventListener("load",drawScreen, false);
+
+var playerSkill_02RightImage = new Image();
+playerSkill_02RightImage.src = "./img/player_skill02_right.png"; 
+playerSkill_02RightImage.addEventListener("load",drawScreen, false);
+
+var playerSkill_02DownImage = new Image();
+playerSkill_02DownImage.src = "./img/player_skill02_down.png"; 
+playerSkill_02DownImage.addEventListener("load",drawScreen, false);
+
+var playerSkill_02LeftImage = new Image();
+playerSkill_02LeftImage.src = "./img/player_skill02_left.png"; 
+playerSkill_02LeftImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬3이미지
 var playerSkill_03Image = new Image();
@@ -1225,7 +1243,7 @@ function game_init(){
     backgroundX = 0; 
     backgroundY = 0;   
     backgroundAngle = 0;
-    Context.restore();
+    Context3.restore();
 
 }
 
@@ -1544,59 +1562,68 @@ function player_move(){
             // }
 
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
+                Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
             }            
         }
         playerSkillImage = playerSkill_01Image;     
-        Context.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
+        Context6.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
     }
 
     if (skill == 2){ 
-        if(playerSkillImage.src != playerSkill_02Image.src){
-            // for(var k=0;k<=playerY-10;k++){
-            //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
-            // }
+        if (!(playerSkillImage.src == playerSkill_02Image.src ||
+              playerSkillImage.src == playerSkill_02UpImage.src ||
+              playerSkillImage.src == playerSkill_02LeftImage.src ||
+              playerSkillImage.src == playerSkill_02DownImage.src ||
+              playerSkillImage.src == playerSkill_02RightImage.src)
+        ){      
 
-            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+              for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
-            }               
-        }        
-        playerSkillImage = playerSkill_02Image;   
-           //setInterval(function(){
+              }     
               
-               // context 의 현재상태(정상상태, 변화를 가하지 않은 상태)를 임시 저장한다.
-               //Context.save();
-               // 좌표계를 unit 이 있는 위치로 평행 이동한다.
-               //Context.translate(playerX,playerY);
-       
-               // 좌표계를 회전 시킨다.
-               //Context.rotate(angle*Math.PI/180);
-               // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.          
-               Context.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 5),playerHeight*1.5 + Math.floor(Math.random() * 5));
+              
+              playerSkillImage = playerSkill_02Image; 
+        }       
+          
+        //     Context6.save();
+        //     // 좌표계를 unit 이 있는 위치로 평행 이동한다.
+        //     //Context6.translate(playerX-20,playerY-25);
+        //     // 좌표계를 회전 시킨다.
+        //     Context6.rotate(angle/10*Math.PI/180);
+        //     // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.
+        //     Context6.drawImage(playerSkillImage,playerX-20,playerY-25,100,100);
+        //     // 임시저장된(정상상태)로 context를 복구 시킨다.
+        //     Context6.restore(); 
+        // angle++  
         
-               //context.drawImage(backImg, -250, -250, 500, 500); 
-       
-               // 임시저장된(정상상태)로 context를 복구 시킨다.
-               //Context.restore();
-       
-               //angle++;
-       
-               //if (angle>=9) angle = 1;
-           //},10)  
+        if(135 <= parseInt(laser_d) && parseInt(laser_d) < 225){
+            playerSkillImage = playerSkill_02LeftImage; 
+        Context6.drawImage(playerSkillImage,playerX-15,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 5 + 1),playerHeight*1.5 + Math.floor(Math.random() * 5 + 1));
+        }else if(225 <= parseInt(laser_d) && parseInt(laser_d) < 315){
+            playerSkillImage = playerSkill_02DownImage; 
+        Context6.drawImage(playerSkillImage,playerX-20,playerY-20,playerWidth*1.8 + Math.floor(Math.random() * 15 + 1),playerHeight*1.5 + Math.floor(Math.random() * 10 + 1));
+        }else if(315 <= parseInt(laser_d) && parseInt(laser_d) < 360){
+            playerSkillImage = playerSkill_02RightImage; 
+        Context6.drawImage(playerSkillImage,playerX-22,playerY-22,playerWidth*1.8 + Math.floor(Math.random() * 10 + 1),playerHeight*1.5 + Math.floor(Math.random() * 15 + 1));
+        }else {
+            playerSkillImage = playerSkill_02UpImage; 
+            Context6.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 20 + 1),playerHeight*1.5 + Math.floor(Math.random() * 15 + 1));
+        }
+
     }
     
     if (skill == 3){   
-        if(playerSkillImage.src != playerSkill_03Image.src && playerSkillImage.src != playerSkill_03TmpImage.src){
+        if(!(playerSkillImage.src == playerSkill_03Image.src || playerSkillImage.src == playerSkill_03TmpImage.src)){
             // for(var k=0;k<=playerY-10;k++){
             //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
             // }
             
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
+                Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
             }                
         }     
    
-            Context.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
+        Context6.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
        
     }
 
@@ -1905,6 +1932,19 @@ function laser_move(){
          
                     Context.drawImage( laserImage,lmovex,lmovey,l_width,l_size);        
             }
+            //Context6.rotate(2*Math.PI/180);
+            //Context6.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 15),playerHeight*1.5 + Math.floor(Math.random() * 15));
+            // if(laser_d<=90){ 
+            //     playerSkillImage = playerSkill_02UpImage;
+            // }else if(laser_d<=180){
+            //     playerSkillImage = playerSkill_02LeftImage;
+            // }else if(laser_d<=27){
+            //     playerSkillImage = playerSkill_02Downmage;
+            // }else if(laser_d<=360){
+            //     playerSkillImage = playerSkill_02RightImage;
+            // }
+
+
 
         }else {   
             laserImage = laser02;
@@ -2662,9 +2702,9 @@ function enemy_collision(){
                 this.energe_bar = '';
 
                 //콜로니 밖 우주 배경그려주기(투명도 적용)
-                Context.save();
+                Context3.save();
 
-                Context.globalAlpha = 0.8;
+                Context3.globalAlpha = 0.8;
                 
                 //적폭파시 배경 잠깐 번쩍이게..
                 //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
@@ -2707,7 +2747,7 @@ function enemy_collision(){
                  //   this.enemy_dealy_time = parseInt((Math.floor(Math.random()*3) + 2)) * 10000;
                 //}
 
-                Context.restore();
+                Context3.restore();
 
                 //폭파되면 새로 출현할때까지 이미지 않보이게
                 this.enemyImage = this.noneImage;
@@ -3448,7 +3488,7 @@ function game_background(){
     //Context3.drawImage(cityEndImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  25 ,30 );
     Context3.drawImage(noneImage,theCanvas.clientWidth / 2  - cityEnd_size + cityEnd_x + 35 , theCanvas.clientHeight / 4 + cityEnd_y - 10 +  Math.floor(Math.random() * 3) ,  200 ,100 );
 
-    Context.restore();
+    Context3.restore();
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
@@ -4649,7 +4689,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //appear_sound.play();  
         // tmp_skill = skill;
         // ++skill;
-        skill_chanage(); 
+        skill_change(); 
         //(skill == 1)?skill=2:skill=1;
     }
 
@@ -4752,20 +4792,20 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
 
 ////////////////////공격 스킬 체인지 함수
-function skill_chanage(){  
+function skill_change(){  
 
     tmp_skill = skill;
 
     //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
-    //setTimeout(skill_chanage2,500);  
-    if (skill_chanage2() == "Y"){
+    //setTimeout(skill_change2,500);  
+    if (skill_change2() == "Y"){
         if(tmp_skill != skill){
             if (skill > 3){
                 skill = 1;
             }    
         }  
         tmp_skill = null;
-        //skill_chanage2() = "N";
+        //skill_change2() = "N";
     }; 
 
     //목소리 재생모드일경우만 실행 
@@ -4775,7 +4815,7 @@ function skill_chanage(){
 }
  
 
-function skill_chanage2(){   
+function skill_change2(){   
      
     //mount_sound.currentTime;
     mount_sound.play(); 
@@ -5064,7 +5104,7 @@ function clickCanvas(event, as_gb) {
 
         //캔버스를 클릭했을때만 호출한다. 자꾸 움직이거나 하니깐 찰나에 또 바뀜
         if(as_gb == 1)
-        skill_chanage(); 
+        skill_change(); 
     }
 
     if(status != 2){
@@ -6270,7 +6310,7 @@ function player_collision(){
                     // player_warp =  noneImage;
 
                     //콜로니 밖 우주 배경그려주기(투명도 적용)
-                    Context.save();
+                    Context3.save();
 
                     Context.globalAlpha = 0.8;
 
@@ -6494,7 +6534,7 @@ function drawScreen(){
     player_didtance(); 
 
     //스킬 변경
-    //skill_chanage();
+    //skill_change();
 
     //레이져 방향
     if (skill == 1){
@@ -6529,7 +6569,7 @@ function drawScreen(){
         } 
         
         for (var l=0;l<=3;l++){  
-            Context.drawImage(playerSkillImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
+            Context6.drawImage(playerSkillImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
             playerSkillImage = playerSkill_03TmpImage; 
             if (l>=3){  
                 //playerSkill_03TmpImage = playerSkillImage;
@@ -6828,7 +6868,7 @@ function onkeyDown(e, as_strKeyEventValue){
 
         // tmp_skill = skill;
         // ++skill;
-        skill_chanage();
+        skill_change();
  
         //(skill == 1)?skill=2:skill=1;        
 

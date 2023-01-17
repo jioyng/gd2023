@@ -478,7 +478,7 @@ player_enginImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬이미지
 var playerSkillImage = new Image();
-playerSkillImage.src = "./img/player_skill01.png"; 
+playerSkillImage.src = "./img/none.png"; 
 playerSkillImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬1이미지
@@ -488,7 +488,7 @@ playerSkill_01Image.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬2이미지
 var playerSkill_02Image = new Image();
-playerSkill_02Image.src = "./img/player_skill02.png"; 
+playerSkill_02Image.src = "./img/player_skill02_up.png"; 
 playerSkill_02Image.addEventListener("load",drawScreen, false);
 
 var playerSkill_02UpImage = new Image();
@@ -1264,7 +1264,7 @@ function player_init(){
     before_pspeed = 10;
     player_life = ini_player_life;
     playerImage = player;
-    playerSkillImage = playerSkill_01Image;
+    playerSkillImage = noneImage;
     laserImage = laser;
     player_warp = warp;
 
@@ -1556,16 +1556,16 @@ function player_move(){
     }
 
     if (skill == 1){   
-        if(playerSkillImage.src != playerSkill_01Image.src){
+        if(!(playerSkillImage.src == playerSkill_01Image.src || playerSkillImage.src == noneImage.src)){
             // for(var k=0;k<=playerY-10;k++){
             //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
             // }
-
+            playerSkillImage = playerSkill_01Image;  
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
             }            
         }
-        playerSkillImage = playerSkill_01Image;     
+     
         Context6.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
     }
 
@@ -1574,15 +1574,15 @@ function player_move(){
               playerSkillImage.src == playerSkill_02UpImage.src ||
               playerSkillImage.src == playerSkill_02LeftImage.src ||
               playerSkillImage.src == playerSkill_02DownImage.src ||
-              playerSkillImage.src == playerSkill_02RightImage.src)
+              playerSkillImage.src == playerSkill_02RightImage.src || 
+              playerSkillImage.src == noneImage.src)
         ){      
-
+              playerSkillImage = playerSkill_02Image; 
               for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
               }     
               
-              
-              playerSkillImage = playerSkill_02Image; 
+ 
         }       
           
         //     Context6.save();
@@ -1610,19 +1610,19 @@ function player_move(){
             Context6.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 20 + 1),playerHeight*1.5 + Math.floor(Math.random() * 15 + 1));
         }
 
-    }
-    
+    } 
+
     if (skill == 3){   
-        if(!(playerSkillImage.src == playerSkill_03Image.src || playerSkillImage.src == playerSkill_03TmpImage.src)){
-            // for(var k=0;k<=playerY-10;k++){
-            //     Context.drawImage(playerSkillImage,playerX+10,k,playerWidth/2,playerHeight/2); 
-            // }
-            
+       
+        //alert(playerSkillImage.src+","+playerSkill_03Image.src+","+playerSkill_03TmpImage.src)
+        if(!(playerSkillImage.src == playerSkill_03Image.src || playerSkillImage.src == noneImage.src)){
+            playerSkillImage = playerSkill_03Image;    
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
-            }                
+            }       
+      
         }     
-   
+    
         Context6.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
        
     }
@@ -1951,7 +1951,7 @@ function laser_move(){
                 if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
 
                 //임시 스킬이미지는 안보이게 
-                playerSkillImage = noneImage;     
+                //playerSkillImage = playerSkill_03TmpImage;     
                 
                 //레이져 필살기 사운드
                 //appear_sound.currentTime = 0.6;
@@ -6555,7 +6555,6 @@ function drawScreen(){
             //appear_sound.currentTime  = 0;  
             //appear_sound.pause()          
             appear_sound.play(); 
-          
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
@@ -6563,21 +6562,10 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-   
-            playerSkillImage = playerSkill_03Image;  
-            //playerSkillImage = playerSkill_03TmpImage;   
-        } 
-        
-        for (var l=0;l<=3;l++){  
-            Context6.drawImage(playerSkillImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
-            playerSkillImage = playerSkill_03TmpImage; 
-            if (l>=3){  
-                //playerSkill_03TmpImage = playerSkillImage;
-                playerSkillImage = playerSkill_03Image;   
-            } 
- 
-        }
 
+        }      
+        
+         Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
 
         laser_move();
     }  

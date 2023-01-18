@@ -1526,7 +1526,7 @@ function player_move(){
 
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
         if (skill == 0){
-            sword_sound.currentTime  = 2;
+            sword_sound.currentTime  = 0.1;
             sword_sound.play(); 
         }else if (skill == 1){
             shootgun_sound.currentTime  = 0.2;
@@ -5016,7 +5016,7 @@ function clickCanvas(event, as_gb) {
 
         //공격 스킬구분에 따른 공격 레이져 초기변수
         if (skill == 0){   
-            sword_sound.currentTime  = 2;
+            sword_sound.currentTime  = 0.1;
             sword_sound.play();   
         }else if (skill == 1){ 
             shootgun_sound.currentTime  = 0.2;
@@ -6877,7 +6877,7 @@ function onkeyDown(e, as_strKeyEventValue){
         
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
         if (skill == 0){
-            sword_sound.currentTime  = 2;
+            sword_sound.currentTime  = 0.1;
             sword_sound.play();  
         }else if (skill == 1){ 
             shootgun_sound.currentTime  = 0.2;

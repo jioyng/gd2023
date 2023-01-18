@@ -486,6 +486,13 @@ var playerSkill_00Image = new Image();
 playerSkill_00Image.src = "./img/player_skill00.png"; 
 playerSkill_00Image.addEventListener("load",drawScreen, false);
 
+var playerSkill_00UpImage = new Image();
+playerSkill_00UpImage.src = "./img/player_skill00_up.png"; 
+playerSkill_00UpImage.addEventListener("load",drawScreen, false);
+
+var playerSkill_00RightImage = new Image();
+playerSkill_00RightImage.src = "./img/player_skill00_right.png"; 
+playerSkill_00RightImage.addEventListener("load",drawScreen, false);
 
 var playerSkill_00LeftImage = new Image();
 playerSkill_00LeftImage.src = "./img/player_skill00_left.png"; 
@@ -1274,7 +1281,7 @@ function player_init(){
     before_pspeed = 10;
     player_life = ini_player_life;
     playerImage = player;
-    playerSkillImage = playerSkill_00LeftImage;
+    playerSkillImage = playerSkill_00Image;
     laserImage = laser;
     player_warp = warp;
 
@@ -1725,20 +1732,60 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
         if (skill == 0){  
-            laserImage = playerSkill_00LeftImage;
-            for (i=0;i<=40;i++){   
+            laserImage = playerSkill_00Image;
+            for (i=0;i<=80;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
-                    l_size = 20 - i*0.01;
-                    l_width = 25 - i*0.05;
+                    l_size = 25;
+                    l_width = 25;
                     // l_size = l_size*(Pdistance/200); 
     
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     //lmovex = lmovex + 1; //(코사인 * 루트(x제곱 + y제곱)
-                    lmovey = lmovey  - 1; //(사인 * 루트(x제곱 + y제곱)
+                    //lmovey = lmovey  - 1; //(사인 * 루트(x제곱 + y제곱)
          
-                    Context.drawImage( laserImage,lmovex-(Math.floor(Math.random() * 30)),lmovey,l_width,l_size); 
+                    //Context.drawImage( laserImage,lmovex-(Math.floor(Math.random() * 30)),lmovey,l_width,l_size); 
                     //Context.drawImage( laserImage,lmovex-50,lmovey,100,60); 
+
+                    // if (wayBefore=='L'){
+                    //     Context.drawImage( laserImage,--lmovex,lmovey-(Math.floor(Math.random() * 30)),l_width,l_size); 
+                    // }else if (wayBefore=='R'){
+                    //     Context.drawImage( laserImage,++lmovex,lmovey-(Math.floor(Math.random() * 30)),l_width,l_size); 
+                    // }else if (wayBefore=='U'){
+                    //     Context.drawImage( laserImage,lmovex-(Math.floor(Math.random() * 30)),--lmovey,l_width,l_size);  
+                    // }else if (wayBefore=='D'){
+                    //     Context.drawImage( laserImage,lmovex-(Math.floor(Math.random() * 30)),++lmovey,l_width,l_size); 
+                    // }else{
+                    //     laserImage=noneImage;
+                    //     Context.drawImage( laserImage,lmovex,lmovey-(Math.floor(Math.random() * 30)),l_width,l_size);  
+                    // }
+                    
+                    // //플레이어 거리에 따른 레이져 크기 변경
+                    // l_size = 1 + power/1000;
+                    // l_size = l_size*(Pdistance/200); 
+ 
+                    // //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    // lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                    // lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+         
+                    // Context.drawImage( laserImage,lmovex,lmovey,l_width,l_size);    
+ 
+
+                    if (wayBefore=='L'){
+                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60,lmovey,l_width,l_size--); 
+                     }
+                     if (wayBefore=='R'){
+                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey,l_width,l_size-- - 10);  
+                     }
+                     if (wayBefore=='U'){
+                        Context.drawImage( playerSkill_00UpImage,lmovex - 70,--lmovey + 60,l_width*6,l_size--);  
+                     }
+                     if (wayBefore=='D'){
+                        Context.drawImage( playerSkill_00UpImage,lmovex - 70,++lmovey - 60,l_width*6,l_size--);  
+                     }  
+                     //return;
+                     //if(i>=70)           laser_yn = 'Y';
             }
+                 
         }else if (skill == 1){  
             laserImage = laser01;
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
@@ -2710,7 +2757,7 @@ function enemy_collision(){
              //적 에너지 차감
              //스킬 2일때는 10씩 차감
              if (skill == 0){
-                this.enemy_life = this.enemy_life - 0.5;             
+                this.enemy_life = this.enemy_life - 0.1;             
              }else if (skill == 1){
                 this.enemy_life = this.enemy_life - 1;              
              }else if (skill == 2){

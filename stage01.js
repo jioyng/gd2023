@@ -88,6 +88,7 @@ var isBfKeycode = null;
 var button01 = null;
 var button02 = null;
 var button03 = null;
+var button04 = null;
 
 //컨트롤 진하게 옵션 색상
 var ls_CColor = localStorage.getItem('control_color');
@@ -141,21 +142,29 @@ directonMiddle = new Path2D();
 directonMiddle.fillStyle = "rgb(242, 255, 0)";
 directonMiddle.arc(minX + 170, maxY - 170, 50, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
+//메인공격버튼
 button01 = new Path2D();
 button01.fillStyle = "rgb(242, 255, 0)";
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
+//와프버튼
 button02 = new Path2D();
 button02.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-
-
+ 
+//스킬변경버튼
 button03 = new Path2D();
 button03.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button03.arc(maxX - 140, maxY - 300, 60, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+//기본스킬(sword)
+button04 = new Path2D();
+button04.fillStyle = "rgb(242, 255, 0)";
+//button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button04.arc(maxX - 140, maxY - 62, 60, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 
 /////////////////////////////////////////게임 관련 상태 설정 시작////////////////////////////////////////
@@ -615,6 +624,9 @@ var laser02 = new Image();
 laser02.src = "./img/engin01.png";
 laser02.addEventListener("load",drawScreen, false);
 
+//검(sword) 초기 생성 위치
+var swordX = playerX + playerWidth/2;
+var swordY = playerY;
 
 //레이져 초기 생성 위치
 var laserX = playerX + playerWidth/2;
@@ -643,7 +655,7 @@ var laser_d = 0;
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
-var ini_skill = 0;
+var ini_skill = 1;
 var skill = ini_skill;
 var tmp_skill = skill;
 
@@ -1150,7 +1162,7 @@ function game_init(){
     bonus_cnt = 1;
 
     //공격스킬
-    skill = 0;
+    skill = 1;
 
     //적 생명
     ini_enemy_life = 5;
@@ -1462,7 +1474,8 @@ function player_move(){
     }
 
 	//와프(공간 이동)
-	if (isKeyDown[17] || isKeyCode == 17) {
+	//if (isKeyDown[17] || isKeyCode == 17) {
+    if (isKeyDown[88] || isKeyCode == 88) {
 
         warp_sound.currentTime  = 0;
         warp_sound.play();
@@ -1553,8 +1566,9 @@ function player_move(){
         isKeyCode = null;   
 	}
 
-    //브래이크
-    if(isKeyCode == 16 || isKeyCode == 12){
+    //스킬체인지
+    //if(isKeyCode == 16 || isKeyCode == 12){
+    if(isKeyCode == 67){
         pmovex = 0;
         pmovey = 0;
         playerImage = player;
@@ -1726,9 +1740,39 @@ function laser_init(){
     laser_charge_total_time = 0;      
     laser_charge_start_time  = gameTime;
     l_width = 2;   
-      
+    
+    //조준관역 좌표도 기본으로
+    xxAim = 0;
+    yyAim = 0;      
 }
 
+function sword_move(){  
+            laser_init();
+            sword_sound.currentTime  = 0.2;
+            sword_sound.play(); 
+            laserImage = noneImage;
+
+            swordX = playerX + playerWidth/2;
+            swordY = playerY; 
+
+            for (var i=0;i<=40;i++){   
+                    l_size = 25;
+                    l_width = 25; 
+
+                    if (wayBefore=='L'){
+                        Context.drawImage( playerSkill_00LeftImage,swordX-- + 60, swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                     }
+                     if (wayBefore=='R'){
+                        Context.drawImage( playerSkill_00RightImage,swordX++ - 60,swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                     }
+                     if (wayBefore=='U'){
+                        Context.drawImage( playerSkill_00UpImage,swordX - 20,  --swordY + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                     }
+                     if (wayBefore=='D'){
+                        Context.drawImage( playerSkill_00DownImage,swordX - 20,++swordY - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                     }   
+            } 
+}
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){
 
@@ -1737,7 +1781,7 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10); 
         if (skill == 0){  
             laserImage = playerSkill_00Image;
-            for (i=0;i<=40;i++){   
+            for (var i=0;i<=40;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 25;
                     l_width = 25;
@@ -1861,7 +1905,7 @@ function laser_move(){
             l_width = 6;
             l_size = 6; 
             
-            for (i=0;i<=100;i++){ 
+            for (var i=0;i<=100;i++){ 
 
                 //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
                 if (playerY >=  theCanvas.clientHeight/4 + yyAim){   
@@ -2011,7 +2055,7 @@ function laser_move(){
                 
         }else if (skill == 2){  
             laserImage = laser;
-            for (i=0;i<=150;i++){   
+            for (var i=0;i<=150;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 1 + power/1000;
                     l_size = l_size*(Pdistance/200); 
@@ -2353,6 +2397,9 @@ function enemy_init(index){
 
     //플레이어 레이져
     this.laser_move = laser_move;
+
+    //플레이어 검(sword)
+    this.sword_move = sword_move;    
 
     //플레이어 충돌
     this.player_collision = player_collision;
@@ -4629,7 +4676,7 @@ function game_status(){
 function gameControl() {
 
     
-    Context2.globalAlpha = 0.3;
+    //Context2.globalAlpha = 0.3;
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
@@ -4661,6 +4708,7 @@ function gameControl() {
     Context2.stroke(button01);
     Context2.stroke(button02);
     Context2.stroke(button03);
+    Context2.stroke(button04);
         
 } 
 var  ls_height2 = window.innerHeight; 
@@ -4735,6 +4783,12 @@ function fit_fullsize(){
         //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
         button03.arc(maxX - 140, maxY - 310, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
  
+
+        button04 = new Path2D();
+        button04.fillStyle = "rgb(242, 255, 0)";
+        //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+        button04.arc(maxX - 140, maxY - 410, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+ 
     } 
 }
 //////////////////마우스 클릭시 이벤트 메핑
@@ -4792,7 +4846,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //마우스 오른쪽 버튼 클릭
     if (event.button == 2){
 
-        isKeyCode = 17; 
+        isKeyCode = 88; 
 
     }
 
@@ -4897,7 +4951,8 @@ function skill_change(){
     if (skill_change2() == "Y"){
         if(tmp_skill != skill){
             if (skill > 3){
-                skill = 0;
+                //skill = 0;
+                skill = 1;
             }    
         }  
         tmp_skill = null;
@@ -5206,6 +5261,12 @@ function clickCanvas(event, as_gb) {
         skill_change(); 
     }
 
+
+    //기본공격(sword)
+    if(Context.isPointInPath(button04, x,  y)) { 
+        sword_move(); 
+    }
+    
     if(status != 2){
         //게임 계속
         if(Context.isPointInPath(button_play, x,  y)) {
@@ -6361,7 +6422,9 @@ function weappon_move(){
         }
     }
 }
-navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate; // 작동되는 진동 메소드가 다르므로 통합
+
+//브라우져마다 작동되는 진동 메소드가 다르므로 통합
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate; 
 ////////////////// 플레이어 폭파(미사일 충돌)
 function player_collision(){
 
@@ -6380,13 +6443,16 @@ function player_collision(){
             //console.log("Pdistance",Pdistance)  
                                 
                 //1초간 진동 
-                navigator.vibrate(500); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                if (ls_VColor == "yellow"){
+                    navigator.vibrate(500); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                }
 
-                  //충돌시 폭파이미지로 변경
+                //충돌시 폭파이미지로 변경
                 if (player_life <= 1){  
                     //2초간 진동 
-                    navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
-
+                    if (ls_VColor == "yellow"){                    
+                        navigator.vibrate(1000); // 진동을 울리게 한다. 1000ms = 1s 이다.
+                    }
                     // explosion_sound.currentTime  = 4;
                     // explosion_sound.play();  
                     Context.drawImage(explosionImage01,playerX-Math.floor(Math.random()*40),playerY+Math.floor(Math.random()*40),35,25);
@@ -6809,11 +6875,11 @@ function drawScreen(){
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)
 function onkeyDown(e, as_strKeyEventValue){
-
+ 
     strKeyEventValue = e.key;
     strKeyEventType = e.type;
     isKeyCode =  e.keyCode;
-
+ 
     //게임 진행 상태
     if (strKeyEventValue == "Enter" || isKeyCode == 13){
 
@@ -6924,7 +6990,7 @@ function onkeyDown(e, as_strKeyEventValue){
 
             return;
     }
-
+ 
     //공격스킬 사운드
     if (strKeyEventValue == "Space"  || isKeyCode == 32){ 
         
@@ -6949,10 +7015,16 @@ function onkeyDown(e, as_strKeyEventValue){
 
     } 
 
+    //기본공격(sword)
+    if (isKeyCode == 90){   
+        sword_move();
+    }     
+
     //스킬체인지
     //alert(strKeyEventValue + "," + isKeyCode)
     //if (strKeyEventValue == "Alt"  || isKeyCode == 18){  
-    if (strKeyEventValue == "shift"  || isKeyCode == 16){  
+    //if (strKeyEventValue == "shift"  || isKeyCode == 16){  
+    if (isKeyCode == 67){  
         // alert("t")
         //레이져 필살기 사운드
 

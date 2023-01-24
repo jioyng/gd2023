@@ -1775,16 +1775,16 @@ function laser_move(){
  
 
                     if (wayBefore=='L'){
-                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='R'){
-                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='U'){
-                        Context.drawImage( playerSkill_00UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSkill_00UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
                      if (wayBefore=='D'){
-                        Context.drawImage( playerSkill_00DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSkill_00DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }  
                      //return;
                      //if(i>=70)           laser_yn = 'Y';

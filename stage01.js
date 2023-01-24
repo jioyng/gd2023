@@ -655,6 +655,7 @@ var laser_d = 0;
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
+var basic_skill = 'N';
 var ini_skill = 1;
 var skill = ini_skill;
 var tmp_skill = skill;
@@ -1163,6 +1164,7 @@ function game_init(){
 
     //공격스킬
     skill = 1;
+    basic_skill = 'N';
 
     //적 생명
     ini_enemy_life = 5;
@@ -1728,12 +1730,14 @@ function laser_init(){
     lmovey = laserY - 5;
     //레이져 초기 크기
     l_size = 1;
-    l_width = 2;
+    l_width = 2; 
 
     //레이져 초기 속도
     lspeed = 1;
     //레이져 발사 여부
     laser_yn = 'N';
+
+    basic_skill = 'N';
 
              
     //레이져 초기화
@@ -1744,40 +1748,52 @@ function laser_init(){
     //조준관역 좌표도 기본으로
     xxAim = 0;
     yyAim = 0;     
-    
-    swordX = playerX + playerWidth/2;
-    swordY = playerY; 
+
 }
 
+
+//검 공격
 function sword_move(){  
             laser_init();
-            tmp_skill = null;
+ 
+            swordX = playerX + playerWidth/2;
+            swordY = playerY; 
+            //swordX = lmovex;
+            //swordY = lmovey; 
+
+            tmp_skill = null; 
             sword_sound.currentTime  = 0.2;
             sword_sound.play(); 
             //playerSkill_03TmpImage = noneImage;
             //laserImage = playerSkillImage;
-            laser_yn = 'Y';   
-            for (var i=0;i<=60;i++){   
-                    l_size = 30;
-                    l_width = 30; 
+
+            //for (var i=0;i<=1;i++){   
+                    l_size = 80;
+                    l_width = 80; 
+                    laser_yn = 'N';   
+                    basic_skill = 'Y';
 
                     if (wayBefore=='R'){
-                        Context.drawImage( playerSkill_00LeftImage,swordX-- + 30, swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                        Context.drawImage( playerSkill_00RightImage ,swordX--, swordY - 40,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='L'){
-                        Context.drawImage( playerSkill_00RightImage,swordX++ - 60,swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                        Context.drawImage(playerSkill_00LeftImage,swordX++ - 90,swordY - 40,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='D'){
-                        Context.drawImage( playerSkill_00UpImage,swordX - 20,  --swordY + 30,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage(playerSkill_00DownImage ,swordX - 45,  --swordY + 10,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
-                     if (wayBefore=='U'){
-                        Context.drawImage( playerSkill_00DownImage,swordX - 20,++swordY - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                     if (wayBefore=='U' || wayBefore == null || wayBefore == ''){
+                        Context.drawImage(playerSkill_00UpImage ,swordX - 45,  --swordY - 80,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }   
-            } 
-            laser_yn = 'N';  
+                     
+                     //lmovex = swordX;
+                     //lmovey = swordY;
+           // } 
 }
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){
+
+        
 
     if (laser_yn == 'Y'){
 
@@ -2809,17 +2825,21 @@ function enemy_collision(){
              crash01_sound.play(); 
 
              //적 에너지 차감
-             //스킬 2일때는 10씩 차감
-             if (skill == 0){
-                this.enemy_life = this.enemy_life - 0.1;             
-             }else if (skill == 1){
-                this.enemy_life = this.enemy_life - 1;              
-             }else if (skill == 2){
-                this.enemy_life = this.enemy_life - 0.2;            
-             }else {
-                this.enemy_life = this.enemy_life - 10;  
-             } 
-             
+             //스킬 2일때는 10씩 차감  
+            if(basic_skill == 'Y'){
+                this.enemy_life = this.enemy_life - 0.1;       
+            }else {
+                if (skill == 0){  
+                    this.enemy_life = this.enemy_life - 0.1;             
+                }else if (skill == 1){ 
+                    this.enemy_life = this.enemy_life - 1;              
+                }else if (skill == 2){
+                    this.enemy_life = this.enemy_life - 0.2;            
+                }else {
+                    this.enemy_life = this.enemy_life - 10;  
+                }  
+            }
+                
              //적 에너지를 다시 그려준다.
              this.enemy_energe(); 
 
@@ -4877,8 +4897,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //if (event.wheelDelta) delta = event.wheelDelta / 120; /* IE/Chrome/Opera */
         //else if (event.detail) delta = -event.detail/3; /* Mozilla case */
      
-        isKeyCode = 90;
-        sword_move();
+        isKeyCode = 90; 
+        sword_move(); 
   }); 
 
   GameCanvas.addEventListener('mouseup', function(event) { 
@@ -5172,7 +5192,7 @@ function clickCanvas(event, as_gb) {
 		// laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1); 
 		// if (laser_r < 0)
 		//  laser_r += Math.PI * 2;
-		// laser_d = laser_r*180/Math.PI;
+		// laser_d = laser_r*180/Math.PI;laser_yn
 		// while (laser_d < 0)
         //  laser_d += 360;
 
@@ -5284,8 +5304,8 @@ function clickCanvas(event, as_gb) {
 
 
     //기본공격(sword)
-    if(Context.isPointInPath(button04, x,  y)) { 
-        sword_move(); 
+    if(Context.isPointInPath(button04, x,  y)) {  
+        sword_move();  
     }
     
     if(status != 2){
@@ -7037,8 +7057,8 @@ function onkeyDown(e, as_strKeyEventValue){
     } 
 
     //기본공격(sword) 
-    if (isKeyCode == 90){   
-        sword_move();
+    if (isKeyCode == 90){    
+        sword_move(); 
     }     
 
     //스킬체인지

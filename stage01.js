@@ -1743,35 +1743,38 @@ function laser_init(){
     
     //조준관역 좌표도 기본으로
     xxAim = 0;
-    yyAim = 0;      
+    yyAim = 0;     
+    
+    swordX = playerX + playerWidth/2;
+    swordY = playerY; 
 }
 
 function sword_move(){  
             laser_init();
+            tmp_skill = null;
             sword_sound.currentTime  = 0.2;
             sword_sound.play(); 
-            laserImage = noneImage;
+            //playerSkill_03TmpImage = noneImage;
+            //laserImage = playerSkillImage;
+            laser_yn = 'Y';   
+            for (var i=0;i<=60;i++){   
+                    l_size = 30;
+                    l_width = 30; 
 
-            swordX = playerX + playerWidth/2;
-            swordY = playerY; 
-
-            for (var i=0;i<=40;i++){   
-                    l_size = 25;
-                    l_width = 25; 
-
-                    if (wayBefore=='L'){
-                        Context.drawImage( playerSkill_00LeftImage,swordX-- + 60, swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                    if (wayBefore=='R'){
+                        Context.drawImage( playerSkill_00LeftImage,swordX-- + 30, swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
-                     if (wayBefore=='R'){
+                     if (wayBefore=='L'){
                         Context.drawImage( playerSkill_00RightImage,swordX++ - 60,swordY - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
-                     if (wayBefore=='U'){
-                        Context.drawImage( playerSkill_00UpImage,swordX - 20,  --swordY + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
-                     }
                      if (wayBefore=='D'){
+                        Context.drawImage( playerSkill_00UpImage,swordX - 20,  --swordY + 30,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                     }
+                     if (wayBefore=='U'){
                         Context.drawImage( playerSkill_00DownImage,swordX - 20,++swordY - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }   
             } 
+            laser_yn = 'N';  
 }
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){
@@ -4860,6 +4863,24 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
   });
 
+  
+  //마우스휠
+  GameCanvas.addEventListener('mousewheel', function(event) {  
+        //event.preventDefault(); 
+        //모바일인경우 게임진행시에는 리턴
+        if (status == 2){
+            if (navigator.platform.substr(0,3) != "Win" ){
+                return;
+            }
+        } 
+    
+        //if (event.wheelDelta) delta = event.wheelDelta / 120; /* IE/Chrome/Opera */
+        //else if (event.detail) delta = -event.detail/3; /* Mozilla case */
+     
+        isKeyCode = 90;
+        sword_move();
+  }); 
+
   GameCanvas.addEventListener('mouseup', function(event) { 
 
     //event.preventDefault(); 
@@ -7015,7 +7036,7 @@ function onkeyDown(e, as_strKeyEventValue){
 
     } 
 
-    //기본공격(sword)
+    //기본공격(sword) 
     if (isKeyCode == 90){   
         sword_move();
     }     

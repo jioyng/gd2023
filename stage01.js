@@ -37,11 +37,11 @@ var docV = document.documentElement;
 //게임 로드시 켐퍼스 리사이징 조정
 fitToContainer(theCanvas);
 
-//게임 진행 컨텍스트(게임 오브젝트(플레이어 및 적) 진행  + 컨트롤 + 스코어)
+//게임 진행 및 상태 컨텍스트(게임 오브젝트(플레이어 및 적) : 진행  + 컨트롤 + 스코어,게임 상태 표시 : 시작, 진행, 멈춤, 종료 메세지)
 var Context = theCanvas.getContext("2d");
-//게임 상태 컨텍스트(게임 상태 표시 : 시작, 진행, 멈춤, 종료 메세지)
+//게임 컨트롤(방향키 및 공격버튼)
 var Context2 = theCanvas.getContext("2d");
-//게임배경 컨텍스트(게임 콜리니 내부)
+//게임배경 컨텍스트(게임 콜로니 내부)
 var Context3 = theCanvas.getContext("2d");
 //게임 표적(관역)
 var Context4 = theCanvas.getContext("2d");
@@ -2174,10 +2174,10 @@ function enemy_init(index){
             crash01_sound.currentTime = 4;
             vboss_sound.play();
             //대화
-            Context2.globalAlpha = 1;
-            Context2.font  = "30px Arial";  
-            Context2.fillStyle = '#ffffff';
-            Context2.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);             
+            Context.globalAlpha = 1;
+            Context.font  = "30px Arial";  
+            Context.fillStyle = '#ffffff';
+            Context.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);             
         } 
         
         //alert("두번째 보스 출현(enemy_boss_02_status):"+enemy_boss_02_status )
@@ -2194,11 +2194,11 @@ function enemy_init(index){
             crash01_sound.currentTime = 4;
             vboss_sound.play();
             //대화
-            Context2.globalAlpha = 1;
-            Context2.font  = "30px Arial";  
-            Context2.fillStyle = '#ffffff';
-            Context2.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);
-            //Context2.fill(); 
+            Context.globalAlpha = 1;
+            Context.font  = "30px Arial";  
+            Context.fillStyle = '#ffffff';
+            Context.fillText("저녁석이 보스인가?",ls_width/2 - ls_width/10,50);
+            //Context.fill(); 
         }  
     }else { 
         
@@ -3259,10 +3259,10 @@ function game_background(){
                     if (ls_VColor == "yellow") {
                         vstart_sound.play();
                         // //대화
-                        // Context2.globalAlpha = 1;
-                        // Context2.font  = "30px Arial";  
-                        // Context2.fillStyle = '#ffffff';
-                        // Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
+                        // Context.globalAlpha = 1;
+                        // Context.font  = "30px Arial";  
+                        // Context.fillStyle = '#ffffff';
+                        // Context.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
                     }
                 }   
 
@@ -3588,11 +3588,11 @@ function game_background(){
     //console.log("playerY/100",playerY/100);
 
     if (enemy_boss_01_status == 1){
-        Context.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
+        Context3.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
     }
 
     if (enemy_boss_02_status == 1){
-        Context.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
+        Context3.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
     }
     //for (var i=1;i<=5;i++){
 
@@ -4605,21 +4605,21 @@ var ls_next_yn = 'N';
 ////////////////// 게임 상태 표시
 function game_status(){
     
-    Context2.globalAlpha = 1;
-    Context2.font = '30px Arial';
-    Context2.font = '100px Arial';
-    Context2.fillStyle = "#ffffff";
+    Context.globalAlpha = 1;
+    Context.font = '30px Arial';
+    Context.font = '100px Arial';
+    Context.fillStyle = "#ffffff";
 
     if (status == 1){
-        //Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        //Context.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     }else if (status == 3){
-        Context2.fillText("Pause", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context.fillText("Pause", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     }else if (status == 4){
-        Context2.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 200, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 200, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
     } 
@@ -4628,37 +4628,39 @@ function game_status(){
 ////////////////// 캔버스 컨트롤(게임 프래임 진행시 호출하여 생성)
 function gameControl() {
 
-    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
-	//if (navigator.platform.substr(0,3) == "Win" ){
-        //return;
-    //}
+    
+    Context2.globalAlpha = 0.3;
 
-    Context.globalAlpha = 0.5;
+    //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
+	if (navigator.platform.substr(0,3) == "Win" ){
+        //Context2.globalAlpha = 0;
+    }
+
 
     //색상값이 white가 아닌경우 테두리랑 투명도, 색상 변경.
     if (ls_CColor == 'red'){
-        //Context.globalAlpha = 1;
-        Context.globalAlpha = 0.8;
-        Context.lineWidth = "1";
-        //Context.strokeStyle = ls_CColor;
-        //Context.fillStyle = ls_CColor;
-        Context.strokeStyle = "#ffffff";
-        Context.fillStyle = "#ffffff";
+        //Context2.globalAlpha = 1;
+        Context2.globalAlpha = 0.8;
+        Context2.lineWidth = "1";
+        //Context2.strokeStyle = ls_CColor;
+        //Context2.fillStyle = ls_CColor;
+        Context2.strokeStyle = "#ffffff";
+        Context2.fillStyle = "#ffffff";
     }
 
-    Context.stroke(directonUp);
-    Context.stroke(directonLeft);
-    Context.stroke(directonRight);
-    Context.stroke(directonDown);
-    Context.stroke(directonUpLeft);
-    Context.stroke(directonUpRight);
-    Context.stroke(directonDownLeft);
-    Context.stroke(directonDownRight);
-    Context.stroke(directonMiddle);
+    Context2.stroke(directonUp);
+    Context2.stroke(directonLeft);
+    Context2.stroke(directonRight);
+    Context2.stroke(directonDown);
+    Context2.stroke(directonUpLeft);
+    Context2.stroke(directonUpRight);
+    Context2.stroke(directonDownLeft);
+    Context2.stroke(directonDownRight);
+    Context2.stroke(directonMiddle);
 
-    Context.stroke(button01);
-    Context.stroke(button02);
-    Context.stroke(button03);
+    Context2.stroke(button01);
+    Context2.stroke(button02);
+    Context2.stroke(button03);
         
 } 
 var  ls_height2 = window.innerHeight; 
@@ -4860,19 +4862,19 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         }else { 
 
-            Context2.font = '50px Arial';
+            Context.font = '50px Arial';
             //gameEnd(27);
             //게임 재시도 or 나가기
-            Context2.stroke(button_play);
-            Context2.stroke(button_end);
-            //Context2.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);
-            Context2.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
-            Context2.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
+            Context.stroke(button_play);
+            Context.stroke(button_end);
+            //Context.fillRect(ls_width/2 - 250, ls_height/2 - 250 , 250, 150);
+            Context.fillText("Retry",ls_width/2 - 160, ls_height/2 - 140);
+            Context.fillText("Exit",ls_width/2 + 120, ls_height/2 - 140);
 
             //개발모드일경우만 이어서 플레이 가능
             if (ls_DColor == "green"){
-                Context2.fillText("Continue",ls_width/2 - 200 + 120, ls_height - ls_height/4);
-                Context2.stroke(button_continue);
+                Context.fillText("Continue",ls_width/2 - 200 + 120, ls_height - ls_height/4);
+                Context.stroke(button_continue);
             }
 
             isKeyDown = [];
@@ -4925,9 +4927,9 @@ function skill_change2(){
     if (ls_VColor == "yellow"){
         vskill_sound.play();
         //대화
-        Context2.globalAlpha = 1;
-        Context2.font  = "30px Arial";  
-        Context2.fillStyle = '#ffffff'; 
+        Context.globalAlpha = 1;
+        Context.font  = "30px Arial";  
+        Context.fillStyle = '#ffffff'; 
         //대화 내용 텀 길게 표시
         tmp_time = gameTime + 10;
         Tmp_Id = setInterval(tmp_text , 1/1000); 
@@ -4939,7 +4941,7 @@ function skill_change2(){
 var tmp_time = 0;
 function tmp_text(){ 
     if(gameTime <= tmp_time){ 
-        Context2.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
+        Context.fillText("스킬 변경 완료.",ls_width/2 - ls_width/10,50);
     }else {
         clearInterval(Tmp_Id);
     }
@@ -5040,7 +5042,7 @@ function clickCanvas(event, as_gb) {
 
     //방향 downRight
 	if(Context.isPointInPath(directonDownRight, x,  y)) {
-		isKeyCode = 34;
+		isKeyCode = 34;button01
 		//strKeyEventValue = "RD";
         wayBefore = 'RD';
 		Context.stroke(directonDownRight);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
@@ -6409,7 +6411,7 @@ function player_collision(){
                     //콜로니 밖 우주 배경그려주기(투명도 적용)
                     Context3.save();
 
-                    Context.globalAlpha = 0.8;
+                    //Context.globalAlpha = 0.8;
 
                     status = 4;    //게임 END
 
@@ -6485,11 +6487,11 @@ function player_collision(){
                         if (ls_VColor == "yellow"){
                             vregret_sound.play();
                             //대화
-                            Context2.globalAlpha = 1;
-                            Context2.font  = "30px Arial";  
-                            Context2.fillStyle = '#ffffff';
-                            Context2.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
-                            //Context2.fill(); 
+                            Context.globalAlpha = 1;
+                            Context.font  = "30px Arial";  
+                            Context.fillStyle = '#ffffff';
+                            Context.fillText("크게 한방 먹었군...",ls_width/2 - ls_width/10,50);
+                            //Context.fill(); 
                         }                  
 
                 //게임 재시작 or 종료
@@ -6540,11 +6542,11 @@ function player_collision(){
                            if (ls_VColor == "yellow") {
                                vdanger_sound.play();
                                 //대화
-                                Context2.globalAlpha = 1;
-                                Context2.font  = "30px Arial";  
-                                Context2.fillStyle = '#ffffff';
-                                Context2.fillText("앗! 위험해.",ls_width/2 - ls_width/10,50);
-                                //Context2.fill();
+                                Context.globalAlpha = 1;
+                                Context.font  = "30px Arial";  
+                                Context.fillStyle = '#ffffff';
+                                Context.fillText("앗! 위험해.",ls_width/2 - ls_width/10,50);
+                                //Context.fill();
                             } 
                     }
                 }
@@ -6564,10 +6566,10 @@ function drawScreen(){
     //Context.textBaseline = "top";
 
     //게임 상태(시작,중지,종료) 표시용 컨텍스트
-    Context2.fillStyle = "#000000";
-    Context2.fillRect(0,0,theCanvas.clientWidth,theCanvas.clientHeight);
-    Context2.fillStyle = "#ffffff";
-    Context2.font = '100px Arial';
+    Context.fillStyle = "#000000";
+    Context.fillRect(0,0,theCanvas.clientWidth,theCanvas.clientHeight);
+    Context.fillStyle = "#ffffff";
+    Context.font = '100px Arial';
 
     //console.log("gameScore/1000",parseInt(gameScore/1000))
     //플레이어 갯수(보너스)(10000점마다 1개씩 증가)
@@ -6617,10 +6619,10 @@ function drawScreen(){
         if (ls_VColor == "yellow") {
     //        vstart_sound.play();
             //대화
-            Context2.globalAlpha = 1;
-            Context2.font  = "30px Arial";  
-            Context2.fillStyle = '#ffffff';
-            Context2.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
+            Context.globalAlpha = 1;
+            Context.font  = "30px Arial";  
+            Context.fillStyle = '#ffffff';
+            Context.fillText("자! 출발하자.",ls_width/2 - ls_width/10,50);
         }
     }   
 
@@ -6721,11 +6723,11 @@ function drawScreen(){
             if (ls_VColor == "yellow"){
                 vsafe_sound.play();
                 //대화
-                Context2.globalAlpha = 1;
-                Context2.font  = "30px Arial";  
-                Context2.fillStyle = '#ffffff';
-                Context2.fillText("여긴 아무이상도 없는것같아...",ls_width/2 - ls_width/10,50);
-                //Context2.fill();
+                Context.globalAlpha = 1;
+                Context.font  = "30px Arial";  
+                Context.fillStyle = '#ffffff';
+                Context.fillText("여긴 아무이상도 없는것같아...",ls_width/2 - ls_width/10,50);
+                //Context.fill();
             }   
         }
 
@@ -6734,11 +6736,11 @@ function drawScreen(){
             if (ls_VColor == "yellow"){
                 vbee_sound.play();
                 //대화
-                Context2.globalAlpha = 1;
-                Context2.font  = "30px Arial";  
-                Context2.fillStyle = '#ffffff';
-                Context2.fillText("벌떼같은 녀석들!",ls_width/2 - ls_width/10,50);
-                //Context2.fill();
+                Context.globalAlpha = 1;
+                Context.font  = "30px Arial";  
+                Context.fillStyle = '#ffffff';
+                Context.fillText("벌떼같은 녀석들!",ls_width/2 - ls_width/10,50);
+                //Context.fill();
             }      
         }
 
@@ -6747,14 +6749,14 @@ function drawScreen(){
             if (ls_VColor == "yellow"){
                 vangry_sound.play();
                 //대화
-                Context2.globalAlpha = 1;
-                Context2.font  = "30px Arial";  
-                Context2.fillStyle = '#ffffff';
-                Context2.fillText("죽어랏! 괴물들...",ls_width/2 - ls_width/10,50);
-                //Context2.fill();
+                Context.globalAlpha = 1;
+                Context.font  = "30px Arial";  
+                Context.fillStyle = '#ffffff';
+                Context.fillText("죽어랏! 괴물들...",ls_width/2 - ls_width/10,50);
+                //Context.fill();
             }else {
-                // Context2.fillText("",ls_width/2 - ls_width/10,50);
-                // Context2.fill();      
+                // Context.fillText("",ls_width/2 - ls_width/10,50);
+                // Context.fill();      
             }                        
 
         }        
@@ -6786,7 +6788,7 @@ function drawScreen(){
     //Context.fillText("속도 :" + Pspeed + "Km/s",theCanvas.clientWidth - 100,60);
     //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
     //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50); 
-
+    Context.globalAlpha = 1;
     Context.fillStyle = '#ffffff';
     Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
     Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
@@ -6799,9 +6801,9 @@ function drawScreen(){
 
 
     if(gameTime<=50){
-        Context2.font = '100px Arial';
-        Context2.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
-        Context2.font = '30px Arial';
+        Context.font = '100px Arial';
+        Context.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
+        Context.font = '30px Arial';
     }
 }
 

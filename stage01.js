@@ -498,6 +498,10 @@ var playerSkill_00LeftImage = new Image();
 playerSkill_00LeftImage.src = "./img/player_skill00_left.png"; 
 playerSkill_00LeftImage.addEventListener("load",drawScreen, false);
 
+var playerSkill_00DownImage = new Image();
+playerSkill_00DownImage.src = "./img/player_skill00_down.png"; 
+playerSkill_00DownImage.addEventListener("load",drawScreen, false);
+
 //플레이어 스킬1이미지
 var playerSkill_01Image = new Image();
 playerSkill_01Image.src = "./img/player_skill01.png"; 
@@ -1576,8 +1580,8 @@ function player_move(){
     }
 
     if (skill == 0){   
-        if(!(playerSkillImage.src == playerSkill_00LeftImage.src || playerSkillImage.src == noneImage.src)){ 
-            playerSkillImage = playerSkill_00LeftImage;  
+        if(!(playerSkillImage.src == playerSkill_00Image.src || playerSkillImage.src == noneImage.src)){ 
+            playerSkillImage = playerSkill_00Image;  
             for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/2,playerHeight/3); 
             }            
@@ -1733,7 +1737,7 @@ function laser_move(){
         //ld = Math.floor(Pdistance/10); 
         if (skill == 0){  
             laserImage = playerSkill_00Image;
-            for (i=0;i<=80;i++){   
+            for (i=0;i<=40;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_size = 25;
                     l_width = 25;
@@ -1771,16 +1775,16 @@ function laser_move(){
  
 
                     if (wayBefore=='L'){
-                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60,lmovey,l_width,l_size--); 
+                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
                      if (wayBefore=='R'){
-                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey,l_width,l_size-- - 10);  
+                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
                      if (wayBefore=='U'){
-                        Context.drawImage( playerSkill_00UpImage,lmovex - 70,--lmovey + 60,l_width*6,l_size--);  
+                        Context.drawImage( playerSkill_00UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
                      if (wayBefore=='D'){
-                        Context.drawImage( playerSkill_00UpImage,lmovex - 70,++lmovey - 60,l_width*6,l_size--);  
+                        Context.drawImage( playerSkill_00DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }  
                      //return;
                      //if(i>=70)           laser_yn = 'Y';

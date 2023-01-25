@@ -146,25 +146,26 @@ directonMiddle.arc(minX + 170, maxY - 170, 50, 0, 2*Math.PI, true);    //arc(x, 
 button01 = new Path2D();
 button01.fillStyle = "rgb(242, 255, 0)";
 //button01.arc(maxX - 250, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button01.arc(maxX - 250, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button01.arc(maxX - 100, maxY - 180, 100, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 //와프버튼
 button02 = new Path2D();
 button02.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button02.arc(maxX - 80, maxY - 180, 70, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button02.arc(maxX - 265, maxY - 180, 65, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
  
 //스킬변경버튼
 button03 = new Path2D();
 button03.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button03.arc(maxX - 140, maxY - 300, 60, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button03.arc(maxX - 212, maxY - 62, 65, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
 
 //기본스킬(sword)
 button04 = new Path2D();
 button04.fillStyle = "rgb(242, 255, 0)";
 //button02.arc(maxX - 80, maxY - 180, 80, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
-button04.arc(maxX - 140, maxY - 62, 60, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+button04.arc(maxX - 215, maxY - 300, 65, 0, 2*Math.PI, true);    //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
 
 
 /////////////////////////////////////////게임 관련 상태 설정 시작////////////////////////////////////////

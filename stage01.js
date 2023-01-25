@@ -5323,7 +5323,7 @@ function laser_radian(x,y){
 
         //레이져 버튼내 중앙 기준 클릭한곳의 각도로 발사되도록 한다.
         }else {
-		    laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1);
+		    laser_r = Math.atan2((maxY - 180 - y),(maxX - 100 - x) * -1);
         } 
 
 		if (laser_r < 0)

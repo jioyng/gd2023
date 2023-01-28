@@ -492,25 +492,25 @@ playerSkillImage.src = "./img/none.png";
 playerSkillImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬0이미지
-var playerSkill_00Image = new Image();
-playerSkill_00Image.src = "./img/player_skill00.png"; 
-playerSkill_00Image.addEventListener("load",drawScreen, false);
+var playerSword_Image = new Image();
+playerSword_Image.src = "./img/noneImage.png"; 
+playerSword_Image.addEventListener("load",drawScreen, false);
 
-var playerSkill_00UpImage = new Image();
-playerSkill_00UpImage.src = "./img/player_skill00_up.png"; 
-playerSkill_00UpImage.addEventListener("load",drawScreen, false);
+var playerSword_UpImage = new Image();
+playerSword_UpImage.src = "./img/player_skill00_up.png"; 
+playerSword_UpImage.addEventListener("load",drawScreen, false);
 
-var playerSkill_00RightImage = new Image();
-playerSkill_00RightImage.src = "./img/player_skill00_right.png"; 
-playerSkill_00RightImage.addEventListener("load",drawScreen, false);
+var playerSword_RightImage = new Image();
+playerSword_RightImage.src = "./img/player_skill00_right.png"; 
+playerSword_RightImage.addEventListener("load",drawScreen, false);
 
-var playerSkill_00LeftImage = new Image();
-playerSkill_00LeftImage.src = "./img/player_skill00_left.png"; 
-playerSkill_00LeftImage.addEventListener("load",drawScreen, false);
+var playerSword_LeftImage = new Image();
+playerSword_LeftImage.src = "./img/player_skill00_left.png"; 
+playerSword_LeftImage.addEventListener("load",drawScreen, false);
 
-var playerSkill_00DownImage = new Image();
-playerSkill_00DownImage.src = "./img/player_skill00_down.png"; 
-playerSkill_00DownImage.addEventListener("load",drawScreen, false);
+var playerSword_DownImage = new Image();
+playerSword_DownImage.src = "./img/player_skill00_down.png"; 
+playerSword_DownImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬1이미지
 var playerSkill_01Image = new Image();
@@ -1304,7 +1304,8 @@ function player_init(){
     before_pspeed = 10;
     player_life = ini_player_life;
     playerImage = player;
-    playerSkillImage = playerSkill_00Image;
+    playerSword_Image = noneImage;
+    playerSkillImage = playerSkill_01Image;
     laserImage = laser;
     player_warp = warp;
 
@@ -1600,16 +1601,16 @@ function player_move(){
         playerHeight = parseInt(ini_player_height/3);
     }
 
-    if (skill == 0){   
-        if(!(playerSkillImage.src == playerSkill_00Image.src || playerSkillImage.src == noneImage.src)){ 
-            playerSkillImage = playerSkill_00Image;  
-            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-                Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/2,playerHeight/3); 
-            }            
-        }
+    // if (skill == 0){   
+    //     if(!(playerSkillImage.src == playerSword_Image.src || playerSkillImage.src == noneImage.src)){ 
+    //         playerSkillImage = playerSword_Image;  
+    //         for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+    //             Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/2,playerHeight/3); 
+    //         }            
+    //     }
      
-        Context6.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
-    }
+    //     Context6.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
+    // }
 
     if (skill == 1){   
         if(!(playerSkillImage.src == playerSkill_01Image.src || playerSkillImage.src == noneImage.src)){
@@ -1727,7 +1728,7 @@ function player_move(){
 }
 
 ////////////////// 플레이어 레이져 초기화
-function laser_init(){
+function laser_init(){laser_init
     laserX = playerX + playerWidth/2;
     laserY = playerY;
     //레이져 초기 이동위치 = 생성위치
@@ -1753,60 +1754,64 @@ function laser_init(){
 
     // smovex = playerX + playerWidth/2;
     // smovey = playerY;  
-    
+    // sword_yn = 'N'; 
 
 }
 
 
 ////////////////// 플레이어 검 공격
-function sword_move(){   
+function sword_move(){    
+    if (sword_yn == 'Y'){
+        laser_yn = 'N'; 
+        //sword_yn = 'Y'; 
+        //조준관역 좌표도 기본으로
+        xxAim = 0;
+        yyAim = 0; 
+    
+        smovex = playerX + playerWidth/2;
+        smovey = playerY;   
+        //laser_init(); 
 
-    if (sword_yn == 'N') return;
-    laser_yn = 'N'; 
-    //sword_yn = 'Y'; 
-     //조준관역 좌표도 기본으로
-     xxAim = 0;
-     yyAim = 0; 
- 
-     smovex = playerX + playerWidth/2;
-     smovey = playerY;   
-    //laser_init(); 
+        //lmovey = 0;
+        //lmovey = 0;
+        tmp_skill = null; 
+        sword_sound.currentTime  = 0.2;
+        sword_sound.play(); 
+        s_size = 100;
+        s_width = 100; 
+        //playerSword_Image=noneImage;
 
-    //lmovey = 0;
-    //lmovey = 0;
-    tmp_skill = null; 
-    sword_sound.currentTime  = 0.2;
-    sword_sound.play(); 
-    s_size = 120;
-    s_width = 120; 
+        for (var i=0;i<=4;i++){    
+                if (wayBefore=='R'){
+                playerSword_Image=playerSword_RightImage;
+                Context.drawImage(playerSword_Image,smovex--,smovey - 40,s_width--,s_size--);  
+                //lmovex = smovex;
+                //lmovey = smovey - 40;
+                }
+                if (wayBefore=='L'){
+                playerSword_Image=playerSword_LeftImage;
+                Context.drawImage(playerSword_Image,smovex++ - 90,smovey - 40,s_width--,s_size--);  
+                //lmovex = smovex - 90;
+                //lmovey = smovey - 40;
+                }
+                if (wayBefore=='D'){
+                playerSword_Image=playerSword_DownImage;
+                Context.drawImage(playerSword_Image,smovex - 45,smovey-- + 10,s_width--,s_size--);  
+                //lmovex = smovex - 45;
+                //lmovey = smovey + 10;
+                }
+                if (wayBefore=='U'){
+                //lmovex = smovex - 45;
+                //lmovey = smovey - 80;
+                playerSword_Image=playerSword_UpImage;
+                Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 80,s_width--,s_size--);  
+                }     
+                 
+        }  
 
-    for (var i=0;i<=4;i++){    
-            if (wayBefore=='R'){
-            Context.drawImage(playerSkill_00RightImage,smovex--,smovey - 40,s_width--,s_size--);  
-            //lmovex = smovex;
-            //lmovey = smovey - 40;
-            }
-            if (wayBefore=='L'){
-            Context.drawImage(playerSkill_00LeftImage,smovex++ - 90,smovey - 40,s_width--,s_size--);  
-            //lmovex = smovex - 90;
-            //lmovey = smovey - 40;
-            }
-            if (wayBefore=='D'){
-            Context.drawImage(playerSkill_00DownImage,smovex - 45,smovey-- + 10,s_width--,s_size--);  
-            //lmovex = smovex - 45;
-            //lmovey = smovey + 10;
-            }
-            if (wayBefore=='U' || wayBefore == null || wayBefore == ''){
-            //lmovex = smovex - 45;
-            //lmovey = smovey - 80;
-            Context.drawImage(playerSkill_00UpImage  ,smovex - 45,--smovey - 80,s_width--,s_size--);  
-            }     
-            
-            if(i==4){
-                sword_yn = 'N';  
-            }
-    }  
-     
+        sword_yn = 'N'; 
+    }
+
 }
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){ 
@@ -1815,21 +1820,21 @@ function laser_move(){
 
         //ld = Math.floor(Pdistance/10); 
         if (skill == 0){  
-            laserImage = playerSkill_00Image;
+            laserImage = playerSword_Image;
             for (var i=0;i<=60;i++){    
                     l_size = 40;
                     l_width = 40; 
                     if (wayBefore=='L'){
-                        Context.drawImage( playerSkill_00LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                        Context.drawImage( playerSword_LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='R'){
-                        Context.drawImage( playerSkill_00RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
+                        Context.drawImage( playerSword_RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_size-- + Math.floor(Math.random() * 6) + 16);  
                      }
                      if (wayBefore=='U'){
-                        Context.drawImage( playerSkill_00UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSword_UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }
                      if (wayBefore=='D'){
-                        Context.drawImage( playerSkill_00DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
+                        Context.drawImage( playerSword_DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_size-- + Math.floor(Math.random() * 4) + 16);  
                      }          
             }
                  
@@ -2790,12 +2795,15 @@ function enemy_collision(){
     if (this.enemy_collision_yn == 'Y') return;                  //적이 폭파되고 새로출현할때까지 않보이는경우 수행하지 않는다.
 
     //레이져와 적 X좌표 충돌시
-    if (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)**1.4) ||
-        (sword_yn == 'Y' && parseInt(smovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(smovex) + parseInt(s_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)**1.4))){
+console.log("laser_yn:"+laser_yn);
+console.log("skill:"+skill);
+console.log("sword_yn:"+sword_yn); 
+    if ((laser_yn=='Y' && (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)**1.4))) ||
+        (playerSword_Image.src != noneImage.src && (parseInt(smovex)  - 80 <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(smovex) + parseInt(s_width) + 80) >= parseInt(this.enemyx) - parseInt(this.enemyw)**1.4)))){
 
         //레이져와 적 Y좌표 충돌시
-        if ((parseInt(lmovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(lmovey)  + parseInt(l_size)) >= parseInt(this.enemyy)) || 
-            (sword_yn == 'Y' && (parseInt(smovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(smovey)  + parseInt(s_size)) >= parseInt(this.enemyy)))){
+        if ((laser_yn=='Y' && (parseInt(lmovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(lmovey)  + parseInt(l_size)) >= parseInt(this.enemyy))) || 
+            (playerSword_Image.src != noneImage.src && (parseInt(smovey) + 80 <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(smovey)  + parseInt(s_size) - 80) >= parseInt(this.enemyy)))){
 
              //충돌시 carsh 효과 이미지로
              Context.drawImage(this.explosionImage01,this.enemyx-Math.floor(Math.random()*20),this.enemyy+Math.floor(Math.random()*20),20,10);
@@ -2814,21 +2822,28 @@ function enemy_collision(){
                 }else if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
-                    this.enemy_life = this.enemy_life - 0.2;            
+                    this.enemy_life = this.enemy_life - 1;            
                 }else {
                     this.enemy_life = this.enemy_life - 10;  
                 }  
             }else {
-                if(sword_yn == 'Y') { 
-                    this.enemy_life = this.enemy_life - 0.05;   
-                    sword_yn = 'N';
+
+                //기본스킬일때는 0.5씩 차감
+                //if(sword_yn == 'Y') { 
+                if(playerSword_Image.src != noneImage.src) { 
+               
+                    this.enemy_life = this.enemy_life - 0.2;    
                 }
             }
-     
+
              //적 에너지를 다시 그려준다.
              this.enemy_energe(); 
 
+
              laser_init();
+             sword_yn == 'N';
+
+
 
              //적 파괴되면 새로운 타겟 등장
              if (this.enemy_life <= 0){
@@ -2932,8 +2947,9 @@ function enemy_collision(){
              }
 
         }
-    }
 
+    } 
+     
 }
 
 ////////////////// 플레이어 에너지 표시
@@ -4687,7 +4703,7 @@ function gameControl() {
 
     //윈도우의 경우 캔버스 컨트롤을 보여주지않는다.
 	if (navigator.platform.substr(0,3) == "Win" ){
-        //Context2.globalAlpha = 0;
+        Context2.globalAlpha = 0;
     }
 
 
@@ -4884,6 +4900,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
         //isKeyCode = 90; 
         sword_yn = 'Y';
         sword_move(); 
+        //sword_yn = 'N';
   }); 
 
   GameCanvas.addEventListener('mouseup', function(event) { 
@@ -6728,8 +6745,9 @@ function drawScreen(){
     //스킬 변경
     //skill_change();
 
-    //기본 스킬(sowrd)
-    if(sword_yn=='Y') sword_move();  
+    //기본 스킬(sword)  
+    //if(sword_yn=='Y') sword_move();  
+    sword_move();
 
     //레이져 방향
     if (skill == 0){
@@ -6792,6 +6810,10 @@ function drawScreen(){
 
     }
         
+
+    //기본 스킬(sword)
+    //if(sword_yn=='Y') sword_move();  
+
     //5초마다 미사일 더생성
     // if(gameTime % 100 === 0){
     //     console.log("추가",gameTime)

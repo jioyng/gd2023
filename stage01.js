@@ -1819,7 +1819,7 @@ function sword_move(){
                     //lmovex = smovex - 45;
                     //lmovey = smovey - 80;
                     playerSword_Image=playerSword_StopImage;
-                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 20,s_width--,s_height--);   
+                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 20,s_width--*0.8,s_height--*0.6);   
                 }
 
                 

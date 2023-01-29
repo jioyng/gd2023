@@ -1797,30 +1797,29 @@ function sword_move(){
                 Context.drawImage(playerSword_Image,smovex-- - 10,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex;
                 //lmovey = smovey - 40;
-                }
+                }else
                 if (wayBefore=='L'){
                 playerSword_Image=playerSword_LeftImage;
                 Context.drawImage(playerSword_Image,smovex++ - 80,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex - 90;
                 //lmovey = smovey - 40;
-                }
+                }else
                 if (wayBefore=='D'){
                 playerSword_Image=playerSword_DownImage;
                 Context.drawImage(playerSword_Image,smovex - 45,smovey--,s_width--,s_height--);  
                 //lmovex = smovex - 45;
                 //lmovey = smovey + 10;
-                }
+                }else
                 if (wayBefore=='U'){
                 //lmovex = smovex - 45;
                 //lmovey = smovey - 80;
                 playerSword_Image=playerSword_UpImage;
                 Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 60,s_width--,s_height--);  
-                }     
-                if (wayBefore=='' || wayBefore==null){
+                }else {
                     //lmovex = smovex - 45;
                     //lmovey = smovey - 80;
                     playerSword_Image=playerSword_StopImage;
-                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 30,s_width-- - 10,s_height-- - 20);   
+                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 20,s_width--,s_height--);   
                 }
 
                 

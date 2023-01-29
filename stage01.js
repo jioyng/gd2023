@@ -502,6 +502,10 @@ var playerSword_Image = new Image();
 playerSword_Image.src = "./img/noneImage.png"; 
 playerSword_Image.addEventListener("load",drawScreen, false);
 
+var playerSword_StopImage = new Image();
+playerSword_StopImage.src = "./img/player_skill00.png"; 
+playerSword_StopImage.addEventListener("load",drawScreen, false);
+
 var playerSword_UpImage = new Image();
 playerSword_UpImage.src = "./img/player_skill00_up.png"; 
 playerSword_UpImage.addEventListener("load",drawScreen, false);
@@ -636,8 +640,8 @@ var smovex = playerX + playerWidth/2;
 var smovey = playerY;
 
 //검 초기 크기
-var s_height = 120;
-var s_width = 120;
+var s_height = 100;
+var s_width = 100;
 
 //레이져 초기 생성 위치
 var laserX = playerX + playerWidth/2;
@@ -1790,19 +1794,19 @@ function sword_move(){
         for (var i=0;i<=4;i++){    
                 if (wayBefore=='R'){
                 playerSword_Image=playerSword_RightImage;
-                Context.drawImage(playerSword_Image,smovex--,smovey - 40,s_width--,s_height--);  
+                Context.drawImage(playerSword_Image,smovex-- - 10,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex;
                 //lmovey = smovey - 40;
                 }
                 if (wayBefore=='L'){
                 playerSword_Image=playerSword_LeftImage;
-                Context.drawImage(playerSword_Image,smovex++ - 90,smovey - 40,s_width--,s_height--);  
+                Context.drawImage(playerSword_Image,smovex++ - 80,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex - 90;
                 //lmovey = smovey - 40;
                 }
                 if (wayBefore=='D'){
                 playerSword_Image=playerSword_DownImage;
-                Context.drawImage(playerSword_Image,smovex - 45,smovey-- + 10,s_width--,s_height--);  
+                Context.drawImage(playerSword_Image,smovex - 45,smovey--,s_width--,s_height--);  
                 //lmovex = smovex - 45;
                 //lmovey = smovey + 10;
                 }
@@ -1810,8 +1814,16 @@ function sword_move(){
                 //lmovex = smovex - 45;
                 //lmovey = smovey - 80;
                 playerSword_Image=playerSword_UpImage;
-                Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 80,s_width--,s_height--);  
+                Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 60,s_width--,s_height--);  
                 }     
+                if (wayBefore=='' || wayBefore==null){
+                    //lmovex = smovex - 45;
+                    //lmovey = smovey - 80;
+                    playerSword_Image=playerSword_StopImage;
+                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 40,s_width--,s_height--);   
+                }
+
+                
                  
         }  
 

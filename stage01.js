@@ -465,6 +465,7 @@ var player_45 = new Image();
 player_45.src = "./img/player_45.png";
 player_45.addEventListener("load",drawScreen, false);
 
+//플레이어 와프이미지
 var player_warp = new Image();
 player_warp.src = "./img/player_warp.png";
 player_warp.addEventListener("load",drawScreen, false);
@@ -472,7 +473,12 @@ player_warp.addEventListener("load",drawScreen, false);
 var warp = new Image();
 warp.src = "./img/player_warp.png";
 warp.addEventListener("load",drawScreen, false);
- 
+
+//플레이어 쉴드이미지
+var player_shield = new Image();
+player_shield.src = "./img/player_shield.png";
+player_shield.addEventListener("load",drawScreen, false);
+
 //폭파이미지01
 var explosionImage01 = new Image();
 explosionImage01.src = "./img/explosion01.png";
@@ -604,7 +610,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 200;
+var ini_ready_time = 140;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -1382,7 +1388,7 @@ function player_move(){
     if (ready_time > 0 ){ 
         warp_sound.currentTime  = 0;
         warp_sound.play();
-        playerImage = player_warp; 
+        playerImage = player_shield; 
         player_collision_yn = 'Y'; 
         wayBefore = "";
         isKeyDown = [];

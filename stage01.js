@@ -524,7 +524,7 @@ playerSword_DownImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬1이미지
 var playerSkill_01Image = new Image();
-playerSkill_01Image.src = "./img/player_skill01.png"; 
+playerSkill_01Image.src = "./img/player_skill01_down.png"; 
 playerSkill_01Image.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬2이미지
@@ -556,7 +556,17 @@ playerSkill_03Image.addEventListener("load",drawScreen, false);
 //플레이어 스킬3tmp이미지
 var playerSkill_03TmpImage = new Image();
 playerSkill_03TmpImage.src = "./img/player_skill03tmp.png"; 
-playerSkill_03TmpImage.addEventListener("load",drawScreen, false);
+playerSkill_03TmpImage.addEventListener("load",drawScreen, false); 
+
+//플레이어 스킬3tmp2이미지
+var playerSkill_03Tmp2Image = new Image();
+playerSkill_03Tmp2Image.src = "./img/player_skill03tmp.png"; 
+playerSkill_03Tmp2Image.addEventListener("load",drawScreen, false);
+
+//플레이어 스킬4이미지
+var playerSkill_04Image = new Image();
+playerSkill_04Image.src = "./img/player_skill01.png"; 
+playerSkill_04Image.addEventListener("load",drawScreen, false);
 
 //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
 var wayBefore = 'None;'
@@ -666,7 +676,7 @@ var laser_r = 0;
 var laser_d = 0;
 
 
-//레이져 필살기 충전 : 마우스(버튼클릭) 유지시간.
+//양자증폭탄 충전 : 마우스(버튼클릭) 유지시간.
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
@@ -1319,7 +1329,7 @@ function player_init(){
     laserImage = laser;
     player_warp = warp;
 
-    //레이져 필살기 변수 초기화
+    //양자증폭탄 변수 초기화
     laser_charge_total_time = 0; 
     //l_width = 2;  
     //skill = 1;
@@ -1412,7 +1422,7 @@ function player_move(){
     //플레이어가 움직이면 필살기 충전은 초기환된다.
     //laser_charge_total_time = 0;
     //laser_charge_start_time = gameTime;
- + power/50000;
+    //+ power/50000;
     //방향이동(키이벤트보다는 프레임에 설정하는게 더 부드러움.)
 	//대각선방향 => 상하좌우키 동시 누른것과 같음.
 	//좌상
@@ -1583,6 +1593,10 @@ function player_move(){
         }else if (skill == 2){
             laser_sound.currentTime  = 0;
             laser_sound.play();
+        }else if (skill == 3){
+            //폭탄 장착 소리 추가
+            timmer_sound.currentTime  = 0.8;
+            timmer_sound.play();
         }else {
             warp_sound.play();
         }
@@ -1616,18 +1630,7 @@ function player_move(){
     }
     if (parseInt(playerHeight) <= parseInt(ini_player_height/3)){
         playerHeight = parseInt(ini_player_height/3);
-    }
-
-    // if (skill == 0){   
-    //     if(!(playerSkillImage.src == playerSword_Image.src || playerSkillImage.src == noneImage.src)){ 
-    //         playerSkillImage = playerSword_Image;  
-    //         for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
-    //             Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/2,playerHeight/3); 
-    //         }            
-    //     }
-     
-    //     Context6.drawImage(playerSkillImage,playerX+10,playerY-10,playerWidth/1.2,playerHeight/2); 
-    // }
+    } 
 
     if (skill == 1){   
         if(!(playerSkillImage.src == playerSkill_01Image.src || playerSkillImage.src == noneImage.src)){
@@ -1654,21 +1657,8 @@ function player_move(){
               playerSkillImage = playerSkill_02Image; 
               for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
                 Context.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2+k/4,playerHeight/2); 
-              }     
-              
- 
-        }       
-          
-        //     Context6.save();
-        //     // 좌표계를 unit 이 있는 위치로 평행 이동한다.
-        //     //Context6.translate(playerX-20,playerY-25);
-        //     // 좌표계를 회전 시킨다.
-        //     Context6.rotate(angle/10*Math.PI/180);
-        //     // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.
-        //     Context6.drawImage(playerSkillImage,playerX-20,playerY-25,100,100);
-        //     // 임시저장된(정상상태)로 context를 복구 시킨다.
-        //     Context6.restore(); 
-        // angle++  
+              }   
+        }        
         
         if(135 <= parseInt(laser_d) && parseInt(laser_d) < 225){
             playerSkillImage = playerSkill_02LeftImage; 
@@ -1682,8 +1672,7 @@ function player_move(){
         }else {
             playerSkillImage = playerSkill_02UpImage; 
             Context6.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 20 + 1),playerHeight*1.5 + Math.floor(Math.random() * 15 + 1));
-        }
-
+        } 
     } 
 
     if (skill == 3){   
@@ -1700,6 +1689,20 @@ function player_move(){
         Context6.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
        
     }
+
+    if (skill == 4){   
+        
+        if(!(playerSkillImage.src == playerSkill_04Image.src || playerSkillImage.src == noneImage.src)){
+            playerSkillImage = playerSkill_04Image;    
+            for(var k=theCanvas.clientHeight;k>=playerY-10;k--){  
+                Context6.drawImage(playerSkillImage,playerX+k/6,k,playerWidth/2-k/4,playerHeight/2); 
+            }       
+      
+        }     
+    
+        Context6.drawImage(playerSkillImage,playerX-10,playerY-25,playerWidth*1.4,playerHeight*0.6);    
+       
+    }    
 
     Context.drawImage(playerImage,playerX,playerY,playerWidth + Math.floor(Math.random() * 2),playerHeight + Math.floor(Math.random() * 3));
   
@@ -1842,29 +1845,11 @@ function sword_move(){
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){ 
 
-    if (laser_yn == 'Y'){
+    if (laser_yn == 'Y' || skill == 3){
 
         //ld = Math.floor(Pdistance/10); 
-        if (skill == 0){  
-            laserImage = playerSword_Image;
-            for (var i=0;i<=60;i++){    
-                    l_height = 40;
-                    l_width = 40; 
-                    if (wayBefore=='L'){
-                        Context.drawImage( playerSword_LeftImage,lmovex-- + 60, lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_height-- + Math.floor(Math.random() * 6) + 16);  
-                     }
-                     if (wayBefore=='R'){
-                        Context.drawImage( playerSword_RightImage,lmovex++ - 60,lmovey - 10,l_width-- + Math.floor(Math.random() * 4) + 16,l_height-- + Math.floor(Math.random() * 6) + 16);  
-                     }
-                     if (wayBefore=='U'){
-                        Context.drawImage( playerSword_UpImage,lmovex - 20,  --lmovey + 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_height-- + Math.floor(Math.random() * 4) + 16);  
-                     }
-                     if (wayBefore=='D'){
-                        Context.drawImage( playerSword_DownImage,lmovex - 20,++lmovey - 60,l_width-- + Math.floor(Math.random() * 6) + 16,l_height-- + Math.floor(Math.random() * 4) + 16);  
-                     }          
-            }
-                 
-        }else if (skill == 1){  
+        //레일건
+        if (skill == 1){  
             laserImage = laser01;
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 
@@ -2082,7 +2067,7 @@ function laser_move(){
                 Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height); 
                 //Context4.lineWidth = "0.5"
             }    
-                
+        //레이져  
         }else if (skill == 2){  
             laserImage = laser;
             for (var i=0;i<=150;i++){   
@@ -2095,51 +2080,46 @@ function laser_move(){
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
          
                     Context.drawImage( laserImage,lmovex,lmovey,l_width,l_height);        
-            }
-            //Context6.rotate(2*Math.PI/180);
-            //Context6.drawImage(playerSkillImage,playerX-20,playerY-25,playerWidth*1.8 + Math.floor(Math.random() * 15),playerHeight*1.5 + Math.floor(Math.random() * 15));
-            // if(laser_d<=90){ 
-            //     playerSkillImage = playerSkill_02UpImage;
-            // }else if(laser_d<=180){
-            //     playerSkillImage = playerSkill_02LeftImage;
-            // }else if(laser_d<=27){
-            //     playerSkillImage = playerSkill_02Downmage;
-            // }else if(laser_d<=360){
-            //     playerSkillImage = playerSkill_02RightImage;
-            // }
-
-
-
-        }else {   
+            }  
+        //양자증폭탄
+        }else if (skill == 3){  
             laserImage = laser02;
-                if (40 <= laser_charge_total_time && laser_charge_total_time <= 50){     //충전이 되면 자동 발사                          
+            if (40*2 <= laser_charge_total_time && laser_charge_total_time <= 50*2){     //충전이 되면 자동 발사                          
+                laser_yn='Y'; 
+                for (var i=0;i<10;i++){  
 
-                //임시 스킬이미지는 안보이게 
-                //playerSkillImage = playerSkill_03TmpImage;     
-                
-                //레이져 필살기 사운드
-                //appear_sound.currentTime = 0.6;
-                //appear_sound.play(); 
-                
-                //레이져 필살기 이미지 이동
+                    explosion_sound.play();
+                    explosion_sound.currentTime  = 0;
+                    l_width = (playerWidth*playerHeight)/100;   
+                    l_height = (playerWidth*playerHeight)/100; 
+                    l_width=l_width + i - Math.floor(Math.random()*150);
+                    l_height=l_height + i - Math.floor(Math.random()*150);
+                    playerSkill_03TmpImage = noneImage; 
+                    Context.drawImage(explosionImage01,lmovex+Math.floor(Math.random()*40),lmovey+Math.floor(Math.random()*40),l_width,l_height); 
+                    Context.drawImage(laserImage,lmovex+Math.floor(Math.random()*40),lmovey+Math.floor(Math.random()*40),l_width,l_height);
+                    Context.drawImage(laserImage,lmovex-Math.floor(Math.random()*40),lmovey-Math.floor(Math.random()*40),playerWidth*1.4,playerHeight*0.6); 
+                 }   
+            }  
+        //파동포
+        }else {  
+            laserImage = laser02;
+            if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사     
                 for (var i=0;i<100;i++){ 
-                     
-                     //레이져필살기의 크기는 플레이어의 1/3 크기만큼
-                    // l_width = playerWidth/10 + Pdistance/20;   
-                    // l_height = playerHeight/10 + Pdistance/20; 
-                    l_width = (playerWidth*playerHeight)/150;   
-                    l_height = (playerWidth*playerHeight)/150; 
+                    //레이져필살기의 크기는 플레이어의 1/3 크기만큼 
+                    l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);;   
+                    l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
 
                     //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
-                    Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
+                    //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
+                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height);
+                    
+                }  
 
-                }   
-
-            } 
-        }   
+            }   
+        }
         
     }
 }
@@ -2843,19 +2823,18 @@ function enemy_collision(){
             //적 에너지 차감
             //스킬 2일때는 10씩 차감    
             if (laser_yn == 'Y'){
-                if (skill == 0){  
-                    this.enemy_life = this.enemy_life - 0.1;             
-                }else if (skill == 1){ 
+                if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
                     this.enemy_life = this.enemy_life - 0.3;            
-                }else {
+                }else if (skill == 3){
                     this.enemy_life = this.enemy_life - 10;  
+                }else {
+                    this.enemy_life = this.enemy_life - 5;  
                 }  
-            }else {
-
-                //기본스킬일때는 0.6씩 차감
-                //if(sword_yn == 'Y') { 
+            }else { 
+                
+                //기본스킬일때는 0.6씩 차감 
                 if(playerSword_Image.src != noneImage.src) { 
                
                     this.enemy_life = this.enemy_life - 0.6;    
@@ -2865,8 +2844,14 @@ function enemy_collision(){
              //적 에너지를 다시 그려준다.
              this.enemy_energe(); 
 
+             //양자증폭탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
+             if (skill != 3 || skill != 4){  
+                 laser_init();
+             }else {
+                //playerSkill_03TmpImage = noneImage; 
+                laser_yn=='N'; 
+             }
 
-             laser_init();
              sword_yn == 'N';
              playerSword_Image = noneImage;
 
@@ -2876,7 +2861,7 @@ function enemy_collision(){
 
                 //enemy_type == 4 인 적이 10개씩 파괴 될때마다 무기 레벨up!
                 if (this.enemy_type == 4){
-                   power++;        
+                   //power++;        
                    //스피드증가
                    //Pspeed = Pspeed + power/100;
                 } 
@@ -4871,10 +4856,8 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
         isKeyCode = 32; 
  
-        //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 0){
-            l_width = 25; 
-        }else if (skill == 1){    
+        //공격 스킬구분에 따른 공격 레이져 초기변수 
+        if (skill == 1){    
             l_width = 10; 
         }else if (skill == 2){                        
             l_width = 1;              
@@ -4895,7 +4878,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //스킬체이지
     if (event.button == 1){
 
-        //레이져 필살기 사운드 
+        //양자증폭탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play();  
         // tmp_skill = skill;
@@ -5031,7 +5014,7 @@ function skill_change(){
     //setTimeout(skill_change2,500);  
     if (skill_change2() == "Y"){
         if(tmp_skill != skill){
-            if (skill > 3){
+            if (skill > 4){
                 //skill = 0;
                 skill = 1;
             }    
@@ -5328,7 +5311,7 @@ function clickCanvas(event, as_gb) {
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) { 
 
-        //레이져 필살기 사운드 
+        //양자증폭탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
@@ -6016,7 +5999,7 @@ function weappon_move(){
                 
                 if (i%2 == 0){
 
-                    this.weapponImage = weappon03Image;
+                    this.weapponImage = weappon03Image;포
                     //유도 미사일 특징
                     //1.크기가 크다. 느리다
                     //this.weappon_size = this.weappon_size + this.enemy_size/10;
@@ -6788,25 +6771,32 @@ function drawScreen(){
     sword_move();
 
     //레이져 방향
-    if (skill == 0){
+    if (skill == 1){ 
         laser_move();
-    }else if (skill == 1){
-
+    }else if (skill == 2){ 
         laser_move();
-    }else if (skill == 2){
-
-        laser_move();
-    }else {
+    }else if (skill == 3){
  
+        //폭탄 장착 시작
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
+        laser_yn='N';
+        if (10 <= laser_charge_total_time && laser_charge_total_time < 20){   
+             playerSkill_03TmpImage = playerSkill_03Tmp2Image;
+        }      
+       
+         Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
+
+        laser_move();
+    }else { 
         //레이져 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
-
-        if (10 <= laser_charge_total_time && laser_charge_total_time < 20){  
-
+        //laser_yn='N';
+        if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
+           
             //engin01_sound.currentTime  = 0;
             //engin01_sound.play();   //충전사운드
             //appear_sound.currentTime  = 0;  
-            //appear_sound.pause()          
+            //appear_sound.pause()   
             appear_sound.play(); 
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
@@ -6815,10 +6805,10 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-
+            //playerSkill_03TmpImage = playerSkill_03Tmp2Image;
         }      
-        
-         Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
+       
+         //Context6.drawImage(laserImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
 
         laser_move();
     }  
@@ -6949,8 +6939,8 @@ function drawScreen(){
     Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
     //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
     Context.fillText("Skill     : " + skill,10,150); 
-    Context.fillText("Power : " + power,10,200); 
-    Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,250);    
+    //Context.fillText("Power : " + power,10,200); 
+    //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,250);    
 
 
 
@@ -7084,16 +7074,20 @@ function onkeyDown(e, as_strKeyEventValue){
     if (strKeyEventValue == "Space"  || isKeyCode == 32){ 
         
         //공격 스킬구분에 따른 공격 레이져 초기변수(레이져 스킬인 1인경우만 레이져 사운드 재생)
-        if (skill == 0){
-            sword_sound.currentTime  = 0.2;
-            sword_sound.play();  
-        }else if (skill == 1){ 
+        if (skill == 1){ 
+            //레일건
             shootgun_sound.currentTime  = 0.2;
             shootgun_sound.play();  
         }else if (skill == 2){ 
+            //레이져
             laser_sound.currentTime  = 0;
             laser_sound.play();
+        }else if (skill == 3){
+            //폭탄 장착 소리 추가
+            timmer_sound.currentTime  = 0.8;
+            timmer_sound.play();    
         }else {
+            //파동포
             warp_sound.play();
         }
 
@@ -7110,23 +7104,9 @@ function onkeyDown(e, as_strKeyEventValue){
         //sword_move(); 
     }     
 
-    //스킬체인지
-    //alert(strKeyEventValue + "," + isKeyCode)
-    //if (strKeyEventValue == "Alt"  || isKeyCode == 18){  
-    //if (strKeyEventValue == "shift"  || isKeyCode == 16){  
-    if (isKeyCode == 67){  
-        // alert("t")
-        //레이져 필살기 사운드
-
-        //appear_sound.currentTime = 2;
-        //appear_sound.play(); 
-
-        // tmp_skill = skill;
-        // ++skill;
-        skill_change();
- 
-        //(skill == 1)?skill=2:skill=1;        
-
+    //스킬체인지  
+    if (isKeyCode == 67){   
+        skill_change();     
     } 
     
 }

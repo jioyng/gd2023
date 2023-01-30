@@ -25,7 +25,8 @@ const staticAssets=[
     './sound/threegun.ogg',
     './sound/beam.ogg',
     './sound/alam.ogg',
-    './sound/sword.ogg'  
+    './sound/sword.ogg',  
+    './sound/timmer.ogg'
 
 ];
  

@@ -2117,7 +2117,7 @@ function laser_move(){
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
-                    Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height);
+                    Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width,l_height);
                     
                 }  
 
@@ -6788,19 +6788,19 @@ function drawScreen(){
 
         laser_move();
     }else { 
-        //레이져 충전 시작
+        //파동포 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         //laser_yn='N';
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
               
             appear_sound.play(); 
 
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 100,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25 + 10,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 25,playerY + Math.random() * 25 + 20,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 90,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 30,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 20,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 80,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
             //playerSkill_03TmpImage = playerSkill_03Tmp2Image;
         }      
        

@@ -3007,6 +3007,10 @@ function enemy_energe(){
             this.energe_bar += '■';
         }
     } 
+
+    laser_charge_total_time = 0;
+    laser_charge_start_time  = gameTime;   
+
     return this.energe_bar;
 }
 

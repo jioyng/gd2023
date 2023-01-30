@@ -5186,17 +5186,19 @@ function clickCanvas(event, as_gb) {
         BtnaimX = x;
         BtnaimY = y;
 
-        //공격 스킬구분에 따른 공격 레이져 초기변수
-        if (skill == 0){   
-            sword_sound.currentTime  = 0.2;
-            sword_sound.play();   
-        }else if (skill == 1){ 
+        //공격 스킬구분에 따른 공격 사운드및 레이져 초기변수
+        if (skill == 1){ 
             shootgun_sound.currentTime  = 0.2;
             shootgun_sound.play();   
         }else if (skill == 2){   
             laser_sound.currentTime  = 0;
             laser_sound.play();    
-
+        }else if (skill == 3){
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;   
+            //폭탄 장착 소리 추가
+            timmer_sound.currentTime  = 0.8;
+            timmer_sound.play(); 
         }else { 
 
             laser_charge_total_time = 0;
@@ -5205,19 +5207,8 @@ function clickCanvas(event, as_gb) {
             warp_sound.currentTime  = 0;
             warp_sound.play();       
         }    
-
-        //Context.fillText(Math.round(laser_r),maxX - 250, maxY - 180);
-		Context.fillText("*",x, y);
-		//Context.fillText((maxX - 250 - x) * -1 ,theCanvas.clientWidth - 250,100);
-		//Context.fillText(maxY - 180 - y ,theCanvas.clientWidth - 250,150);
-
-        // //레이저 버튼을 클릭한곳의 각도로 발사되도록 한다.
-		// laser_r = Math.atan2((maxY - 180 - y),(maxX - 250 - x) * -1); 
-		// if (laser_r < 0)
-		//  laser_r += Math.PI * 2;
-		// laser_d = laser_r*180/Math.PI;laser_yn
-		// while (laser_d < 0)
-        //  laser_d += 360;
+ 
+		Context.fillText("*",x, y); 
 
         laser_radian(x,y); 
 

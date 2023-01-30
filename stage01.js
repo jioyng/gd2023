@@ -2848,17 +2848,17 @@ function enemy_collision(){
                 }else if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
-                    this.enemy_life = this.enemy_life - 1;            
+                    this.enemy_life = this.enemy_life - 0.3;            
                 }else {
                     this.enemy_life = this.enemy_life - 10;  
                 }  
             }else {
 
-                //기본스킬일때는 0.5씩 차감
+                //기본스킬일때는 0.6씩 차감
                 //if(sword_yn == 'Y') { 
                 if(playerSword_Image.src != noneImage.src) { 
                
-                    this.enemy_life = this.enemy_life - 0.2;    
+                    this.enemy_life = this.enemy_life - 0.6;    
                 }
             }
 
@@ -4937,7 +4937,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
      
         //isKeyCode = 90; 
         sword_yn = 'Y';
-        sword_move(); 
+        //sword_move(); 
         //sword_yn = 'N';
   }); 
 
@@ -5346,7 +5346,7 @@ function clickCanvas(event, as_gb) {
     //기본공격(sword)
     if(Context.isPointInPath(button04, x,  y)) {  
         sword_yn = 'Y';
-        sword_move();  
+        //sword_move();  
     }
     
     if(status != 2){
@@ -7107,7 +7107,7 @@ function onkeyDown(e, as_strKeyEventValue){
     //기본공격(sword) 
     if (isKeyCode == 90){    
         sword_yn = 'Y';
-        sword_move(); 
+        //sword_move(); 
     }     
 
     //스킬체인지

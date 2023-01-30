@@ -614,7 +614,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 140;
+var ini_ready_time = 160;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -1819,7 +1819,7 @@ function sword_move(){
                     //lmovex = smovex - 45;
                     //lmovey = smovey - 80;
                     playerSword_Image=playerSword_StopImage;
-                    Context.drawImage(playerSword_Image  ,smovex - 45,--smovey - 20,s_width--*0.8,s_height--*0.6);   
+                    Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width--*0.8,s_height--*0.6);   
                 }
 
                 
@@ -3671,7 +3671,7 @@ function game_background(){
 
     //게임 배경 (벽)그려주기   =? 원근 효과
     //=> 게임방향목표좌표(전체화면넓이/2 + cityEnd_x, 전체화면 Y 높이/4)에서부터 시작하여 각 모서리 양끝으로 선을그려준다.(원근표현)
-    Context3.globalAlpha = 0.2 * Math.floor(Math.random() * 4) + parseInt(playerY/1000);
+    Context3.globalAlpha = 0.3 * Math.floor(Math.random() * 4) + parseInt(playerY/1000);
     //console.log("playerY/100",playerY/100);
 
     if (enemy_boss_01_status == 1){
@@ -4013,7 +4013,7 @@ function game_background(){
 
             Context3.closePath();
             Context3.fillStyle="#40608E";
-            Context3.globalAlpha = 0.2;
+            Context3.globalAlpha = 0.5;
             Context3.fill();
         }else if (parseInt(gameTime/666) % 3 == 1){
             // cityImage = city02Image;

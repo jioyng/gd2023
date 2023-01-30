@@ -1798,26 +1798,27 @@ function sword_move(){
         s_height = 100;
         //playerSword_Image=noneImage;
 
-        for (var i=0;i<=4;i++){    
-                if (wayBefore=='R'){
+        for (var i=0;i<=4;i++){   
+                       
+                if (isKeyCode == 39){
                 playerSword_Image=playerSword_RightImage;
                 Context.drawImage(playerSword_Image,smovex-- - 10,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex;
                 //lmovey = smovey - 40;
                 }else
-                if (wayBefore=='L'){
+                if (isKeyCode == 37){
                 playerSword_Image=playerSword_LeftImage;
                 Context.drawImage(playerSword_Image,smovex++ - 80,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex - 90;
                 //lmovey = smovey - 40;
                 }else
-                if (wayBefore=='D'){
+                if (isKeyCode == 40){
                 playerSword_Image=playerSword_DownImage;
                 Context.drawImage(playerSword_Image,smovex - 45,smovey--,s_width--,s_height--);  
                 //lmovex = smovex - 45;
                 //lmovey = smovey + 10;
                 }else
-                if (wayBefore=='U'){
+                if (isKeyCode == 38){
                 //lmovex = smovex - 45;
                 //lmovey = smovey - 80;
                 playerSword_Image=playerSword_UpImage;
@@ -1827,6 +1828,7 @@ function sword_move(){
                     //lmovey = smovey - 80;
                     playerSword_Image=playerSword_StopImage;
                     Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width--*0.8,s_height--*0.6);   
+                    //wayBefore = "";
                 }
 
                 

@@ -6766,12 +6766,11 @@ function drawScreen(){
         laser_move();
     }else if (skill == 2){ 
         laser_move();
-    }else if (skill == 3){
- 
-        //폭탄 장착 시작
+    }else if (skill == 3){ 
+        //폭탄 타이머 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         laser_yn='N';
-        if (10 <= laser_charge_total_time && laser_charge_total_time < 20){   
+        if (10 <= laser_charge_total_time && laser_charge_total_time < 70){   
              playerSkill_03TmpImage = playerSkill_03Tmp2Image;
         }      
        
@@ -6783,11 +6782,7 @@ function drawScreen(){
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         //laser_yn='N';
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
-           
-            //engin01_sound.currentTime  = 0;
-            //engin01_sound.play();   //충전사운드
-            //appear_sound.currentTime  = 0;  
-            //appear_sound.pause()   
+              
             appear_sound.play(); 
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);

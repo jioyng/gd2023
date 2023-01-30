@@ -1594,10 +1594,14 @@ function player_move(){
             laser_sound.currentTime  = 0;
             laser_sound.play();
         }else if (skill == 3){
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;  
             //폭탄 장착 소리 추가
             timmer_sound.currentTime  = 0.8;
             timmer_sound.play();
         }else {
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;  
             warp_sound.play();
         }
 
@@ -2084,10 +2088,9 @@ function laser_move(){
         //양자증폭탄
         }else if (skill == 3){  
             laserImage = laser02;
-            if (40*2 <= laser_charge_total_time && laser_charge_total_time <= 50*2){     //충전이 되면 자동 발사                          
+            if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //충전이 되면 자동 발사                          
                 laser_yn='Y'; 
                 for (var i=0;i<10;i++){  
-
                     explosion_sound.play();
                     explosion_sound.currentTime  = 0;
                     l_width = (playerWidth*playerHeight)/100;   
@@ -2826,7 +2829,7 @@ function enemy_collision(){
                 if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
-                    this.enemy_life = this.enemy_life - 0.3;            
+                    this.enemy_life = this.enemy_life - 0.4;            
                 }else if (skill == 3){
                     this.enemy_life = this.enemy_life - 10;  
                 }else {
@@ -2845,7 +2848,7 @@ function enemy_collision(){
              this.enemy_energe(); 
 
              //양자증폭탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
-             if (skill != 3 || skill != 4){  
+             if (skill != 3){  
                  laser_init();
              }else {
                 //playerSkill_03TmpImage = noneImage; 
@@ -5007,14 +5010,16 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
 ////////////////////공격 스킬 체인지 함수
 function skill_change(){  
-
-    tmp_skill = skill;
+    //폭탄장착도중 스킬변경시 소리및 변수초기화 
+    timmer_sound.pause();
+    laser_charge_total_time = 0;
+    laser_charge_start_time  = gameTime; 
 
     //스킬변경시 약간의 텀(tmp_skill에 skill이 먼저 완전히 저장되고 나중에 비교되기위해서)
     //setTimeout(skill_change2,500);  
     if (skill_change2() == "Y"){
         if(tmp_skill != skill){
-            if (skill > 4){
+            if (skill > 4){ 
                 //skill = 0;
                 skill = 1;
             }    
@@ -5030,8 +5035,11 @@ function skill_change(){
 }
  
 
-function skill_change2(){   
-     
+function skill_change2(){ 
+    //폭탄장착도중 스킬변경시 소리및 변수초기화 
+    timmer_sound.pause();
+    laser_charge_total_time = 0;
+    laser_charge_start_time  = gameTime;    
     //mount_sound.currentTime;
     mount_sound.play(); 
 
@@ -6770,7 +6778,7 @@ function drawScreen(){
         //폭탄 타이머 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         laser_yn='N';
-        if (10 <= laser_charge_total_time && laser_charge_total_time < 70){   
+        if (10 <= laser_charge_total_time && laser_charge_total_time < 20){   
              playerSkill_03TmpImage = playerSkill_03Tmp2Image;
         }      
        
@@ -7069,10 +7077,14 @@ function onkeyDown(e, as_strKeyEventValue){
             laser_sound.currentTime  = 0;
             laser_sound.play();
         }else if (skill == 3){
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;  
             //폭탄 장착 소리 추가
             timmer_sound.currentTime  = 0.8;
             timmer_sound.play();    
         }else {
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;  
             //파동포
             warp_sound.play();
         }

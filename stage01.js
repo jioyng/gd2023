@@ -624,7 +624,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 160;
+var ini_ready_time = 200;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -2853,6 +2853,8 @@ function enemy_collision(){
              }else {
                 //playerSkill_03TmpImage = noneImage; 
                 laser_yn=='N'; 
+                laser_charge_total_time = 0;
+                laser_charge_start_time  = gameTime; 
              }
 
              sword_yn == 'N';

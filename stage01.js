@@ -1305,6 +1305,11 @@ function game_init(){
     backgroundAngle = 0;
     Context3.restore();
 
+    //양자증폭탄 초기화
+    timmer_sound.pause();
+    laser_charge_total_time = 0;
+    laser_charge_start_time  = gameTime;  
+
 }
 
 ////////////////// 플레이어 변수 초기화

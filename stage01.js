@@ -6805,6 +6805,7 @@ function drawScreen(){
         //충전시에는 적을 피해입히지않도록 레이져 크기 초기화, 폭파되는 조건에도 크기가 0보다 클때만 진행되도록 한다.
         l_width = 0;
         l_height = 0;
+        laserImage = laser02;
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
             
             appear_sound.play(); 

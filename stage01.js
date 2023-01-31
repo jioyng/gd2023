@@ -1305,7 +1305,7 @@ function game_init(){
     backgroundAngle = 0;
     Context3.restore();
 
-    //양자증폭탄 초기화
+    //양자증폭탄 변수 초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
     laser_charge_start_time  = gameTime;  
@@ -1334,8 +1334,10 @@ function player_init(){
     laserImage = laser;
     player_warp = warp;
 
-    //양자증폭탄 변수 초기화
-    laser_charge_total_time = 0; 
+    //양자증폭탄 변수 초기화 
+    timmer_sound.pause();
+    laser_charge_total_time = 0;
+    laser_charge_start_time  = gameTime;  
     //l_width = 2;  
     //skill = 1;
     //laser_charge_start_time = gameTime;

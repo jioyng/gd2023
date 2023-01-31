@@ -1856,7 +1856,8 @@ function sword_move(){
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){ 
 
-    if (laser_yn == 'Y' || skill == 3){
+    //양자증폭탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
+    if (laser_yn == 'Y' || skill == 3 ){
 
         //ld = Math.floor(Pdistance/10); 
         //레일건
@@ -2814,7 +2815,7 @@ function enemy_collision(){
 // console.log("laser_yn:"+laser_yn);
 // console.log("skill:"+skill);
 // console.log("sword_yn:"+sword_yn); 
-    if ((laser_yn=='Y' && (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)*1.4))) ||
+    if ((l_width > 0 && l_height > 0 && laser_yn=='Y' && (parseInt(lmovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)*1.4))) ||
         (playerSword_Image.src != noneImage.src && (parseInt(smovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(smovex) + parseInt(s_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)/1.4)))){
 
         //레이져와 적 Y좌표 충돌시
@@ -6800,10 +6801,12 @@ function drawScreen(){
         laser_move();
     }else { 
         //파동포 충전 시작
-        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
-        //laser_yn='N';
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);   
+        //충전시에는 적을 피해입히지않도록 레이져 크기 초기화, 폭파되는 조건에도 크기가 0보다 클때만 진행되도록 한다.
+        l_width = 0;
+        l_height = 0;
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
-              
+            
             appear_sound.play(); 
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
@@ -6812,12 +6815,11 @@ function drawScreen(){
             Context.drawImage(laserImage,playerX + Math.random() * 20,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 70,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 80,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
-            //playerSkill_03TmpImage = playerSkill_03Tmp2Image;
-        }      
-       
-         //Context6.drawImage(laserImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
+            
+        }else if(20 < laser_charge_total_time){
+            laser_move(); 
+        }       
 
-        laser_move();
     }  
  
     //적 이동

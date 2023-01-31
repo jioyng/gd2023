@@ -2860,8 +2860,8 @@ function enemy_collision(){
              }else {
                 //playerSkill_03TmpImage = noneImage; 
                 laser_yn=='N'; 
-                laser_charge_total_time = 0;
-                laser_charge_start_time  = gameTime; 
+                //laser_charge_total_time = 0;
+                //laser_charge_start_time  = gameTime; 
              }
 
              sword_yn == 'N';

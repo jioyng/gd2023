@@ -6811,9 +6811,9 @@ function drawScreen(){
 
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 30,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 20,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 20,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 50 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 80,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
             
         }else if(20 < laser_charge_total_time){

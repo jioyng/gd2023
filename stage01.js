@@ -175,6 +175,7 @@ var init_status = 1;  //1:Start,   2:ing,  3:Pause
 var ini_gameFrame = 30;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
+//var gameTime = 5000;
 var gameTime = 0;
 var init_gameScore = 0;
 var gameScore = 0;
@@ -2831,17 +2832,16 @@ function enemy_collision(){
              crash01_sound.currentTime = 0;
              crash01_sound.play(); 
 
-            //적 에너지 차감
-            //스킬 2일때는 10씩 차감    
+            //적 에너지 차감 
             if (laser_yn == 'Y'){
                 if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
-                    this.enemy_life = this.enemy_life - 0.4;            
+                    this.enemy_life = this.enemy_life - 0.5;            
                 }else if (skill == 3){
-                    this.enemy_life = this.enemy_life - 5;  
+                    this.enemy_life = this.enemy_life - 20;  
                 }else {
-                    this.enemy_life = this.enemy_life - 3;  
+                    this.enemy_life = this.enemy_life - 10;  
                 }  
             }else { 
                 
@@ -6957,17 +6957,19 @@ function drawScreen(){
     Context.fillStyle = '#ffffff';
     if (ls_VColor == "yellow"){
         var skill_text;
-        Context.fillText("점수 : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+        Context.fillText("점수 : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
         Context.fillText("부활 : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         if(skill==1) skill_text = '레일건';
         if(skill==2) skill_text = '레이져';
         if(skill==3) skill_text = '폭멸탄';
         if(skill==4) skill_text = '파동포';
         Context.fillText("무기 : " + skill_text,10,150);  
+        //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
-        Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+        Context.fillText("Score  : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
         Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         Context.fillText("Skill     : " + skill,10,150);  
+        Context.fillText("Time    : " + gameTime,10,200);
     }
 
 

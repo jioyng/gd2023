@@ -676,7 +676,7 @@ var laser_r = 0;
 var laser_d = 0;
 
 
-//양자증폭탄 충전 : 마우스(버튼클릭) 유지시간.
+//양자폭멸탄 충전 : 마우스(버튼클릭) 유지시간.
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
@@ -1305,7 +1305,7 @@ function game_init(){
     backgroundAngle = 0;
     Context3.restore();
 
-    //양자증폭탄 변수 초기화 
+    //양자폭멸탄 변수 초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
     laser_charge_start_time  = gameTime;  
@@ -1334,7 +1334,7 @@ function player_init(){
     laserImage = laser;
     player_warp = warp;
 
-    //양자증폭탄 변수 초기화 
+    //양자폭멸탄 변수 초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
     laser_charge_start_time  = gameTime;  
@@ -1856,7 +1856,7 @@ function sword_move(){
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){ 
 
-    //양자증폭탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
+    //양자폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
     if (laser_yn == 'Y' || skill == 3 ){
 
         //ld = Math.floor(Pdistance/10); 
@@ -2093,7 +2093,7 @@ function laser_move(){
          
                     Context.drawImage( laserImage,lmovex,lmovey,l_width,l_height);        
             }  
-        //양자증폭탄
+        //양자폭멸탄
         }else if (skill == 3){  
             laserImage = laser02;
             if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //충전이 되면 자동 발사                          
@@ -2855,7 +2855,7 @@ function enemy_collision(){
              //적 에너지를 다시 그려준다.
              this.enemy_energe(); 
 
-             //양자증폭탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
+             //양자폭멸탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
              if (skill != 3){  
                  laser_init();
              }else {
@@ -4895,7 +4895,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //스킬체이지
     if (event.button == 1){
 
-        //양자증폭탄 사운드 
+        //양자폭멸탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play();  
         // tmp_skill = skill;
@@ -5324,7 +5324,7 @@ function clickCanvas(event, as_gb) {
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) { 
 
-        //양자증폭탄 사운드 
+        //양자폭멸탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
@@ -6960,7 +6960,7 @@ function drawScreen(){
         Context.fillText("부활 : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         if(skill==1) skill_text = '레일건';
         if(skill==2) skill_text = '레이져';
-        if(skill==3) skill_text = '증폭탄';
+        if(skill==3) skill_text = '폭멸탄';
         if(skill==4) skill_text = '파동포';
         Context.fillText("무기 : " + skill_text,10,150);  
     }else {

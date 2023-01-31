@@ -2838,9 +2838,9 @@ function enemy_collision(){
                 }else if (skill == 2){
                     this.enemy_life = this.enemy_life - 0.4;            
                 }else if (skill == 3){
-                    this.enemy_life = this.enemy_life - 10;  
-                }else {
                     this.enemy_life = this.enemy_life - 5;  
+                }else {
+                    this.enemy_life = this.enemy_life - 3;  
                 }  
             }else { 
                 
@@ -6929,26 +6929,43 @@ function drawScreen(){
     //게임 컨트롤
     gameControl();
 
+    // Context.font  = "30px Arial";
+    // //Context.fillText("입력된 키값 :" + strKeyEventValue,5,15);
+    // //Context.fillText("캔버스 면적 :" + maxX + "," + maxY,5,30);
+    // //Context.fillText("입력된 상태 :" + strKeyEventType,5,45);
+    // //Context.fillText("입력된 위치 :" + playerX + "," + playerY,5,60);
+    // //Context.fillText("면적 :" + maxX + "," + maxY,theCanvas.clientWidth - 100,15);
+    // //Context.fillText("FPS :" + gameFrame,theCanvas.clientWidth - 100,30);
+    // //Context.fillText("거리 :" + gameTime + "Km",theCanvas.clientWidth - 100,45);
+    // //Context.fillText("속도 :" + Pspeed + "Km/s",theCanvas.clientWidth - 100,60);
+    // //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
+    // //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50); 
+    // Context.globalAlpha = 1;
+    // Context.fillStyle = '#ffffff';
+    // Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+    // Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
+    // //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
+    // Context.fillText("Skill     : " + skill,10,150); 
+    // //Context.fillText("Power : " + power,10,200); 
+    // //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,250);    
+
     Context.font  = "30px Arial";
-    //Context.fillText("입력된 키값 :" + strKeyEventValue,5,15);
-    //Context.fillText("캔버스 면적 :" + maxX + "," + maxY,5,30);
-    //Context.fillText("입력된 상태 :" + strKeyEventType,5,45);
-    //Context.fillText("입력된 위치 :" + playerX + "," + playerY,5,60);
-    //Context.fillText("면적 :" + maxX + "," + maxY,theCanvas.clientWidth - 100,15);
-    //Context.fillText("FPS :" + gameFrame,theCanvas.clientWidth - 100,30);
-    //Context.fillText("거리 :" + gameTime + "Km",theCanvas.clientWidth - 100,45);
-    //Context.fillText("속도 :" + Pspeed + "Km/s",theCanvas.clientWidth - 100,60);
-    //Context.fillText("타겟 :" + parseInt(Pdistance) + "Km/s",theCanvas.clientWidth - 100,75);
-    //Context.fillText("Score : " + gameTime,theCanvas.clientWidth - 250,50); 
     Context.globalAlpha = 1;
     Context.fillStyle = '#ffffff';
-    Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
-    Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100);
-    //Context.fillText("Ctime  : " + laser_charge_total_time,10,150);
-    Context.fillText("Skill     : " + skill,10,150); 
-    //Context.fillText("Power : " + power,10,200); 
-    //Context.fillText("Time  : " + (parseInt(gameTime - 50)<=0?0:gameTime),10,250);    
-
+    if (ls_VColor == "yellow"){
+        var skill_text;
+        Context.fillText("점수 : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+        Context.fillText("부활 : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
+        if(skill==1) skill_text = '레일건';
+        if(skill==2) skill_text = '레이져';
+        if(skill==3) skill_text = '증폭탄';
+        if(skill==4) skill_text = '파동포';
+        Context.fillText("무기 : " + skill_text,10,150);  
+    }else {
+        Context.fillText("Score  : " + (parseInt(gameScore - 50)<=0?0:gameScore),10,50);
+        Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
+        Context.fillText("Skill     : " + skill,10,150);  
+    }
 
 
 

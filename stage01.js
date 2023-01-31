@@ -6972,8 +6972,6 @@ function drawScreen(){
         Context.fillText("Time    : " + gameTime,10,200);
     }
 
-
-
     if(gameTime<=50){
         Context.font = '100px Arial';
         Context.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);

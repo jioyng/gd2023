@@ -3340,7 +3340,7 @@ function game_background(){
 
     
     gameTime++;         //시간 증가
-    gameScore++;
+    //gameScore++;
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
     //Ready time
@@ -6964,7 +6964,8 @@ function drawScreen(){
     Context.fillStyle = '#ffffff';
     if (ls_VColor == "yellow"){
         var skill_text;
-        Context.fillText("점수 : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
+        //Context.fillText("점수 : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
+        Context.fillText("점수 : " + gameScore,10,50);
         Context.fillText("부활 : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         if(skill==1) skill_text = '레일건';
         if(skill==2) skill_text = '레이져';
@@ -6973,7 +6974,8 @@ function drawScreen(){
         Context.fillText("무기 : " + skill_text,10,150);  
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
-        Context.fillText("Score  : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
+        //Context.fillText("Score  : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
+        Context.fillText("Score  : " + gameScore,10,50);
         Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         Context.fillText("Skill     : " + skill,10,150);  
         Context.fillText("Time    : " + gameTime,10,200);

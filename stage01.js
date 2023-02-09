@@ -2088,7 +2088,7 @@ function laser_move(){
                     l_height = 1 + power/1000;
                     l_height = l_height*(Pdistance/200); 
  
-                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
          
@@ -2112,18 +2112,18 @@ function laser_move(){
                     Context.drawImage(laserImage,lmovex-Math.floor(Math.random()*40),lmovey-Math.floor(Math.random()*40),playerWidth*1.4,playerHeight*0.6); 
                  }   
             }  
-        //파동포
+        //이온포
         }else {  
             laserImage = laser02;
             if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사     
                 for (var i=0;i<100;i++){ 
-                    //레이져필살기의 크기는 플레이어의 1/3 크기만큼 
-                    l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);;   
+                    //이온포의 크기는 플레이어의 1/3 크기만큼 
+                    l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
                     l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
 
-                    //레이저 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
+                    //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180)/2; //(코사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1/2; //(사인 * 루트(x제곱 + y제곱) 
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
                     Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width,l_height);
@@ -6800,7 +6800,7 @@ function drawScreen(){
 
         laser_move();
     }else { 
-        //파동포 충전 시작
+        //이온포 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);   
         //충전시에는 적을 피해입히지않도록 레이져 크기 초기화, 폭파되는 조건에도 크기가 0보다 클때만 진행되도록 한다.
         l_width = 0;
@@ -6962,7 +6962,7 @@ function drawScreen(){
         if(skill==1) skill_text = '레일건';
         if(skill==2) skill_text = '레이져';
         if(skill==3) skill_text = '폭멸탄';
-        if(skill==4) skill_text = '파동포';
+        if(skill==4) skill_text = '이온포';
         Context.fillText("무기 : " + skill_text,10,150);  
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
@@ -6977,7 +6977,7 @@ function drawScreen(){
         Context.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         Context.font = '30px Arial';
     }
-}
+}tm
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)
 function onkeyDown(e, as_strKeyEventValue){
@@ -7118,7 +7118,7 @@ function onkeyDown(e, as_strKeyEventValue){
         }else {
             laser_charge_total_time = 0;
             laser_charge_start_time  = gameTime;  
-            //파동포
+            //이온포
             warp_sound.play();
         }
 

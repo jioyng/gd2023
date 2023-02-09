@@ -3335,11 +3335,12 @@ function ship01_move(){
 ////////////////// 게임 배경 화면
 function game_background(){
 
-    //시간이 흐름에 따라 게임 타겟 방향 좌표 이동
+    
     gameTime++;         //시간 증가
     gameScore++;
     back_distance = back_distance + Pspeed*5;    //백그라운드 라인이 밖으로 나가면 다시 초기화(플레이어 속도만큼 더 빨리 진행)
 
+    //Ready time
 	//back_distance = back_distance + 0.1; 
     //if(gameTime > 100 && gameTime < 666){
         if(gameTime > 100){
@@ -3396,37 +3397,38 @@ function game_background(){
         back_distance = 0;
     }
 
-    // if (parseInt(gameTime/800 % 9) == 0){
-    //     cityEnd_x = cityEnd_x + 0.2*4;
-    //     cityEnd_y = cityEnd_y + 0.1*4
-    // }else if (parseInt(gameTime/500 % 9) == 1){
-    //     cityEnd_x = cityEnd_x - 0.5*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 2){
-    //     cityEnd_x = cityEnd_x + 0.5*4;
-    //     cityEnd_y = cityEnd_y + 0.3*4;
-    // }else if (parseInt(gameTime/500 % 9) == 3){
-    //     cityEnd_x = cityEnd_x + 0.1*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 4){
-    //     cityEnd_x = cityEnd_x - 0.6*4;
-    //     cityEnd_y = cityEnd_y - 0.4*4;
-    // }else if (parseInt(gameTime/500 % 9) == 5){
-    //     cityEnd_x = cityEnd_x + 0.7*4;
-    //     cityEnd_y = cityEnd_y + 0.4*4;
-    // }else if (parseInt(gameTime/500 % 9) == 6){
-    //     cityEnd_x = cityEnd_x - 0.4*4;
-    //     cityEnd_y = cityEnd_y - 0.2*4;
-    // }else if (parseInt(gameTime/500 % 9) == 7){
-    //     cityEnd_x = cityEnd_x + 0.3*4;
-    //     cityEnd_y = cityEnd_y + 0.3*4;
-    // }else if (parseInt(gameTime/500 % 9) == 8){
-    //     cityEnd_x = cityEnd_x - 0.2*4;
-    //     cityEnd_y = cityEnd_y - 0.1*4;
-    // }else {
-    //     cityEnd_x = cityEnd_x + 0.1*4;
-    //     cityEnd_y = cityEnd_y + 0.2*4;
-    // }
+     //시간이 흐름에 따라 게임 타겟 방향 좌표 자동 이동
+    if (parseInt(gameTime/800 % 9) == 0){
+        cityEnd_x = cityEnd_x + 0.2*4;
+        cityEnd_y = cityEnd_y + 0.1*4
+    }else if (parseInt(gameTime/500 % 9) == 1){
+        cityEnd_x = cityEnd_x - 0.5*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
+    }else if (parseInt(gameTime/500 % 9) == 2){
+        cityEnd_x = cityEnd_x + 0.5*4;
+        cityEnd_y = cityEnd_y + 0.3*4;
+    }else if (parseInt(gameTime/500 % 9) == 3){
+        cityEnd_x = cityEnd_x + 0.1*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
+    }else if (parseInt(gameTime/500 % 9) == 4){
+        cityEnd_x = cityEnd_x - 0.6*4;
+        cityEnd_y = cityEnd_y - 0.4*4;
+    }else if (parseInt(gameTime/500 % 9) == 5){
+        cityEnd_x = cityEnd_x + 0.7*4;
+        cityEnd_y = cityEnd_y + 0.4*4;
+    }else if (parseInt(gameTime/500 % 9) == 6){
+        cityEnd_x = cityEnd_x - 0.4*4;
+        cityEnd_y = cityEnd_y - 0.2*4;
+    }else if (parseInt(gameTime/500 % 9) == 7){
+        cityEnd_x = cityEnd_x + 0.3*4;
+        cityEnd_y = cityEnd_y + 0.3*4;
+    }else if (parseInt(gameTime/500 % 9) == 8){
+        cityEnd_x = cityEnd_x - 0.2*4;
+        cityEnd_y = cityEnd_y - 0.1*4;
+    }else {
+        cityEnd_x = cityEnd_x + 0.1*4;
+        cityEnd_y = cityEnd_y + 0.2*4;
+    }
 
     cityEnd_size =  cityEnd_size - pmovey/20;
      
@@ -3450,7 +3452,7 @@ function game_background(){
 //     }else {
  
               
-        
+/**********       
     //플레이어 이동에 따른 배경 중심좌표 이동
     if (wayBefore == 'R'){
         if (cityEnd_x > -500){
@@ -3535,7 +3537,7 @@ function game_background(){
             cityEnd_y = cityEnd_y - 1;
         }             
     }   
- 
+***********/
 
     //코로니 바깥배경
     //배경회전 샘플

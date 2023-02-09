@@ -2116,14 +2116,14 @@ function laser_move(){
         }else {  
             laserImage = laser02;
             if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사     
-                for (var i=0;i<100;i++){ 
+                for (var i=0;i<60;i++){ 
                     //이온포의 크기는 플레이어의 1/3 크기만큼 
                     l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
                     l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
 
                     //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180)/2; //(코사인 * 루트(x제곱 + y제곱)
-                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1/2; //(사인 * 루트(x제곱 + y제곱) 
+                    lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                    lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
                     Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width,l_height);

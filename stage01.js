@@ -1809,8 +1809,11 @@ function sword_move(){
         tmp_skill = null; 
         sword_sound.currentTime  = 0.2;
         sword_sound.play(); 
-        s_width = 100;  
-        s_height = 100;
+        // s_width = 100;  
+        // s_height = 100;
+        s_width = playerWidth*1.6;  
+        s_height = playerHeight*1.6;  
+        
         //playerSword_Image=noneImage;
 
         for (var i=0;i<=4;i++){   
@@ -2102,21 +2105,21 @@ function laser_move(){
                 for (var i=0;i<10;i++){  
                     explosion_sound.play();
                     explosion_sound.currentTime  = 0;
-                    l_width = (playerWidth*playerHeight)/100;   
-                    l_height = (playerWidth*playerHeight)/100; 
+                    l_width = (playerWidth*playerHeight)/160;   
+                    l_height = (playerWidth*playerHeight)/160; 
                     l_width=l_width + i - Math.floor(Math.random()*150);
                     l_height=l_height + i - Math.floor(Math.random()*150);
                     playerSkill_03TmpImage = noneImage; 
                     Context.drawImage(explosionImage01,lmovex+Math.floor(Math.random()*40),lmovey+Math.floor(Math.random()*40),l_width,l_height); 
                     Context.drawImage(laserImage,lmovex+Math.floor(Math.random()*40),lmovey+Math.floor(Math.random()*40),l_width,l_height);
-                    Context.drawImage(laserImage,lmovex-Math.floor(Math.random()*40),lmovey-Math.floor(Math.random()*40),playerWidth*1.4,playerHeight*0.6); 
+                    Context.drawImage(laserImage,lmovex-Math.floor(Math.random()*40),lmovey-Math.floor(Math.random()*40),playerWidth*0.8,playerHeight*0.6); 
                  }   
             }  
         //이온포
         }else {  
             laserImage = laser02;
             if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사     
-                for (var i=0;i<60;i++){ 
+                for (var i=0;i<100;i++){ 
                     //이온포의 크기는 플레이어의 1/3 크기만큼 
                     l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
                     l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
@@ -2126,7 +2129,7 @@ function laser_move(){
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
-                    Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width,l_height);
+                    Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width*(Pdistance/1000),l_height*(Pdistance/1000));
                     
                 }  
 
@@ -3399,35 +3402,35 @@ function game_background(){
 
      //시간이 흐름에 따라 게임 타겟 방향 좌표 자동 이동
     if (parseInt(gameTime/800 % 9) == 0){
-        cityEnd_x = cityEnd_x + 0.2*4;
-        cityEnd_y = cityEnd_y + 0.1*4
+        cityEnd_x = cityEnd_x + 0.2*4/2;
+        cityEnd_y = cityEnd_y + 0.1*4/2
     }else if (parseInt(gameTime/500 % 9) == 1){
-        cityEnd_x = cityEnd_x - 0.5*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
+        cityEnd_x = cityEnd_x - 0.5*4/2;
+        cityEnd_y = cityEnd_y - 0.2*4/2;
     }else if (parseInt(gameTime/500 % 9) == 2){
-        cityEnd_x = cityEnd_x + 0.5*4;
-        cityEnd_y = cityEnd_y + 0.3*4;
+        cityEnd_x = cityEnd_x + 0.5*4/2;
+        cityEnd_y = cityEnd_y + 0.3*4/2;
     }else if (parseInt(gameTime/500 % 9) == 3){
-        cityEnd_x = cityEnd_x + 0.1*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
+        cityEnd_x = cityEnd_x + 0.1*4/2;
+        cityEnd_y = cityEnd_y - 0.2*4/2;
     }else if (parseInt(gameTime/500 % 9) == 4){
-        cityEnd_x = cityEnd_x - 0.6*4;
-        cityEnd_y = cityEnd_y - 0.4*4;
+        cityEnd_x = cityEnd_x - 0.6*4/2;
+        cityEnd_y = cityEnd_y - 0.4*4/2;
     }else if (parseInt(gameTime/500 % 9) == 5){
-        cityEnd_x = cityEnd_x + 0.7*4;
-        cityEnd_y = cityEnd_y + 0.4*4;
+        cityEnd_x = cityEnd_x + 0.7*4/2;
+        cityEnd_y = cityEnd_y + 0.4*4/2;
     }else if (parseInt(gameTime/500 % 9) == 6){
-        cityEnd_x = cityEnd_x - 0.4*4;
-        cityEnd_y = cityEnd_y - 0.2*4;
+        cityEnd_x = cityEnd_x - 0.4*4/2;
+        cityEnd_y = cityEnd_y - 0.2*4/2;
     }else if (parseInt(gameTime/500 % 9) == 7){
-        cityEnd_x = cityEnd_x + 0.3*4;
-        cityEnd_y = cityEnd_y + 0.3*4;
+        cityEnd_x = cityEnd_x + 0.3*4/2;
+        cityEnd_y = cityEnd_y + 0.3*4/2;
     }else if (parseInt(gameTime/500 % 9) == 8){
-        cityEnd_x = cityEnd_x - 0.2*4;
-        cityEnd_y = cityEnd_y - 0.1*4;
+        cityEnd_x = cityEnd_x - 0.2*4/2;
+        cityEnd_y = cityEnd_y - 0.1*4/2;
     }else {
-        cityEnd_x = cityEnd_x + 0.1*4;
-        cityEnd_y = cityEnd_y + 0.2*4;
+        cityEnd_x = cityEnd_x + 0.1*4/2;
+        cityEnd_y = cityEnd_y + 0.2*4/2;
     }
 
     cityEnd_size =  cityEnd_size - pmovey/20;
@@ -6805,19 +6808,21 @@ function drawScreen(){
         //이온포 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);   
         //충전시에는 적을 피해입히지않도록 레이져 크기 초기화, 폭파되는 조건에도 크기가 0보다 클때만 진행되도록 한다.
-        l_width = 0;
-        l_height = 0;
+        // l_width = 0;
+        // l_height = 0;
+        l_width = playerWidth/10;
+        l_height = playerHeight/10;
         laserImage = laser02;
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
             
             appear_sound.play(); 
 
-            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 30,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 50,playerY - Math.random() * 25,playerWidth/2 + Math.random() * 10 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 30,playerY - Math.random() * 25,playerWidth/3 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 50,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 30 - 25);
             Context.drawImage(laserImage,playerX + Math.random() * 20,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 50 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/5 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
-            Context.drawImage(laserImage,playerX + Math.random() * 80,playerY - Math.random() * 25,playerWidth/5 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
+            Context.drawImage(laserImage,playerX + Math.random() * 70,playerY + Math.random() * 25,playerWidth/4 + Math.random() * 30 - 25,laser_charge_total_time/2 + Math.random() * 10 - 25);
+            Context.drawImage(laserImage,playerX + Math.random() * 80,playerY - Math.random() * 25,playerWidth/1.4 + Math.random() * 20 - 25,laser_charge_total_time/2 + Math.random() * 20 - 25); 
             
         }else if(20 < laser_charge_total_time){
             laser_move(); 

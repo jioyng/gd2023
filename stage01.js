@@ -2120,17 +2120,20 @@ function laser_move(){
             laserImage = laser02;
             if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사  
                 //이온포의 크기는 플레이어의 1/3 크기만큼 
-                l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
-                l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);   
+                // l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
+                // l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);   
                 
+                l_width = playerWidth/4 + Math.floor(Math.random()*50);
+                l_height = playerWidth/4 + Math.floor(Math.random()*50);  
+
                 for (var i=0;i<80;i++){ 
 
-                    l_width = l_width - 0.2;
+                    l_width = l_width - 0.1;
                     l_height = l_height - 0.2;
 
                     //최소 크기는 유지
-                    if (l_width <= 60) l_width = 60; 
-                    if (l_height <= 40) l_height = 40;
+                    if (l_width <= 40) l_width = 40; 
+                    if (l_height <= 20) l_height = 20;
 
 
                     //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.

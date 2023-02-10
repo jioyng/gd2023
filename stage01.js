@@ -2118,18 +2118,27 @@ function laser_move(){
         //이온포
         }else {  
             laserImage = laser02;
-            if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사     
-                for (var i=0;i<100;i++){ 
-                    //이온포의 크기는 플레이어의 1/3 크기만큼 
-                    l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
-                    l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
+            if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사  
+                //이온포의 크기는 플레이어의 1/3 크기만큼 
+                l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
+                l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);   
+                
+                for (var i=0;i<80;i++){ 
+
+                    l_width = l_width - 0.2;
+                    l_height = l_height - 0.2;
+
+                    //최소 크기는 유지
+                    if (l_width <= 60) l_width = 60; 
+                    if (l_height <= 40) l_height = 40;
+
 
                     //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
                     lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                     lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱) 
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
-                    Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width*(Pdistance/1000),l_height*(Pdistance/1000));
+                    Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width*(Pdistance/600),l_height*(Pdistance/600));
                     
                 }  
 
@@ -6832,6 +6841,7 @@ function drawScreen(){
  
     //적 이동
     try{ 
+        //for (var i=0;i<=enemy_array.length - 1;i++){
         for (var i=0;i<=enemy_array.length - 1;i++){
             if (enemy_array[i].enemy_index == i){
                 enemy_array[i].enemy_move();

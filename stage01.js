@@ -481,7 +481,7 @@ player_shield.src = "./img/player_shield.png";
 player_shield.addEventListener("load",drawScreen, false);
 
 //폭파이미지01
-var explosionImage01 = new Image();
+var explosionImage01 = new Image(); 
 explosionImage01.src = "./img/explosion01.png";
 explosionImage01.addEventListener("load",drawScreen, false);
 
@@ -6820,10 +6820,10 @@ function drawScreen(){
         //이온포 충전 시작
         laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);   
         //충전시에는 적을 피해입히지않도록 레이져 크기 초기화, 폭파되는 조건에도 크기가 0보다 클때만 진행되도록 한다.
-        // l_width = 0;
-        // l_height = 0;
-        l_width = playerWidth/10;
-        l_height = playerHeight/10;
+        l_width = 0;
+        l_height = 0;
+        //l_width = playerWidth/10;
+        //l_height = playerHeight/10;
         laserImage = laser02;
         if (5 <= laser_charge_total_time && laser_charge_total_time < 10){  
             

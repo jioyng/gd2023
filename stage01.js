@@ -1760,7 +1760,7 @@ function player_move(){
 }
 
 ////////////////// 플레이어 레이져 초기화
-function laser_init(){laser_init
+function laser_init(){
     laserX = playerX + playerWidth/2;
     laserY = playerY;
     //레이져 초기 이동위치 = 생성위치
@@ -1898,9 +1898,9 @@ function laser_move(){
             //표적(관역)이 보여진다.
             Context4.beginPath();
             Context4.globalAlpha = 0.4;
-            Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80, 0, Math.PI * 2);
-            Context4.globalAlpha = 0.6;
-            Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 50, 0, Math.PI * 2);
+            Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80/4 + playerHeight/4, 0, Math.PI * 2);
+            Context4.globalAlpha = 0.6
+            Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 40/6 + playerHeight/5, 0, Math.PI * 2);
             Context4.globalAlpha = 0.8;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 5, 0, Math.PI * 2);
             Context4.lineWidth = "2"; 

@@ -43,7 +43,7 @@ var Context = theCanvas.getContext("2d");
 var Context2 = theCanvas.getContext("2d");
 //게임배경 컨텍스트(게임 콜로니 내부)
 var Context3 = theCanvas.getContext("2d");
-//게임 표적(관역)
+//게임 표적
 var Context4 = theCanvas.getContext("2d");
 //게임배경 컨텍스트(게임 콜리니 외부)
 var Context5 = theCanvas.getContext("2d");
@@ -1900,7 +1900,7 @@ function laser_move(){
             }              
 
             //console.log("xx,yy->",xx+","+yy);
-            //표적(관역)이 보여진다.
+            //표적이 보여진다.
             Context4.beginPath();
             Context4.globalAlpha = 0.4;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80/4 + playerHeight/4, 0, Math.PI * 2);
@@ -1917,7 +1917,7 @@ function laser_move(){
 
  
 
-            //과녁이 경계밖으로 나가려고 하면
+            //표적이 경계밖으로 나가려고 하면
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
                 xxAim = xxAim - 20;
                 //yyAim = 0;

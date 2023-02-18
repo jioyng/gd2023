@@ -625,7 +625,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 200;
+var ini_ready_time = 100;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -1475,9 +1475,9 @@ function player_move(){
         playerImage = player_45;
 	}else {
         
-        
+        //87/65/83/68
         //좌
-        if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
+        if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37 || isKeyCode == 65){
             //--pmovex;
             wayBefore = 'L'; 
             //pmovex = pmovex - 0.1 * Pspeed / 2;
@@ -1487,7 +1487,7 @@ function player_move(){
         }
 
         //우
-        if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
+        if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39 || isKeyCode == 68){
             //++pmovex;
             wayBefore = 'R';
             //pmovex = pmovex + 0.1 * Pspeed / 2;
@@ -1496,7 +1496,7 @@ function player_move(){
         }
 
         //상
-        if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38){
+        if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38 || isKeyCode == 87){
             wayBefore = 'U';
             //pmovey = pmovey - 0.1 * Pspeed / 2;
             pmovey = pmovey - Pspeed;
@@ -1504,7 +1504,7 @@ function player_move(){
         }
 
         //하
-        if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40){
+        if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40 || isKeyCode == 83){
             wayBefore = 'D';
             //pmovey = pmovey + 0.1 * Pspeed / 2;
             pmovey = pmovey + Pspeed;
@@ -1518,7 +1518,7 @@ function player_move(){
 
 	//와프(공간 이동)
 	//if (isKeyDown[17] || isKeyCode == 17) {
-    if (isKeyDown[88] || isKeyCode == 88) {
+    if (isKeyDown[88] || isKeyCode == 88 || isKeyCode == 86) {
 
         warp_sound.currentTime  = 0;
         warp_sound.play();
@@ -1720,7 +1720,7 @@ function player_move(){
   
     //엔진 부스터 방향
     //전진,좌상,우상
-    if (strKeyEventValue == "ArrowUp" || isKeyCode == 38 || isKeyDown[103] || isKeyCode == 36 || isKeyDown[105] || isKeyCode == 33){
+    if (strKeyEventValue == "ArrowUp" || isKeyCode == 38 || isKeyDown[103] || isKeyCode == 36 || isKeyCode == 87 || isKeyDown[105] || isKeyCode == 33){
         // engin01_sound.currentTime  = 2;
         // engin01_sound.play();   //엔진 점화 사운드
         Context.drawImage(player_enginImage,playerX + playerWidth/2,playerY + playerHeight/30,playerWidth/5 + Math.floor(Math.random() * 3),playerHeight/4 + Math.floor(Math.random() * 4));
@@ -1729,7 +1729,7 @@ function player_move(){
         Context.drawImage(player_enginImage,playerX + playerWidth/3,playerY + playerHeight/15,playerWidth/5 + Math.floor(Math.random() * 6),playerHeight/4 + Math.floor(Math.random() * 5));
     }
     //좌
-    if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37){
+    if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37  || isKeyCode == 65){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(player_enginImage,playerX  + playerWidth/9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
@@ -1738,7 +1738,7 @@ function player_move(){
         Context.drawImage(player_enginImage,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
     }
 	//우
-    if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39){
+    if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39|| isKeyCode == 83){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(player_enginImage,playerX  + playerWidth/1.9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
@@ -1817,26 +1817,31 @@ function sword_move(){
         //playerSword_Image=noneImage;
 
         for (var i=0;i<=4;i++){   
-                       
-                if (isKeyCode == 39){
+                
+                //87/65/83/68  
+                //우
+                if (isKeyCode == 39 || isKeyCode == 68){
                 playerSword_Image=playerSword_RightImage;
                 Context.drawImage(playerSword_Image,smovex-- - 10,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex;
                 //lmovey = smovey - 40;
+                //좌
                 }else
-                if (isKeyCode == 37){
+                if (isKeyCode == 37 || isKeyCode == 65){
                 playerSword_Image=playerSword_LeftImage;
                 Context.drawImage(playerSword_Image,smovex++ - 80,smovey - 40,s_width--,s_height--);  
                 //lmovex = smovex - 90;
                 //lmovey = smovey - 40;
+                //하
                 }else
-                if (isKeyCode == 40){
+                if (isKeyCode == 40 || isKeyCode == 83){
                 playerSword_Image=playerSword_DownImage;
                 Context.drawImage(playerSword_Image,smovex - 45,smovey--,s_width--,s_height--);  
                 //lmovex = smovex - 45;
                 //lmovey = smovey + 10;
+                //상
                 }else
-                if (isKeyCode == 38){
+                if (isKeyCode == 38 || isKeyCode == 87){
                 //lmovex = smovex - 45;
                 //lmovey = smovey - 80;
                 playerSword_Image=playerSword_UpImage;
@@ -1938,43 +1943,45 @@ function laser_move(){
             
             for (var i=0;i<=100;i++){ 
 
-                //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
-                if (playerY >=  theCanvas.clientHeight/4 + yyAim){   
-                    lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400;  
+                //표적이 플레이어보다 상단에 있으면 총알은 상단으로
+                if ((playerY + playerHeight/2) >=  theCanvas.clientHeight/4 + yyAim){   
+                    lmovey = lmovey - ((playerY + playerHeight/2) - theCanvas.clientHeight/4 - yyAim)/400;  
                 }else { 
-                    lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
+                //하단에 있으면
+                    lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - (playerY - playerHeight/2))/400;               
                 } 
 
-                //타켓이 플레이어보다 좌측에 있으면 총알은 좌측으로
-                if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
-                    lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400; 
+                //표적이 플레이어보다 좌측에 있으면 총알은 좌측으로
+                if((playerX + playerWidth/2) >=  (theCanvas.clientWidth/2 + xxAim)){ 
+                    lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - (playerX + playerWidth/2))/400; 
                 }else { 
-                    lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
+                //우측에 있으면
+                    lmovex = lmovex - ((playerX - playerWidth/2) - theCanvas.clientWidth/2 - xxAim)/400;
                 } 
                                 
-                //표적과 프레이어가 수직일경우
-                if(playerX > theCanvas.clientWidth / 2 + xxAim - 60 && playerX < theCanvas.clientWidth / 2 + xxAim + 60 ){
+                //표적과 플레이어가 수직일경우
+                if((playerX + playerWidth/2) > theCanvas.clientWidth / 2 + xxAim - 60 && (playerX + playerWidth/2) < theCanvas.clientWidth / 2 + xxAim + 60 ){
                     //타켓이 플레이어보다 상단에 있으면 총알은 상단으로
-                    if (playerY >=  theCanvas.clientHeight/4 + yyAim){   
-                        lmovey = lmovey - (playerY - theCanvas.clientHeight/4 - yyAim)/400;  
+                    if ((playerY + playerHeight/2) >=  theCanvas.clientHeight/4 + yyAim){   
+                        lmovey = lmovey - ((playerY + playerHeight/2) - theCanvas.clientHeight/4 - yyAim)/400;  
                     }else { 
-                        lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - playerY)/400;               
+                        lmovey = lmovey + (theCanvas.clientHeight/4 + yyAim - (playerY - playerHeight/2))/400;               
                     } 
 
                     //타켓이 플레이어보다 좌측에 있으면 총알은 좌측으로
-                    if(playerX >=  (theCanvas.clientWidth/2 + xxAim)){ 
-                        lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - playerX)/400; 
+                    if((playerX + playerWidth/2) >=  (theCanvas.clientWidth/2 + xxAim)){ 
+                        lmovex = lmovex  + (theCanvas.clientWidth/2 + xxAim - (playerX + playerWidth/2))/400; 
                     }else { 
-                        lmovex = lmovex - (playerX - theCanvas.clientWidth/2 - xxAim)/400;
+                        lmovex = lmovex - ((playerX - playerWidth/2) - theCanvas.clientWidth/2 - xxAim)/400;
                     } 
 
-                    if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                    if ((playerY + playerHeight/2) >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
                         l_width = l_width - 0.001;
                         l_height = l_height - 0.001;  
                         return; 
                     }
 
-                    if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                    if ((playerY + playerHeight/2) <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
                         l_width = l_width - 0.001;
                         l_height = l_height - 0.001;  
                         return; 
@@ -1986,19 +1993,19 @@ function laser_move(){
                 }
 
                 //표적에 들어오면 총알이 작아진다. 
-                if ((playerX >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
+                if (((playerX + playerWidth/2) >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
                 {    
                     //console.log("l");
                     l_width = l_width - 0.01;
                     l_height = l_height - 0.01;   
                     
-                    if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                    if ((playerY + playerHeight/2) >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
                         l_width = l_width - 0.02;
                         l_height = l_height - 0.02;  
                         return; 
                     }
 
-                    if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                    if ((playerY + playerHeight/2) <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
                         l_width = l_width - 0.02;
                         l_height = l_height - 0.02;  
                         return; 
@@ -2026,7 +2033,7 @@ function laser_move(){
                 }
 
                 //표적에 들어오면 총알을 작아진다.
-                if ((playerY <= theCanvas.clientHeight/4 + yyAim - 40 && playerY >= theCanvas.clientHeight/4 + yyAim + 40 )) 
+                if (((playerY + playerHeight/2) <= theCanvas.clientHeight/4 + yyAim - 40 && (playerY + playerHeight/2) >= theCanvas.clientHeight/4 + yyAim + 40 )) 
                 { 
                     l_width = l_width - 0.02;
                     l_height = l_height - 0.02;
@@ -2054,7 +2061,7 @@ function laser_move(){
                     return;
                 }          
 
-                if (playerY >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                if ((playerY + playerHeight/2) >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
                     l_width = l_width - 0.02;
                     l_height = l_height - 0.02; 
                     if(l_width<0){
@@ -2066,7 +2073,7 @@ function laser_move(){
                     return; 
                 }
 
-                if (playerY <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                if ((playerY + playerHeight/2) <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
                     l_width = l_width - 0.02;
                     l_height = l_height - 0.02;  
                     if(l_width<0){
@@ -5200,7 +5207,7 @@ function clickCanvas(event, as_gb) {
 
     //방향 downRight
 	if(Context.isPointInPath(directonDownRight, x,  y)) {
-		isKeyCode = 34;button01
+		isKeyCode = 34;
 		//strKeyEventValue = "RD";
         wayBefore = 'RD';
 		Context.stroke(directonDownRight);  //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
@@ -6774,7 +6781,7 @@ function drawScreen(){
         // raygun_sound.play();
         // playerImage = player_warp;
     //목소리 재생모드일경우만 실행                               
-    }else if (parseInt(gameTime) <= 200){ 
+    }else if (parseInt(gameTime) <= parseInt(ini_ready_time)){ 
     //    raygun_sound.play(); 
 
         if (ls_VColor == "yellow") {
@@ -6851,7 +6858,7 @@ function drawScreen(){
             }
         }
     } catch (error) {
-            
+        alert("적이동시 예외적 에러 발생!")
     }
  
     //플레이어 이동(플레이어는 맨 마지막에 그려준다. 그래야 다른 적들보다 앞에서 보여진다.)
@@ -6865,7 +6872,7 @@ function drawScreen(){
             }
         }
     } catch (error) {
-
+        alert("적이동시 예외적 에러 발생!")
     }
         
 
@@ -6999,15 +7006,15 @@ function drawScreen(){
         Context.fillText("Ready", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 100, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         Context.font = '30px Arial';
     }
-}tm
+}
 
 ////////////////// 키 다운 이벤트 처리(데스크 탑 이용시)
 function onkeyDown(e, as_strKeyEventValue){
  
     strKeyEventValue = e.key;
     strKeyEventType = e.type;
-    isKeyCode =  e.keyCode;
- 
+    isKeyCode =  e.keyCode; 
+
     //게임 진행 상태
     if (strKeyEventValue == "Enter" || isKeyCode == 13){
 
@@ -7152,13 +7159,13 @@ function onkeyDown(e, as_strKeyEventValue){
     } 
 
     //기본공격(sword) 
-    if (isKeyCode == 90){    
+    if (isKeyCode == 90 || isKeyCode == 70){    
         sword_yn = 'Y';
         //sword_move(); 
     }     
 
     //스킬체인지  
-    if (isKeyCode == 67){   
+    if (isKeyCode == 67 || isKeyCode == 82){   
         skill_change();     
     } 
     

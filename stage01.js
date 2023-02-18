@@ -2100,7 +2100,7 @@ function laser_move(){
         //양자폭멸탄
         }else if (skill == 3){  
             laserImage = laser02;
-            if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //충전이 되면 자동 발사                          
+            if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파                    
                 laser_yn='Y'; 
                 for (var i=0;i<10;i++){  
                     explosion_sound.play();
@@ -6813,8 +6813,8 @@ function drawScreen(){
              playerSkill_03TmpImage = playerSkill_03Tmp2Image;
         }      
        
-         Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6); 
-
+         //Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*1.4,playerHeight*0.6);  
+         Context6.drawImage(playerSkill_03TmpImage,lmovex-10,lmovey-25,playerWidth*0.9,playerHeight*0.6);  
         laser_move();
     }else { 
         //이온포 충전 시작

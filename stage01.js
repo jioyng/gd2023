@@ -677,7 +677,7 @@ var laser_r = 0;
 var laser_d = 0;
 
 
-//양자폭멸탄 충전 : 마우스(버튼클릭) 유지시간.
+//폭멸탄 충전 : 마우스(버튼클릭) 유지시간.
 var laser_charge_start_time = 0,  laser_charge_total_time = 0;
 
 //초기 공격 스킬
@@ -958,7 +958,7 @@ var enemy_collision_yn = 'N';
 
 //적 객체 인스턴스 생성
 //적 초기 출현 갯수
-var enemy_cnt = 1;
+var enemy_cnt = 0;
 var enemy_array = [];
 
 //create_enemy();
@@ -1221,7 +1221,7 @@ function game_init(){
     //화면에 나타나는 적 미시일수(배열)
 
     enemy_type = 1;
-    enemy_cnt = 1;
+    enemy_cnt = 0;
     enemy_array = [];
 
     enemyx = ini_enemyx;
@@ -1306,7 +1306,7 @@ function game_init(){
     backgroundAngle = 0;
     Context3.restore();
 
-    //양자폭멸탄 변수 초기화 
+    //폭멸탄 변수 초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
     laser_charge_start_time  = gameTime;  
@@ -1335,7 +1335,7 @@ function player_init(){
     laserImage = laser;
     player_warp = warp;
 
-    //양자폭멸탄 변수 초기화 
+    //폭멸탄 변수 초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
     laser_charge_start_time  = gameTime;  
@@ -1402,7 +1402,7 @@ function player_move(){
     if (directionDblTime < 100 && isKeyCode == isBfKeycode && isBfKeycode != null){
 
         //alert(isKeyCode + ',' + isBfKeycode);
-        console.log("isBfKeycode + ',' + directionDblTime:", isBfKeycode + ',' + directionDblTime);
+        //console.log("isBfKeycode + ',' + directionDblTime:", isBfKeycode + ',' + directionDblTime);
         directionDblTime = 0;
         isBfKeycode = null;
 
@@ -1473,13 +1473,13 @@ function player_move(){
         pmovey = pmovey + Pspeed;        
         //playerImage = player;
         playerImage = player_45;
-	}else {
-        
+	}else { 
         //87/65/83/68
         //좌
-        if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37 || isKeyCode == 65){
+        if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37 || isKeyDown[65] || isKeyCode == 65){
             //--pmovex;
             wayBefore = 'L'; 
+            strKeyEventValue = "ArrowLeft";
             //pmovex = pmovex - 0.1 * Pspeed / 2;
             pmovex = pmovex - Pspeed;
             playerImage = player_180;
@@ -1487,25 +1487,28 @@ function player_move(){
         }
 
         //우
-        if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39 || isKeyCode == 68){
+        if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39 || isKeyDown[68] || isKeyCode == 68){
             //++pmovex;
             wayBefore = 'R';
+            strKeyEventValue = "ArrowRight";
             //pmovex = pmovex + 0.1 * Pspeed / 2;
             pmovex = pmovex + Pspeed;
-            playerImage = player_360;
+            playerImage = player_360; 
         }
 
         //상
-        if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38 || isKeyCode == 87){
+        if (strKeyEventValue == "ArrowUp"   || isKeyCode == 38 || isKeyDown[87] || isKeyCode == 87){
             wayBefore = 'U';
+            strKeyEventValue = "ArrowUp";
             //pmovey = pmovey - 0.1 * Pspeed / 2;
             pmovey = pmovey - Pspeed;
             playerImage = player_90;
         }
 
         //하
-        if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40 || isKeyCode == 83){
+        if (strKeyEventValue == "ArrowDown"   || isKeyCode == 40 || isKeyDown[83] || isKeyCode == 83){
             wayBefore = 'D';
+            strKeyEventValue = "ArrowDown";
             //pmovey = pmovey + 0.1 * Pspeed / 2;
             pmovey = pmovey + Pspeed;
             playerImage = player_270;
@@ -1580,6 +1583,7 @@ function player_move(){
     //레이저
 	if (isKeyDown[32] || isKeyCode == 32 ) {
 
+        
         //게임상태가 진행중이 않은(종료 또틑 멈춤) 경우 레이저버튼 클릭시 재시작
 		if (status != 2)
 		{
@@ -1729,7 +1733,7 @@ function player_move(){
         Context.drawImage(player_enginImage,playerX + playerWidth/3,playerY + playerHeight/15,playerWidth/5 + Math.floor(Math.random() * 6),playerHeight/4 + Math.floor(Math.random() * 5));
     }
     //좌
-    if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37  || isKeyCode == 65){
+    if (strKeyEventValue == "ArrowLeft"  || isKeyCode == 37  || isKeyDown[65] || isKeyCode == 65){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(player_enginImage,playerX  + playerWidth/9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
@@ -1738,7 +1742,7 @@ function player_move(){
         Context.drawImage(player_enginImage,playerX + playerWidth/4,playerY + playerHeight/6,playerWidth/2 + Math.floor(Math.random() * 4),playerHeight/8 + Math.floor(Math.random() * 3));
     }
 	//우
-    if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39|| isKeyCode == 83){
+    if (strKeyEventValue == "ArrowRight"  || isKeyCode == 39 || isKeyDown[68] || isKeyCode == 68){
         //engin01_sound.currentTime  = 1;
         //engin01_sound.play();
         Context.drawImage(player_enginImage,playerX  + playerWidth/1.9,playerY + playerHeight/8,playerWidth/3 + Math.floor(Math.random() * 3),playerHeight/7 + Math.floor(Math.random() * 2));
@@ -1865,7 +1869,7 @@ function sword_move(){
 ////////////////// 플레이어 레이져 경로  
 function laser_move(){ 
 
-    //양자폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
+    //폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
     if (laser_yn == 'Y' || skill == 3 ){
 
         //ld = Math.floor(Pdistance/10); 
@@ -1990,8 +1994,8 @@ function laser_move(){
                     Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height); 
                     //Context4.lineWidth = "0.5"
                     continue;
-                }
-
+                } 
+                
                 //표적에 들어오면 총알이 작아진다. 
                 if (((playerX + playerWidth/2) >= theCanvas.clientWidth/2 + xxAim - 40 && playerX <= theCanvas.clientWidth/2 + xxAim + 40 )) 
                 {    
@@ -2061,7 +2065,8 @@ function laser_move(){
                     return;
                 }          
 
-                if ((playerY + playerHeight/2) >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
+                //표적과 플레이어가 수평일경우
+                if ((playerY - playerHeight/2) >= (theCanvas.clientHeight/4 + yyAim) && (lmovey <= theCanvas.clientHeight/4 + yyAim)){
                     l_width = l_width - 0.02;
                     l_height = l_height - 0.02; 
                     if(l_width<0){
@@ -2073,7 +2078,7 @@ function laser_move(){
                     return; 
                 }
 
-                if ((playerY + playerHeight/2) <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
+                if ((playerY - playerHeight/2) <= (theCanvas.clientHeight/4 + yyAim) && (lmovey >= theCanvas.clientHeight/4 + yyAim)){
                     l_width = l_width - 0.02;
                     l_height = l_height - 0.02;  
                     if(l_width<0){
@@ -2104,7 +2109,7 @@ function laser_move(){
          
                     Context.drawImage( laserImage,lmovex,lmovey,l_width,l_height);        
             }  
-        //양자폭멸탄
+        //폭멸탄
         }else if (skill == 3){  
             laserImage = laser02;
             if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파                    
@@ -2877,7 +2882,7 @@ function enemy_collision(){
              //적 에너지를 다시 그려준다.
              this.enemy_energe(); 
 
-             //양자폭멸탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
+             //폭멸탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
              if (skill != 3){  
                  laser_init();
              }else {
@@ -4919,7 +4924,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //스킬체이지
     if (event.button == 1){
 
-        //양자폭멸탄 사운드 
+        //폭멸탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play();  
         // tmp_skill = skill;
@@ -5048,6 +5053,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
 ////////////////////공격 스킬 체인지 함수
 function skill_change(){  
+    laser_init();
     //폭탄장착도중 스킬변경시 소리및 변수초기화 
     timmer_sound.pause();
     laser_charge_total_time = 0;
@@ -5138,6 +5144,7 @@ function clickCanvas(event, as_gb) {
         return;
     }
 
+    
     //방향 up
 	if(Context.isPointInPath(directonUp, x,  y)) {
 		//wayBefore = 'U';
@@ -5313,13 +5320,13 @@ function clickCanvas(event, as_gb) {
             //playerY = playerY - i;
 
 
-			if (isKeyCode == 38){
+			if (isKeyCode == 38 || isKeyDown[87] || isKeyCode == 87){
 				playerY = playerY - i;
-			}else if (isKeyCode == 40){
+			}else if (isKeyCode == 40 || isKeyDown[83] || isKeyCode == 83){
 				playerY = playerY + i;
-			}else if (isKeyCode == 39){
+			}else if (isKeyCode == 39 || isKeyDown[68] || isKeyCode == 68){
 				playerX = playerX + i;
-			}else if(isKeyCode == 37){
+			}else if(isKeyCode == 37 || isKeyDown[65] || isKeyCode == 65){
 				playerX = playerX - i;
             }else if (isKeyCode == 36){
                 playerX = playerX - i;
@@ -5348,7 +5355,7 @@ function clickCanvas(event, as_gb) {
     //스킬체인지
     if(Context.isPointInPath(button03, x,  y)) { 
 
-        //양자폭멸탄 사운드 
+        //폭멸탄 사운드 
         //appear_sound.currentTime = 2;
         //appear_sound.play(); 
 
@@ -6852,7 +6859,7 @@ function drawScreen(){
     //적 이동
     try{ 
         //for (var i=0;i<=enemy_array.length - 1;i++){
-        for (var i=0;i<=enemy_array.length - 1;i++){
+        for (var i=0;i<enemy_array.length;i++){
             if (enemy_array[i].enemy_index == i){
                 enemy_array[i].enemy_move();
             }
@@ -6865,14 +6872,14 @@ function drawScreen(){
     player_move();
  
     try{ 
-        //적 미사일 이동(적미사일과 충돌시 폭파이미지는 플레이더 뒤에서 그려준다.)
-        for (var i=0;i<=enemy_array.length - 1;i++){
+        //적 미사일 이동(적미사일과 충돌시 폭파이미지는 플레이어 뒤에서 그려준다.)
+        for (var i=0;i<enemy_array.length;i++){
             if (enemy_array[i].enemy_index == i){
                 enemy_array[i].weappon_move();
             }
         }
     } catch (error) {
-        alert("적이동시 예외적 에러 발생!")
+        alert("적 미사일 이동시 예외적 에러 발생!")
     }
         
 
@@ -6943,14 +6950,16 @@ function drawScreen(){
 
         }        
 
-        //if (enemy_boss_01_status == 0){
-            if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){ 
+        ////if (enemy_boss_01_status == 0){
+            //무슨 의도인지 몰라서 아래 주석 ==> 적 출현 주기
+            //if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 100) === 0){ 
+            if(gameTime % ((Math.floor(Math.random() * 3) + 2) * 60) === 0){ 
 
                 enemy_cnt = enemy_cnt + 1; 
             
                 create_enemy(enemy_cnt); 
             }
-        //} 
+        ////} 
 
     //게임 진행 정보(맨마지막에 그려줘야 게임내 이미지가 덮지않는다.)
     //게임상태정보표시
@@ -6992,6 +7001,7 @@ function drawScreen(){
         if(skill==3) skill_text = '폭멸탄';
         if(skill==4) skill_text = '이온포';
         Context.fillText("무기 : " + skill_text,10,150);  
+        Context.fillText("속도 : " + (Pspeed - 2),10,200);  
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
         //Context.fillText("Score  : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
@@ -6999,6 +7009,7 @@ function drawScreen(){
         Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         Context.fillText("Skill     : " + skill,10,150);  
         Context.fillText("Time    : " + gameTime,10,200);
+        Context.fillText("Speed : " + (Pspeed - 2),10,200);
     }
 
     if(gameTime<=50){
@@ -7174,12 +7185,12 @@ function onkeyDown(e, as_strKeyEventValue){
 ////////////////// 키 업 이벤트 처리(데스크 탑 이용시)
 function onkeyUp(e){
 
-    isKeyCode = null;
-    isKeyDown[e.keyCode] = false;
+    // isKeyCode = null;
+    // isKeyDown[e.keyCode] = false;
 
-    strKeyEventValue = e.key;
-    strKeyEventType = e.type;
-    strKeyEventValue = "None";
+    // strKeyEventValue = e.key;
+    // strKeyEventType = e.type;
+    // strKeyEventValue = "None";
 
 }
 

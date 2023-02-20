@@ -83,7 +83,7 @@ var directonDownLeft = null;
 var directonDownRight = null;
 var directonMiddle = null;
 var directionDblTime = 0;
-var isBfKeycode = null;
+var isBfKeyCode = null;
 
 var button01 = null;
 var button02 = null;
@@ -570,8 +570,8 @@ playerSkill_04Image.src = "./img/player_skill01.png";
 playerSkill_04Image.addEventListener("load",drawScreen, false);
 
 //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
-var wayBefore = 'None;'
-
+var wayBefore = null;
+var wayBefore2 = null;
 //플레이어 초기값( 크기, 위치 및 기본 이동거리, 스피트)
 //var ini_player_width = 70;
 //var ini_player_height = 45;
@@ -1295,8 +1295,8 @@ function game_init(){
     enemy_border_over_yn = 'N';
 
     //방향키코드 초기화
-    isKeycode = null;
-    isBfKeycode = null;
+    isKeyCode = null;
+    isBfKeyCode = null;
 
     //배경 최기화
     backgroundWidth = theCanvas.clientWidth; 
@@ -1318,7 +1318,8 @@ function player_init(){
  
      
     //이전 플레이어 진행방향 키값 => 속도변경시 방향키 새로 안눌러두 이전 방향으로 계속해서 진행되도록 하기위해 필요
-    wayBefore = 'None;'
+    wayBefore = null;
+    wayBefore2 = null;
     playerWidth = ini_player_width;
     playerHeight = ini_player_height;
     player_size = ini_player_size;
@@ -1399,12 +1400,10 @@ function player_move(){
     ready_time--;
     directionDblTime++;
 
-    if (directionDblTime < 100 && isKeyCode == isBfKeycode && isBfKeycode != null){
-
-        //alert(isKeyCode + ',' + isBfKeycode);
-        //console.log("isBfKeycode + ',' + directionDblTime:", isBfKeycode + ',' + directionDblTime);
+    if (directionDblTime < 100 && isKeyCode == isBfKeyCode && isBfKeyCode != null){ 
+        //console.log("isBfKeyCode + ',' + directionDblTime:", isBfKeyCode + ',' + directionDblTime);
         directionDblTime = 0;
-        isBfKeycode = null;
+        isBfKeyCode = null;
 
         laser_yn = 'N';
         sword_yn = 'N';
@@ -1416,7 +1415,8 @@ function player_move(){
         warp_sound.play();
         playerImage = player_shield; 
         player_collision_yn = 'Y'; 
-        wayBefore = "";
+        wayBefore = null;
+        wayBefore2 = null;
         isKeyDown = [];
         isKeyCode = null;  
         
@@ -1513,23 +1513,27 @@ function player_move(){
             pmovey = pmovey + Pspeed;
             playerImage = player_270;
         }
-        
-        //이전키코드
-        if(isKeyCode) isBfKeycode = isKeyCode;
 
+        //이전키코드
+        if(isKeyCode) isBfKeyCode = isKeyCode;
+        
+        //이전 방향키 
+        if(wayBefore) wayBefore2 = wayBefore;
     }
 
 	//와프(공간 이동)
 	//if (isKeyDown[17] || isKeyCode == 17) {
-    if (isKeyDown[88] || isKeyCode == 88 || isKeyCode == 86) {
+    if (isKeyDown[16] || isKeyCode == 16) {
 
+        //alert(wayBefore + "," + wayBefore2);
+        
         warp_sound.currentTime  = 0;
         warp_sound.play();
 
         //조준관역 좌표도 기본으로
         xxAim = 0;
-        yyAim = 0;  
-       
+        yyAim = 0;   
+        
         //와프 이미지로 변경
         for (var i=0;i<=warp_distance + power/100;i++){
 
@@ -1570,13 +1574,14 @@ function player_move(){
             isKeyCode = null;            
         }
 
-       // isKeyDown = [];
-       // isKeyCode = null;
-
+       isKeyDown = [];
+       isKeyCode = null;
+       wayBefore = null;
+       //if (!(wayBefore)) wayBefore = wayBefore2;
 
         //wayBefore = null;
-        //pmovex = 0;
-        //pmovey = 0;
+        pmovex = 0;
+        pmovey = 0;
 
 	}
 
@@ -4936,7 +4941,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
     //마우스 오른쪽 버튼 클릭
     if (event.button == 2){
 
-        isKeyCode = 88; 
+        isKeyCode = 16; 
 
     }
 
@@ -5222,7 +5227,7 @@ function clickCanvas(event, as_gb) {
 
     //방향 중앙 정지
 	if(Context.isPointInPath(directonMiddle, x,  y)) {
-		isKeyCode = "16";
+		isKeyCode = "81";
         strKeyEventValue = "";
         pmovex = 0;
         pmovey = 0;
@@ -5273,7 +5278,7 @@ function clickCanvas(event, as_gb) {
 	}
 
     //warp(공간 이동)
-	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) { 
+	if(as_gb == 1 && Context.isPointInPath(button02, x,  y)) {  
 
 		Context.stroke(button02);   //키 입력 반응체감을 위해 눌렀을때 잠깐 객체 세로 그려준다.(투명도 0으로하여)
 
@@ -5339,11 +5344,11 @@ function clickCanvas(event, as_gb) {
                 playerY = playerY + i;
             }else if (isKeyCode == 34){
                 playerX = playerX + i;
-                playerY = playerY + i;
+                playerY = playerY + i;          
             }else {
 				playerX = playerX;
 				playerY = playerY;
-				wayBefore = "";
+				wayBefore = null;
 			}            
 		}
 
@@ -6865,7 +6870,8 @@ function drawScreen(){
             }
         }
     } catch (error) {
-        alert("적이동시 예외적 에러 발생!")
+        //alert("적이동시 예외적 에러 발생!");
+        console.log(error.name,error.message);
     }
  
     //플레이어 이동(플레이어는 맨 마지막에 그려준다. 그래야 다른 적들보다 앞에서 보여진다.)
@@ -6879,7 +6885,8 @@ function drawScreen(){
             }
         }
     } catch (error) {
-        alert("적 미사일 이동시 예외적 에러 발생!")
+        //alert("적 미사일 이동시 예외적 에러 발생!")
+        console.log(error.name,error.message);
     }
         
 
@@ -7008,7 +7015,7 @@ function drawScreen(){
         Context.fillText("Score  : " + gameScore,10,50);
         Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         Context.fillText("Skill     : " + skill,10,150);  
-        Context.fillText("Time    : " + gameTime,10,200);
+        //Context.fillText("Time    : " + gameTime,10,200);
         Context.fillText("Speed : " + (Pspeed - 2),10,200);
     }
 
@@ -7025,7 +7032,7 @@ function onkeyDown(e, as_strKeyEventValue){
     strKeyEventValue = e.key;
     strKeyEventType = e.type;
     isKeyCode =  e.keyCode; 
-
+    //alert(isKeyCode + ',' + isBfKeyCode);
     //게임 진행 상태
     if (strKeyEventValue == "Enter" || isKeyCode == 13){
 
@@ -7178,20 +7185,36 @@ function onkeyDown(e, as_strKeyEventValue){
     //스킬체인지  
     if (isKeyCode == 67 || isKeyCode == 82){   
         skill_change();     
-    } 
+    }  
     
 }
 
 ////////////////// 키 업 이벤트 처리(데스크 탑 이용시)
 function onkeyUp(e){
+    //alert(e.keyCode + ","  + wayBefore2);
+    //와프키를 누루고 있을때 연속으로 계속 적용되지 않도록 초기화
+    if (e.keyCode == 16){  
+        // isKeyCode = null;
+        // isKeyDown[e.keyCode] = false;
 
-    // isKeyCode = null;
-    // isKeyDown[e.keyCode] = false;
+        // strKeyEventValue = e.key;
+        // strKeyEventType = e.type;
+        // strKeyEventValue = "None";
+        //alert(wayBefore + ","  + wayBefore2);
+        //isKeyCode = e.keyCode;
+        wayBefore = wayBefore2;
 
-    // strKeyEventValue = e.key;
-    // strKeyEventType = e.type;
-    // strKeyEventValue = "None";
-
+        if(wayBefore == 'L'){
+            isKeyCode = 37;
+        }else if(wayBefore == 'R'){
+            isKeyCode = 39;
+        }else if(wayBefore == 'U'){
+            isKeyCode = 38;
+        }else if(wayBefore == 'D'){
+            isKeyCode = 40;
+        } 
+        
+    }  
 }
 
 

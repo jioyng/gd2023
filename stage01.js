@@ -172,7 +172,7 @@ button04.arc(maxX - 215, maxY - 300, 65, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 30;  //60프레임
+var ini_gameFrame = 60;  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 //var gameTime = 5000;
@@ -625,7 +625,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 100;
+var ini_ready_time = 200;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -1861,9 +1861,7 @@ function sword_move(){
                     playerSword_Image=playerSword_StopImage;
                     Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width--*0.8,s_height--*0.6);   
                     //wayBefore = "";
-                }
-
-                
+                } 
                  
         }  
 
@@ -1922,9 +1920,7 @@ function laser_move(){
             // Context4.fillStyle = "#008000";
             Context4.strokeStyle = "white";
             Context4.fillStyle = "white";
-            Context4.stroke(); 
-
- 
+            Context4.stroke();  
 
             //표적이 경계밖으로 나가려고 하면
             if((theCanvas.clientWidth / 2 + xxAim) > maxX){
@@ -2117,7 +2113,9 @@ function laser_move(){
         //폭멸탄
         }else if (skill == 3){  
             laserImage = laser02;
-            if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파                    
+            //if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파  
+            //60fps시 충전시간은 * 2  
+            if (80 * 2 <= laser_charge_total_time && laser_charge_total_time <= 100 * 2){     //시간이 되면 자동 폭파                    
                 laser_yn='Y'; 
                 for (var i=0;i<10;i++){  
                     explosion_sound.play();

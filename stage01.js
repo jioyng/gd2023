@@ -172,7 +172,7 @@ button04.arc(maxX - 215, maxY - 300, 65, 0, 2*Math.PI, true);    //arc(x, y, rad
 //초기 게임 상태
 var init_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
-var ini_gameFrame = 60;  //60프레임
+var ini_gameFrame = 45 + parseInt(Math.random()*15);  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
 //var gameTime = 5000;
@@ -2115,7 +2115,7 @@ function laser_move(){
             laserImage = laser02;
             //if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파  
             //60fps시 충전시간은 * 2  
-            if (80 * 2 <= laser_charge_total_time && laser_charge_total_time <= 100 * 2){     //시간이 되면 자동 폭파                    
+            if (80 * (ini_gameFrame/30) <= laser_charge_total_time && laser_charge_total_time <= 100 * (ini_gameFrame/30)){     //시간이 되면 자동 폭파                    
                 laser_yn='Y'; 
                 for (var i=0;i<10;i++){  
                     explosion_sound.play();
@@ -3259,11 +3259,12 @@ function enemy_move(){
         }
         
     }else {
+        //적엔진 원근감을 위해 기존크기에 *this.Edistance/4
         if ( this.enemyw >= ini_enemyw*0.8){
-            Context.drawImage(this.enginImage,this.enemyx - this.enemyw/4 + Math.floor(Math.random() * 6),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 3) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
+            Context.drawImage(this.enginImage,this.enemyx - this.enemyw/4 + Math.floor(Math.random() * 6),this.enemyy + this.enemyh/8,(Math.floor(Math.random() * 3) +  this.enemyw/3)*this.Edistance/4,(Math.floor(Math.random() * 4) +  this.enemyh/3)*this.Edistance/4);
         }
         if ( this.enemyw >= ini_enemyw*0.5){
-            Context.drawImage(this.enginImage,this.enemyx - 10 - this.enemyw/4 - Math.floor(Math.random() * 8),this.enemyy + this.enemyh/8,Math.floor(Math.random() * 4) +  this.enemyw/3,Math.floor(Math.random() * 4) +  this.enemyh/3);
+            Context.drawImage(this.enginImage,this.enemyx - 10 - this.enemyw/4 - Math.floor(Math.random() * 8),this.enemyy + this.enemyh/8,(Math.floor(Math.random() * 4) +  this.enemyw/3)*this.Edistance/4,(Math.floor(Math.random() * 4) +  this.enemyh/3)*this.Edistance/4);
         }
  
 
@@ -6233,7 +6234,7 @@ function weappon_move(){
                 //총알인경우 플레이어 위치와 상관없이 위.아래(y축)으로만 진행한다.
                 //this.weappon_size = this.weappon_size + this.enemy_size/20;
                 //this.weappon_size = this.weappon_size + 1;
-                //적 총알의 원근감을 위해 크기에 *this.Edistance/3
+                //적 총알의 원근감을 위해 크기에 *this.Edistance/4
                 //this.weappon_size = this.weappon_size + 0.2; 
                 this.weapponArray[i].bsize = (this.weappon_size + 0.2)*this.Edistance/4; 
                 this.weapponArray[i].bspeed = this.weapponArray[i].bspeed*this.Edistance/3; 
@@ -7024,7 +7025,9 @@ function drawScreen(){
         if(skill==3) skill_text = '폭멸탄';
         if(skill==4) skill_text = '이온포';
         Context.fillText("무기 : " + skill_text,10,150);  
-        Context.fillText("속도 : " + Pspeed,10,200);  
+        //Context.fillText("속도 : " + Pspeed,10,200);  
+        Context.fillText("FPS : " + ini_gameFrame,10,200);
+        
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
         //Context.fillText("Score  : " + (parseInt(gameScore - 200)<=0?0:gameScore),10,50);
@@ -7032,7 +7035,8 @@ function drawScreen(){
         Context.fillText("Player : " + String((parseInt(player_cnt) - 1<=0?0:parseInt(player_cnt) - 1)),10,100); 
         Context.fillText("Skill     : " + skill,10,150);  
         //Context.fillText("Time    : " + gameTime,10,200);
-        Context.fillText("Speed : " + Pspeed,10,200);
+        //Context.fillText("Speed : " + Pspeed,10,200);
+        Context.fillText("FPS    : " + ini_gameFrame,10,200);
     }
 
     if(gameTime<=50){

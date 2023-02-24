@@ -3610,7 +3610,7 @@ function game_background(){
         backgroundAngle=0;
     }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 1){
         //회전하면서 확대
-        Context5.globalAlpha = 0.7;        
+        Context5.globalAlpha = 0.6;        
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;
         backgroundWidth = backgroundWidth + 2;
@@ -3622,7 +3622,7 @@ function game_background(){
         backgroundAngle++;  
     }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 2){
         //축소
-        Context5.globalAlpha = 0.6;
+        Context5.globalAlpha = 0.7;
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
@@ -3633,7 +3633,7 @@ function game_background(){
         backgroundAngle=0;
     }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 3){ 
         //회전하면서 확대
-        Context5.globalAlpha = 0.5;        
+        Context5.globalAlpha = 0.6;        
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY - 1.5;
         backgroundWidth = backgroundWidth + 3.5;
@@ -3653,7 +3653,7 @@ function game_background(){
                 }else {
                     backgroundImage=backgroundImage3;
                 }
-                Context5.globalAlpha = 0.4;
+                Context5.globalAlpha = 0.7;
                 backgroundX = 0;
                 backgroundY = 0;            
                 backgroundWidth = theCanvas.clientWidth;
@@ -3663,7 +3663,7 @@ function game_background(){
         }else {
                 //배경회전 샘플
                 Context5.save();
-                Context5.globalAlpha = 0.9;
+                Context5.globalAlpha = 0.8;
                 backgroundWidth = theCanvas.clientWidth;
                 backgroundHeight = theCanvas.clientHeight; 
                 Context5.translate(backgroundWidth/2, backgroundHeight/2);

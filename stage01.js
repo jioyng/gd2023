@@ -247,11 +247,10 @@ var cityImage = new Image();
 cityImage.src = "./img/city01.png";
 cityImage.addEventListener("load",drawScreen, false);
 
-var city00Image = new Image();
+//var city00Image = new Image();
 //city00Image.src = "./img/city10.png";
-city00Image.src = "./img/city0" + String(parseInt(Math.random()*9)) + ".png";
-
-city00Image.addEventListener("load",drawScreen, false); 
+//city00Image.src = "./img/city0" + String(parseInt(Math.random()*9) + 1) + ".png";
+//city00Image.addEventListener("load",drawScreen, false); 
 
 var city01Image = new Image();
 city01Image.src = "./img/city01.png";
@@ -500,7 +499,8 @@ playerSkillImage.addEventListener("load",drawScreen, false);
 
 //플레이어 스킬0이미지
 var playerSword_Image = new Image();
-playerSword_Image.src = "./img/noneImage.png"; 
+//playerSword_Image.src = "./img/noneImage.png"; 
+playerSword_Image.src = "./img/none.png"; 
 playerSword_Image.addEventListener("load",drawScreen, false);
 
 var playerSword_StopImage = new Image();
@@ -1909,11 +1909,11 @@ function laser_move(){
             //console.log("xx,yy->",xx+","+yy);
             //표적이 보여진다.
             Context4.beginPath();
-            Context4.globalAlpha = 0.4;
+            Context4.globalAlpha = 0.3;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 80/4 + playerHeight/4, 0, Math.PI * 2);
-            Context4.globalAlpha = 0.6
+            Context4.globalAlpha = 0.4
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 40/6 + playerHeight/5, 0, Math.PI * 2);
-            Context4.globalAlpha = 0.8;
+            Context4.globalAlpha = 0.5;
             Context4.arc(theCanvas.clientWidth / 2 + xxAim  , theCanvas.clientHeight / 4 + yyAim, 5, 0, Math.PI * 2);
             Context4.lineWidth = "2"; 
             // Context4.strokeStyle = "#008000";
@@ -1940,7 +1940,7 @@ function laser_move(){
                 yyAim = yyAim + 20;
             }                       
 
-            Context4.globalAlpha = 0.8;
+            Context4.globalAlpha = 0.9;
             //ld = Math.floor(Pdistance/10);
             //l_height = 100;
             l_width = 6;
@@ -2924,7 +2924,7 @@ function enemy_collision(){
                 //콜로니 밖 우주 배경그려주기(투명도 적용)
                 Context3.save();
 
-                Context3.globalAlpha = 0.8;
+                Context3.globalAlpha = 0.9;
                 
                 //적폭파시 배경 잠깐 번쩍이게..
                 //Context.drawImage(backgroundImage,0, 0 ,theCanvas.clientWidth + Math.floor(Math.random() * 3) ,theCanvas.clientHeight);
@@ -3601,7 +3601,7 @@ function game_background(){
 
     if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 0){ 
         //확대
-        Context5.globalAlpha = 0.7;
+        Context5.globalAlpha = 0.8;
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;        
         backgroundWidth = backgroundWidth + 1.5;
@@ -3610,7 +3610,7 @@ function game_background(){
         backgroundAngle=0;
     }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 1){
         //회전하면서 확대
-        Context5.globalAlpha = 0.6;        
+        Context5.globalAlpha = 0.7;        
         backgroundX = backgroundX - 1;
         backgroundY = backgroundY - 1;
         backgroundWidth = backgroundWidth + 2;
@@ -3622,7 +3622,7 @@ function game_background(){
         backgroundAngle++;  
     }else if (String(gameTime).substring(String(gameTime).length-4,String(gameTime).length-3) % 5 == 2){
         //축소
-        Context5.globalAlpha = 0.4;
+        Context5.globalAlpha = 0.6;
         backgroundX = backgroundX + 1;
         backgroundY = backgroundY + 1;            
         backgroundWidth = backgroundWidth - 2.5;
@@ -3653,7 +3653,7 @@ function game_background(){
                 }else {
                     backgroundImage=backgroundImage3;
                 }
-                Context5.globalAlpha = 0.5;
+                Context5.globalAlpha = 0.4;
                 backgroundX = 0;
                 backgroundY = 0;            
                 backgroundWidth = theCanvas.clientWidth;
@@ -3663,7 +3663,7 @@ function game_background(){
         }else {
                 //배경회전 샘플
                 Context5.save();
-                Context5.globalAlpha = 0.4;
+                Context5.globalAlpha = 0.9;
                 backgroundWidth = theCanvas.clientWidth;
                 backgroundHeight = theCanvas.clientHeight; 
                 Context5.translate(backgroundWidth/2, backgroundHeight/2);
@@ -3735,7 +3735,7 @@ function game_background(){
     //console.log("playerY/100",playerY/100);
 
     if (enemy_boss_01_status == 1){
-        Context3.globalAlpha = 0.4 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
+        Context3.globalAlpha = 0.3 * Math.floor(Math.random() * 2) + parseInt(playerY/1000);
     }
 
     if (enemy_boss_02_status == 1){
@@ -6063,7 +6063,7 @@ function weappon_move(){
                 
                 if (i%2 == 0){
 
-                    this.weapponImage = weappon03Image;포
+                    this.weapponImage = weappon03Image;
                     //유도 미사일 특징
                     //1.크기가 크다. 느리다
                     //this.weappon_size = this.weappon_size + this.enemy_size/10;

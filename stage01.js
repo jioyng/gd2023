@@ -170,7 +170,7 @@ button04.arc(maxX - 215, maxY - 300, 65, 0, 2*Math.PI, true);    //arc(x, y, rad
 
 /////////////////////////////////////////게임 관련 상태 설정 시작////////////////////////////////////////
 //초기 게임 상태
-var init_status = 1;  //1:Start,   2:ing,  3:Pause
+var ini_status = 1;  //1:Start,   2:ing,  3:Pause
 //기본 게임 프래임
 var ini_gameFrame = 45 + parseInt(Math.random()*15);  //60프레임
 //진행시간(=거리)
@@ -1155,7 +1155,7 @@ function game_init(){
     //오디오 처음부터
     audio.currentTime  = 0;
 
-    status = init_status;
+    status = ini_status;
     gameFrame = ini_gameFrame;
     gameTime = init_gameTime;
     gameScore = init_gameScore;
@@ -4794,7 +4794,7 @@ function game_status(){
         Context.fillText("Game Over", (theCanvas.clientWidth - ini_player_width) / 2 - theCanvas.offsetLeft - 200, theCanvas.clientHeight / 2 - theCanvas.offsetTop);
         clearInterval(Timer_Id);
         return;
-    } 
+    }
 }
 
 ////////////////// 캔버스 컨트롤(게임 프래임 진행시 호출하여 생성)
@@ -5038,7 +5038,7 @@ GameCanvas.addEventListener('mousedown', function(event) {
  ///////////////// 게임 재시도 or 나가기 버튼 보여주기
  function gameRetryExitButton(){ 
 
-    if (status != 2)
+    if (!(status == 2 || status == 3))
     { 
          playerImage = noneImage;
          laserImage = noneImage;

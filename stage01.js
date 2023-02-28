@@ -1829,6 +1829,9 @@ function sword_move(){
             //기합소리02
             shout02_sound.currentTime  = 0.5;
             shout02_sound.play(); 
+            //기합소리01
+            //shout01_sound.currentTime  = 0.2;
+            //shout01_sound.play();             
        } 
 
         // s_width = 100;  
@@ -1883,14 +1886,121 @@ function sword_move(){
 
 }
 ////////////////// 플레이어 레이져 경로  
+targetX = 0;
+targetY = 0;
 function laser_move(){ 
 
     //폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
     if (laser_yn == 'Y' || skill == 3 ){
 
         //ld = Math.floor(Pdistance/10); 
-        //레일건
-        if (skill == 1){  
+        //기본
+        if (skill == 1){
+            laserImage = laser01;
+            //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
+
+            if (wayBefore=='L'){
+                xxAim = xxAim - 6; 
+            }else if (wayBefore=='R'){
+                xxAim = xxAim + 6;
+            }else if (wayBefore=='U'){
+                yyAim = yyAim - 6; 
+            }else if (wayBefore=='D'){
+                yyAim = yyAim + 6;
+            }else if (wayBefore=='LU') {
+                xxAim = xxAim - 6;
+                yyAim = yyAim - 6;
+            }else if (wayBefore=='RU') {
+                xxAim = xxAim + 6;
+                yyAim = yyAim - 6;
+            }else if (wayBefore=='LD') {
+                xxAim = xxAim - 6;
+                yyAim = yyAim + 6;
+            }else if (wayBefore=='RD') {
+                xxAim = xxAim + 6;
+                yyAim = yyAim + 6;
+            }else {
+                xxAim = 0;
+                yyAim = 0;
+            }    
+
+            //표적이 보여진다.
+            Context4.beginPath();
+            Context4.globalAlpha = 0.3; 
+            //표적 좌표
+            targetX = playerX + playerWidth/2 + xxAim;
+            targetY = playerY - 100 + yyAim;
+            Context4.arc(targetX  , targetY, 80/4 + playerHeight/4, 0, Math.PI * 2);
+            Context4.globalAlpha = 0.4
+            Context4.arc(targetX  , targetY, 40/6 + playerHeight/5, 0, Math.PI * 2);
+            Context4.globalAlpha = 0.5;
+            Context4.arc(targetX  , targetY, 5, 0, Math.PI * 2);            
+            Context4.lineWidth = "2"; 
+            // Context4.strokeStyle = "#008000";
+            // Context4.fillStyle = "#008000";
+            Context4.strokeStyle = "white";
+            Context4.fillStyle = "white";
+            Context4.stroke();  
+
+            //표적이 경계밖으로 나가려고 하면
+            if((targetX) > maxX){
+                xxAim = xxAim - 20;
+                //yyAim = 0;
+            } 
+            if((targetX) < 0){
+                xxAim = xxAim + 20;
+                //yyAim = 0;
+            }  
+            if((targetY) > maxY){
+                //xxAim = 0;
+                yyAim = yyAim - 20;
+            }             
+            if((targetY) < 0){
+                //xxAim = 0;
+                yyAim = yyAim + 20;
+            }                       
+
+            Context4.globalAlpha = 0.9;
+            //ld = Math.floor(Pdistance/10);
+            //l_height = 100;
+            l_width = 6;
+            l_height = 6; 
+            
+            for (var i=0;i<=80;i++){ 
+
+                //표적이 플레이어보다 상단에 있으면 총알은 상단으로
+                if ((playerY + playerHeight/2) >= targetY){   
+                    lmovey = lmovey - ((playerY + playerHeight/2) - targetY)/1000;   
+                }
+                 
+                //표적이 플레이어보다 하단에 있으면
+                if ((playerY + playerHeight/2) < targetY){  
+                    lmovey = lmovey + (targetY - (playerY + playerHeight/2))/680;                 
+                }
+
+                //표적이 플레이어보다 좌측에 있으면 총알은 좌측으로  
+                if((playerX + playerWidth/2) >= targetX){ 
+                    lmovex = lmovex  + (targetX - (playerX + playerWidth/2))/800;  
+                } 
+
+                //표적이 플레이어보다 우측에 있으면
+                if((playerX + playerWidth/2) < targetX){ 
+                    lmovex = lmovex - ((playerX - playerWidth/2) - targetX)/800; 
+                } 
+
+                //표적에 들어오면 총알이 작아진다. 
+                if ((lmovex >= targetX - 40 && lmovex < targetX + 40) && (lmovey >= targetY - 40 && lmovey < targetY + 40)) 
+                {     
+                    l_width = l_width - 0.0001;
+                    l_height = l_height - 0.0001;   
+                    if(l_width<1){ 
+                        laserImage = noneImage; 
+                    }  
+                }
+
+                Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height); 
+            }
+        }else if (skill == 11){  
             laserImage = laser01;
             //console.log("laser_r + "," + laser_d->",laser_r + "," + laser_d);
 

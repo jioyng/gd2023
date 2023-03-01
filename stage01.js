@@ -1925,8 +1925,8 @@ function laser_move(){
             }     
             
             //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
-            lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
-            lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+            //lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+            //lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
             
             //표적이 보여진다.
             Context4.beginPath();
@@ -1935,8 +1935,8 @@ function laser_move(){
             //targetX = playerX + playerWidth/2 + xxAim;
             //targetY = playerY - 100 + yyAim;
 
-            targetX = lmovex + playerWidth/2 + xxAim;
-            targetY = lmovey - 100 + yyAim;
+            targetX = Math.sqrt(lmovex * lmovex);
+            targetY = Math.sqrt(lmovey * lmovey);
 
 
             Context4.arc(targetX  , targetY, 80/4 + playerHeight/4, 0, Math.PI * 2);

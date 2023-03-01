@@ -1922,14 +1922,23 @@ function laser_move(){
             }else {
                 xxAim = 0;
                 yyAim = 0;
-            }    
-
+            }     
+            
+            //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+            lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+            lmovey = lmovey + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+            
             //표적이 보여진다.
             Context4.beginPath();
             Context4.globalAlpha = 0.3; 
             //표적 좌표
-            targetX = playerX + playerWidth/2 + xxAim;
-            targetY = playerY - 100 + yyAim;
+            //targetX = playerX + playerWidth/2 + xxAim;
+            //targetY = playerY - 100 + yyAim;
+
+            targetX = lmovex + playerWidth/2 + xxAim;
+            targetY = lmovey - 100 + yyAim;
+
+
             Context4.arc(targetX  , targetY, 80/4 + playerHeight/4, 0, Math.PI * 2);
             Context4.globalAlpha = 0.4
             Context4.arc(targetX  , targetY, 40/6 + playerHeight/5, 0, Math.PI * 2);
@@ -1966,7 +1975,7 @@ function laser_move(){
             l_width = 6;
             l_height = 6; 
             
-            for (var i=0;i<=80;i++){ 
+            for (var i=0;i<=40;i++){ 
 
                 //표적이 플레이어보다 상단에 있으면 총알은 상단으로
                 if ((playerY + playerHeight/2) >= targetY){   

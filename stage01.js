@@ -2325,7 +2325,7 @@ function laser_move(){
                 }                  
             }   
 
-            Context.drawImage(laserImage,lmovex,lmovey,l_width+Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3),l_height + Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3));  
+            Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height);  
          
             //플레이어미사일2   
             l_width = 34;
@@ -2362,8 +2362,8 @@ function laser_move(){
                 }                  
             } 
           
-            Context.drawImage(laserImage,lmovex2,lmovey2,l_width+Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3),l_height + Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3));  
-            
+            Context.drawImage(laserImage,lmovex2,lmovey2,l_width,l_height);   
+            laserImage = weappon02Image;
             //플레이어미사일3   
             l_width = 38;
             l_height = 34;  
@@ -2399,7 +2399,7 @@ function laser_move(){
                 }                  
             }    
             
-            Context.drawImage(laserImage,lmovex3,lmovey3,l_width+Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3),l_height + Math.floor(Math.random() * 3)-Math.floor(Math.random() * 3));  
+            Context.drawImage(laserImage,lmovex3,lmovey3,l_width,l_height); 
 
             //플레이어미사일4    
             l_width = 32;

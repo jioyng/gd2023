@@ -175,8 +175,8 @@ var ini_status = 1;  //1:Start,   2:ing,  3:Pause
 var ini_gameFrame = 45 + parseInt(Math.random()*15);  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
-//var gameTime = 5000;
-var gameTime = 0;
+var gameTime = 5000;
+//var gameTime = 0;
 var init_gameScore = 0;
 var gameScore = 0;
 //화면 타이머 id
@@ -2159,6 +2159,24 @@ function laser_move(){
         //레이져  
         }else if (skill == 2){  
             laserImage = laser;
+
+            //표적 좌표
+            Context4.beginPath();
+            Context4.moveTo(lmovex, lmovey - 40 + laser_charge_total_time/2);
+            Context4.lineTo(lmovex - 20, lmovey + 40 + laser_charge_total_time/2);
+            Context4.lineTo(lmovex + 20, lmovey + 40 + laser_charge_total_time/2);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();
+
+            Context4.beginPath();
+            Context4.moveTo(lmovex, lmovey + 40 - laser_charge_total_time/2);
+            Context4.lineTo(lmovex - 20, lmovey - 40 - laser_charge_total_time/2);
+            Context4.lineTo(lmovex + 20, lmovey - 40 - laser_charge_total_time/2);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();
+
             for (var i=0;i<=150;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_height = 1 + power/1000;
@@ -2222,7 +2240,7 @@ function laser_move(){
 
             }   
         //플레이어미사일
-        }else if (skill == 5){
+        }else if (skill == 5){ 
 
             //이전 미사일 크기가 0보다 작을경우만 새로 발사가능
             //if(!(laserImage.src == noneImage.src)) return;
@@ -2258,6 +2276,8 @@ function laser_move(){
                 xxAim = 0;
                 yyAim--;
             }     
+
+           
             
             //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
             lmovex = lmovex + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
@@ -2270,6 +2290,55 @@ function laser_move(){
             targetX = playerX + playerWidth/2 + xxAim;
             targetY = playerY - 100 + yyAim;   
 
+            //표적이 보여진다.
+            // Context4.beginPath();
+            // Context4.globalAlpha = 0.3;
+            // Context4.arc(lmovex  , lmovey, 80/4 + playerHeight/4 - laser_charge_total_time/60, 0, Math.PI * 2);
+            // Context4.globalAlpha = 0.4
+            // Context4.arc(lmovex2  , lmovey2, 40/6 + playerHeight/5 - laser_charge_total_time/60, 0, Math.PI * 2);
+            // Context4.globalAlpha = 0.5;
+            // Context4.arc(lmovex3 , lmovey3, 5, 0, Math.PI * 2);
+            // Context4.globalAlpha = 0.6;
+            // Context4.arc(lmovex4 , lmovey4, 5, 0, Math.PI * 2);                    
+            // Context4.lineWidth = "1"; 
+            // // Context4.strokeStyle = "#008000";
+            // // Context4.fillStyle = "#008000";
+            // Context4.strokeStyle = "white";
+            // Context4.fillStyle = "white";
+            // Context4.stroke();   
+               
+            //표적 좌표
+            Context4.beginPath();
+            Context4.moveTo(lmovex, lmovey);
+            Context4.lineTo(lmovex - 20, lmovey - 20 + laser_charge_total_time/4);
+            Context4.lineTo(lmovex + 20, lmovey - 20 + laser_charge_total_time/4);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();
+
+            Context4.beginPath();
+            Context4.moveTo(lmovex2, lmovey2);
+            Context4.lineTo(lmovex2 - 20, lmovey2 - 20 + laser_charge_total_time/3);
+            Context4.lineTo(lmovex2 + 20, lmovey2 - 20 + laser_charge_total_time/3);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();
+
+            Context4.beginPath();
+            Context4.moveTo(lmovex3, lmovey3);
+            Context4.lineTo(lmovex3 - 20, lmovey3 - 20 + laser_charge_total_time/4);
+            Context4.lineTo(lmovex3 + 20, lmovey3 - 20 + laser_charge_total_time/4);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();
+            
+            Context4.beginPath();
+            Context4.moveTo(lmovex4, lmovey4);
+            Context4.lineTo(lmovex4 - 20, lmovey4 - 20 + laser_charge_total_time/3);
+            Context4.lineTo(lmovex4 + 20, lmovey4 - 20 + laser_charge_total_time/3);
+            Context4.closePath();
+            Context4.strokeStyle = "white";; //선 색상 
+            Context4.stroke();            
             //표적이 경계밖으로 나가려고 하면
             if((targetX) > maxX){
                 xxAim = xxAim - 20;

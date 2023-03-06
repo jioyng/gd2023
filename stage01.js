@@ -175,8 +175,8 @@ var ini_status = 1;  //1:Start,   2:ing,  3:Pause
 var ini_gameFrame = 45 + parseInt(Math.random()*15);  //60프레임
 //진행시간(=거리)
 var init_gameTime = 0;
-var gameTime = 5000;
-//var gameTime = 0;
+//var gameTime = 5000;
+var gameTime = 0;
 var init_gameScore = 0;
 var gameScore = 0;
 //화면 타이머 id
@@ -2003,9 +2003,18 @@ function laser_move(){
             Context4.globalAlpha = 0.9;
             //ld = Math.floor(Pdistance/10);
             //l_height = 100;
-            l_width = 6;
-            l_height = 6; 
+            l_width = 8;
+            l_height = 8; 
             
+            //플레이어 미사일이 발사되고 시간이 경과되면 크기가 작아진다.
+            l_width = l_width - laser_charge_total_time/2;
+            l_height = l_height -  laser_charge_total_time/2; 
+            if(l_width<0){
+                l_width=0;
+                l_height=0;
+                laserImage=noneImage
+            } 
+
             for (var i=0;i<=100;i++){ 
 
                 //표적이 플레이어보다 상단에 있으면 총알은 상단으로
@@ -2151,7 +2160,7 @@ function laser_move(){
                     return; 
                 }  
 
-
+ 
                 //alert(lmovex+","+lmovey+","+l_height) 
                 Context.drawImage(laserImage,lmovex,lmovey,l_width,l_height); 
                 //Context4.lineWidth = "0.5"
@@ -2159,24 +2168,23 @@ function laser_move(){
         //레이져  
         }else if (skill == 2){  
             laserImage = laser;
-
-            //표적 좌표
+ 
             Context4.beginPath();
-            Context4.moveTo(lmovex, lmovey - 40 + laser_charge_total_time/2);
-            Context4.lineTo(lmovex - 20, lmovey + 40 + laser_charge_total_time/2);
-            Context4.lineTo(lmovex + 20, lmovey + 40 + laser_charge_total_time/2);
+            Context4.moveTo(lmovex, lmovey + 60 - laser_charge_total_time*2);
+            Context4.lineTo(lmovex - 40 + laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex + 40 - laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
             Context4.closePath();
             Context4.strokeStyle = "white";; //선 색상 
             Context4.stroke();
 
             Context4.beginPath();
-            Context4.moveTo(lmovex, lmovey + 40 - laser_charge_total_time/2);
-            Context4.lineTo(lmovex - 20, lmovey - 40 - laser_charge_total_time/2);
-            Context4.lineTo(lmovex + 20, lmovey - 40 - laser_charge_total_time/2);
+            Context4.moveTo(lmovex4, lmovey4 + 60 - laser_charge_total_time*2);
+            Context4.lineTo(lmovex4 - 40 + laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex4 + 40 - laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
             Context4.closePath();
             Context4.strokeStyle = "white";; //선 색상 
-            Context4.stroke();
-
+            Context4.stroke();            
+          
             for (var i=0;i<=150;i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
                     l_height = 1 + power/1000;
@@ -2188,11 +2196,48 @@ function laser_move(){
          
                     Context.drawImage( laserImage,lmovex,lmovey,l_width,l_height);        
             }  
+
+            for (var i=0;i<=150;i++){   
+                //플레이어 거리에 따른 레이져 크기 변경
+                l_height = 1 + power/1000;
+                l_height = l_height*(Pdistance/200); 
+
+                //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex2 = lmovex2 + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey2 = lmovey2 + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+     
+                Context.drawImage( laserImage,lmovex2+10,lmovey2,l_width,l_height);        
+            }  
+            
+            for (var i=0;i<=150;i++){   
+                //플레이어 거리에 따른 레이져 크기 변경
+                l_height = 1 + power/1000;
+                l_height = l_height*(Pdistance/200); 
+
+                //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex3 = lmovex3 + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey3 = lmovey3 + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+     
+                Context.drawImage( laserImage,lmovex3+20,lmovey3+30,l_width,l_height);        
+            }   
+            
+            for (var i=0;i<=150;i++){   
+                //플레이어 거리에 따른 레이져 크기 변경
+                l_height = 1 + power/1000;
+                l_height = l_height*(Pdistance/200); 
+
+                //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
+                lmovex4 = lmovex4 + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
+                lmovey4 = lmovey4 + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
+     
+                Context.drawImage( laserImage,lmovex4+40,lmovey4+40,l_width,l_height);        
+            }                
         //폭멸탄
         }else if (skill == 3){  
             laserImage = laser02;
             //if (80 <= laser_charge_total_time && laser_charge_total_time <= 100){     //시간이 되면 자동 폭파  
             //60fps시 충전시간은 * 2  
+            
             if (80 * (ini_gameFrame/30) <= laser_charge_total_time && laser_charge_total_time <= 100 * (ini_gameFrame/30)){     //시간이 되면 자동 폭파                    
                 laser_yn='Y'; 
                 for (var i=0;i<10;i++){  
@@ -2210,16 +2255,28 @@ function laser_move(){
             }  
         //이온포
         }else if (skill == 4){  
-            laserImage = laser02;
+            laserImage = laser02; 
+
+
             if (15 <= laser_charge_total_time && laser_charge_total_time <= 30){     //충전이 되면 자동 발사  
                 //이온포의 크기는 플레이어의 1/3 크기만큼 
                 // l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
                 // l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);   
                 
-                l_width = playerWidth/4 + Math.floor(Math.random()*50);
-                l_height = playerWidth/4 + Math.floor(Math.random()*50);  
+                l_width = playerWidth/2 + Math.floor(Math.random()*50);
+                l_height = playerWidth/3 + Math.floor(Math.random()*50);  
 
-                for (var i=0;i<80;i++){ 
+                                            
+                //플레이어 미사일이 발사되고 시간이 경과되면 크기가 작아진다.
+                l_width = l_width - laser_charge_total_time/12;
+                l_height = l_height -  laser_charge_total_time/12; 
+                if(l_width<0){
+                    l_width=0;
+                    l_height=0;
+                    laserImage=noneImage
+                } 
+                
+                for (var i=0;i<100;i++){ 
 
                     l_width = l_width - 0.1;
                     l_height = l_height - 0.2;
@@ -2235,7 +2292,7 @@ function laser_move(){
 
                     //Context.drawImage(laserImage,lmovex,lmovey,l_height,l_height - i/8);  
                     Context.drawImage(laserImage,lmovex-20,lmovey-40,l_width*(Pdistance/600),l_height*(Pdistance/600));
-                    
+                    Context.drawImage(laserImage,lmovex-10,lmovey-20,l_width*(Pdistance/600),l_height*(Pdistance/600));
                 }  
 
             }   
@@ -5283,8 +5340,12 @@ GameCanvas.addEventListener('mousedown', function(event) {
  
         //공격 스킬구분에 따른 공격 레이져 초기변수 
         if (skill == 1){    
+            laser_charge_total_time = 0;
+            laser_charge_start_time  = gameTime;     
             l_width = 10; 
-        }else if (skill == 2){                        
+        }else if (skill == 2){          
+            laser_charge_total_time = 0;      
+            laser_charge_start_time  = gameTime;             
             l_width = 1;              
         }else { 
             laser_charge_total_time = 0;
@@ -7205,8 +7266,10 @@ function drawScreen(){
 
     //레이져 방향
     if (skill == 1){ 
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         laser_move();
     }else if (skill == 2){ 
+        laser_charge_total_time = Math.abs(gameTime - laser_charge_start_time);  
         laser_move();
     }else if (skill == 3){ 
         //폭탄 타이머 시작

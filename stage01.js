@@ -3301,7 +3301,7 @@ function enemy_collision(){
                 if (skill == 1){ 
                     this.enemy_life = this.enemy_life - 1;              
                 }else if (skill == 2){
-                    this.enemy_life = this.enemy_life - 1;            
+                    this.enemy_life = this.enemy_life - 0.5;            
                 }else if (skill == 3){
                     this.enemy_life = this.enemy_life - 20;  
                 }else if (skill == 4){

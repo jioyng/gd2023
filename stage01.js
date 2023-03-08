@@ -2169,13 +2169,13 @@ function laser_move(){
         }else if (skill == 2){  
             laserImage = laser;
  
-            Context4.beginPath();
-            Context4.moveTo(lmovex, lmovey + 60 - laser_charge_total_time*2);
-            Context4.lineTo(lmovex - 40 + laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
-            Context4.lineTo(lmovex + 40 - laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
-            Context4.closePath();
-            Context4.strokeStyle = "white";; //선 색상 
-            Context4.stroke();
+            // Context4.beginPath();
+            // Context4.moveTo(lmovex, lmovey + 60 - laser_charge_total_time*2);
+            // Context4.lineTo(lmovex - 40 + laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
+            // Context4.lineTo(lmovex + 40 - laser_charge_total_time*4, lmovey - 40 + laser_charge_total_time*4);
+            // Context4.closePath();
+            // Context4.strokeStyle = "white";; //선 색상 
+            // Context4.stroke();
 
             Context4.beginPath();
             Context4.moveTo(lmovex2, lmovey2 + 60 - laser_charge_total_time*2);
@@ -2185,21 +2185,21 @@ function laser_move(){
             Context4.strokeStyle = "white";; //선 색상 
             Context4.stroke();     
             
-            Context4.beginPath();
-            Context4.moveTo(lmovex3, lmovey3 + 60 - laser_charge_total_time*2);
-            Context4.lineTo(lmovex3 - 40 + laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
-            Context4.lineTo(lmovex3 + 40 - laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
-            Context4.closePath();
-            Context4.strokeStyle = "white";; //선 색상 
-            Context4.stroke(); 
+            // Context4.beginPath();
+            // Context4.moveTo(lmovex3, lmovey3 + 60 - laser_charge_total_time*2);
+            // Context4.lineTo(lmovex3 - 40 + laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
+            // Context4.lineTo(lmovex3 + 40 - laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
+            // Context4.closePath();
+            // Context4.strokeStyle = "white";; //선 색상 
+            // Context4.stroke(); 
             
-            Context4.beginPath();
-            Context4.moveTo(lmovex4, lmovey4 + 60 - laser_charge_total_time*2);
-            Context4.lineTo(lmovex4 - 40 + laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
-            Context4.lineTo(lmovex4 + 40 - laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
-            Context4.closePath();
-            Context4.strokeStyle = "white";; //선 색상 
-            Context4.stroke();             
+            // Context4.beginPath();
+            // Context4.moveTo(lmovex4, lmovey4 + 60 - laser_charge_total_time*2);
+            // Context4.lineTo(lmovex4 - 40 + laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
+            // Context4.lineTo(lmovex4 + 40 - laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
+            // Context4.closePath();
+            // Context4.strokeStyle = "white";; //선 색상 
+            // Context4.stroke();             
           
             for (var i=0;i<=(Math.floor(Math.random()*50) + 100);i++){   
                     //플레이어 거리에 따른 레이져 크기 변경
@@ -2222,7 +2222,7 @@ function laser_move(){
                 lmovex2 = lmovex2 + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                 lmovey2 = lmovey2 + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
      
-                Context.drawImage( laserImage,lmovex2 -- +10,lmovey2,l_width,l_height);        
+                Context.drawImage( laserImage,lmovex2+10,lmovey2,l_width,l_height);        
             }  
             
             for (var i=0;i<=(Math.floor(Math.random()*50) + 100);i++){   
@@ -2246,7 +2246,7 @@ function laser_move(){
                 lmovex4 = lmovex4 + Math.cos(laser_d * Math.PI / 180); //(코사인 * 루트(x제곱 + y제곱)
                 lmovey4 = lmovey4 + Math.sin(laser_d * Math.PI / 180) * - 1; //(사인 * 루트(x제곱 + y제곱)
      
-                Context.drawImage( laserImage,lmovex4+40,lmovey4+40,l_width,l_height);        
+                Context.drawImage( laserImage,lmovex4-- +40,lmovey4+40,l_width,l_height);        
             }                
         //폭멸탄
         }else if (skill == 3){  

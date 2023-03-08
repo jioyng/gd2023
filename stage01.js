@@ -2179,16 +2179,16 @@ function laser_move(){
 
             Context4.beginPath();
             Context4.moveTo(lmovex2, lmovey2 + 60 - laser_charge_total_time*2);
-            Context4.lineTo(lmovex2 - 40 + laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
-            Context4.lineTo(lmovex2 + 40 - laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex2 - 40 + laser_charge_total_time*4, lmovey2 - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex2 + 40 - laser_charge_total_time*4, lmovey2 - 40 + laser_charge_total_time*4);
             Context4.closePath();
             Context4.strokeStyle = "white";; //선 색상 
             Context4.stroke();     
             
             Context4.beginPath();
             Context4.moveTo(lmovex3, lmovey3 + 60 - laser_charge_total_time*2);
-            Context4.lineTo(lmovex3 - 40 + laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
-            Context4.lineTo(lmovex3 + 40 - laser_charge_total_time*4, lmovey4 - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex3 - 40 + laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
+            Context4.lineTo(lmovex3 + 40 - laser_charge_total_time*4, lmovey3 - 40 + laser_charge_total_time*4);
             Context4.closePath();
             Context4.strokeStyle = "white";; //선 색상 
             Context4.stroke(); 

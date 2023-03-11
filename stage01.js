@@ -1847,7 +1847,10 @@ function laser_init(){
 
 ////////////////// 플레이어 검 공격
 var swordMoveCnt=0;
+var swordStrttime=0;
+var swordChargetime=0;
 function sword_move(){    
+    
     if (sword_yn == 'Y'){
         laser_yn = 'N'; 
         //sword_yn = 'Y'; 
@@ -1861,43 +1864,74 @@ function sword_move(){
 
         
         //연속으로 검을 휘두르면 검기가 발사된다.
-        ++swordMoveCnt;
+        ++swordMoveCnt;   
         
-        if(swordMoveCnt>60){
+        if(swordMoveCnt>30){
             //alert("필상길");
             //기합소리01
             shout03_sound.currentTime  = 0.3;
             shout03_sound.play(); 
 
-            s_width = s_width--*2.8;  
-            s_height = s_height--*2.6; 
+            // s_width = s_width--*2.8;  
+            // s_height = s_height--*2.6; 
 
-            for (var i=0;i<=10;i++){   
-             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
-            }   
-            //기합소리01
-            shout03_sound.currentTime  = 0.3;
-            shout03_sound.play(); 
-            s_width = s_width--*2.8;  
-            s_height = s_height--*2.6; 
+            // for (var i=0;i<=10;i++){   
+            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
+            // }   
+            // //기합소리01
+            // shout03_sound.currentTime  = 0.3;
+            // shout03_sound.play(); 
+            // s_width = s_width--*2.8;  
+            // s_height = s_height--*2.6; 
 
-            for (var i=0;i<=10;i++){   
-             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
-            }   
-            //기합소리01
-            shout03_sound.currentTime  = 0.3;
-            shout03_sound.play(); 
-            s_width = s_width--*2.8;  
-            s_height = s_height--*2.6; 
+            // for (var i=0;i<=10;i++){   
+            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
+            // }   
+            // //기합소리01
+            // shout03_sound.currentTime  = 0.3;
+            // shout03_sound.play(); 
+            // s_width = s_width--*2.8;  
+            // s_height = s_height--*2.6; 
 
-            for (var i=0;i<=10;i++){   
-             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
+            // for (var i=0;i<=10;i++){   
+            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
+            // }    
+ 
+            s_width = s_width++*0.8 + 2;  
+            s_height = s_height++*0.8 + 2; 
+
+            for (var i=0;i<=4;i++){    
+                smovex = smovex - i*i*i;
+                smovey = smovey - i*i*i;
+                //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
             }   
-            
-            if(swordMoveCnt>60 && swordMoveCnt<100){
-                return;
+
+            for (var i=0;i<=4;i++){    
+                smovex = smovex - i*i*i;
+                smovey = smovey + i*i*i;
+                //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+            }   
+
+            for (var i=0;i<=4;i++){    
+                smovex = smovex + i*i*i;
+                smovey = smovey + i*i*i;
+                //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+            }   
+
+            for (var i=0;i<=4;i++){    
+                smovex = smovex + i*i*i;
+                smovey = smovey - i*i*i;
+                //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+            }               
+
+            if(swordMoveCnt>30 && swordMoveCnt<120){
+                 return;
             }
-
+            
             sword_yn = 'Y'; 
             swordMoveCnt = 0;
         }
@@ -7329,6 +7363,18 @@ function drawScreen(){
 
     //기본 스킬(sword)  
     //if(sword_yn=='Y') sword_move();  
+    if (swordStrttime==0){
+        swordStrttime = gameTime; 
+    }else {
+        swordChargetime = gameTime - swordStrttime;
+    }
+    if (swordChargetime>100){
+        //alert(swordChargetime);
+        swordMoveCnt = 0;  
+        swordStrttime = 0;      
+        swordChargetime = 0;
+    }
+    //연속간격이 끊어지면 검기는 초기화    
     sword_move();
 
     //레이져 방향
@@ -7534,8 +7580,8 @@ function drawScreen(){
         if(skill==5) skill_text = '미사일';        
         Context.fillText("무기 : " + skill_text,10,150);  
         //Context.fillText("속도 : " + Pspeed,10,200);  
-        Context.fillText("FPS : " + ini_gameFrame,10,200); 
-        Context.fillText("검기 : " + swordMoveCnt,10,250);        
+        //Context.fillText("FPS : " + ini_gameFrame,10,200); 
+        Context.fillText("검기 : " + swordMoveCnt,10,200);        
         
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {
@@ -7545,7 +7591,8 @@ function drawScreen(){
         Context.fillText("Skill     : " + skill,10,150);  
         //Context.fillText("Time    : " + gameTime,10,200);
         //Context.fillText("Speed : " + Pspeed,10,200);
-        Context.fillText("FPS    : " + ini_gameFrame,10,200);
+        //Context.fillText("FPS    : " + ini_gameFrame,10,200);
+        Context.fillText("Sword : " + swordMoveCnt,10,200);  
     }
 
     if(gameTime<=50){

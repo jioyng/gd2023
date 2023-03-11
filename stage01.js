@@ -1865,41 +1865,29 @@ function sword_move(){
         
         //연속으로 검을 휘두르면 검기가 발사된다.
         ++swordMoveCnt;   
-        
-        if(swordMoveCnt>30){
+        //playerSword_Image = noneImage;
+        if(swordMoveCnt>25){
             //alert("필상길");
             //기합소리01
             shout03_sound.currentTime  = 0.3;
             shout03_sound.play(); 
-
-            // s_width = s_width--*2.8;  
-            // s_height = s_height--*2.6; 
-
-            // for (var i=0;i<=10;i++){   
-            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
-            // }   
-            // //기합소리01
-            // shout03_sound.currentTime  = 0.3;
-            // shout03_sound.play(); 
-            // s_width = s_width--*2.8;  
-            // s_height = s_height--*2.6; 
-
-            // for (var i=0;i<=10;i++){   
-            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
-            // }   
-            // //기합소리01
-            // shout03_sound.currentTime  = 0.3;
-            // shout03_sound.play(); 
-            // s_width = s_width--*2.8;  
-            // s_height = s_height--*2.6; 
-
-            // for (var i=0;i<=10;i++){   
-            //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
-            // }    
  
             s_width = s_width++*0.8 + 2;  
             s_height = s_height++*0.8 + 2; 
             smovex = smovex + playerWidth*1.6;
+
+            // if (isKeyCode == 39 || isKeyCode == 68){
+            //     playerSword_Image=playerSword_RightImage;
+            // } 
+            // if (isKeyCode == 37 || isKeyCode == 65){
+            //     playerSword_Image=playerSword_LeftImage;
+            // }      
+            // if (isKeyCode == 40 || isKeyCode == 83){
+            //     playerSword_Image=playerSword_DownImage;
+            // }   
+            // if (isKeyCode == 38 || isKeyCode == 87){ 
+            //     playerSword_Image=playerSword_UpImage;
+            // }         
 
             for (var i=0;i<=4;i++){    
                 smovex = smovex - i*i*i;
@@ -1929,12 +1917,15 @@ function sword_move(){
                 Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }               
 
-            if(swordMoveCnt>30 && swordMoveCnt<120){
+            if(swordMoveCnt<100){
                  //sword_yn = 'N'; 
+                 //playerSword_Image = noneImage;
                  return;
             } 
          
             swordMoveCnt = 0; 
+            //sword_yn = 'N';
+            //playerSword_Image = noneImage; 
         }
 
 
@@ -2003,7 +1994,7 @@ function sword_move(){
                  
         }  
 
-        sword_yn = 'N'; 
+        sword_yn = 'N';  
     }
 
 }
@@ -3355,7 +3346,7 @@ function enemy_collision(){
          (parseInt(lmovex3) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex3) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)*1.4)) ||
          (parseInt(lmovex4) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(lmovex4) + parseInt(l_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)*1.4))
          ) ||
-        (parseInt(this.enemyw)*0.8 <= playerWidth  && playerSword_Image.src != noneImage.src && (parseInt(smovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(smovex) + parseInt(s_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)/1.4)))){
+        (playerSword_Image.src != noneImage.src && (parseInt(smovex) <= (parseInt(this.enemyx) + parseInt(this.enemyw)*1.4) && ((parseInt(smovex) + parseInt(s_width)) >= parseInt(this.enemyx) - parseInt(this.enemyw)/1.4)))){
 
         //레이져와 적 Y좌표 충돌시
         if ((laser_yn=='Y' && 
@@ -3364,7 +3355,7 @@ function enemy_collision(){
             (parseInt(lmovey3) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(lmovey3)  + parseInt(l_height)) >= parseInt(this.enemyy)) ||
             (parseInt(lmovey4) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(lmovey4)  + parseInt(l_height)) >= parseInt(this.enemyy)) 
             ) || 
-            (parseInt(this.enemyh)*0.8 <= playerHeight && playerSword_Image.src != noneImage.src && (parseInt(smovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(smovey)  + parseInt(s_height)) >= parseInt(this.enemyy)))){
+            (playerSword_Image.src != noneImage.src && (parseInt(smovey) <= (parseInt(this.enemyy)  + parseInt(this.enemyh)*1.4) ) && ((parseInt(smovey)  + parseInt(s_height)) >= parseInt(this.enemyy)))){
               
              //충돌시 carsh 효과 이미지로
              Context.drawImage(this.explosionImage01,this.enemyx-Math.floor(Math.random()*20),this.enemyy+Math.floor(Math.random()*20),20,10);
@@ -3374,6 +3365,7 @@ function enemy_collision(){
              //적 총알 충돌 사운드는 좀 짧게
              crash01_sound.currentTime = 0;
              crash01_sound.play(); 
+             
 
             //적 에너지 차감 
             if (laser_yn == 'Y'){
@@ -3394,7 +3386,7 @@ function enemy_collision(){
                 if(playerSword_Image.src != noneImage.src) { 
                
                     //검기일경우 파워가 강해진다.
-                    if(swordMoveCnt>30){
+                    if(swordMoveCnt>25){
                         this.enemy_life = this.enemy_life - 1;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    
@@ -7369,12 +7361,11 @@ function drawScreen(){
     }else {
         swordChargetime = gameTime - swordStrttime;
     }
-    if (swordChargetime>100){
+    if (swordChargetime>80){
         //alert(swordChargetime);
         swordMoveCnt = 0;  
         swordStrttime = 0;      
-        swordChargetime = 0;
-        sword_yn='N';
+        swordChargetime = 0; 
     }
     //연속간격이 끊어지면 검기는 초기화    
     sword_move();

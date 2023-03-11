@@ -1866,7 +1866,7 @@ function sword_move(){
         //연속으로 검을 휘두르면 검기가 발사된다.
         ++swordMoveCnt;   
         //playerSword_Image = noneImage;
-        if(swordMoveCnt>20){
+        if(swordMoveCnt>24){
             //alert("필상길");
             //기합소리01
             shout03_sound.currentTime  = 0.3;
@@ -3386,7 +3386,7 @@ function enemy_collision(){
                 if(playerSword_Image.src != noneImage.src) { 
                
                     //검기일경우 파워가 강해진다.
-                    if(swordMoveCnt>20){
+                    if(swordMoveCnt>24){
                         this.enemy_life = this.enemy_life - 1;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    

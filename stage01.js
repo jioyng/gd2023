@@ -1897,8 +1897,8 @@ function sword_move(){
             //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
             // }    
  
-            s_width = s_width++*0.9 + 2;  
-            s_height = s_height++*0.9 + 2; 
+            s_width = s_width++*0.8 + 2;  
+            s_height = s_height++*0.8 + 2; 
             smovex = smovex + playerWidth*1.6;
 
             for (var i=0;i<=4;i++){    
@@ -1929,8 +1929,8 @@ function sword_move(){
                 Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }               
 
-            if(swordMoveCnt>25 && swordMoveCnt<100){
-                 //sword_yn = 'N'; 
+            if(swordMoveCnt>20 && swordMoveCnt<120){
+                 sword_yn = 'N'; 
                  return;
             } 
         
@@ -3395,7 +3395,7 @@ function enemy_collision(){
                 if(playerSword_Image.src != noneImage.src) { 
                
                     //검기일경우 파워가 강해진다.
-                    if(swordMoveCnt>25){
+                    if(swordMoveCnt>20){
                         this.enemy_life = this.enemy_life - 10;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    

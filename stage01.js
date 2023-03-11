@@ -1897,42 +1897,44 @@ function sword_move(){
             //  Context.drawImage(playerSword_Image  ,smovex + 36,--smovey - 24,s_width,s_height);
             // }    
  
-            s_width = s_width++*0.8 + 2;  
-            s_height = s_height++*0.8 + 2; 
+            s_width = s_width++*0.9 + 2;  
+            s_height = s_height++*0.9 + 2; 
+            smovex = smovex + playerWidth*1.6;
 
             for (var i=0;i<=4;i++){    
                 smovex = smovex - i*i*i;
                 smovey = smovey - i*i*i;
                 //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
-                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }   
 
             for (var i=0;i<=4;i++){    
                 smovex = smovex - i*i*i;
                 smovey = smovey + i*i*i;
                 //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
-                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }   
 
             for (var i=0;i<=4;i++){    
                 smovex = smovex + i*i*i;
                 smovey = smovey + i*i*i;
                 //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
-                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }   
 
             for (var i=0;i<=4;i++){    
                 smovex = smovex + i*i*i;
                 smovey = smovey - i*i*i;
                 //Context.drawImage(playerSword_Image,smovex-i++,smovey-i++,s_width,s_height);
-                Context.drawImage(playerSword_Image,smovex + playerWidth*1.6,smovey,s_width,s_height);
+                Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }               
 
-            if(swordMoveCnt>30 && swordMoveCnt<120){
+            if(swordMoveCnt>25 && swordMoveCnt<100){
+                 //sword_yn = 'N'; 
                  return;
-            }
-            
-            sword_yn = 'Y'; 
+            } 
+        
+            //sword_yn = 'Y'; 
             swordMoveCnt = 0;
         }
 
@@ -3392,8 +3394,8 @@ function enemy_collision(){
                 //기본스킬일때는 0.6씩 차감 
                 if(playerSword_Image.src != noneImage.src) { 
                
-                    //검기일경우
-                    if(swordMoveCnt>60){
+                    //검기일경우 파워가 강해진다.
+                    if(swordMoveCnt>25){
                         this.enemy_life = this.enemy_life - 10;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    

@@ -1846,6 +1846,7 @@ function laser_init(){
 
 
 ////////////////// 플레이어 검 공격
+var swordMoveCnt=0;
 function sword_move(){    
     if (sword_yn == 'Y'){
         laser_yn = 'N'; 
@@ -1856,7 +1857,51 @@ function sword_move(){
     
         smovex = playerX + playerWidth/2;
         smovey = playerY;   
-        //laser_init(); 
+        //laser_init();  
+
+        
+        //연속으로 검을 휘두르면 검기가 발사된다.
+        ++swordMoveCnt;
+        
+        if(swordMoveCnt>60){
+            //alert("필상길");
+            //기합소리01
+            shout03_sound.currentTime  = 0.3;
+            shout03_sound.play(); 
+
+            s_width = s_width--*2.8;  
+            s_height = s_height--*2.6; 
+
+            for (var i=0;i<=10;i++){   
+             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
+            }   
+            //기합소리01
+            shout03_sound.currentTime  = 0.3;
+            shout03_sound.play(); 
+            s_width = s_width--*2.8;  
+            s_height = s_height--*2.6; 
+
+            for (var i=0;i<=10;i++){   
+             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
+            }   
+            //기합소리01
+            shout03_sound.currentTime  = 0.3;
+            shout03_sound.play(); 
+            s_width = s_width--*2.8;  
+            s_height = s_height--*2.6; 
+
+            for (var i=0;i<=10;i++){   
+             Context.drawImage(playerSword_Image  ,smovex - 36,--smovey - 24,s_width,s_height);
+            }   
+            
+            if(swordMoveCnt>60 && swordMoveCnt<100){
+                return;
+            }
+
+            sword_yn = 'Y'; 
+            swordMoveCnt = 0;
+        }
+
 
         //lmovey = 0;
         //lmovey = 0;
@@ -1883,7 +1928,6 @@ function sword_move(){
         s_height = playerHeight*1.6;  
         
         //playerSword_Image=noneImage;
-
         for (var i=0;i<=4;i++){   
                 
                 //87/65/83/68  
@@ -3314,8 +3358,15 @@ function enemy_collision(){
                 //기본스킬일때는 0.6씩 차감 
                 if(playerSword_Image.src != noneImage.src) { 
                
-                    this.enemy_life = this.enemy_life - 0.6;    
+                    //검기일경우
+                    if(swordMoveCnt>60){
+                        this.enemy_life = this.enemy_life - 10;    
+                    }else {
+                        this.enemy_life = this.enemy_life - 0.5;    
+                    }                    
                 }
+
+
             }
 
              //적 에너지를 다시 그려준다.
@@ -7483,7 +7534,8 @@ function drawScreen(){
         if(skill==5) skill_text = '미사일';        
         Context.fillText("무기 : " + skill_text,10,150);  
         //Context.fillText("속도 : " + Pspeed,10,200);  
-        Context.fillText("FPS : " + ini_gameFrame,10,200);
+        Context.fillText("FPS : " + ini_gameFrame,10,200); 
+        Context.fillText("검기 : " + swordMoveCnt,10,250);        
         
         //Context.fillText("시간 : " + gameTime,10,200);    
     }else {

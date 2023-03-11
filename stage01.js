@@ -1929,13 +1929,12 @@ function sword_move(){
                 Context.drawImage(playerSword_Image,smovex,smovey,s_width,s_height);
             }               
 
-            if(swordMoveCnt>20 && swordMoveCnt<120){
-                 sword_yn = 'N'; 
+            if(swordMoveCnt>30 && swordMoveCnt<120){
+                 //sword_yn = 'N'; 
                  return;
             } 
-        
-            //sword_yn = 'Y'; 
-            swordMoveCnt = 0;
+         
+            swordMoveCnt = 0; 
         }
 
 
@@ -3395,8 +3394,8 @@ function enemy_collision(){
                 if(playerSword_Image.src != noneImage.src) { 
                
                     //검기일경우 파워가 강해진다.
-                    if(swordMoveCnt>20){
-                        this.enemy_life = this.enemy_life - 10;    
+                    if(swordMoveCnt>30){
+                        this.enemy_life = this.enemy_life - 1;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    
                     }                    
@@ -7375,6 +7374,7 @@ function drawScreen(){
         swordMoveCnt = 0;  
         swordStrttime = 0;      
         swordChargetime = 0;
+        sword_yn='N';
     }
     //연속간격이 끊어지면 검기는 초기화    
     sword_move();

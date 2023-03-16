@@ -1443,11 +1443,11 @@ function player_move(){
         
         laser_yn = 'N';
         sword_yn = 'N';
-        pmovex = 0;
-        pmovey = 0; 
-        isBfKeyCode = null;
-		isKeyCode = "81";
-        strKeyEventValue = "";
+        // pmovex = 0;
+        // pmovey = 0; 
+        // isBfKeyCode = null;
+		// isKeyCode = "81";
+        // strKeyEventValue = "";
     }else { 
         playerImage = player;
         player_collision_yn = 'N'; 
@@ -2379,7 +2379,7 @@ function laser_move(){
 
                     //최소 크기는 유지
                     if (l_width <= 40) l_width = 40; 
-                    if (l_height <= 24) l_height = 24;
+                    if (l_height <= 32) l_height = 32;
 
 
                     //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.

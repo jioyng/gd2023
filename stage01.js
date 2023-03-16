@@ -630,7 +630,7 @@ var bonus_cnt = 1;
 
 
 //플레이어 무적시간
-var ini_ready_time = 200;
+var ini_ready_time = 100;
 var ready_time = ini_ready_time;
 
 /////////////////////////////////////////플레이어 레이져 초기 설정///////////////////////////////////////////
@@ -1229,7 +1229,7 @@ function game_init(){
     weappon_speed = 1;
 
     //적 미시일 초기 방향값
-     weappon_Randon = 0;   //적 미사일 방향값은 랜덤하게
+    weappon_Randon = 0;   //적 미사일 방향값은 랜덤하게
 
     //적 새로 출몰 간격
     enemy_dealy_time = 1000;
@@ -1257,6 +1257,11 @@ function game_init(){
     max_weappon_cnt = ini_max_weappon_cnt;
     warp_distance = ini_warp_distance;
 
+    pmovex = 0;
+    pmovey = 0; 
+    isBfKeyCode = null;
+    isKeyCode = "81";
+    strKeyEventValue = "";
     back_distance = 0;
     back_distance2 = 0;
     back_distance3 = 0;
@@ -1438,6 +1443,11 @@ function player_move(){
         
         laser_yn = 'N';
         sword_yn = 'N';
+        pmovex = 0;
+        pmovey = 0; 
+        isBfKeyCode = null;
+		isKeyCode = "81";
+        strKeyEventValue = "";
     }else { 
         playerImage = player;
         player_collision_yn = 'N'; 
@@ -2349,13 +2359,13 @@ function laser_move(){
                 // l_width = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);
                 // l_height = (playerWidth*playerHeight)/240 + Math.floor(Math.random()*50);   
                 
-                l_width = playerWidth/2 + Math.floor(Math.random()*50);
+                l_width = playerWidth/3 + Math.floor(Math.random()*50);
                 l_height = playerWidth/3 + Math.floor(Math.random()*50);  
 
                                             
                 //플레이어 미사일이 발사되고 시간이 경과되면 크기가 작아진다.
-                l_width = l_width - laser_charge_total_time/12;
-                l_height = l_height -  laser_charge_total_time/12; 
+                l_width = l_width - laser_charge_total_time/10;
+                l_height = l_height -  laser_charge_total_time/10; 
                 if(l_width<0){
                     l_width=0;
                     l_height=0;
@@ -2364,12 +2374,12 @@ function laser_move(){
                 
                 for (var i=0;i<100;i++){ 
 
-                    l_width = l_width - 0.1;
+                    l_width = l_width - 0.2;
                     l_height = l_height - 0.2;
 
                     //최소 크기는 유지
                     if (l_width <= 40) l_width = 40; 
-                    if (l_height <= 20) l_height = 20;
+                    if (l_height <= 24) l_height = 24;
 
 
                     //공격 버튼 누른 각도의 위치를 라디안값으로 변환한다.
@@ -5577,7 +5587,9 @@ GameCanvas.addEventListener('mousedown', function(event) {
 
             isKeyDown = [];
             isKeyCode = null; 
-
+            pmovex = 0;
+            pmovey = 0; 
+            isBfKeyCode = null;
         }
     }
 
@@ -7314,7 +7326,7 @@ function drawScreen(){
     //game_status();
 
 	//게임 컨트롤
-    //gameControl();
+    //gameControl();ini_ready_time
 
     //전함01 이동
     ship01_move();

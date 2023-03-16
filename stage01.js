@@ -1883,7 +1883,7 @@ function sword_move(){
         //연속으로 검을 휘두르면 검기가 발사된다.
         ++swordMoveCnt;   
         //playerSword_Image = noneImage;
-        if(swordMoveCnt>24){
+        if(swordMoveCnt>20){
             //alert("필상길");
             //기합소리01
             shout03_sound.currentTime  = 0.3;
@@ -2083,7 +2083,7 @@ targetY = 0;
 function laser_move(){ 
 
     //폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
-    if (laser_yn == 'Y' || skill == 3 || skill == 4 || swordMoveCnt >= 24 ){
+    if (laser_yn == 'Y' || skill == 3 || skill == 4 || swordMoveCnt >= 20 ){
 
         //ld = Math.floor(Pdistance/10); 
        if (skill == 1){  
@@ -3481,7 +3481,7 @@ function enemy_collision(){
                 if(playerSword_Image.src != noneImage.src) { 
                
                     //검기일경우 파워가 강해진다.
-                    if(swordMoveCnt >= 24){
+                    if(swordMoveCnt >= 20){
                         this.enemy_life = this.enemy_life - 2;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    
@@ -3497,7 +3497,7 @@ function enemy_collision(){
 
              //폭멸탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
              //if (skill != 3){  
-             if (!(skill == 3 || skill == 4 || swordMoveCnt >= 24 )){
+             if (!(skill == 3 || skill == 4 || swordMoveCnt >= 20 )){
                  laser_init();
              }else {
                 //playerSkill_03TmpImage = noneImage; 

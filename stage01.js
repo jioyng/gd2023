@@ -1443,9 +1443,9 @@ function player_move(){
         
         laser_yn = 'N';
         sword_yn = 'N';
-        // pmovex = 0;
-        // pmovey = 0; 
-        // isBfKeyCode = null;
+        pmovex = 0;
+        pmovey = 0; 
+        isBfKeyCode = null;
 		// isKeyCode = "81";
         // strKeyEventValue = "";
     }else { 

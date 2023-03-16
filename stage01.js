@@ -3482,7 +3482,7 @@ function enemy_collision(){
                
                     //검기일경우 파워가 강해진다.
                     if(swordMoveCnt >= 20){
-                        this.enemy_life = this.enemy_life - 2;    
+                        this.enemy_life = this.enemy_life - 1;    
                     }else {
                         this.enemy_life = this.enemy_life - 0.5;    
                     }                    

@@ -2083,7 +2083,7 @@ targetY = 0;
 function laser_move(){ 
 
     //폭멸탄은 총알이 적을 관통(폭파)해도 계속 진행된다.
-    if (laser_yn == 'Y' || skill == 3 || skill == 4 || swordMoveCnt >= 20 ){
+    if (laser_yn == 'Y' || skill == 3 || skill == 5 || swordMoveCnt >= 20 ){
 
         //ld = Math.floor(Pdistance/10); 
        if (skill == 1){  
@@ -3497,7 +3497,7 @@ function enemy_collision(){
 
              //폭멸탄가 3이 아닐때만 스킬초기화 => 초기화 안하면 총알이 적을 관통해도 계속 진행된다.
              //if (skill != 3){  
-             if (!(skill == 3 || skill == 4 || swordMoveCnt >= 20 )){
+             if (!(skill == 3 || skill == 5 || swordMoveCnt >= 20 )){
                  laser_init();
              }else {
                 //playerSkill_03TmpImage = noneImage; 
